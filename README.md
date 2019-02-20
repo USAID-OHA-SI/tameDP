@@ -21,6 +21,9 @@ The main function of `tameDP` is to bring import a COP19 Data Pack into R and ma
 **NOTE: The user MUST convert the format from .xlsb to .xls for the function to be able to import the data pack** 
 
 ``` r
+#load package
+  library(tameDP)
+  
 #Data Pack file path (.xls) [COP19]
   path <- "../Downloads/DataPack_Malawi_02062019.xls"
   
