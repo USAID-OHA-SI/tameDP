@@ -16,6 +16,7 @@ get_names <- function(df){
     dplyr::select(mechanismid = code,
                   primepartner = partner,
                   implementingmechanismname = mechanism,
+                  operatingunit = ou,
                   fundingagency = agency) %>%
     dplyr::mutate(implementingmechanismname = stringr::str_remove(implementingmechanismname, "0000[0|1] |[:digit:]+ - "))
 
@@ -23,7 +24,7 @@ get_names <- function(df){
   df <- dplyr::left_join(df, mech_official, by="mechanismid")
 
   #order variables
-  df <- dplyr::select(df, fundingagency, mechanismid, primepartner, implementingmechanismname, dplyr::everything())
+  df <- dplyr::select(df, operatingunit, fundingagency, mechanismid, primepartner, implementingmechanismname, dplyr::everything())
 
   return(df)
 }
