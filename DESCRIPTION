@@ -10,3 +10,8 @@ Description: Import IMxSNU targets from COP19 Data Pack & make tidy/usable
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 6.1.1
+Imports: 
+    magrittr,
+    readxl,
+    dplyr
