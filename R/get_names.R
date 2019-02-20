@@ -7,6 +7,12 @@
 
 get_names <- function(df){
 
+  if(no_connection()) {
+
+    print("No internet connection. Cannot access offical names & rename.")
+
+  } else {
+
   #access current mechanism list posted publically to DATIM
   mech_official <- readr::read_csv("https://www.datim.org/api/sqlViews/fgUtV6e9YIX/data.csv",
                                    col_types = readr::cols(.default = "c"))
@@ -25,6 +31,6 @@ get_names <- function(df){
 
   #order variables
   df <- dplyr::select(df, operatingunit, fundingagency, mechanismid, primepartner, implementingmechanismname, dplyr::everything())
-
+}
   return(df)
 }
