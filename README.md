@@ -2,6 +2,8 @@
 
 Import IMxSNU targets from COP19 Data Pack & make tidy/usable
 
+[![Travis build status](https://travis-ci.org/USAID-OHA-SI/tameDP.svg?branch=master)](https://travis-ci.org/USAID-OHA-SI/tameDP)
+
 ## Installation
 
 You can install the released version of tameDP from GitHub with:
