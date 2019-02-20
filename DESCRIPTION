@@ -1,12 +1,12 @@
 Package: tameDP
-Title: What the Package Does (One Line, Title Case)
+Title: Import IMxSNU targets from COP19 Data Pack
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Aaron",
+           family = "Chafetz",
            role = c("aut", "cre"),
-           email = "first.last@example.com")
-Description: What the package does (one paragraph).
+           email = "achafetz@usaid.gov")
+Description: Import IMxSNU targets from COP19 Data Pack & make tidy/usable
 License: What license it uses
 Encoding: UTF-8
 LazyData: true
