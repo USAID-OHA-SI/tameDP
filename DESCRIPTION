@@ -6,14 +6,15 @@ Authors@R:
            family = "Chafetz",
            role = c("aut", "cre"),
            email = "achafetz@usaid.gov")
-Description: Import IMxSNU targets from COP19 Data Pack & make tidy/usable
+Description: Import IMxSNU targets from COP19 Data Pack. The purpose is to make it tidy/usable.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
 Imports: 
-    magrittr,
-    readxl,
     dplyr,
-    tidyr,
-    stringr
+    magrittr,
+    readr,
+    readxl,
+    stringr,
+    tidyr

@@ -2,6 +2,8 @@
 
 export("%>%")
 export(clean_indicators)
+export(get_names)
 export(import_dp)
 export(reshape_dp)
+export(tame_dp)
 importFrom(magrittr,"%>%")

@@ -21,10 +21,10 @@ The main function of `tameDP` is to bring import a COP19 Data Pack into R and ma
 **NOTE: The user MUST convert the format from .xlsb to .xls for the function to be able to import the data pack** 
 
 ``` r
-#DP file path
-  path <- "C:/Users/achafetz/Downloads/DataPack_Malawi_02062019.xls"
+#Data Pack file path (.xls) [COP19]
+  path <- "../Downloads/DataPack_Malawi_02062019.xls"
   
-#read in data pack
- r <- tame_dp(path)
+#read in Data Pack
+ df_dp <- tame_dp(path)
 ```
 
