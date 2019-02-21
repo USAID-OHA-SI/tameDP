@@ -1,6 +1,6 @@
 Package: tameDP
 Title: Import IMxSNU targets from COP19 Data Pack
-Version: 1.1.0
+Version: 1.2.0
 Authors@R: 
     person(given = "Aaron",
            family = "Chafetz",
