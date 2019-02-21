@@ -34,5 +34,10 @@ reshape_dp <- function(df){
     dplyr::ungroup() %>%
     dplyr::filter(fy2020_targets != 0)
 
+  #extract PSNU UID from PSNU column
+  df <- df %>%
+    tidyr::separate(psnu, c("psnu", "psnuuid"), sep = " \\(") %>%
+    dplyr::mutate(psnuuid = stringr::str_remove(psnuuid, "\\)"))
+
   return(df)
 }

@@ -30,7 +30,7 @@ get_names <- function(df){
   df <- dplyr::left_join(df, mech_official, by="mechanismid")
 
   #order variables
-  df <- dplyr::select(df, operatingunit, fundingagency, mechanismid, primepartner, implementingmechanismname, dplyr::everything())
+  df <- dplyr::select(df, operatingunit, psnu, psnuuid, fundingagency, mechanismid, primepartner, implementingmechanismname, dplyr::everything())
 }
   return(df)
 }
