@@ -25,14 +25,14 @@ reshape_dp <- function(df){
     #keep only relevant columns
     dplyr::select(key_cols, mechs) %>%
     #reshape long, dropping NA cols
-    tidyr::gather(mechanismid, fy2020_target, mechs, na.rm = TRUE) %>%
+    tidyr::gather(mechanismid, fy2020_targets, mechs, na.rm = TRUE) %>%
     #change values to double
-    dplyr::mutate(fy2020_targets = as.double(fy2020_target)) %>%
+    dplyr::mutate(fy2020_targets = as.double(fy2020_targets)) %>%
     #aggregate up to mechanism/ind/age/sex/keypop level
     dplyr::group_by_at(dplyr::vars(mechanismid, key_cols)) %>%
     dplyr::summarise_at(dplyr::vars(fy2020_targets), sum, na.rm = TRUE) %>%
     dplyr::ungroup() %>%
-    dplyr::filter(fy2020_target != 0)
+    dplyr::filter(fy2020_targets != 0)
 
   return(df)
 }
