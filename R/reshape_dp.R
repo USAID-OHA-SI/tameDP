@@ -31,7 +31,8 @@ reshape_dp <- function(df){
     #aggregate up to mechanism/ind/age/sex/keypop level
     dplyr::group_by_at(dplyr::vars(mechanismid, key_cols)) %>%
     dplyr::summarise_at(dplyr::vars(fy2020_targets), sum, na.rm = TRUE) %>%
-    dplyr::ungroup()
+    dplyr::ungroup() %>%
+    dplyr::filter(fy2020_target != 0)
 
   return(df)
 }
