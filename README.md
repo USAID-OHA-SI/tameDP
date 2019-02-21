@@ -18,7 +18,7 @@ devtools::install_github("USAID-OHA-SI/tameDP")
 
 The main function of `tameDP` is to bring import a COP19 Data Pack into R and make it tidy. The function aggregates the FY20 targets up to the mechanism level, imports the mechanism information from DATIM, and breaks out the data elements to make the dataset more usable. 
 
-**NOTE: The user MUST convert the format from .xlsb to .xls for the function to be able to import the data pack** 
+**NOTE: The user MUST convert the format from .xlsb to .xlsx or .xls for the function to be able to import the data pack** 
 
 ``` r
 #load package
@@ -31,3 +31,20 @@ The main function of `tameDP` is to bring import a COP19 Data Pack into R and ma
  df_dp <- tame_dp(path)
 ```
 
+You can use one of the `map()` functions from `purrr` package to read in multiple Data Packs and combine.
+
+``` r
+#load package
+  library(purrr)
+
+#identify all the Data Pack files
+  files <- list.files("../Downloads/DataPacks", full.names = TRUE)
+
+#read in all DPs and combine into one data frame
+  df_all <- map_dfr(.x = files,
+                    .f = ~ tame_dp(.x))
+```
+
+---
+
+*Disclaimer: The findings, interpretation, and conclusions expressed herein are those of the authors and do not necessarily reflect the views of United States Agency for International Development. All errors remain our own.*
