@@ -8,17 +8,17 @@
 
 reshape_dp <- function(df){
 
+  #identify all key meta data columns to keep
+  key_cols <- c("psnu","indicatorcode", "coarseage", "sex", "keypop")
+
+  #check if all columns exist
+  if(!all(key_cols %in% colnames(df)))
+    stop(paste("SNU x IM tab is missing one or more columns:", paste(key_cols, collapse = ", ")))
+
   #identify all mechanism columns for reshaping
   mechs <- df %>%
     dplyr::select(dplyr::matches("^(1|2|3|4|5|6|7|8|9).")) %>%
     names()
-
-  #identify all key meta data columns to keep
-  key_cols <- c("indicatorcode", "coarseage", "sex", "keypop")
-
-  #check if all columns exist
-  if(!all(key_cols %in% colnames(df)))
-    stop("SNUxIM tab is missing one or more columns - indicatorcode, coarseage, sex, keypop")
 
   #reshape
   df <- df %>%
