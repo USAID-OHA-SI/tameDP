@@ -7,6 +7,14 @@ library(tidyverse)
 
 #---------------------------------------------------------
 
+#' Import SNU x IM tabs for .xlsb workbooks
+#'
+#' @param filepath
+#'
+#'
+#' @export
+#'
+#' @importFrom magrittr %>%
 get_xlsb <- function(filepath) {
 
 con <-  RODBC::odbcConnectExcel2007(filepath)
@@ -22,6 +30,10 @@ df <- df[-1 ,]
 
 RODBC::odbcCloseAll()
 
+
+
 }
+
+
 
 
