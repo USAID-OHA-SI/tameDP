@@ -16,7 +16,7 @@ clean_indicators <- function(df){
   #create modalities & rename HTS
   df <- df %>%
     dplyr::mutate(modality = dplyr::case_when(
-      indicator == "HTS_INDEX_COMM" ~ "IndexMod",
+      indicator == "HTS_INDEX_COM" ~ "IndexMod",
       indicator == "HTS_INDEX_FAC" ~ "Index",
       stringr::str_detect(indicator, "HTS_TST.") ~
         stringr::str_remove(indicator, "HTS_TST_")),
