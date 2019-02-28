@@ -30,7 +30,8 @@ clean_indicators <- function(df){
                     otherdisaggregate == "Unknown"                             ~ "Unknown"),
                   otherdisaggregate = ifelse(!stringr::str_detect(indicator, "STAT") &
                                                otherdisaggregate %in% c("NewPos", "Positive",
-                                                                        "NewNeg", "Negative"),
+                                                                        "NewNeg", "Negative",
+                                                                        "Unknown"),
                                              as.character(NA), otherdisaggregate))
   #move targets to end
   df <- df %>%
