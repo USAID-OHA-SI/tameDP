@@ -24,6 +24,9 @@ clean_indicators <- function(df){
                                                                         "NewNeg", "Negative",
                                                                         "Unknown"),
                                              as.character(NA), otherdisaggregate))
+  #convert external modalities
+  df <- convert_external_mods(df)
+
   #move targets to end
   df <- df %>%
     dplyr::select(-fy2020_targets, dplyr::everything())
