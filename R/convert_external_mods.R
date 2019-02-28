@@ -11,11 +11,9 @@ convert_external_mods <- function(df){
   df_index <- df %>%
     dplyr::filter(indicator %in% c("HTS_INDEX_COM", "HTS_INDEX_FAC")) %>%
     dplyr::mutate(modality = dplyr::case_when(
-      indicator == "HTS_INDEX_COM" ~ "IndexMod",
-      indicator == "HTS_INDEX_FAC" ~ "Index",
-      stringr::str_detect(indicator, "HTS_TST.") ~
-        stringr::str_remove(indicator, "HTS_TST_")),
-      indicator = ifelse(stringr::str_detect(indicator, "HTS_(TST|INDEX)."), "HTS_TST", indicator))
+                              indicator == "HTS_INDEX_COM" ~ "IndexMod",
+                              indicator == "HTS_INDEX_FAC" ~ "Index"),
+                  indicator = "HTS_TST")
 
   #filter to indicators which feed into HTS_TST
   df_exmod <- df %>%
@@ -25,9 +23,9 @@ convert_external_mods <- function(df){
 
   #convert -> map modality & change rest to match HTS_TST
   df_exmod <- df_exmod %>%
-    dplyr::mutate(modality = case_when(indicator == "VMMC_CIRC"  ~ "VMMC",
-                                       indicator == "TB_STAT"    ~ "TBClinic",
-                                       indicator == "PMTCT_STAT" ~ "PMTCT ANC"),
+    dplyr::mutate(modality = dplyr::case_when(indicator == "VMMC_CIRC"  ~ "VMMC",
+                                              indicator == "TB_STAT"    ~ "TBClinic",
+                                              indicator == "PMTCT_STAT" ~ "PMTCT ANC"),
                   indicator = "HTS_TST",
                   disaggregate = "Age/Sex/Result",
                   otherdisaggregate = as.character(NA))
