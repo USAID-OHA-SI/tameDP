@@ -13,15 +13,6 @@ clean_indicators <- function(df){
                       c("indicator", "numeratordenom", "disaggregate", NA, "otherdisaggregate"),
                       sep = "\\."))
 
-  #create modalities & rename HTS
-  df <- df %>%
-    dplyr::mutate(modality = dplyr::case_when(
-      indicator == "HTS_INDEX_COM" ~ "IndexMod",
-      indicator == "HTS_INDEX_FAC" ~ "Index",
-      stringr::str_detect(indicator, "HTS_TST.") ~
-        stringr::str_remove(indicator, "HTS_TST_")),
-      indicator = ifelse(stringr::str_detect(indicator, "HTS_(TST|INDEX)."), "HTS_TST", indicator))
-
   #result status
   df <- df %>%
     dplyr::mutate(resultstatus = dplyr::case_when(

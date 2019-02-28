@@ -7,6 +7,16 @@
 
 convert_external_mods <- function(df){
 
+  #create modalities & rename HTS
+  df_index <- df %>%
+    dplyr::filter(indicator %in% c("HTS_INDEX_COM", "HTS_INDEX_FAC")) %>%
+    dplyr::mutate(modality = dplyr::case_when(
+      indicator == "HTS_INDEX_COM" ~ "IndexMod",
+      indicator == "HTS_INDEX_FAC" ~ "Index",
+      stringr::str_detect(indicator, "HTS_TST.") ~
+        stringr::str_remove(indicator, "HTS_TST_")),
+      indicator = ifelse(stringr::str_detect(indicator, "HTS_(TST|INDEX)."), "HTS_TST", indicator))
+
   #filter to indicators which feed into HTS_TST
   df_exmod <- df %>%
     dplyr::filter(indicator %in% c("PMTCT_STAT", "TB_STAT", "VMMC_CIRC"),
@@ -23,7 +33,7 @@ convert_external_mods <- function(df){
                   otherdisaggregate = as.character(NA))
 
   #binding onto main data frame
-  df <- dplyr::bind_rows(df, df_exmod)
+  df <- dplyr::bind_rows(df, df_index, df_exmod)
 
   return(df)
 }
