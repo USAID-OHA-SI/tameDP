@@ -2,6 +2,7 @@
 
 export("%>%")
 export(clean_indicators)
+export(convert_external_mods)
 export(get_names)
 export(import_dp)
 export(is_file)
