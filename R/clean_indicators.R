@@ -25,7 +25,7 @@ clean_indicators <- function(df){
                                                                         "Unknown"),
                                              as.character(NA), otherdisaggregate))
   #convert external modalities
-  df <- convert_external_mods(df)
+  df <- convert_mods(df)
 
   #move targets to end
   df <- df %>%
