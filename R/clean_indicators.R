@@ -25,12 +25,13 @@ clean_indicators <- function(df){
   #result status
   df <- df %>%
     dplyr::mutate(resultstatus = dplyr::case_when(
-      otherdisaggregate %in% c("NewPos", "KnownPos", "Positive") ~ "Positive",
-      otherdisaggregate %in% c("NewNeg", "Negative") ~ "Negative"),
-      otherdisaggregate = ifelse(!stringr::str_detect(indicator, "STAT") &
-                                   otherdisaggregate %in% c("NewPos", "Positive",
-                                                            "NewNeg", "Negative"),
-                                 as.character(NA), otherdisaggregate))
+                    otherdisaggregate %in% c("NewPos", "KnownPos", "Positive") ~ "Positive",
+                    otherdisaggregate %in% c("NewNeg", "Negative")             ~ "Negative",
+                    otherdisaggregate == "Unknown"                             ~ "Unknown"),
+                  otherdisaggregate = ifelse(!stringr::str_detect(indicator, "STAT") &
+                                               otherdisaggregate %in% c("NewPos", "Positive",
+                                                                        "NewNeg", "Negative"),
+                                             as.character(NA), otherdisaggregate))
   #move targets to end
   df <- df %>%
     dplyr::select(-fy2020_targets, dplyr::everything())
