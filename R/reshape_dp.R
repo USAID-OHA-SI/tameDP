@@ -27,6 +27,9 @@ reshape_dp <- function(df){
     #reshape long, dropping NA cols
     tidyr::gather(mechanismid, fy2020_targets, mechs, na.rm = TRUE)
 
+  #account for dup issue with mechid (if dup cols, mechid..col -> strip extra)
+  df <- dplyr::mutate(df, mechanismid = stringr::str_sub(mechanismid, end = 5))
+
   #change values to double
   suppressWarnings(
     df <- dplyr::mutate(df, fy2020_targets = as.double(fy2020_targets))
