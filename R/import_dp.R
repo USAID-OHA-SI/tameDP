@@ -21,12 +21,14 @@ import_dp <- function(filepath){
     stop("No sheet called 'SNU x IM' found.")
 
   #import Data Pack and convert to lower
+  suppressWarnings(
   df <-
     readxl::read_excel(filepath,
                        sheet = "SNU x IM",
                        skip = 4,
                        col_types = "text") %>%
     dplyr::rename_all(~tolower(.))
+  )
 
   return(df)
 }
