@@ -29,6 +29,9 @@ get_names <- function(df){
   #map primepartner and mechanism names onto dataframe
   df <- dplyr::left_join(df, mech_official, by="mechanismid")
 
+  #fill operatingunitname where missing
+  df <- tidyr::fill(df, operatingunit)
+
   #order variables
   df <- dplyr::select(df, operatingunit, psnu, psnuuid, fundingagency, mechanismid, primepartner, implementingmechanismname, dplyr::everything())
 }
