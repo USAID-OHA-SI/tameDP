@@ -1,6 +1,7 @@
 #' Import SNUxIM data from Data Pack and Clean
 #'
 #' @param filepath file path to the Data Pack importing, must be .xls
+#' @param map_names import names from DATIM (OU, mechanism, partner) associated with mechid
 #'
 #' @export
 #' @importFrom magrittr %>%
@@ -13,7 +14,7 @@
 #'   df_dp <- tame_dp(path) }
 
 
-tame_dp <- function(filepath){
+tame_dp <- function(filepath, map_names = TRUE){
 
   #import Data Pack and convert to lower
   df_dp <- import_dp(filepath)
@@ -25,7 +26,8 @@ tame_dp <- function(filepath){
   df_dp <- clean_indicators(df_dp)
 
   #add names from DATIM
-  df_dp <- get_names(df_dp)
+  if(map_names == TRUE)
+    df_dp <- get_names(df_dp)
 
   return(df_dp)
 }

@@ -4,10 +4,12 @@
 \alias{tame_dp}
 \title{Import SNUxIM data from Data Pack and Clean}
 \usage{
-tame_dp(filepath)
+tame_dp(filepath, map_names = TRUE)
 }
 \arguments{
 \item{filepath}{file path to the Data Pack importing, must be .xls}
+
+\item{map_names}{import names from DATIM (OU, mechanism, partner) associated with mechid}
 }
 \description{
 Import SNUxIM data from Data Pack and Clean

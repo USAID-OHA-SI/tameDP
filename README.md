@@ -18,6 +18,15 @@ devtools::install_github("USAID-OHA-SI/tameDP")
 
 The main function of `tameDP` is to bring import a COP19 Data Pack into R and make it tidy. The function aggregates the FY20 targets up to the mechanism level, imports the mechanism information from DATIM, and breaks out the data elements to make the dataset more usable. 
 
+
+- Imports Data Pack as tidy data frame
+- Breaks up data elements stored in the indicatorCode column into distinct columns
+- Cleans up the HTS variables, separating modalities out of the indicator name
+- Creates a resultstatus column
+- Cleans and separates PSNU and PSNU UID into distinct columns
+- Adds in mechanism information from DATIM, including operatingunit, funding agency, partner and mechanism name
+- Removes any rows with no targets
+
 **NOTE: The user MUST convert the format from .xlsb to .xlsx or .xls for the function to be able to import the data pack** 
 
 ``` r

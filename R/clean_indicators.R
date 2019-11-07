@@ -13,24 +13,20 @@ clean_indicators <- function(df){
                       c("indicator", "numeratordenom", "disaggregate", NA, "otherdisaggregate"),
                       sep = "\\."))
 
-  #create modalities & rename HTS
-  df <- df %>%
-    dplyr::mutate(modality = dplyr::case_when(
-      indicator == "HTS_INDEX_COMM" ~ "IndexMod",
-      indicator == "HTS_INDEX_FAC" ~ "Index",
-      stringr::str_detect(indicator, "HTS_TST.") ~
-        stringr::str_remove(indicator, "HTS_TST_")),
-      indicator = ifelse(stringr::str_detect(indicator, "HTS_(TST|INDEX)."), "HTS_TST", indicator))
-
   #result status
   df <- df %>%
     dplyr::mutate(resultstatus = dplyr::case_when(
-      otherdisaggregate %in% c("NewPos", "KnownPos", "Positive") ~ "Positive",
-      otherdisaggregate %in% c("NewNeg", "Negative") ~ "Negative"),
-      otherdisaggregate = ifelse(!stringr::str_detect(indicator, "STAT") &
-                                   otherdisaggregate %in% c("NewPos", "Positive",
-                                                            "NewNeg", "Negative"),
-                                 as.character(NA), otherdisaggregate))
+                    otherdisaggregate %in% c("NewPos", "KnownPos", "Positive") ~ "Positive",
+                    otherdisaggregate %in% c("NewNeg", "Negative")             ~ "Negative",
+                    otherdisaggregate == "Unknown"                             ~ "Unknown"),
+                  otherdisaggregate = ifelse(!stringr::str_detect(indicator, "STAT") &
+                                               otherdisaggregate %in% c("NewPos", "Positive",
+                                                                        "NewNeg", "Negative",
+                                                                        "Unknown"),
+                                             as.character(NA), otherdisaggregate))
+  #convert external modalities
+  df <- convert_mods(df)
+
   #move targets to end
   df <- df %>%
     dplyr::select(-fy2020_targets, dplyr::everything())
