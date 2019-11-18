@@ -6,6 +6,7 @@
 #' @export
 #'
 #' @importFrom magrittr %>%
+
 import_xlsb <- function(filepath) {
 
 con <-  RODBC::odbcConnectExcel2007(filepath)

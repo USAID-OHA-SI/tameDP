@@ -1,6 +1,6 @@
 #' Import PLHIV and current on ART from COP19 Datapacks
 #'
-#' @param filepath cop19 datapack in *.xlsx format
+#' @param filepath cop19 datapack in xlsx format
 #'
 #' @export
 #'
@@ -33,4 +33,5 @@ import_plhiv <- function(filepath){
   df <- df %>%
     dplyr::mutate(operatingunit = ou)
 
+  return(df)
 }
