@@ -30,6 +30,7 @@ import_dp <- function(filepath){
                        col_types = "text") %>%
     dplyr::rename_all(~tolower(.))
   )
+    }
 
   return(df)
 }
