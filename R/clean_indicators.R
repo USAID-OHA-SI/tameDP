@@ -9,9 +9,9 @@ clean_indicators <- function(df){
 
   suppressWarnings(
     df <- df %>%
-      tidyr::separate(indicatorcode,
+      tidyr::separate(indicator_code,
                       c("indicator", "numeratordenom", "disaggregate", NA, "otherdisaggregate"),
-                      sep = "\\."))
+                      sep = "\\.", fill = "right"))
 
   #result status
   df <- df %>%
