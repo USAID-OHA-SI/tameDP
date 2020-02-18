@@ -9,15 +9,15 @@
 reshape_dp <- function(df){
 
   #identify all key meta data columns to keep
-  key_cols <- c("psnu","indicatorcode", "coarseage", "sex", "keypop")
+  key_cols <- c("psnu","indicator_code", "age", "sex", "keypop")
 
   #check if all columns exist
   if(!all(key_cols %in% colnames(df)))
-    stop(paste("SNU x IM tab is missing one or more columns:", paste(key_cols, collapse = ", ")))
+    stop(paste("PSNUxIM tab is missing one or more columns:", paste(key_cols, collapse = ", ")))
 
   #identify all mechanism columns for reshaping
   mechs <- df %>%
-    dplyr::select(dplyr::matches("^(1|2|3|4|5|6|7|8|9).")) %>%
+    dplyr::select(dedupe, dplyr::matches("^(1|2|3|4|5|6|7|8|9).")) %>%
     names()
 
   #reshape
