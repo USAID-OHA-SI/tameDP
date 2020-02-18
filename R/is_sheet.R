@@ -8,7 +8,7 @@
 is_sheet <- function(filepath){
 
   #does SNU x IM tab exist?
-  "SNU x IM" %in% readxl::excel_sheets(filepath)
+  "PSNU x IM" %in% readxl::excel_sheets(filepath)
 
 }
 
