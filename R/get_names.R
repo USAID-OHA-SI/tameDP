@@ -19,21 +19,25 @@ get_names <- function(df){
 
   #rename variables to match MSD and remove mechid from mech name
   mech_official <- mech_official %>%
-    dplyr::select(mechanismid = code,
+    dplyr::select(mech_code = code,
                   primepartner = partner,
-                  implementingmechanismname = mechanism,
+                  mech_name = mechanism,
                   operatingunit = ou,
                   fundingagency = agency) %>%
-    dplyr::mutate(implementingmechanismname = stringr::str_remove(implementingmechanismname, "0000[0|1] |[:digit:]+ - "))
+    dplyr::mutate(mech_name = stringr::str_remove(mech_name, "0000[0|1] |[:digit:]+ - "))
 
+  #remove award information from mech_name
+  mech_official <- mech_official %>%
+    dplyr::mutate(mech_name = stringr::str_remove(mech_name,
+                                                    "^(720|AID|GH(AG|0)|U[:digit:]|NUGGH|UGH|U91|CK0|HT0|N[:digit:]|SGY||NU2|[:digit:]NU2|1U2).* - "))
   #map primepartner and mechanism names onto dataframe
-  df <- dplyr::left_join(df, mech_official, by="mechanismid")
+  df <- dplyr::left_join(df, mech_official, by="mech_code")
 
   #fill operatingunitname where missing
   df <- tidyr::fill(df, operatingunit)
 
   #order variables
-  df <- dplyr::select(df, operatingunit, psnu, psnuuid, fundingagency, mechanismid, primepartner, implementingmechanismname, dplyr::everything())
+  df <- dplyr::select(df, operatingunit, psnu, psnuuid, fundingagency, mech_code, primepartner, mech_name, dplyr::everything())
 }
   return(df)
 }
