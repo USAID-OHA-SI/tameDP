@@ -9,7 +9,7 @@
 reshape_dp <- function(df){
 
   #identify all key meta data columns to keep
-  key_cols <- c("psnu","indicator_code", "age", "sex", "keypop")
+  key_cols <- c("psnu","indicator_code", "age", "sex", "keypop", "datapacktarget")
 
   #check if all columns exist
   if(!all(key_cols %in% colnames(df)))
