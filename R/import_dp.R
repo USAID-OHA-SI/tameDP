@@ -18,7 +18,7 @@ import_dp <- function(filepath){
 
   #check that sheet exists
   if(!is_sheet(filepath))
-    stop("No sheet called 'PSNU x IM' found.")
+    stop("No sheet called 'PSNUxIM' found.")
 
   #import Data Pack and convert to lower
   suppressWarnings(
