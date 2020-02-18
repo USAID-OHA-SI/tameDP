@@ -13,13 +13,12 @@ import_dp <- function(filepath){
     stop("Cannot find file! Check file path.")
 
   #check if extension is okay
-  if(!is_xls(filepath)){
-    df <- import_xlsb(filepath)
-    } else {
+  if(!is_xls(filepath))
+    stop("Cannot read a xlsb file format. Resave as xlsx.")
 
-    #check that sheet exists
-    if(!is_sheet(filepath))
-      stop("No sheet called 'PSNU x IM' found.")
+  #check that sheet exists
+  if(!is_sheet(filepath))
+    stop("No sheet called 'PSNU x IM' found.")
 
   #import Data Pack and convert to lower
   suppressWarnings(
@@ -30,7 +29,6 @@ import_dp <- function(filepath){
                        col_types = "text") %>%
     dplyr::rename_all(~tolower(.))
   )
-    }
 
   return(df)
 }
