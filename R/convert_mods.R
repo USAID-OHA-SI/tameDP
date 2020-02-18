@@ -11,6 +11,7 @@ convert_mods <- function(df){
   df_mods <- df %>%
     dplyr::mutate(modality = dplyr::case_when(stringr::str_detect(indicator, "HTS_TST.") ~
                                                 stringr::str_remove(indicator, "HTS_TST_")),
+                  modality = ifelse(modality == "PMTCTPostANC1", "Post ANC1", modality),
                   indicator = ifelse(stringr::str_detect(indicator, "HTS_TST."), "HTS_TST", indicator))
 
   #create index modalities & rename HTS
