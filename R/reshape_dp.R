@@ -25,7 +25,9 @@ reshape_dp <- function(df){
     #keep only relevant columns
     dplyr::select(key_cols, mechs) %>%
     #reshape long, dropping NA cols
-    tidyr::gather(mechanismid, fy2020_targets, mechs, na.rm = TRUE)
+    tidyr::gather(mechanismid, targetshare, mechs, na.rm = TRUE) %>%
+    #remove zeros
+    dplyr::filter(targetshare > 0)
 
   #account for dup issue with mechid (if dup cols, mechid..col -> strip extra)
   df <- dplyr::mutate(df, mechanismid = stringr::str_sub(mechanismid, end = 5))
