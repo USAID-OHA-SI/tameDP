@@ -24,7 +24,7 @@ convert_mods <- function(df){
   #filter to indicators which feed into HTS_TST
   df_exmod <- df_mods %>%
     dplyr::filter(indicator %in% c("PMTCT_STAT", "TB_STAT", "VMMC_CIRC"),
-                  resultstatus %in% c("Negative", "Positive"),
+                  statushiv %in% c("Negative", "Positive"),
                   otherdisaggregate %in% c("NewNeg", "NewPos", NA))
 
   #convert -> map modality & change rest to match HTS_TST
