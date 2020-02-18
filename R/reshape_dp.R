@@ -17,7 +17,7 @@ reshape_dp <- function(df){
 
   #identify all mechanism columns for reshaping
   mechs <- df %>%
-    dplyr::select(dplyr::matches("^(1|2|3|4|5|6|7|8|9).")) %>%
+    dplyr::select(dedupe, dplyr::matches("^(1|2|3|4|5|6|7|8|9).")) %>%
     names()
 
   #reshape
