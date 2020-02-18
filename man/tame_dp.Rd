@@ -7,9 +7,9 @@
 tame_dp(filepath, map_names = TRUE)
 }
 \arguments{
-\item{filepath}{file path to the Data Pack importing, must be .xls}
+\item{filepath}{file path to the Data Pack importing, must be .xlsx}
 
-\item{map_names}{import names from DATIM (OU, mechanism, partner) associated with mechid}
+\item{map_names}{import names from DATIM (OU, mechanism, partner) associated with mech_code}
 }
 \description{
 Import SNUxIM data from Data Pack and Clean
@@ -17,7 +17,7 @@ Import SNUxIM data from Data Pack and Clean
 \examples{
 \dontrun{
 #DP file path
-  path <- "C:/Users/achafetz/Downloads/DataPack_Malawi_02062019.xls"
+  path <- "../Downloads/DataPack_Jupiter_20200218.xlsx"
 #read in data pack
   df_dp <- tame_dp(path) }
 }
