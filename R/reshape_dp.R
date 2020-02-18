@@ -12,8 +12,8 @@ reshape_dp <- function(df){
   key_cols <- c("psnu","indicator_code", "age", "sex", "keypop", "datapacktarget")
 
   #check if all columns exist
-  if(!all(key_cols %in% colnames(df)))
-    stop(paste("PSNUxIM tab is missing one or more columns:", paste(key_cols, collapse = ", ")))
+  if(length(setdiff(key_cols, names(df_dp))) > 0)
+    stop(paste("PSNUxIM tab is missing one or more columns:", paste(length(setdiff(key_cols, names(df_dp))), collapse = ", ")))
 
   #identify all mechanism columns for reshaping
   mechs <- df %>%
