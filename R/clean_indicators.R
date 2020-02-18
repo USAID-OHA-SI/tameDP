@@ -24,6 +24,9 @@ clean_indicators <- function(df){
                                                                         "NewNeg", "Negative",
                                                                         "Unknown"),
                                              as.character(NA), otherdisaggregate))
+  #fix disaggregates
+  df <- dplyr::mutate(df, disaggregate = stringr::str_replace_all(disaggregate, "_", "/"))
+
   #convert external modalities
   df <- convert_mods(df)
 
