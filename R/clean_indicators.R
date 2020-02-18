@@ -15,7 +15,7 @@ clean_indicators <- function(df){
 
   #result status
   df <- df %>%
-    dplyr::mutate(resultstatus = dplyr::case_when(
+    dplyr::mutate(statushiv = dplyr::case_when(
                     otherdisaggregate %in% c("NewPos", "KnownPos", "Positive") ~ "Positive",
                     otherdisaggregate %in% c("NewNeg", "Negative")             ~ "Negative",
                     otherdisaggregate == "Unknown"                             ~ "Unknown"),
