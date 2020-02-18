@@ -1,6 +1,7 @@
 # tameDP
 
-Import IMxPSNU targets from COP20 Data Pack & make tidy/usable
+Import PSNUxIM targets from COP20 Data Pack & make tidy/usable.
+Updated from the COP19 version.
 
 [![Travis build status](https://travis-ci.org/USAID-OHA-SI/tameDP.svg?branch=master)](https://travis-ci.org/USAID-OHA-SI/tameDP)
 

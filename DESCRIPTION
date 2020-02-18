@@ -1,12 +1,12 @@
 Package: tameDP
-Title: Import IMxSNU targets from COP19 Data Pack
+Title: Import PSNUxIM targets from COP19 Data Pack
 Version: 2.0.0
 Authors@R: 
     person(given = "Aaron",
            family = "Chafetz",
            role = c("aut", "cre"),
            email = "achafetz@usaid.gov")
-Description: Import IMxSNU targets from COP19 Data Pack. The purpose is to make it tidy/usable.
+Description: Import PSNUxIM targets from COP20 Data Pack. The purpose is to make it tidy/usable.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

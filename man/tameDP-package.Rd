@@ -4,9 +4,9 @@
 \name{tameDP-package}
 \alias{tameDP}
 \alias{tameDP-package}
-\title{tameDP: Import IMxSNU targets from COP19 Data Pack}
+\title{tameDP: Import PSNUxIM targets from COP19 Data Pack}
 \description{
-Import IMxSNU targets from COP19 Data Pack. The purpose is to make it tidy/usable.
+Import PSNUxIM targets from COP20 Data Pack. The purpose is to make it tidy/usable.
 }
 \author{
 \strong{Maintainer}: Aaron Chafetz \email{achafetz@usaid.gov}
