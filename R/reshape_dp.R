@@ -38,19 +38,26 @@ reshape_dp <- function(df){
   )
 
   #create IM level targets
-  df <- dplyr::mutate(df, target = round(datapacktarget * imtargetshare, 0))
+  df <- dplyr::mutate(df, targets = round(datapacktarget * imtargetshare, 0))
 
   #aggregate up to mechanism/ind/age/sex/keypop level
+  key_cols <- setdiff(key_cols, "datapacktarget")
   df <- df %>%
     dplyr::group_by_at(dplyr::vars(mechanismid, key_cols)) %>%
-    dplyr::summarise_at(dplyr::vars(fy2020_targets), sum, na.rm = TRUE) %>%
+    dplyr::summarise_at(dplyr::vars(targets), sum, na.rm = TRUE) %>%
     dplyr::ungroup() %>%
-    dplyr::filter(fy2020_targets != 0)
+    dplyr::filter(targets != 0)
 
   #extract PSNU UID from PSNU column
   df <- df %>%
-    tidyr::separate(psnu, c("psnu", "psnuuid"), sep = " \\(") %>%
-    dplyr::mutate(psnuuid = stringr::str_remove(psnuuid, "\\)"))
+    tidyr::separate(psnu, c("psnu", NA,"psnuuid"), sep = " \\[") %>%
+    dplyr::mutate(psnuuid = stringr::str_remove(psnuuid, "\\]"))
+
+  #extract indicator type from mechanism
+  df <- df %>%
+    tidyr::separate(mechanismid, c("mech_code", "indicatortype"), sep = "_") %>%
+    dplyr::mutate(indicatortype = toupper(indicatortype))
+
 
   return(df)
 }
