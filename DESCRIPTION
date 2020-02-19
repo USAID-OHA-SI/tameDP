@@ -13,13 +13,9 @@ LazyData: true
 RoxygenNote: 7.0.2
 Imports: 
     dplyr,
-    magrittr,
     readr,
     readxl,
     stringr,
     tidyr,
     tools,
-    httr,
-    RODBC,
-    tibble,
-    janitor
+    httr
