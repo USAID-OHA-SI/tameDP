@@ -1,6 +1,6 @@
 Package: tameDP
 Title: Import PSNUxIM targets from COP19 Data Pack
-Version: 2.0.0
+Version: 2.0.1
 Authors@R: 
     person(given = "Aaron",
            family = "Chafetz",
