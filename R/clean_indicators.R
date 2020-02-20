@@ -38,6 +38,9 @@ clean_indicators <- function(df){
     dplyr::mutate(indicator = "HTS_TST_POS") %>%
     dplyr::bind_rows(df, .)
 
+  #rename keypop
+  df <- dplyr::rename(population, keypop)
+
   #move targets to end
   df <- df %>%
     dplyr::mutate(fiscal_year = 2021) %>%
