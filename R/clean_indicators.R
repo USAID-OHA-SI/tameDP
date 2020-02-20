@@ -39,7 +39,7 @@ clean_indicators <- function(df){
     dplyr::bind_rows(df, .)
 
   #rename keypop
-  df <- dplyr::rename(df, population, keypop)
+  df <- dplyr::rename(df, population = keypop)
 
   #move targets to end
   df <- df %>%
