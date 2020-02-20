@@ -9,10 +9,12 @@ convert_mods <- function(df){
 
   #create modalities
   df_mods <- df %>%
-    dplyr::mutate(modality = dplyr::case_when(stringr::str_detect(indicator, "HTS_TST.") ~
-                                                stringr::str_remove(indicator, "HTS_TST_")),
+    dplyr::mutate(modality = dplyr::case_when(stringr::str_detect(indicator, "HTS_(TST|RECENT).") ~
+                                                stringr::str_remove(indicator, "HTS_(TST|RECENT)_")),
                   modality = ifelse(modality == "PMTCTPostANC1", "Post ANC1", modality),
-                  indicator = ifelse(stringr::str_detect(indicator, "HTS_TST."), "HTS_TST", indicator))
+                  indicator = dplyr::case_when(stringr::str_detect(indicator, "HTS_TST.") ~ "HTS_TST",
+                                               stringr::str_detect(indicator, "HTS_RECENT.") ~ "HTS_RECENT",
+                                               TRUE ~ indicator))
 
   #create index modalities & rename HTS
   df_index <- df_mods %>%

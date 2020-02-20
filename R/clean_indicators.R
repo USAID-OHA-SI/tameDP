@@ -30,6 +30,9 @@ clean_indicators <- function(df){
   #convert external modalities
   df <- convert_mods(df)
 
+  #add HTS_TST_POS
+  df
+
   #move targets to end
   df <- df %>%
     dplyr::mutate(fiscal_year = 2021) %>%
