@@ -25,13 +25,18 @@ clean_indicators <- function(df){
                                                                         "Unknown"),
                                              as.character(NA), otherdisaggregate))
   #fix disaggregates
-  df <- dplyr::mutate(df, disaggregate = stringr::str_replace_all(disaggregate, "_", "/"))
+  df <- df %>%
+    dplyr::mutate(disaggregate = stringr::str_replace_all(disaggregate, "_", "/"),
+                  disaggregate = ifelse(disaggregate == "total", "Total Numerator", disaggregate))
 
   #convert external modalities
   df <- convert_mods(df)
 
-  #add HTS_TST_POS
-  df
+  #add HTS_TST_POS as an indicator
+  df <- df %>%
+    dplyr::filter(indicator == "HTS_TST" & statushiv == "Positive") %>%
+    dplyr::mutate(indicator = "HTS_TST_POS") %>%
+    dplyr::bind_rows(df, .)
 
   #move targets to end
   df <- df %>%
