@@ -4,12 +4,14 @@
 \alias{tame_dp}
 \title{Import SNUxIM data from Data Pack and Clean}
 \usage{
-tame_dp(filepath, map_names = TRUE)
+tame_dp(filepath, map_names = TRUE, psnu_lvl = FALSE)
 }
 \arguments{
 \item{filepath}{file path to the Data Pack importing, must be .xlsx}
 
 \item{map_names}{import names from DATIM (OU, mechanism, partner) associated with mech_code}
+
+\item{psnu_lvl}{aggregate to the PSNU level instead of IM}
 }
 \description{
 Import SNUxIM data from Data Pack and Clean

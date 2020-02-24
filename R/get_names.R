@@ -36,8 +36,6 @@ get_names <- function(df){
   #fill operatingunitname where missing
   df <- tidyr::fill(df, operatingunit)
 
-  #order variables
-  df <- dplyr::select(df, operatingunit, psnu, psnuuid, fundingagency, mech_code, primepartner, mech_name, dplyr::everything())
 }
   return(df)
 }
