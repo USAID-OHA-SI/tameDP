@@ -27,6 +27,7 @@ The main function of `tameDP` is to bring import a COP20 Data Pack into R and ma
 - Cleans and separates PSNU and PSNU UID into distinct columns
 - Adds in mechanism information from DATIM, including operatingunit, funding agency, partner and mechanism name
 - Removes any rows with no targets
+- Allows for aggregate to the PSNU level
 
 
 ``` r
@@ -36,8 +37,11 @@ The main function of `tameDP` is to bring import a COP20 Data Pack into R and ma
 #Data Pack file path (.xls) [COP19]
   path <- "../Downloads/DataPack_Jupiter_20200218.xlsx"
   
-#read in Data Pack
+#read in Data Pack & tidy
  df_dp <- tame_dp(path)
+ 
+#ALTERNATIVE - read in Data Pack, aggregate to PSNU level, & tidy
+ df_dp <- tame_dp(path, psnu_lvl = TRUE)
 ```
 
 You can use one of the `map()` functions from `purrr` package to read in multiple Data Packs and combine.
