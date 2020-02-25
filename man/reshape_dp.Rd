@@ -4,10 +4,12 @@
 \alias{reshape_dp}
 \title{Reshape Data Pack Long}
 \usage{
-reshape_dp(df)
+reshape_dp(df, psnu_lvl = FALSE)
 }
 \arguments{
 \item{df}{data frame to adjust}
+
+\item{psnu_lvl}{aggregate to the PSNU level instead of IM}
 }
 \description{
 Reshape Data Pack Long

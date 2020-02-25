@@ -21,7 +21,7 @@ tame_dp <- function(filepath, map_names = TRUE, psnu_lvl = FALSE){
   df_dp <- import_dp(filepath)
 
   #refine columns and reshape
-  df_dp <- reshape_dp(df_dp)
+  df_dp <- reshape_dp(df_dp, psnu_lvl)
 
   #aggregate output to IM or PSNU level
   df_dp <- agg_dp(df_dp, psnu_lvl)
