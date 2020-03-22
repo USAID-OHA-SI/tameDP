@@ -30,6 +30,11 @@ get_names <- function(df){
   mech_official <- mech_official %>%
     dplyr::mutate(mech_name = stringr::str_remove(mech_name,
                                                     "^(720|AID|GH(AG|0)|U[:digit:]|NUGGH|UGH|U91|CK0|HT0|N[:digit:]|SGY||NU2|[:digit:]NU2|1U2).* - "))
+
+  #remove vars if they exist before merging on from DATIM pull
+  rm_vars <- intersect(c("primepartner", "mech_name", "operatingunit", "fundingagency"), names(df))
+  df <- dplyr::select(df, -all_of(rm_vars))
+
   #map primepartner and mechanism names onto dataframe
   df <- dplyr::left_join(df, mech_official, by="mech_code")
 
