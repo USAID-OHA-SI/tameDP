@@ -1,4 +1,4 @@
-#' Import PLHIV and current on ART from COP19 Datapacks
+#' Import PLHIV and current on ART from COP20 Datapacks
 #'
 #' @param filepath cop19 datapack in xlsx format
 #'
@@ -11,24 +11,27 @@ import_plhiv <- function(filepath){
 
   df <- readxl::read_excel(filepath,
                            sheet = "Epi Cascade I",
-                           skip = 4)
+                           skip = 13,
+                           col_types = "text") %>%
+    dplyr::rename_all(tolower)
 
   df <- df %>%
-    dplyr::select(psnu = PSNU,
-                  age = Age,
-                  agecoarse = AgeCoarse,
-                  sex = Sex,
-                  population = `POP_EST.NA.Age/Sex.20T`,
-                  PLHIV = `PLHIV.NA.Age/Sex/HIVStatus.20T`,
-                  prevalence = `HIV_PREV.NA.Age/Sex/HIVStatus.20T`,
-                  current_ART = `TX_CURR_SUBNAT.N.Age/Sex/HIVStatus.20T`) %>%
-    dplyr::mutate(prevalence = round(prevalence, 2)) %>%
-    dplyr::mutate_at(dplyr::vars(population, PLHIV, current_ART), round, 0) %>%
-    tidyr::gather(indicator, val, population:current_ART) %>%
+    dplyr::select(psnu,
+                  age,
+                  sex,
+                  population = `pop_est.na.age/sex.t`,
+                  PLHIV = `plhiv.na.age/sex/hivstatus.t`,
+                  prevalence = `hiv_prev.na.age/sex/hivstatus.t`,
+                  current_ART = `tx_curr_subnat.n.age/sex/hivstatus.t`,
+                  vl_suppressed = `tx_curr_subnat.n.age/sex/hivstatus.t`) %>%
+    tidyr::gather(indicator, val, population:vl_suppressed) %>%
+    dplyr::mutate(val = as.numeric(val)) %>%
     dplyr::filter(val != 0) %>%
-    tidyr::separate(psnu, c("psnu", "psnuuid"), sep = " \\(") %>%
-    dplyr::mutate(psnuuid = stringr::str_remove(psnuuid, "\\)"))
+    tidyr::separate(psnu, c("psnu", "psnuuid"), sep = " \\[#SNU]") %>%
+    mutate(psnuuid = stringr::str_remove_all(psnuuid, "\\[|\\]"))
 
+    dplyr::mutate(psnuuid = stringr::str_remove(psnuuid, "\\["),
+                  psnuuid = stringr::str_remove(psnuuid, "\\]"))
 
   df <- df %>%
     dplyr::mutate(operatingunit = ou)
