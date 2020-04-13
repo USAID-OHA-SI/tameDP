@@ -30,9 +30,6 @@ import_plhiv <- function(filepath){
     tidyr::separate(psnu, c("psnu", "psnuuid"), sep = " \\[#SNU]") %>%
     mutate(psnuuid = stringr::str_remove_all(psnuuid, "\\[|\\]"))
 
-    dplyr::mutate(psnuuid = stringr::str_remove(psnuuid, "\\["),
-                  psnuuid = stringr::str_remove(psnuuid, "\\]"))
-
   df <- df %>%
     dplyr::mutate(operatingunit = ou)
 
