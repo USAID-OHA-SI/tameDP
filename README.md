@@ -1,9 +1,9 @@
+[![R-CMD-check](https://github.com/USAID-OHA-SI/tameDP/workflows/R-CMD-check/badge.svg)](https://github.com/USAID-OHA-SI/tameDP/actions)
+  
 # tameDP
 
-Import PSNUxIM targets from COP20 Data Pack & make tidy/usable.
-Updated from the COP19 version.
-
-[![Travis build status](https://travis-ci.org/USAID-OHA-SI/tameDP.svg?branch=master)](https://travis-ci.org/USAID-OHA-SI/tameDP)
+Import PSNUxIM targets from COP21 Data Pack & make tidy/usable.
+Updated from the COP19 and COP20 versions.
 
 ## Installation
 
@@ -34,7 +34,7 @@ The main function of `tameDP` is to bring import a COP20 Data Pack into R and ma
 #load package
   library(tameDP)
   
-#Data Pack file path (.xls) [COP19]
+#Data Pack file path
   path <- "../Downloads/DataPack_Jupiter_20200218.xlsx"
   
 #read in Data Pack & tidy
