@@ -52,15 +52,13 @@ reshape_dp <- function(df, psnu_lvl = FALSE){
 
   #change values to double
   suppressWarnings(
-    df <- dplyr::mutate_at(df, dplyr::vars(dplyr::one_of("datapacktarget", "imtargetshare")), as.numeric)
+    df <- dplyr::mutate(df, dplyr::across(c(datapacktarget, value, share), as.numeric))
   )
 
   #extract PSNU UID from PSNU column
   df <- df %>%
-    tidyr::separate(psnu, c("psnu", NA,"psnuuid"), sep = " \\[") %>%
-    dplyr::mutate(psnuuid = stringr::str_remove(psnuuid, "\\]"))
-
-
+    dplyr::mutate(psnu = stringr::str_remove_all(psnu, " \\[(#SNU|#DREAMS)]")) %>%
+    tidyr::separate(psnu, c("psnu", "psnuuid", NA), sep = " \\[|]")
 
   return(df)
 }
