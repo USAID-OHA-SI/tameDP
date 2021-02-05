@@ -37,13 +37,10 @@ reshape_dp <- function(df, psnu_lvl = FALSE){
       tidyr::pivot_longer(-key_cols,
                           names_to = c("mech_code", "indicatortype", ".value"),
                           names_sep = "_") %>%
+      #make dsd and ta upper case
+      dplyr::mutate(indicatortype = toupper(indicatortype)) %>%
       #remove rows with no share or value
       dplyr::filter_at(dplyr::vars(value, share), dplyr::any_vars(!is.na(.)))
-
-    #extract indicator type from mechanism
-    df <- df %>%
-      tidyr::separate(mechanismid, c("mech_code", "indicatortype"), sep = "_") %>%
-      dplyr::mutate(indicatortype = toupper(indicatortype))
 
   } else {
     #if at PSNU level, only keep key cols
