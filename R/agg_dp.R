@@ -11,7 +11,7 @@ agg_dp <- function(df, psnu_lvl = FALSE){
 
   if(psnu_lvl == FALSE){
     #create IM level targets
-    df <- dplyr::mutate(df, targets = round(datapacktarget * imtargetshare, 0))
+    df <- dplyr::mutate(df, targets = round(datapacktarget * share, 0))
     key_cols <- c("mech_code", key_cols)
   } else {
     #create PSNU level targets
@@ -20,8 +20,8 @@ agg_dp <- function(df, psnu_lvl = FALSE){
 
     #aggregate up to psnu/[mechanism/]ind/age/sex/keypop level
     df <- df %>%
-      dplyr::group_by_at(dplyr::vars(key_cols)) %>%
-      dplyr::summarise_at(dplyr::vars(targets), sum, na.rm = TRUE) %>%
+      dplyr::group_by(dplyr::across(dplyr::all_of(key_cols))) %>%
+      dplyr::summarise(dplyr::across(c(targets, value), sum, na.rm = TRUE)) %>%
       dplyr::ungroup() %>%
       dplyr::filter(targets != 0)
 
