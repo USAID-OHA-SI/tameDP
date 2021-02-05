@@ -17,13 +17,21 @@ reshape_dp <- function(df, psnu_lvl = FALSE){
     stop(paste("PSNUxIM tab is missing one or more columns:", paste(length(setdiff(key_cols, names(df_dp))), collapse = ", ")))
 
   if(psnu_lvl == FALSE){
+
+    #rename dedup columns
+    df <- df %>%
+      dplyr::rename(dedup_dsd_value = `deduplicated dsd rollup (fy22)`,
+                    dedup_ta_value = `deduplicated ta rollup (fy22)`)
+
     #identify all mechanism columns for reshaping
     mechs <- df %>%
-      dplyr::select(dedupe, dplyr::matches("^(1|2|3|4|5|6|7|8|9).")) %>%
+      dplyr::select(dplyr::starts_with("dedup"),
+                    dplyr::matches("^(1|2|3|4|5|6|7|8|9).")) %>%
       names()
 
     #reshape
     df <- df %>%
+      dplyr::rename(dedup_both_value)
       #keep only relevant columns
       dplyr::select(key_cols, mechs) %>%
       #reshape long, dropping NA cols
