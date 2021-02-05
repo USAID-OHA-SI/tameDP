@@ -31,13 +31,14 @@ reshape_dp <- function(df, psnu_lvl = FALSE){
 
     #reshape
     df <- df %>%
-      dplyr::rename(dedup_both_value)
       #keep only relevant columns
       dplyr::select(key_cols, mechs) %>%
       #reshape long, dropping NA cols
-      tidyr::gather(mechanismid, imtargetshare, mechs, na.rm = TRUE) %>%
-      #remove zeros
-      dplyr::filter(imtargetshare > 0)
+      tidyr::pivot_longer(-key_cols,
+                          names_to = c("mech_code", "indicatortype", ".value"),
+                          names_sep = "_") %>%
+      #remove rows with no share or value
+      dplyr::filter_at(dplyr::vars(value, share), dplyr::any_vars(!is.na(.)))
 
     #extract indicator type from mechanism
     df <- df %>%
