@@ -10,28 +10,26 @@ import_plhiv <- function(filepath){
   ou <- grab_ou(filepath)
 
   df <- readxl::read_excel(filepath,
-                           sheet = "Epi Cascade I",
-                           skip = 13,
+                           sheet = "Spectrum",
                            col_types = "text") %>%
     dplyr::rename_all(tolower)
 
   df <- df %>%
     dplyr::select(psnu,
+                  psnu_uid,
+                  area_id,
                   age,
                   sex,
-                  population = `pop_est.na.age/sex.t`,
-                  PLHIV = `plhiv.na.age/sex/hivstatus.t`,
-                  prevalence = `hiv_prev.na.age/sex/hivstatus.t`,
-                  current_ART = `tx_curr_subnat.n.age/sex/hivstatus.t`,
-                  vl_suppressed = `tx_curr_subnat.n.age/sex/hivstatus.t`) %>%
-    tidyr::gather(indicator, val, population:vl_suppressed) %>%
-    dplyr::mutate(val = as.numeric(val)) %>%
-    dplyr::filter(val != 0) %>%
-    tidyr::separate(psnu, c("psnu", "psnuuid"), sep = " \\[#SNU]") %>%
-    mutate(psnuuid = stringr::str_remove_all(psnuuid, "\\[|\\]"))
+                  calendar_quarter,
+                  value,
+                  age_sex_rse,
+                  district_rse) %>%
+    dplyr::mutate(value = as.numeric(value))
+
 
   df <- df %>%
-    dplyr::mutate(operatingunit = ou)
+    dplyr::mutate(operatingunit = ou) %>%
+    dplyr::relocate(operatingunit, .before = psnu)
 
   return(df)
 }
