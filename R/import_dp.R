@@ -20,15 +20,23 @@ import_dp <- function(filepath){
   if(!is_sheet(filepath))
     stop("No sheet called 'PSNUxIM' found.")
 
-  #import Data Pack and convert to lower
-  suppressWarnings(
+  #import Data Pack
+  suppressMessages(
   df <-
     readxl::read_excel(filepath,
                        sheet = "PSNUxIM",
                        skip = 13,
-                       col_types = "text") %>%
-    dplyr::rename_all(~tolower(.))
+                       col_types = "text",
+                       .name_repair = "unique")
   )
+
+  #fix names - lower and change dup col names to value and pct
+  df <- df %>%
+    dplyr::rename_with(tolower) %>%
+    dplyr::select(-dplyr::starts_with("...")) %>%
+    dplyr::rename_with(~stringr::str_replace(., "...[:digit:]{3}$", "_value")) %>%
+    dplyr::rename_with(~stringr::str_replace(., "...[:digit:]{1,2}$", "_share"))
+
 
   return(df)
 }

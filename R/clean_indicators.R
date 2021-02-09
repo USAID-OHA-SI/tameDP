@@ -7,27 +7,26 @@
 
 clean_indicators <- function(df){
 
-  suppressWarnings(
-    df <- df %>%
-      tidyr::separate(indicator_code,
-                      c("indicator", "numeratordenom", "disaggregate", NA, "otherdisaggregate"),
-                      sep = "\\.", fill = "right"))
+  #extract disagg info from indicator_code
+  df <- df %>%
+    dplyr::mutate(
+    indicator = stringr::str_extract(indicator_code, "[^\\.]+"),
+    numeratordenom = ifelse(stringr::str_detect(indicator_code, "\\.D\\."), "D", "N"),
+    statushiv = stringr::str_extract(indicator_code, "(Neg|Pos|Unk)"),
+    statushiv = dplyr::recode(statushiv,  "Neg" = "Negative" , "Pos" = "Positive", "Unk" = "Unknown"),
+    age = dplyr::case_when(stringr::str_detect(indicator_code, "12") ~ "02 - 12 Months",
+                           stringr::str_detect(indicator_code, "\\.2") ~ "<=02 Months",
+                           TRUE ~ age),
+    otherdisaggregate =
+      stringr::str_extract(indicator_code,
+                           "(Act|Grad|Prev|DREAMS|Already|New\\.Neg|New\\.Pos|New|KnownNeg|Routine|\\.S|PE)") %>%
+      stringr::str_remove("\\."))
 
-  #result status
+  #create rough disaggregate
   df <- df %>%
-    dplyr::mutate(statushiv = dplyr::case_when(
-                    otherdisaggregate %in% c("NewPos", "KnownPos", "Positive") ~ "Positive",
-                    otherdisaggregate %in% c("NewNeg", "Negative")             ~ "Negative",
-                    otherdisaggregate == "Unknown"                             ~ "Unknown"),
-                  otherdisaggregate = ifelse(!stringr::str_detect(indicator, "STAT") &
-                                               otherdisaggregate %in% c("NewPos", "Positive",
-                                                                        "NewNeg", "Negative",
-                                                                        "Unknown"),
-                                             as.character(NA), otherdisaggregate))
-  #fix disaggregates
-  df <- df %>%
-    dplyr::mutate(disaggregate = stringr::str_replace_all(disaggregate, "_", "/"),
-                  disaggregate = ifelse(disaggregate == "total", "Total Numerator", disaggregate))
+    dplyr::mutate(disagg = dplyr::case_when(indicator %in% c("GEND_GBV", "OVC_HIVSTAT") ~ "Total",
+                                            stringr::str_detect(indicator, "KP") ~ "KeyPop",
+                                            TRUE ~ "Age/Sex"))
 
   #convert external modalities
   df <- convert_mods(df)
@@ -39,11 +38,14 @@ clean_indicators <- function(df){
     dplyr::bind_rows(df, .)
 
   #rename keypop
-  df <- dplyr::rename(df, population = keypop)
+  df <- dplyr::rename(df, otherdisaggregate_sub = keypop)
+
+  #drop indicator code
+  df <- dplyr::select(df, -indicator_code)
 
   #move targets to end
   df <- df %>%
-    dplyr::mutate(fiscal_year = 2021) %>%
+    dplyr::mutate(fiscal_year = 2022) %>%
     dplyr::select(fiscal_year, dplyr::everything()) %>%
     dplyr::select(-targets, dplyr::everything())
 

@@ -9,12 +9,13 @@ convert_mods <- function(df){
 
   #create modalities
   df_mods <- df %>%
-    dplyr::mutate(modality = dplyr::case_when(stringr::str_detect(indicator, "HTS_(TST|RECENT).") ~
-                                                stringr::str_remove(indicator, "HTS_(TST|RECENT)_")),
-                  modality = ifelse(modality == "PMTCTPostANC1", "Post ANC1", modality),
-                  indicator = dplyr::case_when(stringr::str_detect(indicator, "HTS_TST.") ~ "HTS_TST",
-                                               stringr::str_detect(indicator, "HTS_RECENT.") ~ "HTS_RECENT",
-                                               TRUE ~ indicator))
+    dplyr::mutate(modality = dplyr::case_when(stringr::str_detect(indicator_code, "HTS_(TST|RECENT)") ~ indicator_code),
+                  modality = stringr::str_extract(modality, "(?<=\\.)([:alpha:]|\\_|[:digit:])*(?=\\.)"),
+                  modality = stringr::str_replace(modality, "Com", "Mod"),
+                  modality = dplyr::recode(modality, "PMTCT_STAT" = "PMTCT ANC",
+                                           "PostANC1" = "Post ANC1",
+                                           "Other" = "OtherPITC"),
+                  modality = dplyr::na_if(modality, "KP"))
 
   #create index modalities & rename HTS
   df_index <- df_mods %>%
@@ -36,7 +37,6 @@ convert_mods <- function(df){
                                               indicator == "TB_STAT"    ~ "TBClinic",
                                               indicator == "PMTCT_STAT" ~ "PMTCT ANC"),
                   indicator = "HTS_TST",
-                  disaggregate = "Age/Sex/Result",
                   otherdisaggregate = as.character(NA))
 
   #binding onto main data frame
