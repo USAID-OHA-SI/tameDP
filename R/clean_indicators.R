@@ -12,13 +12,15 @@ clean_indicators <- function(df){
     dplyr::mutate(
     indicator = stringr::str_extract(indicator_code, "[^\\.]+"),
     numeratordenom = ifelse(stringr::str_detect(indicator_code, "\\.D\\."), "D", "N"),
-    hivstatus = stringr::str_extract(indicator_code, "(Neg|Pos|Unk)"),
+    statushiv = stringr::str_extract(indicator_code, "(Neg|Pos|Unk)"),
+    statushiv = dplyr::recode(statushiv,  "Neg" = "Negative" , "Pos" = "Positive", "Unk" = "Unknown"),
     age = dplyr::case_when(stringr::str_detect(indicator_code, "12") ~ "02 - 12 Months",
                            stringr::str_detect(indicator_code, "\\.2") ~ "<=02 Months",
                            TRUE ~ age),
     otherdisaggregate =
       stringr::str_extract(indicator_code,
-                           "(Act|Grad|Prev|DREAMS|Already|New|Known|Routine|\\.S|PE)"))
+                           "(Act|Grad|Prev|DREAMS|Already|New\\.Neg|New\\.Pos|New|KnownNeg|Routine|\\.S|PE)") %>%
+      stringr::str_remove("\\."))
 
   #create rough disaggregate
   df <- df %>%
@@ -36,11 +38,14 @@ clean_indicators <- function(df){
     dplyr::bind_rows(df, .)
 
   #rename keypop
-  df <- dplyr::rename(df, population = keypop)
+  df <- dplyr::rename(df, otherdisaggregate_sub = keypop)
+
+  #drop indicator code
+  df <- dplyr::select(df, -indicator_code)
 
   #move targets to end
   df <- df %>%
-    dplyr::mutate(fiscal_year = 2021) %>%
+    dplyr::mutate(fiscal_year = 2022) %>%
     dplyr::select(fiscal_year, dplyr::everything()) %>%
     dplyr::select(-targets, dplyr::everything())
 
