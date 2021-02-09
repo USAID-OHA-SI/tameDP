@@ -1,16 +1,15 @@
 Package: tameDP
 Title: Import PSNUxIM targets from COP19 Data Pack
 Version: 3.0.0
-Authors@R: 
-    person(given = "Aaron",
-           family = "Chafetz",
-           role = c("aut", "cre"),
-           email = "achafetz@usaid.gov")
+Authors@R: c(
+    person("Aaron", "Chafetz", ,"achafetz@usaid.gov", c("aut", "cre")),
+    person("Josh", "Davis", ,"jodavis@usaid.gov", c("aut"))
+    )
 Description: Import PSNUxIM targets from COP20 Data Pack. The purpose is to make it tidy/usable.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.1
 Imports: 
     dplyr,
     magrittr,

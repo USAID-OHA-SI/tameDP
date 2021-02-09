@@ -2,7 +2,7 @@
 % Please edit documentation in R/import_plhiv.R
 \name{import_plhiv}
 \alias{import_plhiv}
-\title{Import PLHIV and current on ART from COP19 Datapacks}
+\title{Import PLHIV and current on ART from COP20 Datapacks}
 \usage{
 import_plhiv(filepath)
 }
@@ -10,5 +10,5 @@ import_plhiv(filepath)
 \item{filepath}{cop19 datapack in xlsx format}
 }
 \description{
-Import PLHIV and current on ART from COP19 Datapacks
+Import PLHIV and current on ART from COP20 Datapacks
 }

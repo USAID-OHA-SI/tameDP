@@ -11,5 +11,10 @@ Import PSNUxIM targets from COP20 Data Pack. The purpose is to make it tidy/usab
 \author{
 \strong{Maintainer}: Aaron Chafetz \email{achafetz@usaid.gov}
 
+Authors:
+\itemize{
+  \item Josh Davis \email{jodavis@usaid.gov}
+}
+
 }
 \keyword{internal}
