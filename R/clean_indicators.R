@@ -40,7 +40,9 @@ clean_indicators <- function(df){
     dplyr::bind_rows(df, .)
 
   #move keypop to otherdisagg
-  df <- dplyr::mutate(df, otherdisaggregate = ifelse(disagg == "KeyPop", keypop, otherdisaggregate))
+  df <- df %>%
+    dplyr::mutate(otherdisaggregate = ifelse(disagg == "KeyPop", keypop, otherdisaggregate)) %>%
+    dplyr::select(-keypop)
 
   #drop indicator code
   df <- dplyr::select(df, -indicator_code)
