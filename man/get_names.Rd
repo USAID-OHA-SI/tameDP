@@ -4,10 +4,14 @@
 \alias{get_names}
 \title{Import mechanism specific info from DATIM}
 \usage{
-get_names(df)
+get_names(df, map_names, psnu_lvl)
 }
 \arguments{
 \item{df}{data frame to add mechanism info to}
+
+\item{map_names}{import names from DATIM (OU, mechanism, partner) associated with mech_code}
+
+\item{psnu_lvl}{aggregate to the PSNU level instead of IM}
 }
 \description{
 Import mechanism specific info from DATIM
