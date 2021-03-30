@@ -19,7 +19,7 @@ clean_indicators <- function(df){
                            TRUE ~ age),
     otherdisaggregate =
       stringr::str_extract(indicator_code,
-                           "(Act|Grad|Prev|DREAMS|Already|New\\.Neg|New\\.Pos|New|KnownNeg|Routine|\\.S|PE)") %>%
+                           "(Act|Grad|Prev|DREAMS|Already|New\\.Neg|New\\.Pos|New|KnownNeg|KnownPos|Routine|\\.S|PE)") %>%
       stringr::str_remove("\\."))
 
   #create rough disaggregate
