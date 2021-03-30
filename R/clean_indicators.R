@@ -39,8 +39,8 @@ clean_indicators <- function(df){
     dplyr::mutate(indicator = "HTS_TST_POS") %>%
     dplyr::bind_rows(df, .)
 
-  #rename keypop
-  df <- dplyr::rename(df, otherdisaggregate_sub = keypop)
+  #move keypop to otherdisagg
+  df <- dplyr::mutate(df, otherdisaggregate = ifelse(disagg == "KeyPop", keypop, otherdisaggregate))
 
   #drop indicator code
   df <- dplyr::select(df, -indicator_code)
