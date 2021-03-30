@@ -49,13 +49,17 @@ You can use one of the `map()` functions from `purrr` package to read in multipl
 ``` r
 #load package
   library(purrr)
+  library(ICPIutilities)
 
 #identify all the Data Pack files
   files <- list.files("../Downloads/DataPacks", full.names = TRUE)
 
 #read in all DPs and combine into one data frame
   df_all <- map_dfr(.x = files,
-                    .f = ~ tame_dp(.x))
+                    .f = ~ tame_dp(.x, map_names = FALSE))
+                    
+#apply mech_name and primepartner names from DATIM
+  df_all <- rename_official(df_all)
 ```
 
 ---
