@@ -13,14 +13,14 @@ order_vars <- function(df){
                         fiscal_year,
                         indicator, indicatortype, disagg,
                         numeratordenom, age, sex, modality, statushiv, otherdisaggregate,
-                        dplyr::everything())
+                        targets)
   } else {
     df <- dplyr::select(df,
                         operatingunit, psnu, psnuuid,
                         fiscal_year,
                         indicator, indicatortype, disagg,
                         numeratordenom, age, sex, modality, statushiv, otherdisaggregate,
-                        dplyr::everything())
+                        targets)
   }
 
   return(df)
