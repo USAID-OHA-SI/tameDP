@@ -24,7 +24,8 @@ clean_indicators <- function(df){
 
   #create rough disaggregate
   df <- df %>%
-    dplyr::mutate(disagg = dplyr::case_when(indicator %in% c("GEND_GBV", "OVC_HIVSTAT") ~ "Total",
+    dplyr::mutate(disagg = dplyr::case_when(indicator == "GEND_GBV" ~ "ViolenceServiceType",
+                                            indicator == "OVC_HIVSTAT" ~ "Total",
                                             stringr::str_detect(indicator, "KP") ~ "KeyPop",
                                             TRUE ~ "Age/Sex"))
 
