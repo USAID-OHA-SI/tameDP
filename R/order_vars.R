@@ -21,14 +21,14 @@ order_vars <- function(df){
                         fundingagency, mech_code, primepartner, mech_name,
                         fiscal_year,
                         indicator, indicatortype, disagg,
-                        numeratordenom, age, sex, modality, statushiv, otherdisaggregate, otherdisaggregate_sub,
+                        numeratordenom, age, sex, modality, statushiv, otherdisaggregate,
                         dplyr::everything())
   } else {
     df <- dplyr::select(df,
                         operatingunit, psnu, psnuuid,
                         fiscal_year,
                         indicator, indicatortype, disagg,
-                        numeratordenom, age, sex, modality, otherdisaggregate, otherdisaggregate_sub,
+                        numeratordenom, age, sex, modality, otherdisaggregate,
                         dplyr::everything())
   }
 
