@@ -45,7 +45,7 @@ reshape_dp <- function(df, psnu_lvl = FALSE){
   } else {
     #if at PSNU level, only keep key cols
     df <- df %>%
-      dplyr::select(key_cols) %>%
+      dplyr::select(dplyr::all_of(key_cols)) %>%
       dplyr::mutate(indicatortype = as.character(NA))
 
   }
