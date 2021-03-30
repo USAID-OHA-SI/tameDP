@@ -1,13 +1,12 @@
 #' Reshape Data Pack Long
 #'
 #' @param df data frame to adjust
-#' @param psnu_lvl aggregate to the PSNU level instead of IM
 #'
 #' @export
 #' @importFrom magrittr %>%
 
 
-reshape_dp <- function(df, psnu_lvl = FALSE){
+reshape_dp <- function(df){
 
   #identify all key meta data columns to keep
   key_cols <- c("psnu","indicator_code", "age", "sex", "keypop", "datapacktarget")
@@ -15,8 +14,6 @@ reshape_dp <- function(df, psnu_lvl = FALSE){
   #check if all columns exist
   if(length(setdiff(key_cols, names(df))) > 0)
     stop(paste("PSNUxIM tab is missing one or more columns:", paste(length(setdiff(key_cols, names(df_dp))), collapse = ", ")))
-
-  if(psnu_lvl == FALSE){
 
     #rename dedup columns
     df <- df %>%
@@ -42,13 +39,6 @@ reshape_dp <- function(df, psnu_lvl = FALSE){
       #remove rows with no share or value
       dplyr::filter_at(dplyr::vars(value, share), dplyr::any_vars(!is.na(.)))
 
-  } else {
-    #if at PSNU level, only keep key cols
-    df <- df %>%
-      dplyr::select(dplyr::all_of(key_cols)) %>%
-      dplyr::mutate(indicatortype = as.character(NA))
-
-  }
 
   #change values to double
   suppressWarnings(
