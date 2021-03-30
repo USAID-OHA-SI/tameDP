@@ -28,6 +28,7 @@ convert_mods <- function(df){
   #filter to indicators which feed into HTS_TST
   df_exmod <- df_mods %>%
     dplyr::filter(indicator %in% c("PMTCT_STAT", "TB_STAT", "VMMC_CIRC"),
+                  numeratordenom == "N",
                   statushiv %in% c("Negative", "Positive"),
                   otherdisaggregate %in% c("NewNeg", "NewPos", NA))
 
