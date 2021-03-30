@@ -28,7 +28,7 @@ order_vars <- function(df){
                         operatingunit, psnu, psnuuid,
                         fiscal_year,
                         indicator, indicatortype, disagg,
-                        numeratordenom, age, sex, modality, otherdisaggregate,
+                        numeratordenom, age, sex, modality, statushiv, otherdisaggregate,
                         dplyr::everything())
   }
 
