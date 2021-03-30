@@ -26,7 +26,8 @@ clean_indicators <- function(df){
   df <- df %>%
     dplyr::mutate(disagg = dplyr::case_when(indicator == "GEND_GBV" ~ "ViolenceServiceType",
                                             indicator == "OVC_HIVSTAT" ~ "Total",
-                                            stringr::str_detect(indicator, "KP") ~ "KeyPop",
+                                            indicator == "KP_MAT" ~ "Sex",
+                                            stringr::str_detect(indicator_code, "KP") ~ "KeyPop",
                                             TRUE ~ "Age/Sex"))
 
   #convert external modalities
