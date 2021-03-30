@@ -18,4 +18,5 @@ Imports:
     stringr,
     tidyr,
     tools,
-    httr
+    httr,
+    curl
