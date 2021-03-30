@@ -21,7 +21,7 @@ tame_dp <- function(filepath, map_names = TRUE, psnu_lvl = FALSE){
   df_dp <- import_dp(filepath)
 
   #refine columns and reshape
-  df_dp <- reshape_dp(df_dp, psnu_lvl)
+  df_dp <- reshape_dp(df_dp)
 
   #aggregate output to IM or PSNU level
   df_dp <- agg_dp(df_dp, psnu_lvl)
@@ -30,14 +30,7 @@ tame_dp <- function(filepath, map_names = TRUE, psnu_lvl = FALSE){
   df_dp <- clean_indicators(df_dp)
 
   #add names from DATIM
-  if(map_names == TRUE && psnu_lvl == FALSE){
-    df_dp <- get_names(df_dp)
-  } else {
-    ou <- grab_ou(filepath)
-    df_dp <- df_dp %>%
-      dplyr::mutate(operatingunit = ou) %>%
-      dplyr::select(operatingunit, dplyr::everything())
-  }
+  df_dp <- get_names(df_dp, map_names, psnu_lvl)
 
   #order variables for output
   df_dp <- order_vars(df_dp)

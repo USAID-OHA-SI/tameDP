@@ -19,13 +19,15 @@ clean_indicators <- function(df){
                            TRUE ~ age),
     otherdisaggregate =
       stringr::str_extract(indicator_code,
-                           "(Act|Grad|Prev|DREAMS|Already|New\\.Neg|New\\.Pos|New|KnownNeg|Routine|\\.S|PE)") %>%
+                           "(Act|Grad|Prev|DREAMS|Already|New\\.Neg|New\\.Pos|New|KnownNeg|KnownPos|Routine|\\.S|PE)") %>%
       stringr::str_remove("\\."))
 
   #create rough disaggregate
   df <- df %>%
-    dplyr::mutate(disagg = dplyr::case_when(indicator %in% c("GEND_GBV", "OVC_HIVSTAT") ~ "Total",
-                                            stringr::str_detect(indicator, "KP") ~ "KeyPop",
+    dplyr::mutate(disagg = dplyr::case_when(indicator == "GEND_GBV" ~ "ViolenceServiceType",
+                                            indicator == "OVC_HIVSTAT" ~ "Total",
+                                            indicator == "KP_MAT" ~ "Sex",
+                                            stringr::str_detect(indicator_code, "KP") ~ "KeyPop",
                                             TRUE ~ "Age/Sex"))
 
   #convert external modalities
@@ -37,8 +39,10 @@ clean_indicators <- function(df){
     dplyr::mutate(indicator = "HTS_TST_POS") %>%
     dplyr::bind_rows(df, .)
 
-  #rename keypop
-  df <- dplyr::rename(df, otherdisaggregate_sub = keypop)
+  #move keypop to otherdisagg
+  df <- df %>%
+    dplyr::mutate(otherdisaggregate = ifelse(disagg == "KeyPop", keypop, otherdisaggregate)) %>%
+    dplyr::select(-keypop)
 
   #drop indicator code
   df <- dplyr::select(df, -indicator_code)
