@@ -1,14 +1,17 @@
 #' Import mechanism specific info from DATIM
 #'
 #' @param df data frame to add mechanism info to
-#' @param ou operating unit, from grab_ou()
 #' @param map_names import names from DATIM (OU, mechanism, partner) associated with mech_code
 #' @param psnu_lvl aggregate to the PSNU level instead of IM
+#' @param ou operating unit, from grab_ou()
 #'
 #' @export
 #' @importFrom magrittr %>%
 
-get_names <- function(df, ou, map_names, psnu_lvl){
+get_names <- function(df, map_names = TRUE, psnu_lvl = FALSE, ou = NULL){
+
+  #fix dedup
+  df <- dplyr::mutate(df, mech_code = ifelse(mech_code == "dedup", "00000", mech_code))
 
   if(map_names == TRUE && psnu_lvl == FALSE){
 

@@ -33,7 +33,7 @@ tame_dp <- function(filepath, map_names = TRUE, psnu_lvl = FALSE){
   ou <- grab_ou(filepath)
 
   #add names from DATIM
-  df_dp <- get_names(df_dp, ou, map_names, psnu_lvl)
+  df_dp <- get_names(df_dp, map_names, psnu_lvl, ou)
 
   #order variables for output
   df_dp <- order_vars(df_dp)
