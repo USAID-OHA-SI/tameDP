@@ -49,7 +49,6 @@ You can use one of the `map()` functions from `purrr` package to read in multipl
 ``` r
 #load package
   library(purrr)
-  library(ICPIutilities)
 
 #identify all the Data Pack files
   files <- list.files("../Downloads/DataPacks", full.names = TRUE)
@@ -59,7 +58,7 @@ You can use one of the `map()` functions from `purrr` package to read in multipl
                     .f = ~ tame_dp(.x, map_names = FALSE))
                     
 #apply mech_name and primepartner names from DATIM
-  df_all <- rename_official(df_all)
+  df_all <- get_names(df_all)
 ```
 
 ---
