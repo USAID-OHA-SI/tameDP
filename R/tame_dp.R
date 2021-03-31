@@ -23,6 +23,9 @@ tame_dp <- function(filepath, map_names = TRUE, psnu_lvl = FALSE){
   #refine columns and reshape
   df_dp <- reshape_dp(df_dp)
 
+  #convert dedup to negative values
+  df_dp <- convert_dedups(df_dp)
+
   #aggregate output to IM or PSNU level
   df_dp <- agg_dp(df_dp, psnu_lvl)
 

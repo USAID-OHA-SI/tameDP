@@ -3,6 +3,7 @@
 export("%>%")
 export(agg_dp)
 export(clean_indicators)
+export(convert_dedups)
 export(convert_mods)
 export(get_names)
 export(grab_ou)
