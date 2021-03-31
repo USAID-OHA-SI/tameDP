@@ -1,13 +1,14 @@
 #' Import mechanism specific info from DATIM
 #'
 #' @param df data frame to add mechanism info to
+#' @param ou operating unit, from grab_ou()
 #' @param map_names import names from DATIM (OU, mechanism, partner) associated with mech_code
 #' @param psnu_lvl aggregate to the PSNU level instead of IM
 #'
 #' @export
 #' @importFrom magrittr %>%
 
-get_names <- function(df, map_names, psnu_lvl){
+get_names <- function(df, ou, map_names, psnu_lvl){
 
   if(map_names == TRUE && psnu_lvl == FALSE){
 
@@ -43,7 +44,6 @@ get_names <- function(df, map_names, psnu_lvl){
     df <- tidyr::fill(df, operatingunit)
 
   } else {
-    ou <- grab_ou(filepath)
     df <- df %>%
       dplyr::mutate(operatingunit = ou,
                     fundingagency = NA_character_,

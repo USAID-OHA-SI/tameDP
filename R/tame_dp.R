@@ -29,8 +29,11 @@ tame_dp <- function(filepath, map_names = TRUE, psnu_lvl = FALSE){
   #break out indicatorcode variable
   df_dp <- clean_indicators(df_dp)
 
+  #identify OU (if not pulling from DATIM)
+  ou <- grab_ou(filepath)
+
   #add names from DATIM
-  df_dp <- get_names(df_dp, map_names, psnu_lvl)
+  df_dp <- get_names(df_dp, ou, map_names, psnu_lvl)
 
   #order variables for output
   df_dp <- order_vars(df_dp)
