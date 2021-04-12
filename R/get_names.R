@@ -3,12 +3,12 @@
 #' @param df data frame to add mechanism info to
 #' @param map_names import names from DATIM (OU, mechanism, partner) associated with mech_code
 #' @param psnu_lvl aggregate to the PSNU level instead of IM
-#' @param ou operating unit, from grab_ou()
+#' @param cntry country, from grab_cntry() if not connecting to DATIM
 #'
 #' @export
 #' @importFrom magrittr %>%
 
-get_names <- function(df, map_names = TRUE, psnu_lvl = FALSE, ou = NULL){
+get_names <- function(df, map_names = TRUE, psnu_lvl = FALSE, cntry = NULL){
 
   #fix dedup
   df <- dplyr::mutate(df, mech_code = ifelse(mech_code == "dedup", "00000", mech_code))
@@ -36,6 +36,14 @@ get_names <- function(df, map_names = TRUE, psnu_lvl = FALSE, ou = NULL){
       dplyr::mutate(mech_name = stringr::str_remove(mech_name,
                                                       "^(720|AID|GH(AG|0)|U[:digit:]|NUGGH|UGH|U91|CK0|HT0|N[:digit:]|SGY||NU2|[:digit:]NU2|1U2).* - "))
 
+    #change country to NA if no provided
+    if(is.null(cntry))
+      cntry <- NA_character_
+
+    #add country if its not in the df or its provided
+    if(!"countryname" %in% names(df) || !is.na(cntry))
+      df <- dplyr::mutate(df, countryname = cntry)
+
     #remove vars if they exist before merging on from DATIM pull
     rm_vars <- intersect(c("primepartner", "mech_name", "operatingunit", "fundingagency"), names(df))
     df <- dplyr::select(df, -all_of(rm_vars))
@@ -48,7 +56,8 @@ get_names <- function(df, map_names = TRUE, psnu_lvl = FALSE, ou = NULL){
 
   } else {
     df <- df %>%
-      dplyr::mutate(operatingunit = ou,
+      dplyr::mutate(operatingunit = NA_character_,
+                    countryname = {{cntry}},
                     fundingagency = NA_character_,
                     primepartner = NA_character_,
                     mech_name = NA_character_) %>%
@@ -57,7 +66,7 @@ get_names <- function(df, map_names = TRUE, psnu_lvl = FALSE, ou = NULL){
 
   #order variables
   df <- df %>%
-    dplyr::relocate(operatingunit, 1) %>%
+    dplyr::relocate(operatingunit, countryname, 1) %>%
     dplyr::relocate(fundingagency, .before = mech_code) %>%
     dplyr::relocate(primepartner, mech_name, .after = mech_code)
 

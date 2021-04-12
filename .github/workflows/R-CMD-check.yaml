@@ -22,7 +22,7 @@ jobs:
       - uses: r-lib/actions/setup-r@v1
       - name: Install
         run: |
-        brew install qpdf
+          brew install qpdf
       - name: Install dependencies
         run: |
           install.packages(c("remotes", "rcmdcheck"))

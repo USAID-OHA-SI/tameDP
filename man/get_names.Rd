@@ -4,7 +4,7 @@
 \alias{get_names}
 \title{Import mechanism specific info from DATIM}
 \usage{
-get_names(df, map_names = TRUE, psnu_lvl = FALSE, ou = NULL)
+get_names(df, map_names = TRUE, psnu_lvl = FALSE, cntry = NULL)
 }
 \arguments{
 \item{df}{data frame to add mechanism info to}
@@ -13,7 +13,7 @@ get_names(df, map_names = TRUE, psnu_lvl = FALSE, ou = NULL)
 
 \item{psnu_lvl}{aggregate to the PSNU level instead of IM}
 
-\item{ou}{operating unit, from grab_ou()}
+\item{cntry}{country, from grab_cntry() if not connecting to DATIM}
 }
 \description{
 Import mechanism specific info from DATIM
