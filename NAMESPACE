@@ -2,6 +2,7 @@
 
 export("%>%")
 export(agg_dp)
+export(apply_class)
 export(clean_indicators)
 export(convert_dedups)
 export(convert_mods)

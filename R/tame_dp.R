@@ -41,5 +41,8 @@ tame_dp <- function(filepath, map_names = TRUE, psnu_lvl = FALSE){
   #order variables for output
   df_dp <- order_vars(df_dp)
 
+  #apply variable class
+  df_dp <- apply_class(df_dp)
+
   return(df_dp)
 }
