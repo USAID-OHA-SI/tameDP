@@ -1,1 +1,8 @@
 *.html
+
+.Rhistory
+.RData
+.Rproj.user
+
+out/
+tools/
