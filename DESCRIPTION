@@ -1,6 +1,6 @@
 Package: tameDP
 Title: Import PSNUxIM targets from COP19 Data Pack
-Version: 3.2.0
+Version: 3.2.1
 Authors@R: c(
     person("Aaron", "Chafetz", ,"achafetz@usaid.gov", c("aut", "cre")),
     person("Josh", "Davis", ,"jodavis@usaid.gov", c("aut"))
