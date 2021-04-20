@@ -47,7 +47,7 @@ reshape_dp <- function(df){
 
   #extract PSNU UID from PSNU column
   df <- df %>%
-    dplyr::mutate(psnu = stringr::str_remove_all(psnu, " \\[#(Country|SNU|DREAMS)]")) %>%
+    dplyr::mutate(psnu = stringr::str_remove_all(psnu, " \\[#(Country|SNU|DREAMS|Military)]")) %>%
     tidyr::separate(psnu, c("psnu", "psnuuid", NA), sep = " \\[|]")
 
   return(df)
