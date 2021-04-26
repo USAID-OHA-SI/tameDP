@@ -12,7 +12,7 @@ clean_indicators <- function(df){
     dplyr::mutate(
     indicator = stringr::str_extract(indicator_code, "[^\\.]+"),
     numeratordenom = ifelse(stringr::str_detect(indicator_code, "\\.D\\."), "D", "N"),
-    statushiv = stringr::str_extract(indicator_code, "(Neg|Pos|Unk)"),
+    statushiv = stringr::str_extract(indicator_code, "(?<=\\.)(Neg|Pos|Unk)(?=\\.)"),
     statushiv = dplyr::recode(statushiv,  "Neg" = "Negative" , "Pos" = "Positive", "Unk" = "Unknown"),
     age = dplyr::case_when(stringr::str_detect(indicator_code, "12") ~ "02 - 12 Months",
                            stringr::str_detect(indicator_code, "\\.2") ~ "<=02 Months",
