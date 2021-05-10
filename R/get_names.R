@@ -64,11 +64,5 @@ get_names <- function(df, map_names = TRUE, psnu_lvl = FALSE, cntry = NULL){
       dplyr::select(operatingunit, dplyr::everything())
   }
 
-  #order variables
-  df <- df %>%
-    dplyr::relocate(operatingunit, countryname, 1) %>%
-    dplyr::relocate(fundingagency, .before = mech_code) %>%
-    dplyr::relocate(primepartner, mech_name, .after = mech_code)
-
   return(df)
 }
