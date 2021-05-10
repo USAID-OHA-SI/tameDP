@@ -10,13 +10,13 @@
 
 get_names <- function(df, map_names = TRUE, psnu_lvl = FALSE, cntry = NULL){
 
-  #fix dedup
-  df <- dplyr::mutate(df, mech_code = ifelse(mech_code == "dedup", "00000", mech_code))
-
   if(map_names == TRUE && psnu_lvl == FALSE){
 
     #check internet connection
       no_connection()
+
+    #fix dedup
+    df <- dplyr::mutate(df, mech_code = ifelse(mech_code == "dedup", "00000", mech_code))
 
     #access current mechanism list posted publically to DATIM
     mech_official <- readr::read_csv("https://www.datim.org/api/sqlViews/fgUtV6e9YIX/data.csv",
