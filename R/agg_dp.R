@@ -15,12 +15,14 @@ agg_dp <- function(df, psnu_lvl = FALSE){
   #create targets
   df <- dplyr::mutate(df, targets = round(value, 0))
 
+  #remove zero rows
+  df <- dplyr::filter(df, value != 0)
+
   #aggregate up to psnu/[mechanism/]ind/age/sex/keypop level
   df <- df %>%
     dplyr::group_by(dplyr::across(dplyr::all_of(key_cols))) %>%
     dplyr::summarise(dplyr::across(c(targets), sum, na.rm = TRUE)) %>%
-    dplyr::ungroup() %>%
-    dplyr::filter(targets != 0)
+    dplyr::ungroup()
 
   return(df)
 }
