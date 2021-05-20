@@ -23,6 +23,7 @@ convert_mods <- function(df){
     dplyr::mutate(modality = dplyr::case_when(
                               indicator == "HTS_INDEX_COM" ~ "IndexMod",
                               indicator == "HTS_INDEX_FAC" ~ "Index"),
+                  otherdisaggregate = NA_character_,
                   indicator = "HTS_TST")
 
   #filter to indicators which feed into HTS_TST
