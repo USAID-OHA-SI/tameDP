@@ -7,7 +7,7 @@
 import_plhiv(filepath)
 }
 \arguments{
-\item{filepath}{cop19 datapack in xlsx format}
+\item{filepath}{cop20 datapack in xlsx format}
 }
 \description{
 Import PLHIV and current on ART from COP20 Datapacks
