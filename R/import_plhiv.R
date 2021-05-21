@@ -26,7 +26,7 @@ import_plhiv <- function(filepath){
                   vl_suppressed.t_1) %>%
     tidyr::gather(indicator, targets, pop_est.t_1:vl_suppressed.t_1) %>%
     dplyr::mutate(targets = as.numeric(targets),
-                  fiscal_year == 2022,
+                  fiscal_year = 2022,
                   indicator = indicator %>%
                     stringr::str_remove(".t_1") %>%
                     toupper %>%
