@@ -6,6 +6,8 @@
 \alias{tameDP-package}
 \title{tameDP: Import PSNUxIM targets from COP19 Data Pack}
 \description{
+\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+
 Import PSNUxIM targets from COP20 Data Pack. The purpose is to make it tidy/usable.
 }
 \author{

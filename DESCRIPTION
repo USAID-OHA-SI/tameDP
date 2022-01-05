@@ -9,7 +9,7 @@ Description: Import PSNUxIM targets from COP20 Data Pack. The purpose is to make
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Imports: 
     dplyr (>= 1.0.0),
     magrittr,
