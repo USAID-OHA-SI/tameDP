@@ -13,7 +13,7 @@ reshape_dp <- function(df){
 
   #check if all columns exist
   if(length(setdiff(key_cols, names(df))) > 0)
-    stop(paste("PSNUxIM tab is missing one or more columns:", paste(length(setdiff(key_cols, names(df_dp))), collapse = ", ")))
+    stop(paste("PSNUxIM tab is missing one or more columns:", paste(length(setdiff(key_cols, names(df))), collapse = ", ")))
 
     #rename dedup columns
     df <- df %>%
