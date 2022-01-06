@@ -1,5 +1,8 @@
 #' Apply variable class
 #'
+#' Ensure that fiscal year and targets are numeric and all other variables are
+#' stored as characters.
+#'
 #' @param df dataframe output to reorder
 #' @export
 

@@ -2,9 +2,9 @@
 % Please edit documentation in R/tame_dp.R
 \name{tame_dp}
 \alias{tame_dp}
-\title{Import SNUxIM data from Data Pack and Clean}
+\title{Tidy PSNUxIM data from Data Pack}
 \usage{
-tame_dp(filepath, map_names = TRUE, psnu_lvl = FALSE)
+tame_dp(filepath, map_names = FALSE, psnu_lvl = FALSE)
 }
 \arguments{
 \item{filepath}{file path to the Data Pack importing, must be .xlsx}
@@ -14,12 +14,45 @@ tame_dp(filepath, map_names = TRUE, psnu_lvl = FALSE)
 \item{psnu_lvl}{aggregate to the PSNU level instead of IM}
 }
 \description{
-Import SNUxIM data from Data Pack and Clean
+tame_dp is the primary function of the tameDP package, reading in the Data
+Pack and munging in into a tidy data frame to make it more usable to
+interact with the data than the way it is stored in the Data Pack. **Given
+the changes to the Data Pack each year, the function only works for the
+current COP year, COP21.**
+}
+\details{
+The main function of `tameDP` is to bring import a COP20 Data Pack into R
+and make it tidy. The function aggregates the COP targets up to the
+mechanism level, imports the mechanism information from DATIM, and breaks
+out the data elements to make the dataset more usable.
+
+  - Imports Data Pack as tidy data frame
+  - Breaks up data elements stored in the indicatorCode column into distinct columns
+  - Cleans up the HTS variables, separating modalities out of the indicator name
+  - Creates a statushiv column
+  - Cleans and separates PSNU and PSNU UID into distinct columns
+  - Adds in mechanism information from DATIM, including operatingunit, funding agency, partner and mechanism name
+  - Removes any rows with no targets
+  - Allows for aggregate to the PSNU level
 }
 \examples{
-\dontrun{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 #DP file path
   path <- "../Downloads/DataPack_Jupiter_20200218.xlsx"
 #read in data pack
-  df_dp <- tame_dp(path) }
+  df_dp <- tame_dp(path)
+#apply mechanism names
+  df_dp_named <- tame_dp(path, map_names = TRUE)
+#aggregate to the PSNU level
+  df_dp_psnu <- tame_dp(path, psnu_lvl = TRUE)
+#reading in mutliple files and then applying mechanism names
+  df_all <- map_dfr(.x = list.files("../Downloads/DataPacks", full.names = TRUE),
+                    .f = ~ tame_dp(.x, map_names = FALSE))
+  df_all <- get_names(df_all)
+\dontshow{\}) # examplesIf}
 }
+\seealso{
+Other primary: 
+\code{\link{tame_plhiv}()}
+}
+\concept{primary}

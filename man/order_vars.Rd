@@ -10,5 +10,5 @@ order_vars(df)
 \item{df}{dataframe output to reorder}
 }
 \description{
-Order variables
+Ensure variables in the exported data frame are correctly ordered.
 }

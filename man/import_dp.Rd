@@ -2,13 +2,25 @@
 % Please edit documentation in R/import_dp.R
 \name{import_dp}
 \alias{import_dp}
-\title{Import SNUxIM tab from the Data Pack}
+\title{Import PSNUxIM/Cascade tab from the Data Pack}
 \usage{
-import_dp(filepath)
+import_dp(filepath, tab = "PSNUxIM")
 }
 \arguments{
-\item{filepath}{file path to the Data Pack importing, must be .xls}
+\item{filepath}{file path to the Data Pack importing, must be .xlsx}
+
+\item{tab}{which sheet to read in, "PSNUxIM" (default) or "Cascade" (for PLHIV)}
 }
 \description{
-Import SNUxIM tab from the Data Pack
+Initial reading in of the PSNUxIM or Cascade (for PLHIV) tab of the Data
+Pack, which contains all the data from all the other tabs, broken down by
+mechanism and PSNU. This function reads in the tab, removes unused columns
+and cleans up the column names so there are no duplicates and identified as
+a share or value.
+}
+\examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+path <- "../Downloads/DataPack_Jupiter_20200218.xlsx"
+df_dp <- import_dp(path)
+\dontshow{\}) # examplesIf}
 }

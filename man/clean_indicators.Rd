@@ -2,7 +2,7 @@
 % Please edit documentation in R/clean_indicators.R
 \name{clean_indicators}
 \alias{clean_indicators}
-\title{Clean up indicators and disaggs for ease of use}
+\title{Clean Up Indicators and Disaggregates}
 \usage{
 clean_indicators(df)
 }
@@ -10,5 +10,11 @@ clean_indicators(df)
 \item{df}{data frame to adjust}
 }
 \description{
-Clean up indicators and disaggs for ease of use
+The indicator and disaggregates used in the Data Pack skew towards machine readable
+and do not necessary match the MER indicators in the MSD/DATIM. This function
+makes adjustments to indicators and disaggregates to make them easier to work
+with and more closely align to the MSD. This function also uses
+`conver_mods()`, which creates the testing modalities that match the MSD and
+create new HTS_TST and HTS_TST_POS indicator from indicator that feed into
+them (eg HTS_INDEX, TB_STAT, PMTCT_STAT, VMMC_CIRC).
 }

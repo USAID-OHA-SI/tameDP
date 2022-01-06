@@ -1,5 +1,7 @@
 #' Order variables
 #'
+#' Ensure variables in the exported data frame are correctly ordered.
+#'
 #' @param df dataframe output to reorder
 #' @export
 

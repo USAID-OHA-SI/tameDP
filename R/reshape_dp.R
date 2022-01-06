@@ -1,10 +1,12 @@
 #' Reshape Data Pack Long
 #'
-#' @param df data frame to adjust
+#' This function limits the columns from the PSNUxIM tab and reshapes it long,
+#' so that it is more usable. Three values columns are created in the output -
+#' datapacktarget, value, share.
 #'
+#' @param df data frame from import_dp()
+#' @family reshape
 #' @export
-#' @importFrom magrittr %>%
-
 
 reshape_dp <- function(df){
 
@@ -39,19 +41,13 @@ reshape_dp <- function(df){
       #remove rows with no share or value
       dplyr::filter_at(dplyr::vars(value, share), dplyr::any_vars(!is.na(.)))
 
-
   #change values to double
   suppressWarnings(
     df <- dplyr::mutate(df, dplyr::across(c(datapacktarget, value, share), as.numeric))
   )
 
   #extract PSNU UID from PSNU column
-  df <- df %>%
-    dplyr::mutate(psnu = psnu %>%
-                    stringr::str_remove("^.*(?<=\\>)") %>%
-                    stringr::str_remove_all(" \\[#(Country|SNU|DREAMS|Military)]") %>%
-                    stringr::str_remove("(?<=\\]).*")) %>%
-    tidyr::separate(psnu, c("psnu", "psnuuid", NA), sep = " \\[|]", fill = "right")
+  df <- split_psnu(df)
 
   return(df)
 }

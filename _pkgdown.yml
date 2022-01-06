@@ -1,0 +1,42 @@
+navbar:
+  structure:
+    left:
+    - intro
+    - reference
+    - articles
+    - tutorials
+    - news
+    right: github
+  components:
+    reference:
+      text: Reference
+      href: reference/index.html
+
+reference:
+- title: Primary functions
+  contents:
+  - '`tame_dp`'
+  - '`tame_plhiv`'
+
+- title: Supporting functions
+  contents:
+  - '`import_dp`'
+  - '`reshape_dp`'
+  - '`reshape_plhiv`'
+  - '`split_psnu`'
+  - '`convert_dedups`'
+  - '`agg_dp`'
+  - '`clean_indicators`'
+  - '`convert_mods`'
+  - '`get_names`'
+  - '`order_vars`'
+  - '`apply_class`'
+
+- title: Utility functions
+  contents:
+  - '`is_file`'
+  - '`is_sheet`'
+  - '`is_xls`'
+  - '`no_connection`'
+  - '`grab_info`'
+

@@ -1,11 +1,13 @@
 Package: tameDP
-Title: Import PSNUxIM targets from COP19 Data Pack
-Version: 3.3.0
+Title: Import targets and PLHIV data from COP Data Pack
+Version: 3.4.0
 Authors@R: c(
     person("Aaron", "Chafetz", ,"achafetz@usaid.gov", c("aut", "cre")),
     person("Josh", "Davis", ,"jodavis@usaid.gov", c("aut"))
     )
-Description: Import PSNUxIM targets from COP20 Data Pack. The purpose is to make it tidy/usable.
+Description: Import PSNUxIM targets and PLHIV data from COP Data Pack. The 
+   purpose is to make the data tidy and more usable than their current structure
+   in the Excel data packs.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -19,4 +21,7 @@ Imports:
     tidyr,
     tools,
     httr,
-    curl
+    curl,
+    getPass
+Suggests: 
+    purrr
