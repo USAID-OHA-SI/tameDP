@@ -7,7 +7,6 @@
 #'
 #' @param df Data Pack data frame from tameDP
 #'
-#' @return
 #' @export
 
 split_psnu <- function(df){

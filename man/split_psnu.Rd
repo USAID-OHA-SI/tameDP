@@ -9,9 +9,6 @@ split_psnu(df)
 \arguments{
 \item{df}{Data Pack data frame from tameDP}
 }
-\value{
-
-}
 \description{
 This function removes the contacanated data contained in the same cell. The
 psnu column in the Data Pack contains both the psnu, psnuuid, and meta data
