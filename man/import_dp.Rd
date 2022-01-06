@@ -10,5 +10,6 @@ import_dp(filepath)
 \item{filepath}{file path to the Data Pack importing, must be .xls}
 }
 \description{
-Import SNUxIM tab from the Data Pack
+Initial reading in of the PSNUxIM tab of the Data Pack, which contains all
+the data from all the other tabs, broken down by mechanism and PSNU.
 }
