@@ -10,5 +10,6 @@ apply_class(df)
 \item{df}{dataframe output to reorder}
 }
 \description{
-Apply variable class
+Ensure that fiscal year and targets are numeric and all other variables are
+stored as characters.
 }
