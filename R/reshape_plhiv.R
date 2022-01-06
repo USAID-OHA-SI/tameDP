@@ -37,10 +37,9 @@ reshape_plhiv <- function(df){
                         values_transform = list(targets = as.numeric)) %>%
     dplyr::filter(targets != 0)
 
-  #clean indicator and add FY
+  #clean indicator
   df <- df %>%
-    dplyr::mutate(fiscal_year = 2022,
-                  indicator = indicator %>%
+    dplyr::mutate(indicator = indicator %>%
                     stringr::str_remove(".t_1") %>%
                     toupper %>%
                     dplyr::recode("VL_SUPPRESSED" = "VL_SUPPRESSION_SUBNAT"))

@@ -52,7 +52,11 @@ tame_dp <- function(filepath, map_names = TRUE, psnu_lvl = FALSE){
   df_dp <- clean_indicators(df_dp)
 
   #identify country (if not pulling from DATIM)
-  cntry <- grab_cntry(filepath)
+  cntry <- grab_info(filepath, "country")
+  fy <- grab_info(filepath, "year")
+
+  #add fiscal year
+  df_dp <- dplyr::mutate(df_dp, fiscal_year = fy)
 
   #add names from DATIM
   df_dp <- get_names(df_dp, map_names, psnu_lvl, cntry)

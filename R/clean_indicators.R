@@ -48,10 +48,7 @@ clean_indicators <- function(df){
   df <- dplyr::select(df, -indicator_code)
 
   #move targets to end
-  df <- df %>%
-    dplyr::mutate(fiscal_year = 2022) %>%
-    dplyr::select(fiscal_year, dplyr::everything()) %>%
-    dplyr::select(-targets, dplyr::everything())
+  df <- dplyr::select(df, -targets, dplyr::everything())
 
   return(df)
 }

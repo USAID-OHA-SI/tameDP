@@ -25,11 +25,16 @@ tame_plhiv <- function(filepath){
   #refine columns and reshape
   df_plhiv <- reshape_plhiv(df_plhiv)
 
-  #identify country
-  cntry <- grab_cntry(filepath)
+  #identify country and FY
+  cntry <- grab_info(filepath, "country")
+  fy <- grab_info(filepath, "year")
 
-  #apply country name
-  df_plhiv <- dplyr::mutate(df_plhiv, countryname = cntry, .before = 1)
+  #add country name and fiscal year and reorder
+  df_plhiv <- df_plhiv %>%
+    dplyr::mutate(countryname = cntry,
+                  fiscal_year = fy) %>%
+    dplyr::relocate(countryname, .before = 1) %>%
+    dplyr::relocate(fiscal_year, indicator, .before = "age")
 
   return(df_plhiv)
 }
