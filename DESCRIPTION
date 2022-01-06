@@ -1,6 +1,6 @@
 Package: tameDP
 Title: Import targets and PLHIV data from COP Data Pack
-Version: 3.3.0
+Version: 3.4.0
 Authors@R: c(
     person("Aaron", "Chafetz", ,"achafetz@usaid.gov", c("aut", "cre")),
     person("Josh", "Davis", ,"jodavis@usaid.gov", c("aut"))
