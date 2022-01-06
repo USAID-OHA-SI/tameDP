@@ -2,12 +2,14 @@
 % Please edit documentation in R/import_dp.R
 \name{import_dp}
 \alias{import_dp}
-\title{Import SNUxIM tab from the Data Pack}
+\title{Import PSNUxIM tab from the Data Pack}
 \usage{
-import_dp(filepath)
+import_dp(filepath, tab = "PSNUxIM")
 }
 \arguments{
 \item{filepath}{file path to the Data Pack importing, must be .xlsx}
+
+\item{tab}{which sheet to read in, "PSNUxIM" (default) or "Cascade" (for PLHIV)}
 }
 \description{
 Initial reading in of the PSNUxIM tab of the Data Pack, which contains all
@@ -17,7 +19,7 @@ column names so there are no duplicates and identified as a share or value.
 }
 \examples{
 \dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-path <- "../Downloads/COP51_DataPack_PEPFARLandia.xlsx"
+path <- "../Downloads/DataPack_Jupiter_20200218.xlsx"
 df_dp <- import_dp(path)
 \dontshow{\}) # examplesIf}
 }
