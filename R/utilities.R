@@ -15,13 +15,14 @@ is_file <- function(filepath){
 #' Check if sheet exits in Data Pack
 #'
 #' @param filepath filepath of Data Pack
+#' @param tab sheet to check in Data Pack, "PSNUxIM" (default) or "Cascade"
 #' @family validation
 #' @export
 
-is_sheet <- function(filepath){
+is_sheet <- function(filepath, tab = "PSNUxIM"){
 
-  #does PSNUxIM tab exist?
-  "PSNUxIM" %in% readxl::excel_sheets(filepath)
+  #does PSNUxIM/Cascade tab exist?
+  tab %in% readxl::excel_sheets(filepath)
 
 }
 

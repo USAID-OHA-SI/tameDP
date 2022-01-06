@@ -4,10 +4,12 @@
 \alias{is_sheet}
 \title{Check if sheet exits in Data Pack}
 \usage{
-is_sheet(filepath)
+is_sheet(filepath, tab = "PSNUxIM")
 }
 \arguments{
 \item{filepath}{filepath of Data Pack}
+
+\item{tab}{sheet to check in Data Pack, "PSNUxIM" (default) or "Cascade"}
 }
 \description{
 Check if sheet exits in Data Pack
