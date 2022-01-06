@@ -1,9 +1,10 @@
-#' Import PSNUxIM tab from the Data Pack
+#' Import PSNUxIM/Cascade tab from the Data Pack
 #'
-#' Initial reading in of the PSNUxIM tab of the Data Pack, which contains all
-#' the data from all the other tabs, broken down by mechanism and PSNU. This
-#' function reads in the PSNUxIM tab, removes unused columns and cleans up the
-#' column names so there are no duplicates and identified as a share or value.
+#' Initial reading in of the PSNUxIM or Cascade (for PLHIV) tab of the Data
+#' Pack, which contains all the data from all the other tabs, broken down by
+#' mechanism and PSNU. This function reads in the tab, removes unused columns
+#' and cleans up the column names so there are no duplicates and identified as
+#' a share or value.
 #'
 #' @param filepath file path to the Data Pack importing, must be .xlsx
 #' @param tab which sheet to read in, "PSNUxIM" (default) or "Cascade" (for PLHIV)

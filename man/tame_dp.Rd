@@ -2,7 +2,7 @@
 % Please edit documentation in R/tame_dp.R
 \name{tame_dp}
 \alias{tame_dp}
-\title{Import PSNUxIM data from Data Pack and Clean}
+\title{Tidy PSNUxIM data from Data Pack}
 \usage{
 tame_dp(filepath, map_names = TRUE, psnu_lvl = FALSE)
 }
@@ -42,5 +42,9 @@ out the data elements to make the dataset more usable.
 #read in data pack
   df_dp <- tame_dp(path)
 \dontshow{\}) # examplesIf}
+}
+\seealso{
+Other primary: 
+\code{\link{tame_plhiv}()}
 }
 \concept{primary}

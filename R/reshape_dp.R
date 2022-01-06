@@ -1,10 +1,12 @@
 #' Reshape Data Pack Long
 #'
-#' @param df data frame to adjust
+#' This function limits the columns from the PSNUxIM tab and reshapes it long,
+#' so that it is more usable. Three values columns are created in the output -
+#' datapacktarget, value, share.
 #'
+#' @param df data frame from import_dp()
+#' @family reshape
 #' @export
-#' @importFrom magrittr %>%
-
 
 reshape_dp <- function(df){
 

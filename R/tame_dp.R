@@ -1,4 +1,4 @@
-#' Import PSNUxIM data from Data Pack and Clean
+#' Tidy PSNUxIM data from Data Pack
 #'
 #' tame_dp is the primary function of the tameDP package, reading in the Data
 #' Pack and munging in into a tidy data frame to make it more usable to

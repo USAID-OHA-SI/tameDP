@@ -7,8 +7,15 @@
 reshape_dp(df)
 }
 \arguments{
-\item{df}{data frame to adjust}
+\item{df}{data frame from import_dp()}
 }
 \description{
-Reshape Data Pack Long
+This function limits the columns from the PSNUxIM tab and reshapes it long,
+so that it is more usable. Three values columns are created in the output -
+datapacktarget, value, share.
 }
+\seealso{
+Other reshape: 
+\code{\link{reshape_plhiv}()}
+}
+\concept{reshape}
