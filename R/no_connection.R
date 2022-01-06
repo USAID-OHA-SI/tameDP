@@ -1,5 +1,5 @@
 #' Check if computer has internet connection
-#'
+#' @family validation
 #' @export
 
 no_connection <- function(){

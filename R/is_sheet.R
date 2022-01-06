@@ -1,8 +1,7 @@
-
-#' Check if sheet exits in Data pack
+#' Check if sheet exits in Data Pack
 #'
-#' @param filepath filepath of COP 19 Data Pack
-#'
+#' @param filepath filepath of Data Pack
+#' @family validation
 #' @export
 
 is_sheet <- function(filepath){

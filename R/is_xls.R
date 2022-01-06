@@ -1,7 +1,7 @@
 #' Check if the filepath is .xls or .xlsx
 #'
-#' @param filepath filepath of COP 19 Data Pack
-#'
+#' @param filepath filepath of COP Data Pack
+#' @family validation
 #' @export
 
 
