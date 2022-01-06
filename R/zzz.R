@@ -1,20 +1,45 @@
 .onLoad <- function (libname, pkgname)
 {
   # make data set names global to avoid CHECK notes
-  utils::globalVariables ("indicatorcode")
-  utils::globalVariables ("indicator")
-  utils::globalVariables ("otherdisaggregate")
-  utils::globalVariables ("fy2020_targets")
-  utils::globalVariables ("code")
-  utils::globalVariables ("partner")
-  utils::globalVariables ("mechanism")
-  utils::globalVariables ("ou")
-  utils::globalVariables ("agency")
-  utils::globalVariables ("implementingmechanismname")
-  utils::globalVariables ("operatingunit")
-  utils::globalVariables ("fundingagency")
-  utils::globalVariables ("mechanismid")
-  utils::globalVariables ("primepartner")
+
+  utils::globalVariables(
+    c(".",
+      "age",
+      "agency",
+      "code",
+      "countryname",
+      "datapacktarget",
+      "deduplicated dsd rollup (fy22)",
+      "deduplicated ta rollup (fy22)",
+      "disagg",
+      "fiscal_year",
+      "fundingagency",
+      "fy2020_targets",
+      "implementingmechanismname",
+      "indicator",
+      "indicator_code",
+      "indicatorcode",
+      "indicatortype",
+      "keypop",
+      "mech_code",
+      "mech_name",
+      "mechanism",
+      "mechanismid",
+      "modality",
+      "numeratordenom",
+      "otherdisaggregate",
+      "operatingunit",
+      "ou",
+      "partner",
+      "primepartner",
+      "psnu",
+      "psnuuid",
+      "sex",
+      "share",
+      "statushiv",
+      "targets",
+      "value")
+  )
 
   invisible ()
 }
