@@ -12,5 +12,8 @@ agg_dp(df, psnu_lvl = FALSE)
 \item{psnu_lvl}{default aggregate is to IM level; if TRUE, aggregates to PSNU level}
 }
 \description{
-Aggregate Targets to IM or PSNU level
+To ensure there are no duplicate rows on the reshape, this function first
+aggregates the data by the key columns to minimize any issues. If desiring
+to work at the PSNU level, the parameter `psnu_lvl` allows you to aggregate
+to the PSNU level instead of the PSNUxIM level.
 }

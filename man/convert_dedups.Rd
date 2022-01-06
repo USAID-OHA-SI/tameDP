@@ -10,5 +10,6 @@ convert_dedups(df)
 \item{df}{dataframe output to reorder}
 }
 \description{
-Adjust Dedup values to negative values
+The dedup values in the PSNUxIM tab are stored as positive values. This
+function converts the dedup mechanism values to negative.
 }
