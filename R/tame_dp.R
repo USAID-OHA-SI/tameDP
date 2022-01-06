@@ -32,6 +32,14 @@
 #'   path <- "../Downloads/DataPack_Jupiter_20200218.xlsx"
 #' #read in data pack
 #'   df_dp <- tame_dp(path)
+#' #apply mechanism names
+#'   df_dp_named <- tame_dp(path, map_names = TRUE)
+#' #aggregate to the PSNU level
+#'   df_dp_psnu <- tame_dp(path, psnu_lvl = TRUE)
+#' #reading in mutliple files and then applying mechanism names
+#'   df_all <- map_dfr(.x = list.files("../Downloads/DataPacks", full.names = TRUE),
+#'                     .f = ~ tame_dp(.x, map_names = FALSE))
+#'   df_all <- get_names(df_all)
 
 
 tame_dp <- function(filepath, map_names = FALSE, psnu_lvl = FALSE){
