@@ -16,9 +16,8 @@ function reads in the PSNUxIM tab, removes unused columns and cleans up the
 column names so there are no duplicates and identified as a share or value.
 }
 \examples{
-\dontshow{if (FALSE {) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 path <- "../Downloads/COP51_DataPack_PEPFARLandia.xlsx"
 df_dp <- import_dp(path)
-}
 \dontshow{\}) # examplesIf}
 }

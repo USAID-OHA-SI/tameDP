@@ -8,10 +8,9 @@
 #' @param filepath file path to the Data Pack importing, must be .xlsx
 #'
 #' @export
-#' @examplesIf FALSE {
+#' @examplesIf FALSE
 #' path <- "../Downloads/COP51_DataPack_PEPFARLandia.xlsx"
 #' df_dp <- import_dp(path)
-#' }
 
 import_dp <- function(filepath){
 
