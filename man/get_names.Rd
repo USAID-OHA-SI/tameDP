@@ -4,7 +4,14 @@
 \alias{get_names}
 \title{Import mechanism specific info from DATIM}
 \usage{
-get_names(df, map_names = TRUE, psnu_lvl = FALSE, cntry = NULL)
+get_names(
+  df,
+  map_names = TRUE,
+  psnu_lvl = FALSE,
+  cntry,
+  datim_user,
+  datim_password
+)
 }
 \arguments{
 \item{df}{data frame to add mechanism info to}
@@ -13,8 +20,31 @@ get_names(df, map_names = TRUE, psnu_lvl = FALSE, cntry = NULL)
 
 \item{psnu_lvl}{aggregate to the PSNU level instead of IM}
 
-\item{cntry}{country, from grab_cntry() if not connecting to DATIM}
+\item{cntry}{country, from grab_info() if not connecting to DATIM}
+
+\item{datim_user}{DATIM user name (if not provided, you will be prompted with a pop up)}
+
+\item{datim_password}{DATIM password (if not provided, you will be prompted with a pop up)}
 }
 \description{
-Import mechanism specific info from DATIM
+The Data Pack does not contain information on the mechanism (names or
+partners). By running this function, you are connecting to DATIM's
+SQLView file that contains the list of all current mechanisms. This requires
+providing your DATIM credentials. If left blank in the function, you will
+have two dialogue boxes popping up asking for your DATIM username and
+password. If running `tame_dp()` across multiple Data Packs, it's
+advisable to run `get_names()` on the file dataset produced by `tame_dp`.
+}
+\examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+#load package
+  library(purrr)
+#identify all the Data Pack files
+  files <- list.files("../Downloads/DataPacks", full.names = TRUE)
+#read in all DPs and combine into one data frame
+  df_all <- map_dfr(.x = files,
+                    .f = ~ tame_dp(.x, map_names = FALSE))
+#apply mech_name and primepartner names from DATIM
+  df_all <- get_names(df_all)
+\dontshow{\}) # examplesIf}
 }

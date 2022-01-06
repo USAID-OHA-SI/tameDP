@@ -19,4 +19,5 @@ Imports:
     tidyr,
     tools,
     httr,
-    curl
+    curl,
+    getPass
