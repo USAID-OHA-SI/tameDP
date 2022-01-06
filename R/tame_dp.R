@@ -34,7 +34,7 @@
 #'   df_dp <- tame_dp(path)
 
 
-tame_dp <- function(filepath, map_names = TRUE, psnu_lvl = FALSE){
+tame_dp <- function(filepath, map_names = FALSE, psnu_lvl = FALSE){
 
   #import Data Pack and convert to lower
   df_dp <- import_dp(filepath)

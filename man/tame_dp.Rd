@@ -4,7 +4,7 @@
 \alias{tame_dp}
 \title{Tidy PSNUxIM data from Data Pack}
 \usage{
-tame_dp(filepath, map_names = TRUE, psnu_lvl = FALSE)
+tame_dp(filepath, map_names = FALSE, psnu_lvl = FALSE)
 }
 \arguments{
 \item{filepath}{file path to the Data Pack importing, must be .xlsx}
