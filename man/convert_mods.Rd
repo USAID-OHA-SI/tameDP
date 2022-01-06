@@ -2,10 +2,7 @@
 % Please edit documentation in R/convert_mods.R
 \name{convert_mods}
 \alias{convert_mods}
-\title{Duplicate and convert modalities to HTS_TST
-This function matches the testing modalities from the MSD and
-create new HTS_TST and HTS_TST_POS indicator from indicator that feed into
-them (eg HTS_INDEX, TB_STAT, PMTCT_STAT, VMMC_CIRC).}
+\title{Duplicate and convert modalities to HTS_TST}
 \usage{
 convert_mods(df)
 }
@@ -13,7 +10,6 @@ convert_mods(df)
 \item{df}{data frame}
 }
 \description{
-Duplicate and convert modalities to HTS_TST
 This function matches the testing modalities from the MSD and
 create new HTS_TST and HTS_TST_POS indicator from indicator that feed into
 them (eg HTS_INDEX, TB_STAT, PMTCT_STAT, VMMC_CIRC).
