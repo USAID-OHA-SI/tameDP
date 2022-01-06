@@ -12,5 +12,8 @@ convert_dedups <- function(df){
   df <- df %>%
     dplyr::mutate(value = ifelse(mech_code == "dedup", -abs(value), value))
 
+  #covert dedup to mech code (assuming all are 00000 and none are 00001)
+  df <- dplyr::mutate(df, mech_code = ifelse(mech_code == "dedup", "00000", mech_code))
+
   return(df)
 }
