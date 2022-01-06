@@ -76,7 +76,7 @@ get_names <- function(df, map_names = TRUE, psnu_lvl = FALSE, cntry,
 
     #remove vars if they exist before merging on from DATIM pull
     rm_vars <- intersect(c("primepartner", "mech_name", "operatingunit", "fundingagency"), names(df))
-    df <- dplyr::select(df, -all_of(rm_vars))
+    df <- dplyr::select(df, -dplyr::all_of(rm_vars))
 
     #map primepartner and mechanism names onto dataframe
     df <- dplyr::left_join(df, mech_official, by="mech_code")
