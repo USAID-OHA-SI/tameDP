@@ -1,12 +1,17 @@
 #' Import SNUxIM tab from the Data Pack
 #'
 #' Initial reading in of the PSNUxIM tab of the Data Pack, which contains all
-#' the data from all the other tabs, broken down by mechanism and PSNU.
+#' the data from all the other tabs, broken down by mechanism and PSNU. This
+#' function reads in the PSNUxIM tab, removes unused columns and cleans up the
+#' column names so there are no duplicates and identified as a share or value.
 #'
-#' @param filepath file path to the Data Pack importing, must be .xls
+#' @param filepath file path to the Data Pack importing, must be .xlsx
 #'
 #' @export
-
+#' @examplesIf FALSE {
+#' path <- "../Downloads/COP51_DataPack_PEPFARLandia.xlsx"
+#' df_dp <- import_dp(path)
+#' }
 
 import_dp <- function(filepath){
 

@@ -7,9 +7,18 @@
 import_dp(filepath)
 }
 \arguments{
-\item{filepath}{file path to the Data Pack importing, must be .xls}
+\item{filepath}{file path to the Data Pack importing, must be .xlsx}
 }
 \description{
 Initial reading in of the PSNUxIM tab of the Data Pack, which contains all
-the data from all the other tabs, broken down by mechanism and PSNU.
+the data from all the other tabs, broken down by mechanism and PSNU. This
+function reads in the PSNUxIM tab, removes unused columns and cleans up the
+column names so there are no duplicates and identified as a share or value.
+}
+\examples{
+\dontshow{if (FALSE {) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+path <- "../Downloads/COP51_DataPack_PEPFARLandia.xlsx"
+df_dp <- import_dp(path)
+}
+\dontshow{\}) # examplesIf}
 }
