@@ -59,3 +59,44 @@ no_connection <- function(){
     stop("No internet connection. Cannot access offical names & rename.")
 }
 
+
+#' Return Tab
+#'
+#' Identify which tab to import based on what you want to use - PSNUxIM, PLHIV,
+#' or ALL.
+#'
+#' @param type dataset to extract "PSNUxIM", "PLHIV", or "ALL"
+#'
+#' @return tabs to import
+#' @export
+
+return_tab <- function(type){
+
+  if(type == "PSUxIM"){
+    t <- "PSUxIM"
+  } else if(type == "PLHIV"){
+    t <- "Cascade"
+  } else{
+    t <- c("Cascade",
+           "PMTCT",
+           "EID",
+           "TB",
+           "VMMC",
+           "KP",
+           "HTS",
+           "CXCA",
+           "HTS_RECENT",
+           "TX_TB_PREV",
+           "PP",
+           "OVC",
+           "GEND",
+           "AGYW",
+           "PrEP",
+           "KP_MAT"
+    )
+
+  }
+
+  return(t)
+
+}

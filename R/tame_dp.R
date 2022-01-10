@@ -21,6 +21,7 @@
 #'   - Allows for aggregate to the PSNU level
 #'
 #' @param filepath file path to the Data Pack importing, must be .xlsx
+#' @param type dataset to extract "PSNUxIM", "PLHIV", or "ALL" (default)
 #' @param map_names import names from DATIM (OU, mechanism, partner) associated with mech_code
 #' @param psnu_lvl aggregate to the PSNU level instead of IM
 #'
@@ -42,10 +43,13 @@
 #'   df_all <- get_names(df_all)
 
 
-tame_dp <- function(filepath, map_names = FALSE, psnu_lvl = FALSE){
+tame_dp <- function(filepath, type = "ALL",
+                    map_names = FALSE, psnu_lvl = FALSE){
 
   #import Data Pack and convert to lower
-  df_dp <- import_dp(filepath)
+  df_dp <- return_tab(type) %>%
+    intersect(readxl::excel_sheets(filepath)) %>%
+    purrr::map_dfr(~import_dp(filepath, .x))
 
   #refine columns and reshape
   df_dp <- reshape_dp(df_dp)
