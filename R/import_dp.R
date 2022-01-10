@@ -39,13 +39,12 @@ import_dp <- function(filepath, tab = "PSNUxIM"){
   )
 
   #fix names - lower
-  df <- df %>%
-    dplyr::rename_with(tolower) %>%
-    dplyr::select(-dplyr::starts_with("..."))
+  df <- dplyr::rename_with(df, tolower)
 
   #fix names - change dup col names to value and pct
   if(tab == "PSNUxIM"){
     df <- df %>%
+      dplyr::select(-dplyr::starts_with("...")) %>%
       dplyr::rename_with(~stringr::str_replace(., "...[:digit:]{3}$", "_value")) %>%
       dplyr::rename_with(~stringr::str_replace(., "...[:digit:]{1,2}$", "_share"))
   }
