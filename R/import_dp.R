@@ -25,8 +25,8 @@ import_dp <- function(filepath, tab = "PSNUxIM"){
     stop("Cannot read a xlsb file format. Resave as xlsx.")
 
   #check that sheet exists
-  if(!is_sheet(filepath))
-    stop("No sheet called 'PSNUxIM' found.")
+  if(!is_sheet(filepath, tab))
+    stop(paste("No sheet called", tab, "found."))
 
   #import Data Pack
   suppressMessages(
