@@ -1,7 +1,10 @@
+<!-- badges: start -->
 [![R-CMD-check](https://github.com/USAID-OHA-SI/tameDP/workflows/R-CMD-check/badge.svg)](https://github.com/USAID-OHA-SI/tameDP/actions)
+<!-- badges: end -->
   
-# tameDP <img src='man/figures/logo.png' align="right" height="120" />
+<img src='man/figures/logo.png' align="right" height="120" />
 
+# tameDP 
 
 Import PSNUxIM targets from COP21 Data Pack & make tidy/usable.
 Updated from the COP19 and COP20 versions.
