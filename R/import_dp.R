@@ -41,6 +41,20 @@ import_dp <- function(filepath, tab = "PSNUxIM"){
   #fix names - lower
   df <- dplyr::rename_with(df, tolower)
 
+  if(tab != "PSNUxIM"){
+    #subset target columns (non PSNUxIM tab)
+    df <- df[match_col_type(filepath, tab)]
+
+    #reshape long and remove blank rows
+    df <- df %>%
+      tidyr::pivot_longer(dplyr::matches("(t|t_1)$"),
+                          names_to = "indicator",
+                          values_to = "targets",
+                          values_drop_na = TRUE,
+                          values_transform = list(targets = as.numeric)) %>%
+      dplyr::filter(targets != 0)
+  }
+
   #fix names - change dup col names to value and pct
   if(tab == "PSNUxIM"){
     df <- df %>%
@@ -50,4 +64,32 @@ import_dp <- function(filepath, tab = "PSNUxIM"){
   }
 
   return(df)
+}
+
+
+#' Match Column Type
+#'
+#' @param filepath file path to the Data Pack importing, must be .xlsx
+#' @param tab which sheet to read in, "PSNUxIM" (default) or "Cascade" (for PLHIV)
+#' @param pattern type of column, "assumption", "calculation", "past",
+#'  "result", "reference", "row_header", "target"; default = "(row_header|target)"
+#'
+#' @return Boolean list of matches
+#' @export
+#'
+match_col_type <- function(filepath, tab, pattern = "(row_header|target)"){
+  #Identify column type from meta info
+   col_types <- readxl::read_excel(
+    path = filepath,
+    sheet = tab,
+    skip = 5,
+    n_max = 0,
+    col_types = "text",
+    .name_repair = "minimal") %>%
+    names() %>%
+    tolower()
+
+  #does type match the specific column type identified?
+  grepl(pattern, col_types)
+
 }
