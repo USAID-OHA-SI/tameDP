@@ -32,7 +32,7 @@ agg_dp <- function(df, psnu_lvl = FALSE){
   #aggregate up to psnu/[mechanism/]ind/age/sex/keypop level
   df <- df %>%
     dplyr::group_by(dplyr::across(dplyr::all_of(key_cols))) %>%
-    dplyr::summarise(dplyr::across(c(targets), sum, na.rm = TRUE)) %>%
+    dplyr::summarise(targets = sum(targets, na.rm = TRUE)) %>%
     dplyr::ungroup()
 
   return(df)
