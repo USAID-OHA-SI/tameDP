@@ -16,6 +16,6 @@ datapacktarget, value, share.
 }
 \seealso{
 Other reshape: 
-\code{\link{reshape_plhiv}()}
+\code{\link{reshape_tab}()}
 }
 \concept{reshape}

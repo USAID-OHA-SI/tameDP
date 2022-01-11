@@ -1,13 +1,13 @@
-#' Reshape PLHIV Data in Data Pack Long
+#' Reshape Data Pack Tab Long
 #'
-#' This function limits the columns from the Cascade tab to extract PLHIV data
-#' and reshapes it long, so that it is more usable.
+#' This function limits the columns from a target tab (non PSNUxIM) to extract
+#' data and reshapes it long, so that it is tidy and more usable.
 #'
 #' @param df data frame from import_dp()
 #' @family reshape
 #' @export
 
-reshape_plhiv <- function(df){
+reshape_tab <- function(df){
 
   #identify all key meta data columns to keep
   key_cols <- c("snu1",
