@@ -52,8 +52,6 @@ import_dp <- function(filepath, tab = "PSNUxIM"){
     #subset target columns (non PSNUxIM tab)
     df <- df[cols_keep]
 
-    #reshape long and remove blank rows
-    df <- reshape_tab(df)
   }
 
   #fix names - change dup col names to value and pct

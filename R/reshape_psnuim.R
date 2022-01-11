@@ -1,5 +1,30 @@
 #' Reshape Data Pack Long
 #'
+#' This reshapes the relevant columns from a given tab to long, making it tidy
+#' and more usable. It relies on either `reshape_tab()` or `reshape_psnuim()`
+#' depending on the tab being processed.
+#'
+#' @param df data frame from import_dp()
+#' @family reshape
+#' @export
+
+reshape_dp <- function(df){
+  #identify tab/data frame type
+  type <- ifelse("indicator_code" %in% names(df), "psnu_im", "other")
+
+  #run specific reshape based on tab
+  switch(type,
+         "psnu_im" = reshape_psnuim(df),
+         "other" = reshape_tab(df))
+}
+
+
+
+
+
+
+#' Reshape Data Pack Long
+#'
 #' This function limits the columns from the PSNUxIM tab and reshapes it long,
 #' so that it is more usable. Three values columns are created in the output -
 #' datapacktarget, value, share.

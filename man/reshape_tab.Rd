@@ -16,6 +16,7 @@ also splits out the PSNU uid from the PSNU column.
 }
 \seealso{
 Other reshape: 
+\code{\link{reshape_dp}()},
 \code{\link{reshape_psnuim}()}
 }
 \concept{reshape}

@@ -46,13 +46,14 @@
 tame_dp <- function(filepath, type = "ALL",
                     map_names = FALSE, psnu_lvl = FALSE){
 
-  #import Data Pack and convert to lower
-  df_dp <- return_tab(type) %>%
-    intersect(readxl::excel_sheets(filepath)) %>%
-    purrr::map_dfr(~import_dp(filepath, .x))
+  #identify tabs to import based on output type
+  import_tabs <- return_tab(type) %>%
+    intersect(readxl::excel_sheets(filepath))
 
-  #refine columns and reshape
-  df_dp <- reshape_dp(df_dp)
+  #import Data Pack, refine columns and reshape
+  df_dp <- purrr::map_dfr(import_tabs,
+                          ~import_dp(filepath, .x) %>%
+                            reshape_dp())
 
   #convert dedup to negative values
   df_dp <- convert_dedups(df_dp)
