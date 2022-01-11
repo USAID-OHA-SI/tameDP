@@ -20,10 +20,10 @@
 tame_plhiv <- function(filepath){
 
   #import Data Pack and convert to lower
-  df_plhiv <- import_dp(filepath, tab = "Cascade")
+  df_plhiv <- import_dp(filepath,  type = "PLHIV")
 
   #refine columns and reshape
-  df_plhiv <- reshape_plhiv(df_plhiv)
+  df_plhiv <- reshape_tab(df_plhiv)
 
   #identify country and FY
   cntry <- grab_info(filepath, "country")

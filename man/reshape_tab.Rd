@@ -11,7 +11,8 @@ reshape_tab(df)
 }
 \description{
 This function limits the columns from a target tab (non PSNUxIM) to extract
-data and reshapes it long, so that it is tidy and more usable.
+data and reshapes it long, so that it is tidy and more usable. This function
+also splits out the PSNU uid from the PSNU column.
 }
 \seealso{
 Other reshape: 

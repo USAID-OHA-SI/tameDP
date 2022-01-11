@@ -28,7 +28,7 @@ import_dp <- function(filepath, tab = "PSNUxIM"){
   if(!is_sheet(filepath, tab))
     stop(paste("No sheet called", tab, "found."))
 
-  #import Data Pack
+  #import Data Pack tab
   suppressMessages(
   df <-
     readxl::read_excel(filepath,
@@ -52,13 +52,7 @@ import_dp <- function(filepath, tab = "PSNUxIM"){
     df <- df[cols_keep]
 
     #reshape long and remove blank rows
-    df <- df %>%
-      tidyr::pivot_longer(dplyr::matches("(t|t_1)$"),
-                          names_to = "indicator",
-                          values_to = "targets",
-                          values_drop_na = TRUE,
-                          values_transform = list(targets = as.numeric)) %>%
-      dplyr::filter(targets != 0)
+    df <- reshape_tab(df)
   }
 
   #fix names - change dup col names to value and pct
