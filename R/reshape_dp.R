@@ -35,7 +35,7 @@ reshape_tab <- function(df){
   #reshape long and remove blank rows
   df <- df %>%
     tidyr::pivot_longer(dplyr::matches("(t|t_1)$"),
-                        names_to = "indicator",
+                        names_to = "indicator_code",
                         values_drop_na = TRUE) %>%
     dplyr::filter(value != 0)
 
@@ -44,12 +44,11 @@ reshape_tab <- function(df){
     df <- dplyr::mutate(df, value = as.numeric(value))
   )
 
-  #clean indicator
+  #clean indicator_code
   df <- df %>%
-    dplyr::mutate(indicator = indicator %>%
+    dplyr::mutate(indicator_code = indicator_code %>%
                     stringr::str_remove("\\.(t_1|t)$") %>%
-                    toupper %>%
-                    dplyr::recode("VL_SUPPRESSED" = "VL_SUPPRESSION_SUBNAT"))
+                    toupper)
 
   #extract PSNU UID from PSNU column
   df <- split_psnu(df)

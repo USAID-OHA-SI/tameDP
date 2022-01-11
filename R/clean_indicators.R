@@ -29,6 +29,11 @@ clean_indicators <- function(df){
                            "(Act|Grad|Prev|DREAMS|Already|New\\.Neg|New\\.Pos|New|KnownNeg|KnownPos|Routine|\\.S(?=\\.)|PE)") %>%
       stringr::str_remove("\\."))
 
+  #recode VL
+  df <- df %>%
+    dplyr::mutate(indicator = dplyr::recode(indicator,
+                                            "VL_SUPPRESSED" = "VL_SUPPRESSION_SUBNAT"))
+
   #create rough disaggregate
   df <- df %>%
     dplyr::mutate(disagg = dplyr::case_when(indicator == "GEND_GBV" ~ "ViolenceServiceType",

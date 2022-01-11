@@ -13,7 +13,7 @@
 agg_dp <- function(df, psnu_lvl = FALSE){
 
   #identify key columns desired to group by
-  key_cols <- c("snu1","psnu", "psnuuid", "indicator","indicator_code",
+  key_cols <- c("snu1","psnu", "psnuuid", "indicator_code",
                 "indicatortype", "age", "sex", "keypop")
 
   #keep only key columns that match data frame
