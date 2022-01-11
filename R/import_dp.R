@@ -42,8 +42,14 @@ import_dp <- function(filepath, tab = "PSNUxIM"){
   df <- dplyr::rename_with(df, tolower)
 
   if(tab != "PSNUxIM"){
+    #identify columns to keep
+    cols_keep <- match_col_type(filepath, tab)
+
+    #limit columns if there are extra columns tacked on
+    df <- df[1:length(cols_keep)]
+
     #subset target columns (non PSNUxIM tab)
-    df <- df[match_col_type(filepath, tab)]
+    df <- df[cols_keep]
 
     #reshape long and remove blank rows
     df <- df %>%
