@@ -36,10 +36,13 @@ reshape_tab <- function(df){
   df <- df %>%
     tidyr::pivot_longer(dplyr::matches("(t|t_1)$"),
                         names_to = "indicator",
-                        values_to = "targets",
-                        values_drop_na = TRUE,
-                        values_transform = list(targets = as.numeric)) %>%
-    dplyr::filter(targets != 0)
+                        values_drop_na = TRUE) %>%
+    dplyr::filter(value != 0)
+
+  #change values to double
+  suppressWarnings(
+    df <- dplyr::mutate(df, value = as.numeric(value))
+  )
 
   #clean indicator
   df <- df %>%
