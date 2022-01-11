@@ -82,8 +82,7 @@ reshape_psnuim <- function(df){
 
     #rename dedup columns
     df <- df %>%
-      dplyr::rename(dedup_dsd_value = `deduplicated dsd rollup (fy22)`,
-                    dedup_ta_value = `deduplicated ta rollup (fy22)`)
+      dplyr::rename_with(~stringr::str_replace(., "deduplicated (dsd|ta) rollup.*", "dedup_\\1_value"))
 
     #identify all mechanism columns for reshaping
     mechs <- df %>%
