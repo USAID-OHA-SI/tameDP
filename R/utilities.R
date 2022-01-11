@@ -72,11 +72,11 @@ no_connection <- function(){
 
 return_tab <- function(type){
 
-  if(type == "PSUxIM"){
-    t <- "PSUxIM"
+  if(type == "PSNUxIM"){
+    t <- "PSNUxIM"
   } else if(type == "PLHIV"){
     t <- "Cascade"
-  } else{
+  } else if(type == "ALL"){
     t <- c("Cascade",
            "PMTCT",
            "EID",
@@ -92,10 +92,10 @@ return_tab <- function(type){
            "GEND",
            "AGYW",
            "PrEP",
-           "KP_MAT"
-    )
-
-  }
+           "KP_MAT")
+    } else {
+      stop("Not a valid type provided")
+    }
 
   return(t)
 
