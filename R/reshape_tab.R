@@ -22,7 +22,7 @@ reshape_tab <- function(df){
   #clean indicator
   df <- df %>%
     dplyr::mutate(indicator = indicator %>%
-                    stringr::str_remove(".t_1") %>%
+                    stringr::str_remove("(.t_1|.t)") %>%
                     toupper %>%
                     dplyr::recode("VL_SUPPRESSED" = "VL_SUPPRESSION_SUBNAT"))
 
