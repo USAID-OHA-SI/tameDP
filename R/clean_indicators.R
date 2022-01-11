@@ -17,19 +17,17 @@ clean_indicators <- function(df){
   #extract disagg info from indicator_code
   df <- df %>%
     dplyr::mutate(
-    indicator = stringr::str_extract(indicator_code, "[^\\.]+"),
+    indicator = stringr::str_extract(indicator_code, "[^\\.]+") %>% toupper,
     indicator = dplyr::recode(indicator, "VL_SUPPRESSED" = "VL_SUPPRESSION_SUBNAT"),
-    numeratordenom = ifelse(stringr::str_detect(indicator_code, "\\.D\\."), "D", "N"),
-    statushiv = stringr::str_extract(indicator_code, "(?<=\\.)(Neg|Pos|Unk|NEG|POS|UNK)(?=\\.)"),
-    statushiv = dplyr::recode(statushiv,
-                              "Neg" = "Negative" , "Pos" = "Positive", "Unk" = "Unknown",
-                              "NEG" = "Negative" , "POS" = "Positive", "UNK" = "Unknown"),
+    numeratordenom = ifelse(stringr::str_detect(indicator_code, "\\.D\\.|\\.D$"), "D", "N"),
+    statushiv = stringr::str_extract(indicator_code, "(Neg|Pos|Unk)$"),
+    statushiv = dplyr::recode(statushiv, "Neg" = "Negative" , "Pos" = "Positive", "Unk" = "Unknown"),
     age = dplyr::case_when(stringr::str_detect(indicator_code, "12") ~ "02 - 12 Months",
                            stringr::str_detect(indicator_code, "\\.2") ~ "<=02 Months",
                            TRUE ~ age),
     otherdisaggregate =
       stringr::str_extract(indicator_code,
-                           "(Act|Grad|Prev|DREAMS|Already|New\\.Neg|New\\.Pos|New|KnownNeg|KnownPos|Routine|\\.S(?=\\.)|PE)") %>%
+                           "(Act|Grad|Prev|DREAMS|Already|New\\.Neg|New\\.Pos|New|KnownNeg|KnownPos|Known.Pos|Routine|\\.S(?=\\.)|\\.S$|PE)") %>%
       stringr::str_remove("\\."))
 
   #create rough disaggregate
@@ -45,9 +43,9 @@ clean_indicators <- function(df){
 
   #add HTS_TST_POS as an indicator
   df <- df %>%
-    dplyr::filter(indicator == "HTS_TST" & statushiv == "Positive") %>%
-    dplyr::mutate(indicator = "HTS_TST_POS") %>%
-    dplyr::bind_rows(df, .)
+    dplyr::bind_rows(df %>%
+                       dplyr::filter(indicator == "HTS_TST" & statushiv == "Positive") %>%
+                       dplyr::mutate(indicator = "HTS_TST_POS"))
 
   #move keypop to otherdisagg
   df <- df %>%
