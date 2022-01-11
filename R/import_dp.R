@@ -41,6 +41,7 @@ import_dp <- function(filepath, tab = "PSNUxIM"){
   #fix names - lower
   df <- dplyr::rename_with(df, tolower)
 
+  #clean/subset columns
   if(tab != "PSNUxIM"){
     #identify columns to keep
     cols_keep <- match_col_type(filepath, tab)

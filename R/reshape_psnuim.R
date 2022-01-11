@@ -8,7 +8,7 @@
 #' @family reshape
 #' @export
 
-reshape_dp <- function(df){
+reshape_psnuim <- function(df){
 
   #identify all key meta data columns to keep
   key_cols <- c("psnu","indicator_code", "age", "sex", "keypop", "datapacktarget")
