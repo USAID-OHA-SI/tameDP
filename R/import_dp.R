@@ -38,9 +38,6 @@ import_dp <- function(filepath, tab = "PSNUxIM"){
                        .name_repair = "unique")
   )
 
-  #fix names - lower
-  df <- dplyr::rename_with(df, tolower)
-
   #clean/subset columns
   if(tab != "PSNUxIM"){
     #identify columns to keep

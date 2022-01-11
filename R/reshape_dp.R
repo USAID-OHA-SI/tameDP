@@ -34,9 +34,10 @@ reshape_tab <- function(df){
 
   #reshape long and remove blank rows
   df <- df %>%
-    tidyr::pivot_longer(dplyr::matches("(t|t_1)$"),
+    tidyr::pivot_longer(dplyr::matches("(T|T_1)$"),
                         names_to = "indicator_code",
                         values_drop_na = TRUE) %>%
+    dplyr::rename_all(tolower) %>%
     dplyr::filter(value != 0)
 
   #change values to double
@@ -46,9 +47,7 @@ reshape_tab <- function(df){
 
   #clean indicator_code
   df <- df %>%
-    dplyr::mutate(indicator_code = indicator_code %>%
-                    stringr::str_remove("\\.(t_1|t)$") %>%
-                    toupper)
+    dplyr::mutate(indicator_code = stringr::str_remove(indicator_code, "\\.(T_1|T)$"))
 
   #extract PSNU UID from PSNU column
   df <- split_psnu(df)
@@ -70,6 +69,9 @@ reshape_tab <- function(df){
 #' @export
 
 reshape_psnuim <- function(df){
+
+  #rename lower
+  df <- dplyr::rename_all(df, tolower)
 
   #identify all key meta data columns to keep
   key_cols <- c("psnu","indicator_code", "age", "sex", "keypop", "datapacktarget")

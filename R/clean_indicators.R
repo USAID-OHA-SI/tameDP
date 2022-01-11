@@ -18,9 +18,12 @@ clean_indicators <- function(df){
   df <- df %>%
     dplyr::mutate(
     indicator = stringr::str_extract(indicator_code, "[^\\.]+"),
+    indicator = dplyr::recode(indicator, "VL_SUPPRESSED" = "VL_SUPPRESSION_SUBNAT"),
     numeratordenom = ifelse(stringr::str_detect(indicator_code, "\\.D\\."), "D", "N"),
-    statushiv = stringr::str_extract(indicator_code, "(?<=\\.)(Neg|Pos|Unk)(?=\\.)"),
-    statushiv = dplyr::recode(statushiv,  "Neg" = "Negative" , "Pos" = "Positive", "Unk" = "Unknown"),
+    statushiv = stringr::str_extract(indicator_code, "(?<=\\.)(Neg|Pos|Unk|NEG|POS|UNK)(?=\\.)"),
+    statushiv = dplyr::recode(statushiv,
+                              "Neg" = "Negative" , "Pos" = "Positive", "Unk" = "Unknown",
+                              "NEG" = "Negative" , "POS" = "Positive", "UNK" = "Unknown"),
     age = dplyr::case_when(stringr::str_detect(indicator_code, "12") ~ "02 - 12 Months",
                            stringr::str_detect(indicator_code, "\\.2") ~ "<=02 Months",
                            TRUE ~ age),
@@ -28,11 +31,6 @@ clean_indicators <- function(df){
       stringr::str_extract(indicator_code,
                            "(Act|Grad|Prev|DREAMS|Already|New\\.Neg|New\\.Pos|New|KnownNeg|KnownPos|Routine|\\.S(?=\\.)|PE)") %>%
       stringr::str_remove("\\."))
-
-  #recode VL
-  df <- df %>%
-    dplyr::mutate(indicator = dplyr::recode(indicator,
-                                            "VL_SUPPRESSED" = "VL_SUPPRESSION_SUBNAT"))
 
   #create rough disaggregate
   df <- df %>%
