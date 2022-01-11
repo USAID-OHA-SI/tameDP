@@ -24,4 +24,6 @@ Imports:
     curl,
     getPass
 Suggests: 
+    testthat (>= 3.0.0),
     purrr
+Config/testthat/edition: 3
