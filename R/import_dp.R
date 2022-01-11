@@ -52,6 +52,8 @@ import_dp <- function(filepath, tab = "PSNUxIM"){
     #subset target columns (non PSNUxIM tab)
     df <- df[cols_keep]
 
+    #remove id column
+    df <- dplyr::select(df, -dplyr::matches("^id$"))
   }
 
   #fix names - change dup col names to value and pct
