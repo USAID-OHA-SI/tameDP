@@ -8,7 +8,7 @@
 order_vars <- function(df){
 
   #add snu1 as blank col if using PSNUxIM
-  if("snu1" %ni% names(df))
+  if(!"snu1" %in% names(df))
     df <- dplyr::mutate(df, snu1 = NA_character_)
 
   #order variables
