@@ -10,12 +10,13 @@ reshape_dp(df)
 \item{df}{data frame from import_dp()}
 }
 \description{
-This function limits the columns from the PSNUxIM tab and reshapes it long,
-so that it is more usable. Three values columns are created in the output -
-datapacktarget, value, share.
+This reshapes the relevant columns from a given tab to long, making it tidy
+and more usable. It relies on either `reshape_tab()` or `reshape_psnuim()`
+depending on the tab being processed.
 }
 \seealso{
 Other reshape: 
-\code{\link{reshape_plhiv}()}
+\code{\link{reshape_psnuim}()},
+\code{\link{reshape_tab}()}
 }
 \concept{reshape}

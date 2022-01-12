@@ -1,10 +1,10 @@
-#' Tidy PSNUxIM data from Data Pack
+#' Export Tidy data from Data Pack
 #'
 #' tame_dp is the primary function of the tameDP package, reading in the Data
 #' Pack and munging in into a tidy data frame to make it more usable to
 #' interact with the data than the way it is stored in the Data Pack. **Given
 #' the changes to the Data Pack each year, the function only works for the
-#' current COP year, COP21.**
+#' current COP year, COP22.**
 #'
 #' The main function of `tameDP` is to bring import a COP20 Data Pack into R
 #' and make it tidy. The function aggregates the COP targets up to the
@@ -21,6 +21,7 @@
 #'   - Allows for aggregate to the PSNU level
 #'
 #' @param filepath file path to the Data Pack importing, must be .xlsx
+#' @param type dataset to extract "PSNUxIM", "PLHIV", or "ALL" (default)
 #' @param map_names import names from DATIM (OU, mechanism, partner) associated with mech_code
 #' @param psnu_lvl aggregate to the PSNU level instead of IM
 #'
@@ -30,25 +31,40 @@
 #' @examplesIf FALSE
 #' #DP file path
 #'   path <- "../Downloads/DataPack_Jupiter_20200218.xlsx"
-#' #read in data pack
+#' #read in data pack (straight from sheets, not PSNUxIM tab)
 #'   df_dp <- tame_dp(path)
+#' #read in PLHIV/SUBNAT data
+#'   df_dp <- tame_dp(path, type = "PLHIV")
+#' #read in PSNUxIM data
+#'   df_dp <- tame_dp(path, type = "PSNUxIM")
 #' #apply mechanism names
-#'   df_dp_named <- tame_dp(path, map_names = TRUE)
+#'   df_dp_named <- tame_dp(path, type = "PSNUxIM", map_names = TRUE)
 #' #aggregate to the PSNU level
-#'   df_dp_psnu <- tame_dp(path, psnu_lvl = TRUE)
-#' #reading in mutliple files and then applying mechanism names
+#'   df_dp_psnu <- tame_dp(path, type = "PSNUxIM", psnu_lvl = TRUE)
+#' #reading in multiple files and then applying mechanism names (for PSNUxIM)
 #'   df_all <- map_dfr(.x = list.files("../Downloads/DataPacks", full.names = TRUE),
 #'                     .f = ~ tame_dp(.x, map_names = FALSE))
 #'   df_all <- get_names(df_all)
 
 
-tame_dp <- function(filepath, map_names = FALSE, psnu_lvl = FALSE){
+tame_dp <- function(filepath, type = "ALL",
+                    map_names = FALSE, psnu_lvl = FALSE){
 
-  #import Data Pack and convert to lower
-  df_dp <- import_dp(filepath)
+  #identify tabs to import based on output type
+  import_tabs <- return_tab(type) %>%
+    intersect(readxl::excel_sheets(filepath))
 
-  #refine columns and reshape
-  df_dp <- reshape_dp(df_dp)
+  #import Data Pack, refine columns and reshape
+  df_dp <- purrr::map_dfr(import_tabs,
+                          ~import_dp(filepath, .x) %>%
+                            reshape_dp())
+
+  #grab and apply FY
+  fy <- grab_info(filepath, "year")
+  df_dp <- apply_fy(df_dp, fy)
+
+  #include/exclude PLHIV/SUBNAT as desired
+  df_dp <- limit_datatype(df_dp, type)
 
   #convert dedup to negative values
   df_dp <- convert_dedups(df_dp)
@@ -61,10 +77,6 @@ tame_dp <- function(filepath, map_names = FALSE, psnu_lvl = FALSE){
 
   #identify country (if not pulling from DATIM)
   cntry <- grab_info(filepath, "country")
-  fy <- grab_info(filepath, "year")
-
-  #add fiscal year
-  df_dp <- dplyr::mutate(df_dp, fiscal_year = fy)
 
   #add names from DATIM
   df_dp <- get_names(df_dp, map_names, psnu_lvl, cntry)

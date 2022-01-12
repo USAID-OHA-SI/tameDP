@@ -7,20 +7,24 @@
 
 order_vars <- function(df){
 
+  #add snu1 as blank col if using PSNUxIM
+  if(!"snu1" %in% names(df))
+    df <- dplyr::mutate(df, snu1 = NA_character_)
+
   #order variables
   if("mech_code" %in% names(df)){
     df <- dplyr::select(df,
-                        operatingunit, countryname, psnu, psnuuid,
+                        operatingunit, countryname, snu1, psnu, psnuuid,
                         fundingagency, mech_code, primepartner, mech_name,
                         fiscal_year,
-                        indicator, indicatortype, disagg,
+                        dplyr::starts_with("indicator"), disagg,
                         numeratordenom, age, sex, modality, statushiv, otherdisaggregate,
                         targets)
   } else {
     df <- dplyr::select(df,
-                        operatingunit, countryname, psnu, psnuuid,
+                        operatingunit, countryname, snu1, psnu, psnuuid,
                         fiscal_year,
-                        indicator, indicatortype, disagg,
+                        dplyr::starts_with("indicator"), disagg,
                         numeratordenom, age, sex, modality, statushiv, otherdisaggregate,
                         targets)
   }

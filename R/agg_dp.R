@@ -12,21 +12,27 @@
 
 agg_dp <- function(df, psnu_lvl = FALSE){
 
-  key_cols <- c("psnu", "psnuuid","indicator_code", "indicatortype", "age", "sex", "keypop")
+  #identify key columns desired to group by
+  key_cols <- c("fiscal_year", "snu1","psnu", "psnuuid", "indicator_code",
+                "indicatortype", "age", "sex", "keypop", "data_type")
 
-  if(psnu_lvl == FALSE)
+  #keep only key columns that match data frame
+  key_cols <- intersect(key_cols, names(df))
+
+  #include to mech_code to key_cols if desired and available
+  if(psnu_lvl == FALSE && "mech_code" %in% names(df))
     key_cols <- c("mech_code", key_cols)
 
   #create targets
   df <- dplyr::mutate(df, targets = round(value, 0))
 
   #remove zero rows
-  df <- dplyr::filter(df, value != 0)
+  df <- dplyr::filter(df, targets != 0)
 
   #aggregate up to psnu/[mechanism/]ind/age/sex/keypop level
   df <- df %>%
     dplyr::group_by(dplyr::across(dplyr::all_of(key_cols))) %>%
-    dplyr::summarise(dplyr::across(c(targets), sum, na.rm = TRUE)) %>%
+    dplyr::summarise(targets = sum(targets, na.rm = TRUE)) %>%
     dplyr::ungroup()
 
   return(df)

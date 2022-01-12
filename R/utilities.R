@@ -12,10 +12,10 @@ is_file <- function(filepath){
 
 
 
-#' Check if sheet exits in Data Pack
+#' Check if a sheet exits in Data Pack
 #'
 #' @param filepath filepath of Data Pack
-#' @param tab sheet to check in Data Pack, "PSNUxIM" (default) or "Cascade"
+#' @param tab sheet to check in Data Pack, "PSNUxIM" (default)
 #' @family validation
 #' @export
 
@@ -59,3 +59,69 @@ no_connection <- function(){
     stop("No internet connection. Cannot access offical names & rename.")
 }
 
+
+#' Return Tab
+#'
+#' Identify which tab to import based on what you want to use - PSNUxIM, PLHIV,
+#' or ALL.
+#'
+#' @param type dataset to extract "PSNUxIM", "PLHIV", or "ALL"
+#'
+#' @return tabs to import
+#' @export
+
+return_tab <- function(type){
+
+  if(type == "PSNUxIM"){
+    t <- "PSNUxIM"
+  } else if(type == "PLHIV"){
+    t <- "Cascade"
+  } else if(type == "ALL"){
+    t <- c("Cascade",
+           "PMTCT",
+           "EID",
+           "TB",
+           "VMMC",
+           "KP",
+           "HTS",
+           "CXCA",
+           "HTS_RECENT",
+           "TX_TB_PREV",
+           "PP",
+           "OVC",
+           "GEND",
+           "AGYW",
+           "PrEP",
+           "KP_MAT")
+    } else {
+      stop("Not a valid type provided")
+    }
+
+  return(t)
+
+}
+
+
+#' Apply Fiscal Year
+#'
+#' Apply fiscal year to each row, using the T or T_1 in `indicator_code` to
+#' determine whether it's the current or prior fiscal year. The fiscal year
+#' can be identified dynamically through `grab_info()`.
+#'
+#' @param df DP dataframe to apply fiscal year to
+#' @param year fiscal year, derived from `grab_info(filepath, "year")`
+#'
+#' @return data frame with fiscal year
+#' @export
+
+apply_fy <- function(df, year){
+
+  df <- df %>%
+    dplyr::mutate(fiscal_year =
+                    ifelse(stringr::str_detect(indicator_code, "\\.(T_1)$"),
+                           fy-1,
+                           fy)
+    )
+
+  return(df)
+}

@@ -1,4 +1,4 @@
-#' Tidy PLHIV data from Data Pack
+#' Export Tidy PLHIV data from Data Pack
 #'
 #' tame_plhiv is a sister function to tame_dp, which readings in the PLHIV data
 #' from the Data Pack and munging in into a tidy data frame to make it more usable to
@@ -19,22 +19,7 @@
 
 tame_plhiv <- function(filepath){
 
-  #import Data Pack and convert to lower
-  df_plhiv <- import_dp(filepath, tab = "Cascade")
-
-  #refine columns and reshape
-  df_plhiv <- reshape_plhiv(df_plhiv)
-
-  #identify country and FY
-  cntry <- grab_info(filepath, "country")
-  fy <- grab_info(filepath, "year")
-
-  #add country name and fiscal year and reorder
-  df_plhiv <- df_plhiv %>%
-    dplyr::mutate(countryname = cntry,
-                  fiscal_year = fy) %>%
-    dplyr::relocate(countryname, .before = 1) %>%
-    dplyr::relocate(fiscal_year, indicator, .before = "age")
+  df_plhiv <- tame_dp(filepath, type = "PLHIV")
 
   return(df_plhiv)
 }

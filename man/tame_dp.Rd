@@ -2,12 +2,14 @@
 % Please edit documentation in R/tame_dp.R
 \name{tame_dp}
 \alias{tame_dp}
-\title{Tidy PSNUxIM data from Data Pack}
+\title{Export Tidy data from Data Pack}
 \usage{
-tame_dp(filepath, map_names = FALSE, psnu_lvl = FALSE)
+tame_dp(filepath, type = "ALL", map_names = FALSE, psnu_lvl = FALSE)
 }
 \arguments{
 \item{filepath}{file path to the Data Pack importing, must be .xlsx}
+
+\item{type}{dataset to extract "PSNUxIM", "PLHIV", or "ALL" (default)}
 
 \item{map_names}{import names from DATIM (OU, mechanism, partner) associated with mech_code}
 
@@ -18,7 +20,7 @@ tame_dp is the primary function of the tameDP package, reading in the Data
 Pack and munging in into a tidy data frame to make it more usable to
 interact with the data than the way it is stored in the Data Pack. **Given
 the changes to the Data Pack each year, the function only works for the
-current COP year, COP21.**
+current COP year, COP22.**
 }
 \details{
 The main function of `tameDP` is to bring import a COP20 Data Pack into R
@@ -39,13 +41,17 @@ out the data elements to make the dataset more usable.
 \dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 #DP file path
   path <- "../Downloads/DataPack_Jupiter_20200218.xlsx"
-#read in data pack
+#read in data pack (straight from sheets, not PSNUxIM tab)
   df_dp <- tame_dp(path)
+#read in PLHIV/SUBNAT data
+  df_dp <- tame_dp(path, type = "PLHIV")
+#read in PSNUxIM data
+  df_dp <- tame_dp(path, type = "PSNUxIM")
 #apply mechanism names
-  df_dp_named <- tame_dp(path, map_names = TRUE)
+  df_dp_named <- tame_dp(path, type = "PSNUxIM", map_names = TRUE)
 #aggregate to the PSNU level
-  df_dp_psnu <- tame_dp(path, psnu_lvl = TRUE)
-#reading in mutliple files and then applying mechanism names
+  df_dp_psnu <- tame_dp(path, type = "PSNUxIM", psnu_lvl = TRUE)
+#reading in multiple files and then applying mechanism names (for PSNUxIM)
   df_all <- map_dfr(.x = list.files("../Downloads/DataPacks", full.names = TRUE),
                     .f = ~ tame_dp(.x, map_names = FALSE))
   df_all <- get_names(df_all)

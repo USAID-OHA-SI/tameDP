@@ -2,17 +2,17 @@
 % Please edit documentation in R/utilities.R
 \name{is_sheet}
 \alias{is_sheet}
-\title{Check if sheet exits in Data Pack}
+\title{Check if a sheet exits in Data Pack}
 \usage{
 is_sheet(filepath, tab = "PSNUxIM")
 }
 \arguments{
 \item{filepath}{filepath of Data Pack}
 
-\item{tab}{sheet to check in Data Pack, "PSNUxIM" (default) or "Cascade"}
+\item{tab}{sheet to check in Data Pack, "PSNUxIM" (default)}
 }
 \description{
-Check if sheet exits in Data Pack
+Check if a sheet exits in Data Pack
 }
 \seealso{
 Other validation: 

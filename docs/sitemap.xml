@@ -22,6 +22,9 @@
     <loc>/reference/apply_class.html</loc>
   </url>
   <url>
+    <loc>/reference/apply_fy.html</loc>
+  </url>
+  <url>
     <loc>/reference/clean_indicators.html</loc>
   </url>
   <url>
@@ -55,6 +58,12 @@
     <loc>/reference/is_xls.html</loc>
   </url>
   <url>
+    <loc>/reference/limit_datatype.html</loc>
+  </url>
+  <url>
+    <loc>/reference/match_col_type.html</loc>
+  </url>
+  <url>
     <loc>/reference/no_connection.html</loc>
   </url>
   <url>
@@ -68,6 +77,15 @@
   </url>
   <url>
     <loc>/reference/reshape_plhiv.html</loc>
+  </url>
+  <url>
+    <loc>/reference/reshape_psnuim.html</loc>
+  </url>
+  <url>
+    <loc>/reference/reshape_tab.html</loc>
+  </url>
+  <url>
+    <loc>/reference/return_tab.html</loc>
   </url>
   <url>
     <loc>/reference/split_psnu.html</loc>

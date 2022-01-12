@@ -2,7 +2,7 @@
 % Please edit documentation in R/tame_plhiv.R
 \name{tame_plhiv}
 \alias{tame_plhiv}
-\title{Tidy PLHIV data from Data Pack}
+\title{Export Tidy PLHIV data from Data Pack}
 \usage{
 tame_plhiv(filepath)
 }
