@@ -100,3 +100,28 @@ return_tab <- function(type){
   return(t)
 
 }
+
+
+#' Apply Fiscal Year
+#'
+#' Apply fiscal year to each row, using the T or T_1 in `indicator_code` to
+#' determine whether it's the current or prior fiscal year. The fiscal year
+#' can be identified dynamically through `grab_info()`.
+#'
+#' @param df DP dataframe to apply fiscal year to
+#' @param year fiscal year, derived from `grab_info(filepath, "year")`
+#'
+#' @return data frame with fiscal year
+#' @export
+
+apply_fy <- function(df, year){
+
+  df <- df %>%
+    dplyr::mutate(fiscal_year =
+                    ifelse(stringr::str_detect(indicator_code, "\\.(T_1)$"),
+                           fy-1,
+                           fy)
+    )
+
+  return(df)
+}

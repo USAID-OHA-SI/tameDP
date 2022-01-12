@@ -45,9 +45,10 @@ reshape_tab <- function(df){
     df <- dplyr::mutate(df, value = as.numeric(value))
   )
 
-  #clean indicator_code
+  #identify type and clean indicator_code
   df <- df %>%
-    dplyr::mutate(indicator_code = stringr::str_remove(indicator_code, "\\.(T_1|T)$"))
+    dplyr::mutate(data_type = ifelse(stringr::str_detect(indicator_code, "(SUBNAT|VL_SUPPRESSED.T|T_1$)"), "SUBNAT", "MER"),
+                  data_type = as.character(data_type))
 
   #extract PSNU UID from PSNU column
   df <- split_psnu(df)

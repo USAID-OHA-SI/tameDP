@@ -4,7 +4,7 @@
 #' Pack and munging in into a tidy data frame to make it more usable to
 #' interact with the data than the way it is stored in the Data Pack. **Given
 #' the changes to the Data Pack each year, the function only works for the
-#' current COP year, COP21.**
+#' current COP year, COP22.**
 #'
 #' The main function of `tameDP` is to bring import a COP20 Data Pack into R
 #' and make it tidy. The function aggregates the COP targets up to the
@@ -55,6 +55,13 @@ tame_dp <- function(filepath, type = "ALL",
                           ~import_dp(filepath, .x) %>%
                             reshape_dp())
 
+  #grab and apply FY
+  fy <- grab_info(filepath, "year")
+  df_dp <- apply_fy(df_dp, fy)
+
+  #include/exclude PLHIV/SUBNAT as desired
+  df_dp <- limit_datatype(df_dp, type)
+
   #convert dedup to negative values
   df_dp <- convert_dedups(df_dp)
 
@@ -66,10 +73,6 @@ tame_dp <- function(filepath, type = "ALL",
 
   #identify country (if not pulling from DATIM)
   cntry <- grab_info(filepath, "country")
-  fy <- grab_info(filepath, "year")
-
-  #add fiscal year
-  df_dp <- dplyr::mutate(df_dp, fiscal_year = fy)
 
   #add names from DATIM
   df_dp <- get_names(df_dp, map_names, psnu_lvl, cntry)

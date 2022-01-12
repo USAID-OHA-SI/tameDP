@@ -20,7 +20,7 @@ tame_dp is the primary function of the tameDP package, reading in the Data
 Pack and munging in into a tidy data frame to make it more usable to
 interact with the data than the way it is stored in the Data Pack. **Given
 the changes to the Data Pack each year, the function only works for the
-current COP year, COP21.**
+current COP year, COP22.**
 }
 \details{
 The main function of `tameDP` is to bring import a COP20 Data Pack into R
