@@ -7,7 +7,7 @@
 limit_datatype(df, type)
 }
 \arguments{
-\item{df}{data frame read in and reshaped by `import_dp() %>% reshape_dp()`}
+\item{df}{data frame read in and reshaped by import_dp and reshape_dp}
 
 \item{type}{dataset type, either "MER" or "PLHIV"}
 }
@@ -17,5 +17,5 @@ data frame limited to either MER or SUBNAT data
 \description{
 This function limits the output of the Data Pack data to either MER or
 SUBNAT (e.g. PLHIV, TX_CURR_SUBNAT) data. It will not be run if processing
-the PSNUxIM tab since that does not includ any SUBNAT data.
+the PSNUxIM tab since that does not include any SUBNAT data.
 }

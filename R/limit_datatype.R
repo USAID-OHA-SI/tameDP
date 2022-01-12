@@ -2,9 +2,9 @@
 #'
 #' This function limits the output of the Data Pack data to either MER or
 #' SUBNAT (e.g. PLHIV, TX_CURR_SUBNAT) data. It will not be run if processing
-#' the PSNUxIM tab since that does not includ any SUBNAT data.
+#' the PSNUxIM tab since that does not include any SUBNAT data.
 #'
-#' @param df data frame read in and reshaped by `import_dp() %>% reshape_dp()`
+#' @param df data frame read in and reshaped by import_dp and reshape_dp
 #' @param type dataset type, either "MER" or "PLHIV"
 #'
 #' @return data frame limited to either MER or SUBNAT data
