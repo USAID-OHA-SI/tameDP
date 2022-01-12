@@ -63,7 +63,8 @@ reshape_tab <- function(df){
 #'
 #' This function limits the columns from the PSNUxIM tab and reshapes it long,
 #' so that it is more usable. Three values columns are created in the output -
-#' datapacktarget, value, share.
+#' datapacktarget, value, share. This function also splits out the PSNU uid
+#' from the PSNU column.
 #'
 #' @param df data frame from import_dp()
 #' @family reshape

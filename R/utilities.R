@@ -12,10 +12,10 @@ is_file <- function(filepath){
 
 
 
-#' Check if sheet exits in Data Pack
+#' Check if a sheet exits in Data Pack
 #'
 #' @param filepath filepath of Data Pack
-#' @param tab sheet to check in Data Pack, "PSNUxIM" (default) or "Cascade"
+#' @param tab sheet to check in Data Pack, "PSNUxIM" (default)
 #' @family validation
 #' @export
 

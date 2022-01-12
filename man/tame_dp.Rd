@@ -2,7 +2,7 @@
 % Please edit documentation in R/tame_dp.R
 \name{tame_dp}
 \alias{tame_dp}
-\title{Tidy PSNUxIM data from Data Pack}
+\title{Export Tidy data from Data Pack}
 \usage{
 tame_dp(filepath, type = "ALL", map_names = FALSE, psnu_lvl = FALSE)
 }
@@ -41,13 +41,17 @@ out the data elements to make the dataset more usable.
 \dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 #DP file path
   path <- "../Downloads/DataPack_Jupiter_20200218.xlsx"
-#read in data pack
+#read in data pack (straight from sheets, not PSNUxIM tab)
   df_dp <- tame_dp(path)
+#read in PLHIV/SUBNAT data
+  df_dp <- tame_dp(path, type = "PLHIV")
+#read in PSNUxIM data
+  df_dp <- tame_dp(path, type = "PSNUxIM")
 #apply mechanism names
-  df_dp_named <- tame_dp(path, map_names = TRUE)
+  df_dp_named <- tame_dp(path, type = "PSNUxIM", map_names = TRUE)
 #aggregate to the PSNU level
-  df_dp_psnu <- tame_dp(path, psnu_lvl = TRUE)
-#reading in mutliple files and then applying mechanism names
+  df_dp_psnu <- tame_dp(path, type = "PSNUxIM", psnu_lvl = TRUE)
+#reading in multiple files and then applying mechanism names (for PSNUxIM)
   df_all <- map_dfr(.x = list.files("../Downloads/DataPacks", full.names = TRUE),
                     .f = ~ tame_dp(.x, map_names = FALSE))
   df_all <- get_names(df_all)

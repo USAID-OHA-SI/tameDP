@@ -1,4 +1,4 @@
-#' Tidy PLHIV data from Data Pack
+#' Export Tidy PLHIV data from Data Pack
 #'
 #' tame_plhiv is a sister function to tame_dp, which readings in the PLHIV data
 #' from the Data Pack and munging in into a tidy data frame to make it more usable to

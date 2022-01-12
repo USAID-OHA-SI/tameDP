@@ -1,20 +1,19 @@
-#' Import PSNUxIM/Cascade tab from the Data Pack
+#' Import Tabs from the Data Pack
 #'
-#' Initial reading in of the PSNUxIM or Cascade (for PLHIV) tab of the Data
-#' Pack, which contains all the data from all the other tabs, broken down by
-#' mechanism and PSNU. This function reads in the tab, removes unused columns
-#' and cleans up the column names so there are no duplicates and identified as
-#' a share or value.
+#' Initial reading in of tabs of the Data Pack. This function reads in the
+#' necessary tab or tabs, removes unused columns and cleans up the column names
+#' so there are no duplicates. For the PSNUxIM, it identified columns as as a
+#' share or value.
 #'
 #' @param filepath file path to the Data Pack importing, must be .xlsx
-#' @param tab which sheet to read in, "PSNUxIM" (default) or "Cascade" (for PLHIV)
+#' @param tab which sheet to read in
 #'
 #' @export
 #' @examplesIf FALSE
 #' path <- "../Downloads/DataPack_Jupiter_20200218.xlsx"
-#' df_dp <- import_dp(path)
+#' df_dp <- import_dp(path, tab = "PSNUxIM")
 
-import_dp <- function(filepath, tab = "PSNUxIM"){
+import_dp <- function(filepath, tab){
 
   #check if file is found
   if(!is_file(filepath))
@@ -67,8 +66,13 @@ import_dp <- function(filepath, tab = "PSNUxIM"){
 
 #' Match Column Type
 #'
+#' This function utlizes the meta data stored in row 6 of each tab of the Data
+#' Pack to determine what column type is - "assumption", "calculation", "past",
+#'  "result", "reference", "row_header", "target". The primary columns we want
+#'  are meta data (row_header) and targets.
+#'
 #' @param filepath file path to the Data Pack importing, must be .xlsx
-#' @param tab which sheet to read in, "PSNUxIM" (default) or "Cascade" (for PLHIV)
+#' @param tab which sheet to read in
 #' @param pattern type of column, "assumption", "calculation", "past",
 #'  "result", "reference", "row_header", "target"; default = "(row_header|target)"
 #'

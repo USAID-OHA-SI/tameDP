@@ -9,7 +9,7 @@ match_col_type(filepath, tab, pattern = "(row_header|target)")
 \arguments{
 \item{filepath}{file path to the Data Pack importing, must be .xlsx}
 
-\item{tab}{which sheet to read in, "PSNUxIM" (default) or "Cascade" (for PLHIV)}
+\item{tab}{which sheet to read in}
 
 \item{pattern}{type of column, "assumption", "calculation", "past",
 "result", "reference", "row_header", "target"; default = "(row_header|target)"}
@@ -18,5 +18,8 @@ match_col_type(filepath, tab, pattern = "(row_header|target)")
 Boolean list of matches
 }
 \description{
-Match Column Type
+This function utlizes the meta data stored in row 6 of each tab of the Data
+Pack to determine what column type is - "assumption", "calculation", "past",
+ "result", "reference", "row_header", "target". The primary columns we want
+ are meta data (row_header) and targets.
 }

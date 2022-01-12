@@ -1,4 +1,4 @@
-#' Tidy PSNUxIM data from Data Pack
+#' Export Tidy data from Data Pack
 #'
 #' tame_dp is the primary function of the tameDP package, reading in the Data
 #' Pack and munging in into a tidy data frame to make it more usable to
@@ -31,13 +31,17 @@
 #' @examplesIf FALSE
 #' #DP file path
 #'   path <- "../Downloads/DataPack_Jupiter_20200218.xlsx"
-#' #read in data pack
+#' #read in data pack (straight from sheets, not PSNUxIM tab)
 #'   df_dp <- tame_dp(path)
+#' #read in PLHIV/SUBNAT data
+#'   df_dp <- tame_dp(path, type = "PLHIV")
+#' #read in PSNUxIM data
+#'   df_dp <- tame_dp(path, type = "PSNUxIM")
 #' #apply mechanism names
-#'   df_dp_named <- tame_dp(path, map_names = TRUE)
+#'   df_dp_named <- tame_dp(path, type = "PSNUxIM", map_names = TRUE)
 #' #aggregate to the PSNU level
-#'   df_dp_psnu <- tame_dp(path, psnu_lvl = TRUE)
-#' #reading in mutliple files and then applying mechanism names
+#'   df_dp_psnu <- tame_dp(path, type = "PSNUxIM", psnu_lvl = TRUE)
+#' #reading in multiple files and then applying mechanism names (for PSNUxIM)
 #'   df_all <- map_dfr(.x = list.files("../Downloads/DataPacks", full.names = TRUE),
 #'                     .f = ~ tame_dp(.x, map_names = FALSE))
 #'   df_all <- get_names(df_all)
