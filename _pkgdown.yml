@@ -30,6 +30,7 @@ reference:
   - '`convert_dedups`'
   - '`agg_dp`'
   - '`clean_indicators`'
+  - '`map_disaggs`'
   - '`convert_mods`'
   - '`get_names`'
   - '`order_vars`'

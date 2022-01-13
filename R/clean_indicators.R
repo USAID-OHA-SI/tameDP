@@ -29,15 +29,11 @@ clean_indicators <- function(df){
       otherdisaggregate =
         stringr::str_extract(indicator_code,
                              "(Act|Grad|Prev|DREAMS|Already|New\\.Neg|New\\.Pos|New|KnownNeg|KnownPos|Known.Pos|Routine|\\.S(?=\\.)|\\.S$|PE)") %>%
-        stringr::str_remove("\\."))
+        stringr::str_remove("\\.")
+      )
 
-  #create rough disaggregate
-  df <- df %>%
-    dplyr::mutate(disagg = dplyr::case_when(indicator == "GEND_GBV" ~ "ViolenceServiceType",
-                                            indicator == "OVC_HIVSTAT" ~ "Total",
-                                            indicator == "KP_MAT" ~ "Sex",
-                                            stringr::str_detect(indicator_code, "KP") ~ "KeyPop",
-                                            TRUE ~ "Age/Sex"))
+  #map on standardizeddisaggregate
+  df <- map_disaggs(df)
 
   #convert external modalities
   df <- convert_mods(df)
@@ -50,8 +46,12 @@ clean_indicators <- function(df){
 
   #move keypop to otherdisagg
   df <- df %>%
-    dplyr::mutate(otherdisaggregate = ifelse(disagg == "KeyPop", keypop, otherdisaggregate)) %>%
-    dplyr::select(-keypop)
+    dplyr::mutate(otherdisaggregate = ifelse(kp_disagg == TRUE, keypop, otherdisaggregate)) %>%
+    dplyr::select(-keypop, -kp_disagg)
+
+  #rename HTS_INDEX
+  df <- df %>%
+    dplyr::mutate(indicator = stringr::str_detect(indicator, "HTS_INDEX"), "HTS_INDEX", indicator)
 
   #drop indicator code
   df <- dplyr::select(df, -indicator_code)
