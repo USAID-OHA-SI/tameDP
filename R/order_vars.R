@@ -17,14 +17,14 @@ order_vars <- function(df){
                         operatingunit, countryname, snu1, psnu, psnuuid,
                         fundingagency, mech_code, primepartner, mech_name,
                         fiscal_year,
-                        dplyr::starts_with("indicator"), disagg,
+                        dplyr::starts_with("indicator"), standardizeddisaggregate,
                         numeratordenom, ageasentered, sex, modality, statushiv, otherdisaggregate,
                         targets)
   } else {
     df <- dplyr::select(df,
                         operatingunit, countryname, snu1, psnu, psnuuid,
                         fiscal_year,
-                        dplyr::starts_with("indicator"), disagg,
+                        dplyr::starts_with("indicator"), standardizeddisaggregate,
                         numeratordenom, ageasentered, sex, modality, statushiv, otherdisaggregate,
                         targets)
   }
