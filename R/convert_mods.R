@@ -15,11 +15,18 @@ convert_mods <- function(df){
     dplyr::mutate(modality = dplyr::case_when(stringr::str_detect(indicator_code, "HTS_(TST|RECENT)") ~ indicator_code),
                   modality = stringr::str_extract(modality, "(?<=\\.)([:alpha:]|\\_|[:digit:])*(?=\\.)"),
                   modality = stringr::str_replace(modality, "Com", "Mod"),
-                  modality = dplyr::recode(modality, "PMTCT_STAT" = "PMTCT ANC",
-                                           "PostANC1" = "Post ANC1",
-                                           "Other" = "OtherPITC"),
                   modality = dplyr::na_if(modality, "KP"))
 
+  #align modality naming
+  df_mods <- df_mods %>%
+    dplyr::mutate(modality = dplyr::recode(modality,
+                                           "EW" = "Emergency Ward",
+                                           "Maln" = "Malnutrition",
+                                           "Other" = "OtherPITC",
+                                           "Peds" = "Pediatric",
+                                           "PMTCT_STAT" = "PMTCT ANC",
+                                           "PostANC1" = "Post ANC1",
+                                           "STI" = "STI Clinic"))
   #create index modalities & rename HTS
   df_index <- df_mods %>%
     dplyr::filter(indicator %in% c("HTS_INDEX_COM", "HTS_INDEX_FAC")) %>%
