@@ -16,6 +16,9 @@
     <loc>/LICENSE.html</loc>
   </url>
   <url>
+    <loc>/news/index.html</loc>
+  </url>
+  <url>
     <loc>/reference/agg_dp.html</loc>
   </url>
   <url>
@@ -61,7 +64,13 @@
     <loc>/reference/limit_datatype.html</loc>
   </url>
   <url>
+    <loc>/reference/map_disaggs.html</loc>
+  </url>
+  <url>
     <loc>/reference/match_col_type.html</loc>
+  </url>
+  <url>
+    <loc>/reference/mer_disagg_mapping.html</loc>
   </url>
   <url>
     <loc>/reference/no_connection.html</loc>
