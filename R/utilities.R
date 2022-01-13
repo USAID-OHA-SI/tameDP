@@ -119,8 +119,8 @@ apply_fy <- function(df, year){
   df <- df %>%
     dplyr::mutate(fiscal_year =
                     ifelse(stringr::str_detect(indicator_code, "\\.(T_1)$"),
-                           fy-1,
-                           fy)
+                           year-1,
+                           year)
     )
 
   return(df)
