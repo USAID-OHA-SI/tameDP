@@ -4,7 +4,7 @@
 
   utils::globalVariables(
     c(".",
-      "age",
+      "ageasentered",
       "agency",
       "code",
       "countryname",
@@ -12,7 +12,6 @@
       "datapacktarget",
       "deduplicated dsd rollup (fy22)",
       "deduplicated ta rollup (fy22)",
-      "disagg",
       "fiscal_year",
       "fundingagency",
       "fy",
@@ -23,10 +22,12 @@
       "indicatorcode",
       "indicatortype",
       "keypop",
+      "kp_disagg",
       "mech_code",
       "mech_name",
       "mechanism",
       "mechanismid",
+      "mer_disagg_mapping",
       "modality",
       "numeratordenom",
       "otherdisaggregate",
@@ -39,6 +40,7 @@
       "sex",
       "share",
       "snu1",
+      "standardizeddisaggregate",
       "statushiv",
       "targets",
       "value")
