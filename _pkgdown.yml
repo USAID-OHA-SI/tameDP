@@ -11,6 +11,13 @@ navbar:
     reference:
       text: Reference
       href: reference/index.html
+  articles:
+      text: Vignettes
+      menu:
+      - text: Setup
+        href: articles/setup.html
+      - text: Extracting Targets
+        href: articles/extracting-targets.html
 
 reference:
 - title: Primary functions
@@ -46,3 +53,7 @@ reference:
   - '`no_connection`'
   - '`grab_info`'
 
+- title: Internal data
+  contents:
+  - '`mer_disagg_mapping`'
+  - '`ou_ctry_mapping`'

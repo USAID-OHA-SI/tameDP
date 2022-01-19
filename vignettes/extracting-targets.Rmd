@@ -1,0 +1,121 @@
+---
+title: "Extracting Targets"
+output: rmarkdown::html_vignette
+description: |
+  Running tameDP to extract DP targets
+vignette: >
+  %\VignetteIndexEntry{Extracting_Targets}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  eval=F, 
+  echo=T
+)
+```
+
+### Introduction
+
+This vignette provides an overview for extracting targets and other data using `tameDP`. You'll learn about the different parameters to extract different components of the COP Data Pack.
+
+### Setup
+
+If you haven't installed R or `tameDP`, you should first refer to the [Setup vignette](vignettes/Setup.Rmd).
+
+Once you have everything installed, you will want to launch R or RStudio (an IDE for R). To use `tameDP` you will need to load it into your working environment. Enter the line below into your console to initiate the package.
+
+```{r setup}
+library(tameDP)
+```
+
+### Extracting Targets
+
+Now that you have the package loaded, you can start rolling with getting out of the Data Pack in a tidy manner.
+
+The first think you will want to do is get the full file path to your Data Pack. In your Windows Explorer, navigate to your Data Pack, and hold the SHIFT key while you right click. Doing this gives you an additional option to "Copy as path", which you want to click. We can store this in R as an object using the assignment operator `<-` and then use this later on, passing it in to different functions. Replace the file path below with the actual filepath to yoru Data Pack.
+
+```{r filepath}
+dp_filepath <- "C:/Users/spower/Downloads/DataPack_Jupiter_20500101.xlsx"
+```
+
+There are a few different forms of data we can get out of the Data Pack. The first is extracting all the targets from their relevant tabs. The data here will be at the PSNU level, broken out by the relevant disagregates (e.g. Age/Sex/HIVStatus). In the function below, we have used the filepath we stored above to pass that into the function.
+
+```{r base function}
+df_dp <- tame_dp(dp_filepath)
+```
+
+This function will take a few seconds to run and will store your data in an objected called `df_dp`. If you browse the data frame (df) using a function like `View(df_dp)` or `dplyr::glimpse(df_dp)`, you'll see the structure is very similar to a MER Structured Dataset (MSD). You have the following columns: `operatingunit, countryname, snu1, psnu, psnuuid, fiscal_year, indicator, standardizeddisaggregate, numeratordenom, ageasentered, sex, modality, statushiv, otherdisaggregate, targets`. The output is a bit more manageable to work with than using it in the Data Pack.
+
+### Other Data Options
+
+In the function above, we provided the filepath and the function returned the the data frame of targets from the Data Pack. Function in R often have multiple parameters. Take a minute to look at the help file for `tame_dp()`.
+
+```{r help file}
+?tame_dp
+```
+
+We can see that there are different parameter that will allow us to return different things.
+
+```{r function params}
+tame_dp(filepath, type = "ALL", map_names = FALSE, psnu_lvl = FALSE)
+```
+
+By default, the function is returning a specific `type` and is `FALSE` for the other two parameters. If you look in the help file, you will see there are three options for `type` - "PSNUxIM", "PLHIV", or "ALL" (the default). The option for using "ALL" is giving us all the targets from the tabs. But you will see that you could change this option to "PLHIV". If you do, it will return the PLHIV and NAT_SUBNAT data from the Cascade tab of the Data Pack. The function will be the same structure as above, but we are adding the `type` parameter in order to return the PLHIV and NAT_SUBNAT data instead of targets.
+
+```{r return PLHIV}
+df_plhiv <- tame_dp(dp_filepath, type = "PLHIV")
+```
+
+The structure of the data frame is the same as when we ran it for targets, but the difference is in the indicators returned (`indicator`).
+
+Last but not least we have the option to return `type = "PSNUxIM"`, which will pull data from the PSNUxIM tab of the Data Pack (or OPU). As the tab name and `type` indicate, the data will be at the PSNU and mechanism level.
+
+```{r return mech}
+df_dp_mech <- tame_dp(dp_filepath, type = "PSNUxIM")
+```
+
+This last `type` option returns the `mech_code` in the Data Pack with the targets assigned to it. The Data Pack doesn't include the mechanism name or prime partner so these columns are left blank. To include this info, you can set `map_names = TRUE` in your function. When you run the function, there will be a pop-up window asking you to type your DATIM user name and password to pull this information down from DATIM. Previously, this had been public information, but after a DHIS2 update, the data became password protected.
+
+```{r return mech info}
+df_dp_mech_info <- tame_dp(dp_filepath, type = "PSNUxIM", map_names = TRUE)
+```
+
+The final parameter in the function is `psnu_lvl` which gives the user the option to aggregate the data up to the PSNU level (if working with PSNUxIM). Since `tame_dp` can pull from the target tabs which are at the PSNU level, this isn't as useful now, but it can be useful if you are only working with the PSNUxIM tab, such as with an OPU.
+
+```{r return psnu agg}
+df_dp_psnu <- tame_dp(dp_filepath, type = "PSNUxIM", psnu_lvl = TRUE)
+```
+
+### Combining Multiple Files
+
+You can use one of the `map()` functions from `purrr` package to read in multiple Data Packs and combine rather than working with one off. This may be more relevant if you're reviewing a regional operating unit or in Washington.
+
+``` {r multi file}
+#load package
+  library(purrr)
+
+#identify all the Data Pack files
+  files <- list.files("../Downloads/DataPacks", full.names = TRUE)
+
+#read in all DPs and combine into one data frame
+  df_combo <- map_dfr(.x = files,
+                      .f = ~ tame_dp(.x))
+                    
+#apply mech_name and primepartner names from DATIM
+  df_combo <- get_names(df_combo)
+```
+
+### Exporting Data
+
+If you are comfortable working in R, you can use the `df_dp` object to munge, analyze, or visualize your data. If you would prefer to get the data out to work with in Excel, Tableau, or another program, we can export the data from the data frame it's stored in to a .csv file using the `readr` package. We will need to tell R which object we want to export; for this we can use `df_dp` which we got by running `tame_dp(dp_filepath)` in the [Extracting Targets section](extracting-targets). You will want to change the file name/location in the chunk below.
+
+```{r export}
+readr::write_csv(df_dp,
+                 file = "C:/Users/spower/Downloads/DataPack_Saturn_tidy.csv",
+                 na = "")
+
+```

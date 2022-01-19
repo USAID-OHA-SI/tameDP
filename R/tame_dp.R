@@ -6,7 +6,7 @@
 #' the changes to the Data Pack each year, the function only works for the
 #' current COP year, COP22.**
 #'
-#' The main function of `tameDP` is to bring import a COP20 Data Pack into R
+#' The main function of `tameDP` is to bring import a COP Data Pack into R
 #' and make it tidy. The function aggregates the COP targets up to the
 #' mechanism level, imports the mechanism information from DATIM, and breaks
 #' out the data elements to make the dataset more usable.
@@ -30,7 +30,7 @@
 #'
 #' @examplesIf FALSE
 #' #DP file path
-#'   path <- "../Downloads/DataPack_Jupiter_20200218.xlsx"
+#'   path <- "../Downloads/DataPack_Jupiter_20500101.xlsx"
 #' #read in data pack (straight from sheets, not PSNUxIM tab)
 #'   df_dp <- tame_dp(path)
 #' #read in PLHIV/SUBNAT data

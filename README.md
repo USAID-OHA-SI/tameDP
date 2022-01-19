@@ -11,17 +11,21 @@ Updated from the COP19 and COP20 versions.
 
 ## Installation
 
-You can install the released version of tameDP from GitHub with:
+`tameDP` is not on CRAN, so you will have to install it directly from GitHub using `remotes`.
+
+If you do not have `remotes` installed, you will have to run the `install.packages("remotes")` line in the code below as well.
 
 ``` r
-install.packages("devtools")
+## SETUP
 
-devtools::install_github("USAID-OHA-SI/tameDP")
+  #install package with vignettes
+    install.packages("remotes")
+    remotes::install_github("USAID-OHA-SI/tameDP", build_vignettes = TRUE)
 ```
 
 ## Use
 
-The main function of `tameDP` is to bring import a COP20 Data Pack into R and make it tidy. The function aggregates the FY21 targets up to the mechanism level, imports the mechanism information from DATIM, and breaks out the data elements to make the dataset more usable. 
+The main function of `tameDP` is to bring import a COP Data Pack into R and make it tidy. The function aggregates the fiscal year targets up to the mechanism level, imports the mechanism information from DATIM, and breaks out the data elements to make the dataset more usable. 
 
 
 - Imports Data Pack as tidy data frame
@@ -39,13 +43,13 @@ The main function of `tameDP` is to bring import a COP20 Data Pack into R and ma
   library(tameDP)
   
 #Data Pack file path
-  path <- "../Downloads/DataPack_Jupiter_20200218.xlsx"
+  path <- "../Downloads/DataPack_Jupiter_20500101.xlsx"
   
 #read in Data Pack & tidy
  df_dp <- tame_dp(path)
  
-#ALTERNATIVE - read in Data Pack, aggregate to PSNU level, & tidy
- df_dp <- tame_dp(path, psnu_lvl = TRUE)
+#read in PLHIV and SUB_NAT data from the Data Pack
+ df_plhiv <- tame_dp(path, type = "PLHIV")
 ```
 
 You can use one of the `map()` functions from `purrr` package to read in multiple Data Packs and combine.

@@ -1,3 +1,11 @@
+## table of OUs to
+ou_ctry_mapping <- glamr::pepfar_country_list %>%
+  dplyr::select(operatingunit, countryname)
+
+usethis::use_data(ou_ctry_mapping, overwrite = TRUE)
+
+
+
 ## table of indicators and their disaggs
 mer_disagg_mapping <- tibble::tribble(
                  ~indicator, ~numeratordenom,                   ~standardizeddisaggregate,

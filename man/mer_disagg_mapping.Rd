@@ -11,7 +11,6 @@ A data frame with 60 rows and 4 variables:
   \item{numeratordenom}{designates whether the indicator type}
   \item{standardizeddisaggregate}{indicator disaggregation, eg Age/Sex/HIVStatus}
   \item{kp_disagg}{whether the disaggregation is for Key Populations}
-  ...
 }
 }
 \source{

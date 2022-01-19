@@ -86,11 +86,11 @@ get_names <- function(df, map_names = TRUE, psnu_lvl = FALSE, cntry,
 
   } else {
     df <- df %>%
-      dplyr::mutate(operatingunit = NA_character_,
-                    countryname = {{cntry}},
+      dplyr::mutate(countryname = {{cntry}},
                     fundingagency = NA_character_,
                     primepartner = NA_character_,
                     mech_name = NA_character_) %>%
+      dplyr::left_join(ou_ctry_mapping, by = "countryname") %>%
       dplyr::select(operatingunit, dplyr::everything())
   }
 
