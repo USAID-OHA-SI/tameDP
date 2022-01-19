@@ -12,7 +12,7 @@ navbar:
       text: Reference
       href: reference/index.html
   articles:
-      text: Vignettes
+      text: Articles
       menu:
       - text: Setup
         href: articles/setup.html
