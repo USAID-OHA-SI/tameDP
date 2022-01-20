@@ -106,16 +106,20 @@
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">tameDP</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level3">
+<h3 id="storing-the-file-path">Storing the File Path<a class="anchor" aria-label="anchor" href="#storing-the-file-path"></a>
+</h3>
+<p>The first thing you will want to do after your load <code>tameDP</code> is to tell R where your Data Pack is located on your computer. In your Windows Explorer (outside of R), navigate to your Data Pack file, and hold the SHIFT key while you right click on the file name. Doing this gives you an additional option to “Copy as path”, which you want to click.</p>
+<p>Now you have the path saved to your clipboard. Open your R up and paste the copied filepath into the Console or a script. Before you hit enter, you will need to store this path as an object in R using the assignment operator <code>&lt;-</code>. This let’s us store information to use at a later point to pass into different functions. We will call the object, <code>dp_filepath</code>. <strong>It is important to note that Windows filepaths have their slash in the wrong direction. You will need to replace all backslashes (“") in your filepath with forward slashes (”/“).</strong> The command to store the file path object will look like the code below, where you have replaced the file path with the path to your own file.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">dp_filepath</span> <span class="op">&lt;-</span> <span class="st">"C:/Users/[username]/Downloads/DataPack_Jupiter_20500101.xlsx"</span></code></pre></div>
+</div>
+<div class="section level3">
 <h3 id="extracting-targets">Extracting Targets<a class="anchor" aria-label="anchor" href="#extracting-targets"></a>
 </h3>
-<p>Now that you have the package loaded, you can start rolling with getting out of the Data Pack in a tidy manner.</p>
-<p>The first think you will want to do is get the full file path to your Data Pack. In your Windows Explorer, navigate to your Data Pack, and hold the SHIFT key while you right click. Doing this gives you an additional option to “Copy as path”, which you want to click. We can store this in R as an object using the assignment operator <code>&lt;-</code> and then use this later on, passing it in to different functions. Replace the file path below with the actual filepath to yoru Data Pack.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dp_filepath</span> <span class="op">&lt;-</span> <span class="st">"C:/Users/spower/Downloads/DataPack_Jupiter_20500101.xlsx"</span></code></pre></div>
-<p>There are a few different forms of data we can get out of the Data Pack. The first is extracting all the targets from their relevant tabs. The data here will be at the PSNU level, broken out by the relevant disagregates (e.g. Age/Sex/HIVStatus). In the function below, we have used the filepath we stored above to pass that into the function.</p>
+<p>There are a few different forms of data we can get out of the Data Pack. The first is extracting all the targets from their relevant tabs. The data here will be at the PSNU level, broken out by the relevant disagregates (e.g. Age/Sex/HIVStatus). In the function below, we have used the filepath we stored above to pass that into the function. <em>This function will take a few seconds or minutes to run depending on the size of your data pack.</em></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df_dp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tame_dp.html">tame_dp</a></span><span class="op">(</span><span class="va">dp_filepath</span><span class="op">)</span></code></pre></div>
-<p>This function will take a few seconds to run and will store your data in an objected called <code>df_dp</code>. If you browse the data frame (df) using a function like <code>View(df_dp)</code> or <code>dplyr::glimpse(df_dp)</code>, you’ll see the structure is very similar to a MER Structured Dataset (MSD). You have the following columns: <code>operatingunit, countryname, snu1, psnu, psnuuid, fiscal_year, indicator, standardizeddisaggregate, numeratordenom, ageasentered, sex, modality, statushiv, otherdisaggregate, targets</code>. The output is a bit more manageable to work with than using it in the Data Pack.</p>
+<p>The data that has been extracted from the Data Pack will stored in an objected called <code>df_dp</code>. If you browse the data frame (df) using a function like <code>View(df_dp)</code> or <code>dplyr::glimpse(df_dp)</code>, you’ll see the structure is very similar to a MER Structured Dataset (MSD). You have the following columns: <code>operatingunit, countryname, snu1, psnu, psnuuid, fiscal_year, indicator, standardizeddisaggregate, numeratordenom, ageasentered, sex, modality, statushiv, otherdisaggregate, targets</code>. The output is a bit more manageable to work with than using it in the Data Pack.</p>
 </div>
 <div class="section level3">
 <h3 id="other-data-options">Other Data Options<a class="anchor" aria-label="anchor" href="#other-data-options"></a>
