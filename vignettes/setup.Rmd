@@ -25,24 +25,23 @@ This vignette provides an overview for getting started working with `tameDP`. Th
 In order to use `tameDP`, you will need to install R, an open-source statistics package. You can do this on your USAID GFE, by going to Start > Microsoft Endpoint manager > Software Center. Once there, you can select the Application called "R for Windows" and click "Install". If working on a personal machine, you can install R from [CRAN](https://cran.r-project.org/). Select "Download R for Windows" and then "base" and follow the instructions for installing that pop up when you launch the .exe file from your downloads.
 
 
-### Installing RStudio
+### Installing RStudio (OPTIONAL)
 
-R is the underlying software we're using, but the user interface leaves much to be desired. RStudio used to be available in Software Center as well, but M/CIO removed around October 2021. **You don't need RStudio to run `tameDP`**, but if desired, you can submit a Help Desk ticket with M/CIO and they will install it for you. If working on a personal machine, you can install RStudio from [this site](https://www.rstudio.com/products/rstudio/download/). Select "Download" for the free version and follow the instructions for installing that pop up when you launch the .exe file from your downloads.
+R is the underlying software we're using, but the user interface leaves much to be desired. RStudio used to be available in Software Center as well, but M/CIO removed around October 2021. **You do not need RStudio to run `tameDP`**, but if desired, you can submit a Help Desk ticket with M/CIO and they will install it for you. If working on a personal machine, you can install RStudio from [this site](https://www.rstudio.com/products/rstudio/download/). Select "Download" for the free version and follow the instructions for installing that pop up when you launch the .exe file from your downloads.
 
-### Installing Required Packages
+### Installing Package Dependencies
 
 With proprietary programs like Excel, Tableau, or Stata, all of your functions are built into the software. With open-source packages on the other hand, we need to load different libraries or packages that are written by other organization or individuals users. We wrote the package `tameDP` and it relies on the work others have done as well, so we install those packages first to make things easy. To install a package from CRAN, we use the command `install.packages()`. Copy and paste the code chunk below to install all the required packages.
 
 ```{r install packages, eval=F, echo=T}
 install.packages("tidyverse")
 install.packages("remotes")
-install.packages("curl")
 install.packages("getPass")
 ```
 
 ### Installing tameDP
 
-Our package is hosted on a site called GitHub rather than CRAN. To install our package now that you have the other required packaged installed, you will use a function from the `remotes` package.
+Our package is hosted on a site called GitHub rather than CRAN, R's central software repository. As a result, we will need to utilize a function from the `remotes` package to install `tameDP` rather than repeating the `install.packages()`. Copy and paste the line below to install `tameDP` from GitHub. *If your console asks you to install updates, you can skip this by simply hitting return/enter.*
 
 ```{r install tameDP, eval=F, echo=T}
 remotes::install_github("USAID-OHA-SI/tameDP", build_vignettes = TRUE)
