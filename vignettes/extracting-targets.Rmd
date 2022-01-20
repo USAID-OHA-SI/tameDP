@@ -24,7 +24,7 @@ This vignette provides an overview for extracting targets and other data using `
 
 ### Setup
 
-If you haven't installed R or `tameDP`, you should first refer to the [Setup vignette](vignettes/setup.html).
+If you haven't installed R or `tameDP`, you should first refer to the [Setup vignette](setup.html).
 
 Once you have everything installed, you will want to launch R or RStudio (an IDE for R). To use `tameDP` you will need to load it into your working environment. Enter the line below into your console to initiate the package.
 
