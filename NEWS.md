@@ -1,7 +1,7 @@
 # tameDP 4.0.1
+* Allow `tame_dp` to read in specific tabs instead of the preset "types".
 
 # tameDP 4.0.0
-* Allow `tame_dp` to read in specific tabs instead of the preset "types".
 * Add vignettes to the package.
 * Add `ou_ctry_mapping` to align countries to their Operating Units.
 * Update `tame_dp` to work with COP22 Data Packs.
