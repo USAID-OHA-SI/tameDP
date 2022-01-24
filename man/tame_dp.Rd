@@ -9,7 +9,7 @@ tame_dp(filepath, type = "ALL", map_names = FALSE, psnu_lvl = FALSE)
 \arguments{
 \item{filepath}{file path to the Data Pack importing, must be .xlsx}
 
-\item{type}{dataset to extract "PSNUxIM", "PLHIV", or "ALL" (default)}
+\item{type}{dataset to extract "PSNUxIM", "PLHIV", or "ALL" (default) or a specific tab}
 
 \item{map_names}{import names from DATIM (OU, mechanism, partner) associated with mech_code}
 

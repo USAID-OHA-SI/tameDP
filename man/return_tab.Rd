@@ -7,12 +7,12 @@
 return_tab(type)
 }
 \arguments{
-\item{type}{dataset to extract "PSNUxIM", "PLHIV", or "ALL"}
+\item{type}{dataset to extract "PSNUxIM", "PLHIV", "ALL", or a specific tab}
 }
 \value{
 tabs to import
 }
 \description{
 Identify which tab to import based on what you want to use - PSNUxIM, PLHIV,
-or ALL.
+or ALL. You can also provide a specific tab name that matches the Data Pack
 }

@@ -63,39 +63,43 @@ no_connection <- function(){
 #' Return Tab
 #'
 #' Identify which tab to import based on what you want to use - PSNUxIM, PLHIV,
-#' or ALL.
+#' or ALL. You can also provide a specific tab name that matches the Data Pack
 #'
-#' @param type dataset to extract "PSNUxIM", "PLHIV", or "ALL"
+#' @param type dataset to extract "PSNUxIM", "PLHIV", "ALL", or a specific tab
 #'
 #' @return tabs to import
 #' @export
 
 return_tab <- function(type){
 
+  dp_tabs <- c("Cascade",
+               "PMTCT",
+               "EID",
+               "TB",
+               "VMMC",
+               "KP",
+               "HTS",
+               "CXCA",
+               "HTS_RECENT",
+               "TX_TB_PREV",
+               "PP",
+               "OVC",
+               "GEND",
+               "AGYW",
+               "PrEP",
+               "KP_MAT")
+
   if(type == "PSNUxIM"){
     t <- "PSNUxIM"
   } else if(type == "PLHIV"){
     t <- "Cascade"
   } else if(type == "ALL"){
-    t <- c("Cascade",
-           "PMTCT",
-           "EID",
-           "TB",
-           "VMMC",
-           "KP",
-           "HTS",
-           "CXCA",
-           "HTS_RECENT",
-           "TX_TB_PREV",
-           "PP",
-           "OVC",
-           "GEND",
-           "AGYW",
-           "PrEP",
-           "KP_MAT")
-    } else {
-      stop("Not a valid type provided")
-    }
+    t <- dp_tabs
+  } else if(type %in% dp_tabs){
+    t <- type
+  } else {
+    stop("Not a valid type/tab provided")
+  }
 
   return(t)
 

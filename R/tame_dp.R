@@ -21,7 +21,7 @@
 #'   - Allows for aggregate to the PSNU level
 #'
 #' @param filepath file path to the Data Pack importing, must be .xlsx
-#' @param type dataset to extract "PSNUxIM", "PLHIV", or "ALL" (default)
+#' @param type dataset to extract "PSNUxIM", "PLHIV", or "ALL" (default) or a specific tab
 #' @param map_names import names from DATIM (OU, mechanism, partner) associated with mech_code
 #' @param psnu_lvl aggregate to the PSNU level instead of IM
 #'

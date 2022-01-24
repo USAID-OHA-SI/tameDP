@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tameDP</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.1</span>
       </span>
     </div>
 
@@ -137,9 +137,13 @@
 <p>We can see that there are different parameter that will allow us to return different things.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/tame_dp.html">tame_dp</a></span><span class="op">(</span><span class="va">filepath</span>, type <span class="op">=</span> <span class="st">"ALL"</span>, map_names <span class="op">=</span> <span class="cn">FALSE</span>, psnu_lvl <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
-<p>By default, the function is returning a specific <code>type</code> and is <code>FALSE</code> for the other two parameters. If you look in the help file, you will see there are three options for <code>type</code> - “PSNUxIM”, “PLHIV”, or “ALL” (the default). The option for using “ALL” is giving us all the targets from the tabs. But you will see that you could change this option to “PLHIV”. If you do, it will return the PLHIV and NAT_SUBNAT data from the Cascade tab of the Data Pack. The function will be the same structure as above, but we are adding the <code>type</code> parameter in order to return the PLHIV and NAT_SUBNAT data instead of targets.</p>
+<p>By default, the function is returning a specific <code>type</code> and is <code>FALSE</code> for the other two parameters. If you look in the help file, you will see there are three options for <code>type</code> - “PSNUxIM”, “PLHIV”, “ALL” (the default) or a specific tab. The option for using “ALL” is giving us all the targets from the tabs. But you will see that you could change this option to “PLHIV”. If you do, it will return the PLHIV and NAT_SUBNAT data from the Cascade tab of the Data Pack. The function will be the same structure as above, but we are adding the <code>type</code> parameter in order to return the PLHIV and NAT_SUBNAT data instead of targets.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df_plhiv</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tame_dp.html">tame_dp</a></span><span class="op">(</span><span class="va">dp_filepath</span>, type <span class="op">=</span> <span class="st">"PLHIV"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="co">#return PLHIV data</span>
+<span class="va">df_plhiv</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tame_dp.html">tame_dp</a></span><span class="op">(</span><span class="va">dp_filepath</span>, type <span class="op">=</span> <span class="st">"PLHIV"</span><span class="op">)</span>
+
+<span class="co">#return data from a specific tab - TB</span>
+<span class="va">df_tb</span> <span class="op">&lt;-</span> <span class="fu">tamep_dp</span><span class="op">(</span><span class="va">dp_filepath</span>, type <span class="op">=</span> <span class="st">"TB"</span><span class="op">)</span></code></pre></div>
 <p>The structure of the data frame is the same as when we ran it for targets, but the difference is in the indicators returned (<code>indicator</code>).</p>
 <p>Last but not least we have the option to return <code>type = "PSNUxIM"</code>, which will pull data from the PSNUxIM tab of the Data Pack (or OPU). As the tab name and <code>type</code> indicate, the data will be at the PSNU and mechanism level.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
@@ -195,7 +199,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
