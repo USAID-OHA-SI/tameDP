@@ -16,6 +16,8 @@ knitr::opts_chunk$set(
   eval=F, 
   echo=T
 )
+
+options(rmarkdown.html_vignette.check_title = FALSE)
 ```
 
 ### Introduction
@@ -36,7 +38,7 @@ library(tameDP)
 
 The first thing you will want to do after your load `tameDP` is to tell R where your Data Pack is located on your computer. In your Windows Explorer (outside of R), navigate to your Data Pack file, and hold the SHIFT key while you right click on the file name. Doing this gives you an additional option to "Copy as path", which you want to click. 
 
-Now you have the path saved to your clipboard. Open your R up and paste the copied filepath into the Console or a script. Before you hit enter, you will need to store this path as an object in R using the assignment operator `<-`. This let's us store information to use at a later point to pass into different functions. We will call the object, `dp_filepath`.  **It is important to note that Windows filepaths have their slash in the wrong direction. You will need to replace all backslashes ("\") in your filepath with forward slashes ("/").** The command to store the file path object will look like the code below, where you have replaced the file path with the path to your own file.
+Now you have the path saved to your clipboard. Open your R up and paste the copied filepath into the Console or a script. Before you hit enter, you will need to store this path as an object in R using the assignment operator `<-`. This let's us store information to use at a later point to pass into different functions. We will call the object, `dp_filepath`.  **It is important to note that Windows filepaths have their slash in the wrong direction. You will need to replace all backslashes ("/\") in your filepath with forward slashes ("/").** The command to store the file path object will look like the code below, where you have replaced the file path with the path to your own file.
 
 ```{r filepath}
 dp_filepath <- "C:/Users/[username]/Downloads/DataPack_Jupiter_20500101.xlsx"

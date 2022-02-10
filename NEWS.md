@@ -1,4 +1,5 @@
 # tameDP 4.0.1
+* Add vignette on combining with the MSD
 * Allow `tame_dp` to read in specific tabs instead of the preset "types".
 
 # tameDP 4.0.0

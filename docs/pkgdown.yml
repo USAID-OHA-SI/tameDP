@@ -2,7 +2,8 @@ pandoc: 2.14.0.3
 pkgdown: 2.0.2
 pkgdown_sha: ~
 articles:
+  combining-with-msd: combining-with-msd.html
   extracting-targets: extracting-targets.html
   setup: setup.html
-last_built: 2022-01-24T13:44Z
+last_built: 2022-02-10T14:19Z
 

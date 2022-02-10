@@ -27,6 +27,8 @@ navbar:
         href: articles/setup.html
       - text: Extracting Targets
         href: articles/extracting-targets.html
+      - text: Combining with the MSD
+        href: articles/combining-with-msd.html
 
 reference:
 - title: Primary functions

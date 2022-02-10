@@ -63,6 +63,9 @@
     <li>
       <a href="../articles/extracting-targets.html">Extracting Targets</a>
     </li>
+    <li>
+      <a href="../articles/combining-with-msd.html">Combining with the MSD</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -116,7 +119,7 @@
 <h3 id="storing-the-file-path">Storing the File Path<a class="anchor" aria-label="anchor" href="#storing-the-file-path"></a>
 </h3>
 <p>The first thing you will want to do after your load <code>tameDP</code> is to tell R where your Data Pack is located on your computer. In your Windows Explorer (outside of R), navigate to your Data Pack file, and hold the SHIFT key while you right click on the file name. Doing this gives you an additional option to “Copy as path”, which you want to click.</p>
-<p>Now you have the path saved to your clipboard. Open your R up and paste the copied filepath into the Console or a script. Before you hit enter, you will need to store this path as an object in R using the assignment operator <code>&lt;-</code>. This let’s us store information to use at a later point to pass into different functions. We will call the object, <code>dp_filepath</code>. <strong>It is important to note that Windows filepaths have their slash in the wrong direction. You will need to replace all backslashes (“") in your filepath with forward slashes (”/“).</strong> The command to store the file path object will look like the code below, where you have replaced the file path with the path to your own file.</p>
+<p>Now you have the path saved to your clipboard. Open your R up and paste the copied filepath into the Console or a script. Before you hit enter, you will need to store this path as an object in R using the assignment operator <code>&lt;-</code>. This let’s us store information to use at a later point to pass into different functions. We will call the object, <code>dp_filepath</code>. <strong>It is important to note that Windows filepaths have their slash in the wrong direction. You will need to replace all backslashes (“/") in your filepath with forward slashes (”/“).</strong> The command to store the file path object will look like the code below, where you have replaced the file path with the path to your own file.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dp_filepath</span> <span class="op">&lt;-</span> <span class="st">"C:/Users/[username]/Downloads/DataPack_Jupiter_20500101.xlsx"</span></code></pre></div>
 </div>
@@ -179,7 +182,7 @@
 <p>If you are comfortable working in R, you can use the <code>df_dp</code> object to munge, analyze, or visualize your data. If you would prefer to get the data out to work with in Excel, Tableau, or another program, we can export the data from the data frame it’s stored in to a .csv file using the <code>readr</code> package. We will need to tell R which object we want to export; for this we can use <code>df_dp</code> which we got by running <code>tame_dp(dp_filepath)</code> in the <a href="extracting-targets">Extracting Targets section</a>. You will want to change the file name/location in the chunk below.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html" class="external-link">write_csv</a></span><span class="op">(</span><span class="va">df_dp</span>,
-                 file <span class="op">=</span> <span class="st">"C:/Users/spower/Downloads/DataPack_Saturn_tidy.csv"</span>,
+                 file <span class="op">=</span> <span class="st">"../Downloads/DataPack_Jupiter_tidy.csv"</span>,
                  na <span class="op">=</span> <span class="st">""</span><span class="op">)</span></code></pre></div>
 </div>
   </div>
