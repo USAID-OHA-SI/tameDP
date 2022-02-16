@@ -14,6 +14,11 @@ map_disaggs <- function(df){
     dplyr::mutate(kp_disagg = dplyr::case_when(indicator %in% c("KP_MAT", "KP_MAT_SUBNAT") ~ FALSE,
                                                stringr::str_detect(indicator_code, "KP") ~ TRUE,
                                                TRUE ~ FALSE))
+
+  #ensure datatypes are correct
+  df <- df %>%
+    dplyr::mutate(dplyr::across(c(indicator, numeratordenom), as.character))
+
   #map the MER disaggregates onto the dataset
   df <- df %>%
     dplyr::left_join(mer_disagg_mapping,
