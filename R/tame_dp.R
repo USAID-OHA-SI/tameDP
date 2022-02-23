@@ -84,6 +84,10 @@ tame_dp <- function(filepath, type = "ALL",
   #add names from DATIM
   df_dp <- get_names(df_dp, map_names, psnu_lvl, cntry)
 
+  #identify and apply prioritization
+  df_prioritizations <- grab_prioritization(filepath)
+  df_dp <- apply_prioritization(df_dp, df_prioritizations)
+
   #order variables for output
   df_dp <- order_vars(df_dp)
 

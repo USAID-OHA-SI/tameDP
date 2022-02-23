@@ -57,6 +57,9 @@ reference:
 
 - title: Utility functions
   contents:
+  - '`subset_psnuxim`'
+  - '`subset_prioritization`'
+  - '`subset_standard`'
   - '`apply_fy`'
   - '`is_file`'
   - '`is_sheet`'
@@ -64,6 +67,8 @@ reference:
   - '`match_col_type`'
   - '`no_connection`'
   - '`grab_info`'
+  - '`grab_prioritization`'
+  - '`apply_prioritization`'
 
 - title: Internal data
   contents:

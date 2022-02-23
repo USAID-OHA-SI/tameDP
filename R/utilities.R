@@ -129,3 +129,39 @@ apply_fy <- function(df, year){
 
   return(df)
 }
+
+
+#' Identify Prioritization
+#'
+#' Pull from the prioritization tab to have a table of PSNU prioritization for the
+#' current COP.
+#'
+#' @param filepath file path to the Data Pack importing, must be .xlsx
+#'
+#' @return dataframe from the Prioritization tab
+#' @export
+#' @family prioritization
+
+grab_prioritization <- function(filepath){
+  import_dp(filepath, "Prioritization") %>%
+    split_psnu() %>%
+    dplyr::select(psnuuid, snuprioritization)
+}
+
+#' Apply Prioritization
+#'
+#' Join the new COP prioritization onto the target data frame.
+#'
+#' @param filepath file path to the Data Pack importing, must be .xlsx
+#'
+#' @return df data pack data frame
+#' @return df_prioritization dataframe from `grab_prioritization()`
+#' @export
+#' @family prioritization
+
+apply_prioritization <- function(df, df_prioritization){
+  df %>%
+    dplyr::left_join(df_prioritization, by = c("psnuuid")) %>%
+    dplyr::relocate(snuprioritization, .after = "psnuuid")
+}
+
