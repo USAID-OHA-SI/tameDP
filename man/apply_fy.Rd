@@ -15,7 +15,7 @@ apply_fy(df, year)
 data frame with fiscal year
 }
 \description{
-Apply fiscal year to each row, using the T or T_1 in `indicator_code` to
-determine whether it's the current or prior fiscal year. The fiscal year
+Apply fiscal year to each row, using the T or T_1 or R in `indicator_code` to
+determine whether it's the current or  a prior fiscal year. The fiscal year
 can be identified dynamically through `grab_info()`.
 }
