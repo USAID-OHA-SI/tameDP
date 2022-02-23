@@ -37,30 +37,15 @@ import_dp <- function(filepath, tab){
                        .name_repair = "unique")
   )
 
-  #clean/subset columns
-  if(tab != "PSNUxIM"){
-    #identify columns to keep
-    cols_keep <- match_col_type(filepath, tab)
+  #tab type
+  tab_type <- ifelse(tab %in% c("PSNUxIM", "Prioritization"), tab, "standard")
 
-    #limit columns if there are extra columns tacked on
-    df <- df[1:length(cols_keep)]
+  #clean/subset columns based on tab
+  switch(tab_type,
+         PSNUxIM = subset_psnuxim(df),
+         Prioritization = subset_prioritization(df),
+         standard = subset_standard(df, filepath, tab))
 
-    #subset target columns (non PSNUxIM tab)
-    df <- df[cols_keep]
-
-    #remove id column
-    df <- dplyr::select(df, -dplyr::matches("^id$"))
-  }
-
-  #fix names - change dup col names to value and pct
-  if(tab == "PSNUxIM"){
-    df <- df %>%
-      dplyr::select(-dplyr::starts_with("...")) %>%
-      dplyr::rename_with(~stringr::str_replace(., "...[:digit:]{3}$", "_value")) %>%
-      dplyr::rename_with(~stringr::str_replace(., "...[:digit:]{1,2}$", "_share"))
-  }
-
-  return(df)
 }
 
 
@@ -95,4 +80,80 @@ match_col_type <- function(filepath, tab, pattern = "(row_header|target|past)"){
   #does type match the specific column type identified?
   grepl(pattern, col_types)
 
+}
+
+
+
+#' Subset PSNUxIM Tab
+#'
+#' Subsets the columns of the massive Data Pack tab down to only those that are
+#' needed. This depends on the type of tab that is being imported. PSNUxIM keep
+#' all meta data and taget share/value columns.
+#'
+#' @param df data frame after import
+#'
+#' @family subset
+#' @return limits to correct columns in data frame from DP tab
+#' @export
+
+subset_psnuxim <- function(df){
+  df <- df %>%
+    dplyr::select(-dplyr::starts_with("...")) %>%
+    dplyr::rename_with(~stringr::str_replace(., "...[:digit:]{3}$", "_value")) %>%
+    dplyr::rename_with(~stringr::str_replace(., "...[:digit:]{1,2}$", "_share"))
+
+  return(df)
+}
+
+
+#' Subset Prioritization Tab
+#'
+#' Subsets the columns of the massive Data Pack tab down to only those that are
+#' needed. This depends on the type of tab that is being imported. The
+#' Prioritization tab keeps the PSNU and prioritization column.
+#'
+#' @param df data frame after import
+#'
+#' @family subset
+#' @return limits to correct columns in data frame from DP tab
+#' @export
+#'
+subset_prioritization <- function(df){
+  df <- df %>%
+    dplyr::select(psnu = PSNU, IMPATT.PRIORITY_SNU.T, PRIORITY_SNU.translation) %>%
+    tidyr::unite(snuprioritization,
+                 IMPATT.PRIORITY_SNU.T, PRIORITY_SNU.translation,
+                 sep = " - ") %>%
+    dplyr::mutate(snuprioritization = ifelse(snuprioritization == "M - Military", "97 - Above PSNU level", snuprioritization))
+
+  return(df)
+}
+
+#' Subset Standard Tabs
+#'
+#' Subsets the columns of the massive Data Pack tab down to only those that are
+#' needed. This depends on the type of tab that is being imported. Standard,
+#' non-PSNUxIM/Prioritization) keep column types specified in the Data Pack as
+#' row_header, target, or past.
+#'
+#' @param df data frame after import
+#'
+#' @family subset
+#' @return limits to correct columns in data frame from DP tab
+#' @export
+#'
+subset_standard <- function(df, filepath, tab){
+  #identify columns to keep
+  cols_keep <- match_col_type(filepath, tab)
+
+  #limit columns if there are extra columns tacked on
+  df <- df[1:length(cols_keep)]
+
+  #subset target columns (non PSNUxIM tab)
+  df <- df[cols_keep]
+
+  #remove id column
+  df <- dplyr::select(df, -dplyr::matches("^id$"))
+
+  return(df)
 }
