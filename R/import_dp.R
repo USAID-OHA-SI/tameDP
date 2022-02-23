@@ -66,20 +66,21 @@ import_dp <- function(filepath, tab){
 
 #' Match Column Type
 #'
-#' This function utlizes the meta data stored in row 6 of each tab of the Data
+#' This function utilizes the meta data stored in row 6 of each tab of the Data
 #' Pack to determine what column type is - "assumption", "calculation", "past",
 #'  "result", "reference", "row_header", "target". The primary columns we want
-#'  are meta data (row_header) and targets.
+#'  are meta data (row_header), targets, and past (prior year result/targets for
+#'  reference).
 #'
 #' @param filepath file path to the Data Pack importing, must be .xlsx
 #' @param tab which sheet to read in
 #' @param pattern type of column, "assumption", "calculation", "past",
-#'  "result", "reference", "row_header", "target"; default = "(row_header|target)"
+#'  "result", "reference", "row_header", "target"; default = "(row_header|target|past)"
 #'
 #' @return Boolean list of matches
 #' @export
 #'
-match_col_type <- function(filepath, tab, pattern = "(row_header|target)"){
+match_col_type <- function(filepath, tab, pattern = "(row_header|target|past)"){
   #Identify column type from meta info
    col_types <- readxl::read_excel(
     path = filepath,
