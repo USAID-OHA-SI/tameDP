@@ -34,7 +34,7 @@ reshape_tab <- function(df){
 
   #reshape long and remove blank rows
   df <- df %>%
-    tidyr::pivot_longer(dplyr::matches("(T|T_1)$"),
+    tidyr::pivot_longer(dplyr::matches("(T|T_1|R)$"),
                         names_to = "indicator_code",
                         values_drop_na = TRUE) %>%
     dplyr::rename_all(tolower) %>%
@@ -47,7 +47,9 @@ reshape_tab <- function(df){
 
   #identify type and clean indicator_code
   df <- df %>%
-    dplyr::mutate(data_type = ifelse(stringr::str_detect(indicator_code, "(SUBNAT|VL_SUPPRESSED.T|T_1$)"), "SUBNAT", "MER"),
+    dplyr::mutate(data_type = dplyr::case_when(stringr::str_detect(indicator_code, "(SUBNAT|VL_SUPPRESSED.T)") ~ "SUBNAT",
+                                               stringr::str_detect(indicator_code, "(POP_EST|PLHIV|HIV_PREV|KP_ESTIMATES)") ~ "IMPATT",
+                                               TRUE ~ "MER"),
                   data_type = as.character(data_type))
 
   #extract PSNU UID from PSNU column

@@ -72,6 +72,9 @@ tame_dp <- function(filepath, type = "ALL",
   #aggregate output to IM or PSNU level
   df_dp <- agg_dp(df_dp, psnu_lvl)
 
+  #split out cumulative from targets
+  df_dp <- pivot_results(df_dp)
+
   #break out indicatorcode variable
   df_dp <- clean_indicators(df_dp)
 
@@ -80,6 +83,10 @@ tame_dp <- function(filepath, type = "ALL",
 
   #add names from DATIM
   df_dp <- get_names(df_dp, map_names, psnu_lvl, cntry)
+
+  #identify and apply prioritization
+  df_prioritizations <- grab_prioritization(filepath)
+  df_dp <- apply_prioritization(df_dp, df_prioritizations)
 
   #order variables for output
   df_dp <- order_vars(df_dp)

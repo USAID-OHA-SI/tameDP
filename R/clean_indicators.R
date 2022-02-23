@@ -17,7 +17,7 @@ clean_indicators <- function(df){
   #extract disagg info from indicator_code
   df <- df %>%
     dplyr::mutate(
-      indicator_code = stringr::str_remove(indicator_code, "\\.(T_1|T)$"),
+      indicator_code = stringr::str_remove(indicator_code, "\\.(T_1|T|R)$"),
       indicator = stringr::str_extract(indicator_code, "[^\\.]+") %>% toupper,
       indicator = dplyr::recode(indicator, "VL_SUPPRESSED" = "VL_SUPPRESSION_SUBNAT"),
       numeratordenom = ifelse(stringr::str_detect(indicator_code, "\\.D\\.|\\.D$"), "D", "N"),
@@ -56,8 +56,8 @@ clean_indicators <- function(df){
   #drop indicator code
   df <- dplyr::select(df, -indicator_code)
 
-  #move targets to end
-  df <- dplyr::select(df, -targets, dplyr::everything())
+  #move targets (and cumulative) to end
+  df <- dplyr::relocate(df, dplyr::matches("cumulative|targets"), .after = dplyr::last_col())
 
   return(df)
 }

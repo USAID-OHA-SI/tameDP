@@ -1,3 +1,7 @@
+# tameDP 4.0.2
+* Include historic MER results and targets in the output dataset (2022-02-23)
+* Merge prioritizations onto target dataframe (2022-02-23)
+
 # tameDP 4.0.1
 * Ensure data types are correct prior to disaggregate binding in `map_disaggs`.
 * Add vignette on combining with the MSD

@@ -4,7 +4,7 @@
 \alias{match_col_type}
 \title{Match Column Type}
 \usage{
-match_col_type(filepath, tab, pattern = "(row_header|target)")
+match_col_type(filepath, tab, pattern = "(row_header|target|past)")
 }
 \arguments{
 \item{filepath}{file path to the Data Pack importing, must be .xlsx}
@@ -12,14 +12,15 @@ match_col_type(filepath, tab, pattern = "(row_header|target)")
 \item{tab}{which sheet to read in}
 
 \item{pattern}{type of column, "assumption", "calculation", "past",
-"result", "reference", "row_header", "target"; default = "(row_header|target)"}
+"result", "reference", "row_header", "target"; default = "(row_header|target|past)"}
 }
 \value{
 Boolean list of matches
 }
 \description{
-This function utlizes the meta data stored in row 6 of each tab of the Data
+This function utilizes the meta data stored in row 6 of each tab of the Data
 Pack to determine what column type is - "assumption", "calculation", "past",
  "result", "reference", "row_header", "target". The primary columns we want
- are meta data (row_header) and targets.
+ are meta data (row_header), targets, and past (prior year result/targets for
+ reference).
 }
