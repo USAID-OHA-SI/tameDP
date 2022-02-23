@@ -47,6 +47,7 @@ reference:
   - '`limit_datatype`'
   - '`convert_dedups`'
   - '`agg_dp`'
+  - '`pivot_results`'
   - '`clean_indicators`'
   - '`map_disaggs`'
   - '`convert_mods`'

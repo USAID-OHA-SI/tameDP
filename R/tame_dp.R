@@ -72,6 +72,9 @@ tame_dp <- function(filepath, type = "ALL",
   #aggregate output to IM or PSNU level
   df_dp <- agg_dp(df_dp, psnu_lvl)
 
+  #split out cumulative from targets
+  df_dp <- pivot_results(df_dp)
+
   #break out indicatorcode variable
   df_dp <- clean_indicators(df_dp)
 
