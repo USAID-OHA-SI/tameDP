@@ -34,7 +34,7 @@ reshape_tab <- function(df){
 
   #reshape long and remove blank rows
   df <- df %>%
-    tidyr::pivot_longer(dplyr::matches("(T|T_1)$"),
+    tidyr::pivot_longer(dplyr::matches("(T|T_1|R)$"),
                         names_to = "indicator_code",
                         values_drop_na = TRUE) %>%
     dplyr::rename_all(tolower) %>%
