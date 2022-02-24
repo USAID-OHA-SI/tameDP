@@ -66,7 +66,10 @@ You can use one of the `map()` functions from `purrr` package to read in multipl
                     .f = ~ tame_dp(.x, map_names = FALSE))
                     
 #apply mech_name and primepartner names from DATIM
-  df_all <- get_names(df_all)
+#you will need to provide your DATIM credentials 
+  datim_user_nm <- "spower" #replace with your username
+  datim_pwd <- getPass::getPass #pop up prompting for your password
+  df_all <- get_names(df_all, datim_user = datim_user_nm, datim_password = datim_pwd)
 ```
 
 ---
