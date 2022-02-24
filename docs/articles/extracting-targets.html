@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tameDP</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.2</span>
       </span>
     </div>
 
@@ -161,7 +161,7 @@
 <div class="section level3">
 <h3 id="combining-multiple-files">Combining Multiple Files<a class="anchor" aria-label="anchor" href="#combining-multiple-files"></a>
 </h3>
-<p>You can use one of the <code><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map()</a></code> functions from <code>purrr</code> package to read in multiple Data Packs and combine rather than working with one off. This may be more relevant if you’re reviewing a regional operating unit or in Washington.</p>
+<p>You can use one of the <code><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map()</a></code> functions from <code>purrr</code> package to read in multiple Data Packs and combine rather than working with one off. This may be more relevant if you’re reviewing a regional operating unit or in Washington. You will get a pop up each time to provide your DATIM credentials if you don’t have stored in the session. We recommend using <code><a href="https://rdrr.io/pkg/askpass/man/askpass.html" class="external-link">askpass::askpass()</a></code> when storing your credentials so you don’t type into your script or into your console (and visual under history).</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#load package</span>
   <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org" class="external-link">purrr</a></span><span class="op">)</span>
@@ -173,8 +173,12 @@
   <span class="va">df_combo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_dfr</a></span><span class="op">(</span>.x <span class="op">=</span> <span class="va">files</span>,
                       .f <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="../reference/tame_dp.html">tame_dp</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">)</span>
                     
+<span class="co">#store DATIM credentials</span>
+  <span class="va">dtm_usr</span> <span class="op">&lt;-</span> <span class="st">"spower"</span> <span class="co">#replace with your credentials</span>
+  <span class="va">dtm_pwd</span> <span class="op">&lt;-</span> <span class="fu">getPass</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/getPass/man/getPass.html" class="external-link">getPass</a></span><span class="op">(</span><span class="op">)</span> <span class="co">#pop up prompting for your password</span>
+  
 <span class="co">#apply mech_name and primepartner names from DATIM</span>
-  <span class="va">df_combo</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_names.html">get_names</a></span><span class="op">(</span><span class="va">df_combo</span><span class="op">)</span></code></pre></div>
+  <span class="va">df_combo</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_names.html">get_names</a></span><span class="op">(</span><span class="va">df_combo</span>, datim_user <span class="op">=</span> <span class="va">dtm_usr</span>, datim_password <span class="op">=</span> <span class="va">dtm_pwd</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="exporting-data">Exporting Data<a class="anchor" aria-label="anchor" href="#exporting-data"></a>

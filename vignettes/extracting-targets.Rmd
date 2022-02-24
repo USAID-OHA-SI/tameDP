@@ -101,7 +101,7 @@ df_dp_psnu <- tame_dp(dp_filepath, type = "PSNUxIM", psnu_lvl = TRUE)
 
 ### Combining Multiple Files
 
-You can use one of the `map()` functions from `purrr` package to read in multiple Data Packs and combine rather than working with one off. This may be more relevant if you're reviewing a regional operating unit or in Washington.
+You can use one of the `map()` functions from `purrr` package to read in multiple Data Packs and combine rather than working with one off. This may be more relevant if you're reviewing a regional operating unit or in Washington. You will get a pop up each time to provide your DATIM credentials if you don't have stored in the session. We recommend using `askpass::askpass()` when storing your credentials so you don't type into your script or into your console (and visual under history).
 
 ``` {r multi file}
 #load package
@@ -114,8 +114,12 @@ You can use one of the `map()` functions from `purrr` package to read in multipl
   df_combo <- map_dfr(.x = files,
                       .f = ~ tame_dp(.x))
                     
+#store DATIM credentials
+  dtm_usr <- "spower" #replace with your credentials
+  dtm_pwd <- getPass::getPass() #pop up prompting for your password
+  
 #apply mech_name and primepartner names from DATIM
-  df_combo <- get_names(df_combo)
+  df_combo <- get_names(df_combo, datim_user = dtm_usr, datim_password = dtm_pwd)
 ```
 
 ### Exporting Data
