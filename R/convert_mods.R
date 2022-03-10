@@ -33,6 +33,7 @@ convert_mods <- function(df){
     dplyr::mutate(modality = dplyr::case_when(
                               indicator == "HTS_INDEX_COM" ~ "IndexMod",
                               indicator == "HTS_INDEX_FAC" ~ "Index"),
+                  standardizeddisaggregate == "Modality/Age/Sex/Result",
                   otherdisaggregate = NA_character_,
                   indicator = "HTS_TST")
 
@@ -49,6 +50,7 @@ convert_mods <- function(df){
                                               indicator == "TB_STAT"    ~ "TBClinic",
                                               indicator == "PMTCT_STAT" ~ "PMTCT ANC"),
                   indicator = "HTS_TST",
+                  standardizeddisaggregate == "Modality/Age/Sex/Result",
                   otherdisaggregate = as.character(NA))
 
   #binding onto main data frame
