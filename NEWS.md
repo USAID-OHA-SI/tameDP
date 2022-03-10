@@ -1,4 +1,5 @@
 # tameDP 4.0.2
+* Resolve incorrect disaggregation for TX_PREV, HTS_TST, and HTS_TST_POS (2022-03-10)
 * Include historic MER results and targets in the output dataset (2022-02-23)
 * Merge prioritizations onto target dataframe (2022-02-23)
 
