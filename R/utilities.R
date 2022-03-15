@@ -165,3 +165,42 @@ apply_prioritization <- function(df, df_prioritization){
     dplyr::relocate(snuprioritization, .after = "psnuuid")
 }
 
+
+
+#' Identify SNU1 associated with PSNU
+#'
+#' Pull SNU1 from the prioritization tab to have a table to align/apply with the
+#' PSNUxIM tab
+#'
+#' @param filepath file path to the Data Pack importing, must be .xlsx
+#'
+#' @return dataframe from the Prioritization tab
+#' @export
+#' @family snu1
+
+grab_snu1 <- function(filepath){
+  import_dp(filepath, "Prioritization") %>%
+    split_psnu() %>%
+    dplyr::select(snu1, psnuuid)
+}
+
+#' Apply SNU1 to dataframe
+#'
+#' Join the SNU1 onto the PSNUxIM data frame.
+#'
+#' @param filepath file path to the Data Pack importing, must be .xlsx
+#'
+#' @return df data pack data frame
+#' @return df_snu1 dataframe from `grab_snu1()`
+#' @export
+#' @family snu1
+
+apply_snu1 <- function(df, df_snu1){
+  if(!"snu1" %in% names(df)){
+    df <- df %>%
+      dplyr::left_join(df_snu1, by = c("psnuuid")) %>%
+      dplyr::relocate(snu1, .before = "psnu")
+  }
+  return(df)
+}
+
