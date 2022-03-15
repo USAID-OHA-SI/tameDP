@@ -7,10 +7,6 @@
 
 order_vars <- function(df){
 
-  #add snu1 as blank col if using PSNUxIM
-  if(!"snu1" %in% names(df))
-    df <- dplyr::mutate(df, snu1 = NA_character_)
-
   #add cumulative if it doesn't exist
   if(!"cumulative" %in% names(df))
     df <- dplyr::mutate(df, cumulative = NA_real_)

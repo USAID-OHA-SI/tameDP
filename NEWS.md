@@ -1,3 +1,8 @@
+# tameDP 4.0.3
+* Replaces old code for `get_names` to utilize `gophr::rename_official` given size complexities introduced in the past few quarters. (2022-03-15)
+* Adds [`gophr`](https://usaid-oha-si.github.io/gophr/) and [`glamr`](https://usaid-oha-si.github.io/glamr/) to the package dependencies (2022-03-15) for use of `gophr::rename_official`. (2022-03-15)
+* Pulls SNU1 column from Prioritization tab to apply to data frame if using PSNUxIM, which does not have a SNU1 column included in the tab. (2022-03-15)
+
 # tameDP 4.0.2
 * Resolve incorrect disaggregation for TX_PREV, HTS_TST, and HTS_TST_POS (2022-03-10)
 * Include historic MER results and targets in the output dataset (2022-02-23)
