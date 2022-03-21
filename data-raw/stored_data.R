@@ -1,6 +1,12 @@
 ## table of OUs to
 ou_ctry_mapping <- glamr::pepfar_country_list %>%
-  dplyr::select(operatingunit, countryname) %>%
+  dplyr::select(operatingunit, countryname)
+
+ou_ctry_mapping <- ou_ctry_mapping %>%
+  dplyr::bind_rows(ou_ctry_mapping %>%
+                     dplyr::filter(stringr::str_detect(operatingunit, "Region")) %>%
+                     dplyr::distinct(operatingunit) %>%
+                     dplyr::mutate(countryname = operatingunit)) %>%
   dplyr::bind_rows(tibble::tibble(operatingunit = "Jupiter", countryname = "Jupiter"))
 
 usethis::use_data(ou_ctry_mapping, overwrite = TRUE)
