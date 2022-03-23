@@ -113,7 +113,8 @@ reshape_psnuim <- function(df){
                           names_sep = "_",
                           values_drop_na = TRUE) %>%
       #make dsd and ta upper case
-      dplyr::mutate(indicatortype = toupper(indicatortype))
+      dplyr::mutate(indicatortype = toupper(indicatortype),
+                    indicatortype = dplyr::na_if(indicatortype, "UNK"))
 
   #change values to double
   suppressWarnings(
