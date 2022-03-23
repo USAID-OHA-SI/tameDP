@@ -84,14 +84,9 @@ reshape_psnuim <- function(df){
   if(length(setdiff(key_cols, names(df))) > 0)
     stop(paste("PSNUxIM tab is missing one or more columns:", paste(length(setdiff(key_cols, names(df))), collapse = ", ")))
 
-    #rename dedup columns
-    df <- df %>%
-      dplyr::rename_with(~stringr::str_replace(., "deduplicated (dsd|ta) rollup.*", "dedup_\\1_value"))
-
     #identify all mechanism columns for reshaping
     mechs <- df %>%
-      dplyr::select(dplyr::starts_with("dedup"),
-                    dplyr::matches("^(1|2|3|4|5|6|7|8|9).")) %>%
+      dplyr::select(dplyr::matches("^(1|2|3|4|5|6|7|8|9).")) %>%
       names()
 
     #reshape
