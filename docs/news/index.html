@@ -65,7 +65,8 @@
 
     <div class="section level2">
 <h2 class="page-header" data-toc-text="4.0.3" id="tamedp-403">tameDP 4.0.3<a class="anchor" aria-label="anchor" href="#tamedp-403"></a></h2>
-<ul><li>Add regional operatingunit as country names (<code>ou_ctry_mapping</code>) to resolve issue with Jamaica (2022-03-21)</li>
+<ul><li>Calculate deduplication (00000) mechanism rather than importing values from PSNUxIM tab (2022-03-23)</li>
+<li>Add regional operatingunit as country names (<code>ou_ctry_mapping</code>) to resolve issue with Jamaica (2022-03-21)</li>
 <li>Replaces old code for <code>get_names</code> to utilize <code><a href="https://rdrr.io/pkg/gophr/man/rename_official.html" class="external-link">gophr::rename_official</a></code> given size complexities introduced in the past few quarters. (2022-03-15)</li>
 <li>Adds <a href="https://usaid-oha-si.github.io/gophr/" class="external-link"><code>gophr</code></a> and <a href="https://usaid-oha-si.github.io/glamr/" class="external-link"><code>glamr</code></a> to the package dependencies (2022-03-15) for use of <code><a href="https://rdrr.io/pkg/gophr/man/rename_official.html" class="external-link">gophr::rename_official</a></code>. (2022-03-15)</li>
 <li>Pulls SNU1 column from Prioritization tab to apply to data frame if using PSNUxIM, which does not have a SNU1 column included in the tab. (2022-03-15)</li>
