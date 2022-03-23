@@ -66,9 +66,6 @@ tame_dp <- function(filepath, type = "ALL",
   #include/exclude PLHIV/SUBNAT as desired
   df_dp <- limit_datatype(df_dp, type)
 
-  #convert dedup to negative values
-  df_dp <- convert_dedups(df_dp)
-
   #aggregate output to IM or PSNU level
   df_dp <- agg_dp(df_dp, psnu_lvl)
 

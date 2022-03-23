@@ -84,14 +84,23 @@ reshape_psnuim <- function(df){
   if(length(setdiff(key_cols, names(df))) > 0)
     stop(paste("PSNUxIM tab is missing one or more columns:", paste(length(setdiff(key_cols, names(df))), collapse = ", ")))
 
-    #rename dedup columns
-    df <- df %>%
-      dplyr::rename_with(~stringr::str_replace(., "deduplicated (dsd|ta) rollup.*", "dedup_\\1_value"))
+    #calculate dedup (simply where mech total value is greater than rollup value)
+    df_dedup_values <- df %>%
+      dplyr::select(rollup, dplyr::matches("^(1|2|3|4|5|6|7|8|9).*value")) %>%
+      dplyr::mutate(dplyr::across(.fns = as.double)) %>%
+      dplyr::mutate(mech_sum = rowSums(., na.rm = TRUE) - rollup,
+                    dedup_unk_value = dplyr::case_when(mech_sum > rollup ~ rollup - mech_sum),
+                    dedup_unk_share = dedup_unk_value / rollup) %>%
+      dplyr::select(dedup_unk_value, dedup_unk_share) %>%
+      dplyr::mutate(dplyr::across(.fns = as.character)) %>%
+      dplyr::rename_with(~stringr::str_replace(., "dedup", "00000"))
+
+    #bind dedup values onto main dataframe
+    df <- dplyr::bind_cols(df, df_dedup_values)
 
     #identify all mechanism columns for reshaping
     mechs <- df %>%
-      dplyr::select(dplyr::starts_with("dedup"),
-                    dplyr::matches("^(1|2|3|4|5|6|7|8|9).")) %>%
+      dplyr::select(dplyr::matches("^(0|1|2|3|4|5|6|7|8|9).")) %>%
       names()
 
     #reshape
@@ -101,11 +110,11 @@ reshape_psnuim <- function(df){
       #reshape long, dropping NA cols
       tidyr::pivot_longer(-key_cols,
                           names_to = c("mech_code", "indicatortype", ".value"),
-                          names_sep = "_") %>%
+                          names_sep = "_",
+                          values_drop_na = TRUE) %>%
       #make dsd and ta upper case
-      dplyr::mutate(indicatortype = toupper(indicatortype)) %>%
-      #remove rows with no share or value
-      dplyr::filter_at(dplyr::vars(value, share), dplyr::any_vars(!is.na(.)))
+      dplyr::mutate(indicatortype = toupper(indicatortype),
+                    indicatortype = dplyr::na_if(indicatortype, "UNK"))
 
   #change values to double
   suppressWarnings(

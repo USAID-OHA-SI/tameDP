@@ -1,4 +1,5 @@
 # tameDP 4.0.3
+* Calculate deduplication (00000) mechanism rather than importing values from PSNUxIM tab (2022-03-23)
 * Add regional operatingunit as country names (`ou_ctry_mapping`) to resolve issue with Jamaica (2022-03-21)
 * Replaces old code for `get_names` to utilize `gophr::rename_official` given size complexities introduced in the past few quarters. (2022-03-15)
 * Adds [`gophr`](https://usaid-oha-si.github.io/gophr/) and [`glamr`](https://usaid-oha-si.github.io/glamr/) to the package dependencies (2022-03-15) for use of `gophr::rename_official`. (2022-03-15)
