@@ -92,15 +92,15 @@ reshape_psnuim <- function(df){
                     dedup_unk_value = dplyr::case_when(mech_sum > rollup ~ rollup - mech_sum),
                     dedup_unk_share = dedup_unk_value / rollup) %>%
       dplyr::select(dedup_unk_value, dedup_unk_share) %>%
-      dplyr::mutate(dplyr::across(.fns = as.character))
+      dplyr::mutate(dplyr::across(.fns = as.character)) %>%
+      dplyr::rename_with(~stringr::str_replace(., "dedup", "00000"))
 
     #bind dedup values onto main dataframe
     df <- dplyr::bind_cols(df, df_dedup_values)
 
     #identify all mechanism columns for reshaping
     mechs <- df %>%
-      dplyr::select(dplyr::matches("^(1|2|3|4|5|6|7|8|9)."),
-                    dplyr::matches("dedup_unk")) %>%
+      dplyr::select(dplyr::matches("^(0|1|2|3|4|5|6|7|8|9).")) %>%
       names()
 
     #reshape
