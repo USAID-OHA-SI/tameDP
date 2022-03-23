@@ -84,9 +84,23 @@ reshape_psnuim <- function(df){
   if(length(setdiff(key_cols, names(df))) > 0)
     stop(paste("PSNUxIM tab is missing one or more columns:", paste(length(setdiff(key_cols, names(df))), collapse = ", ")))
 
+    #calculate dedup (simply where mech total value is greater than rollup value)
+    df_dedup_values <- df %>%
+      dplyr::select(rollup, dplyr::matches("^(1|2|3|4|5|6|7|8|9).*value")) %>%
+      dplyr::mutate(dplyr::across(.fns = as.double)) %>%
+      dplyr::mutate(mech_sum = rowSums(., na.rm = TRUE) - rollup,
+                    dedup_unk_value = dplyr::case_when(mech_sum > rollup ~ rollup - mech_sum),
+                    dedup_unk_share = dedup_unk_value / rollup) %>%
+      dplyr::select(dedup_unk_value, dedup_unk_share) %>%
+      dplyr::mutate(dplyr::across(.fns = as.character))
+
+    #bind dedup values onto main dataframe
+    df <- dplyr::bind_cols(df, df_dedup_values)
+
     #identify all mechanism columns for reshaping
     mechs <- df %>%
-      dplyr::select(dplyr::matches("^(1|2|3|4|5|6|7|8|9).")) %>%
+      dplyr::select(dplyr::matches("^(1|2|3|4|5|6|7|8|9)."),
+                    dplyr::matches("dedup_unk")) %>%
       names()
 
     #reshape
@@ -96,7 +110,8 @@ reshape_psnuim <- function(df){
       #reshape long, dropping NA cols
       tidyr::pivot_longer(-key_cols,
                           names_to = c("mech_code", "indicatortype", ".value"),
-                          names_sep = "_") %>%
+                          names_sep = "_",
+                          values_drop_na = TRUE) %>%
       #make dsd and ta upper case
       dplyr::mutate(indicatortype = toupper(indicatortype)) %>%
       #remove rows with no share or value
