@@ -113,9 +113,7 @@ reshape_psnuim <- function(df){
                           names_sep = "_",
                           values_drop_na = TRUE) %>%
       #make dsd and ta upper case
-      dplyr::mutate(indicatortype = toupper(indicatortype)) %>%
-      #remove rows with no share or value
-      dplyr::filter_at(dplyr::vars(value, share), dplyr::any_vars(!is.na(.)))
+      dplyr::mutate(indicatortype = toupper(indicatortype))
 
   #change values to double
   suppressWarnings(
