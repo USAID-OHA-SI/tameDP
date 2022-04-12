@@ -77,7 +77,7 @@ get_names <- function(df, map_names = TRUE, psnu_lvl = FALSE, cntry,
                     mech_name = NA_character_) %>%
       dplyr::left_join(ou_ctry_mapping, by = "countryname") %>%
       dplyr::relocate(operatingunit, countryname, .before = 1) %>%
-      dplyr::relocate(fundingagency, mech_code, primepartner, mech_name, .before = fiscal_year)
+      dplyr::relocate(fundingagency, primepartner, mech_name, .before = fiscal_year)
   }
 
   return(df)

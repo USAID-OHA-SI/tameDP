@@ -1,4 +1,5 @@
 # tameDP 4.0.3
+* Resolves bug with reference to mech_code in `get_names()` when mech_code may not exist (2022-04-12)
 * Calculate deduplication (00000) mechanism rather than importing values from PSNUxIM tab (2022-03-23)
 * Add regional operatingunit as country names (`ou_ctry_mapping`) to resolve issue with Jamaica (2022-03-21; 2022-03-30)
 * Replaces old code for `get_names` to utilize `gophr::rename_official` given size complexities introduced in the past few quarters. (2022-03-15)
