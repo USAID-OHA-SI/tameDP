@@ -7,6 +7,7 @@ ou_ctry_mapping <- ou_ctry_mapping %>%
                      dplyr::filter(stringr::str_detect(operatingunit, "Region")) %>%
                      dplyr::distinct(operatingunit) %>%
                      dplyr::mutate(countryname = operatingunit)) %>%
+  dplyr::bind_rows(tibble::tibble(operatingunit = "Western Hemisphere Region", countryname = "Caribbean Region")) %>%
   dplyr::bind_rows(tibble::tibble(operatingunit = "Jupiter", countryname = "Jupiter"))
 
 usethis::use_data(ou_ctry_mapping, overwrite = TRUE)
