@@ -65,7 +65,8 @@
 
     <div class="section level2">
 <h2 class="page-header" data-toc-text="4.0.3" id="tamedp-403">tameDP 4.0.3<a class="anchor" aria-label="anchor" href="#tamedp-403"></a></h2>
-<ul><li>Add handling if prioritization tab is missing so <code>tame_dp</code> will work with OPU Data Packs which do not include this tab (2022-04-20)</li>
+<ul><li>Addressed bug with OVC that duplicated rows due to m:m join with <code>mer_disagg_mapping</code> (2022-04-20)</li>
+<li>Add handling if prioritization tab is missing so <code>tame_dp</code> will work with OPU Data Packs which do not include this tab (2022-04-20)</li>
 <li>Resolves bug with reference to mech_code in <code><a href="../reference/get_names.html">get_names()</a></code> when mech_code may not exist (2022-04-12)</li>
 <li>Calculate deduplication (00000) mechanism rather than importing values from PSNUxIM tab (2022-03-23)</li>
 <li>Add regional operatingunit as country names (<code>ou_ctry_mapping</code>) to resolve issue with Jamaica (2022-03-21; 2022-03-30)</li>

@@ -24,5 +24,18 @@ map_disaggs <- function(df){
     dplyr::left_join(mer_disagg_mapping,
                      by = c("indicator", "numeratordenom", "kp_disagg"))
 
+  #adjust OVC disagg (since multiple) and clean up otherdisagg
+  df <- df %>%
+    dplyr::mutate(standardizeddisaggregate =
+                    dplyr::case_when(indicator == "OVC_SERV" & otherdisaggregate == "DREAMS" ~ "Age/Sex/DREAMS",
+                                     indicator == "OVC_SERV" & otherdisaggregate == "Prev" ~ "Age/Sex/Preventive",
+                                     indicator == "OVC_SERV" ~ "Age/Sex/ProgramStatus",
+                                     TRUE ~ standardizeddisaggregate),
+                  otherdisaggregate =
+                    dplyr::case_when(indicator == "OVC_SERV" & otherdisaggregate == "Act" ~ "Active",
+                                     indicator == "OVC_SERV" & otherdisaggregate == "Grad" ~ "Graduated",
+                                     indicator == "OVC_SERV" ~ NA_character_,
+                                     TRUE ~ otherdisaggregate))
+
   return(df)
 }

@@ -1,4 +1,5 @@
 # tameDP 4.0.3
+* Addressed bug with OVC that duplicated rows due to m:m join with `mer_disagg_mapping` (2022-04-20)
 * Add handling if prioritization tab is missing so `tame_dp` will work with OPU Data Packs which do not include this tab (2022-04-20)
 * Resolves bug with reference to mech_code in `get_names()` when mech_code may not exist (2022-04-12)
 * Calculate deduplication (00000) mechanism rather than importing values from PSNUxIM tab (2022-03-23)
