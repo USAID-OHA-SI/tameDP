@@ -81,13 +81,15 @@ tame_dp <- function(filepath, type = "ALL",
   #add names from DATIM
   df_dp <- get_names(df_dp, map_names, psnu_lvl, cntry)
 
-  #identify and apply prioritization
-  df_prioritizations <- grab_prioritization(filepath)
-  df_dp <- apply_prioritization(df_dp, df_prioritizations)
+  if(is_sheet(filepath, "Prioritization")){
+    #identify and apply prioritization
+    df_prioritizations <- grab_prioritization(filepath)
+    df_dp <- apply_prioritization(df_dp, df_prioritizations)
 
-  #identify and apply snu1 (if using PSNUxIM tab)
-  df_snu1 <- grab_snu1(filepath)
-  df_dp <- apply_snu1(df_dp, df_snu1)
+    #identify and apply snu1 (if using PSNUxIM tab)
+    df_snu1 <- grab_snu1(filepath)
+    df_dp <- apply_snu1(df_dp, df_snu1)
+  }
 
   #order variables for output
   df_dp <- order_vars(df_dp)

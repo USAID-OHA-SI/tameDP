@@ -7,9 +7,16 @@
 
 order_vars <- function(df){
 
-  #add cumulative if it doesn't exist
+  #add variables if they doesn't exist
   if(!"cumulative" %in% names(df))
     df <- dplyr::mutate(df, cumulative = NA_real_)
+
+  if(!"snu1" %in% names(df))
+    df <- dplyr::mutate(df, snu1 = NA_character_)
+
+  if(!"snuprioritization" %in% names(df))
+    df <- dplyr::mutate(df, snuprioritization = NA_character_)
+
 
   #order variables
   if("mech_code" %in% names(df)){
