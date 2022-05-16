@@ -40,6 +40,12 @@
     <loc>/reference/apply_fy.html</loc>
   </url>
   <url>
+    <loc>/reference/apply_prioritization.html</loc>
+  </url>
+  <url>
+    <loc>/reference/apply_snu1.html</loc>
+  </url>
+  <url>
     <loc>/reference/clean_indicators.html</loc>
   </url>
   <url>
@@ -53,6 +59,12 @@
   </url>
   <url>
     <loc>/reference/grab_info.html</loc>
+  </url>
+  <url>
+    <loc>/reference/grab_prioritization.html</loc>
+  </url>
+  <url>
+    <loc>/reference/grab_snu1.html</loc>
   </url>
   <url>
     <loc>/reference/import_dp.html</loc>
@@ -97,6 +109,9 @@
     <loc>/reference/pipe.html</loc>
   </url>
   <url>
+    <loc>/reference/pivot_results.html</loc>
+  </url>
+  <url>
     <loc>/reference/reshape_dp.html</loc>
   </url>
   <url>
@@ -113,6 +128,15 @@
   </url>
   <url>
     <loc>/reference/split_psnu.html</loc>
+  </url>
+  <url>
+    <loc>/reference/subset_prioritization.html</loc>
+  </url>
+  <url>
+    <loc>/reference/subset_psnuxim.html</loc>
+  </url>
+  <url>
+    <loc>/reference/subset_standard.html</loc>
   </url>
   <url>
     <loc>/reference/tameDP-package.html</loc>

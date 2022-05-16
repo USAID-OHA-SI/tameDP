@@ -22,7 +22,7 @@
 #' @format A data frame with 51 rows and 2 variables:
 #' \describe{
 #'   \item{operatingunit}{PEPFAR Operating Unit (countries + 3 regional programs)}
-#'   \item{countryname}{PEPFAR Country Name}
+#'   \item{country}{PEPFAR Country Name}
 #' }
 #' @source \url{https://final.datim.org/api/organisationUnits}
 "ou_ctry_mapping"

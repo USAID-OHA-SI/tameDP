@@ -21,15 +21,15 @@ order_vars <- function(df){
   #order variables
   if("mech_code" %in% names(df)){
     df <- dplyr::select(df,
-                        operatingunit, countryname, snu1, psnu, psnuuid, snuprioritization,
-                        fundingagency, mech_code, primepartner, mech_name,
+                        operatingunit, country, snu1, psnu, psnuuid, snuprioritization,
+                        funding_agency, mech_code, prime_partner_name, mech_name,
                         fiscal_year,
                         dplyr::starts_with("indicator"), standardizeddisaggregate,
                         numeratordenom, ageasentered, sex, modality, statushiv, otherdisaggregate,
                         cumulative, targets)
   } else {
     df <- dplyr::select(df,
-                        operatingunit, countryname, snu1, psnu, psnuuid, snuprioritization,
+                        operatingunit, country, snu1, psnu, psnuuid, snuprioritization,
                         fiscal_year,
                         dplyr::starts_with("indicator"), standardizeddisaggregate,
                         numeratordenom, ageasentered, sex, modality, statushiv, otherdisaggregate,
