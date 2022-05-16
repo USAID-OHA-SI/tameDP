@@ -1,3 +1,5 @@
+# tameDP 4.0.4
+
 # tameDP 4.0.3
 * Addressed bug with OVC that duplicated rows due to m:m join with `mer_disagg_mapping` (2022-04-20)
 * Add handling if prioritization tab is missing so `tame_dp` will work with OPU Data Packs which do not include this tab (2022-04-20)
