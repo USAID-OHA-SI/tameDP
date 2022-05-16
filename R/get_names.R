@@ -49,14 +49,17 @@ get_names <- function(df, map_names = TRUE, psnu_lvl = FALSE, cntry,
     if(missing(cntry))
       cntry <- NA_character_
 
+    if("countryname" %in% names(df))
+      df <- dplyr::rename(df, country = countryname)
+
     #add country if its not in the df or its provided
-    if(!"countryname" %in% names(df) || !is.na(cntry))
-      df <- dplyr::mutate(df, countryname = cntry)
+    if(!"country" %in% names(df) || !is.na(cntry))
+      df <- dplyr::mutate(df, country = cntry)
 
     #map operating unit onto data frame
     if(!"operatingunit" %in% names(df)){
       df <- df %>%
-        dplyr::left_join(ou_ctry_mapping, by = "countryname") %>%
+        dplyr::left_join(ou_ctry_mapping, by = "country") %>%
         dplyr::relocate(operatingunit, .before = 1)
     }
 
@@ -65,19 +68,19 @@ get_names <- function(df, map_names = TRUE, psnu_lvl = FALSE, cntry,
 
     #fill operatingunitname where missing
     df <- df %>%
-      dplyr::group_by(countryname) %>%
+      dplyr::group_by(country) %>%
       tidyr::fill(operatingunit) %>%
       dplyr::ungroup()
 
   } else {
     df <- df %>%
-      dplyr::mutate(countryname = {{cntry}},
-                    fundingagency = NA_character_,
-                    primepartner = NA_character_,
+      dplyr::mutate(country = {{cntry}},
+                    funding_agency = NA_character_,
+                    prime_partner_name = NA_character_,
                     mech_name = NA_character_) %>%
-      dplyr::left_join(ou_ctry_mapping, by = "countryname") %>%
-      dplyr::relocate(operatingunit, countryname, .before = 1) %>%
-      dplyr::relocate(fundingagency, primepartner, mech_name, .before = fiscal_year)
+      dplyr::left_join(ou_ctry_mapping, by = "country") %>%
+      dplyr::relocate(operatingunit, country, .before = 1) %>%
+      dplyr::relocate(funding_agency, prime_partner_name, mech_name, .before = fiscal_year)
   }
 
   return(df)
