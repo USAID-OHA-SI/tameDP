@@ -1,4 +1,5 @@
 # tameDP 4.0.4
+* Align column names with the new names in the MSD as of FY22Q2 (2022-05-16)
 
 # tameDP 4.0.3
 * Addressed bug with OVC that duplicated rows due to m:m join with `mer_disagg_mapping` (2022-04-20)
