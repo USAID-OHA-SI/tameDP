@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tameDP</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.4</span>
       </span>
     </div>
 
@@ -132,23 +132,7 @@
 <span class="co">#glimpse the output</span>
 <span class="va">df_dp</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">psnuuid</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 21,709</span>
-<span class="co">#&gt; Columns: 14</span>
-<span class="co">#&gt; $ operatingunit            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Jupiter", "Jupiter", "Jupiter", "Jupiter", "~</span>
-<span class="co">#&gt; $ countryname              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Jupiter", "Jupiter", "Jupiter", "Jupiter", "~</span>
-<span class="co">#&gt; $ snu1                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "_Military Jupiter", "_Military Jupiter", "_M~</span>
-<span class="co">#&gt; $ psnu                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "_Military Jupiter", "_Military Jupiter", "_M~</span>
-<span class="co">#&gt; $ fiscal_year              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2050, 2050, 2050, 2050, 2050, 2050, 2050, 205~</span>
-<span class="co">#&gt; $ indicator                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "HTS_INDEX", "HTS_INDEX", "HTS_INDEX", "HTS_I~</span>
-<span class="co">#&gt; $ standardizeddisaggregate <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Age/Sex/Result", "Age/Sex/Result", "Age/Sex/~</span>
-<span class="co">#&gt; $ numeratordenom           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "N", "N", "N", "N", "N", "N", "N", "N", "N", ~</span>
-<span class="co">#&gt; $ ageasentered             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "10-14", "10-14", "15-19", "15-19", "20-24", ~</span>
-<span class="co">#&gt; $ sex                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Female", "Male", "Female", "Male", "Female",~</span>
-<span class="co">#&gt; $ modality                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~</span>
-<span class="co">#&gt; $ statushiv                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Negative", "Negative", "Negative", "Negative~</span>
-<span class="co">#&gt; $ otherdisaggregate        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "NewNeg", "NewNeg", "NewNeg", "NewNeg", "NewN~</span>
-<span class="co">#&gt; $ targets                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 34, 40, 32, 44, 44, 100, 92, 176, 148, 224, 2~</span></code></pre></div>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>We now have all the targets extracted from the Data Pack and stored in a tidy dataframe called <code>df_dp</code>. We want to combine this with the MSD. You will need to download your country’s MSD from <a href="https://www.pepfar-panorama.org/" class="external-link">PEPFAR Panorama</a>. For our analysis, let’s look across PSNUs so we will want to download the PSNUxIM dataset. Once you have it downloaded, you will want to use <code><a href="https://rdrr.io/pkg/gophr/man/read_msd.html" class="external-link">gophr::read_msd()</a></code> to open the MSD.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#msd file path</span>
@@ -160,41 +144,12 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#extra column names in the MSD</span>
 <span class="fu"><a href="https://generics.r-lib.org/reference/setops.html" class="external-link">setdiff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_msd</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_dp</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;  [1] "operatingunituid"         "snu1uid"                 </span>
-<span class="co">#&gt;  [3] "snuprioritization"        "typemilitary"            </span>
-<span class="co">#&gt;  [5] "dreams"                   "primepartner"            </span>
-<span class="co">#&gt;  [7] "fundingagency"            "mech_code"               </span>
-<span class="co">#&gt;  [9] "mech_name"                "pre_rgnlztn_hq_mech_code"</span>
-<span class="co">#&gt; [11] "prime_partner_duns"       "award_number"            </span>
-<span class="co">#&gt; [13] "indicatortype"            "disaggregate"            </span>
-<span class="co">#&gt; [15] "categoryoptioncomboname"  "trendsfine"              </span>
-<span class="co">#&gt; [17] "trendssemifine"           "trendscoarse"            </span>
-<span class="co">#&gt; [19] "statustb"                 "statuscx"                </span>
-<span class="co">#&gt; [21] "hiv_treatment_status"     "otherdisaggregate_sub"   </span>
-<span class="co">#&gt; [23] "qtr1"                     "qtr2"                    </span>
-<span class="co">#&gt; [25] "qtr3"                     "qtr4"                    </span>
-<span class="co">#&gt; [27] "cumulative"               "source_name"</span>
 
 <span class="co">#no exta columns in the Data Pack</span>
-<span class="fu"><a href="https://generics.r-lib.org/reference/setops.html" class="external-link">setdiff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_dp</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_msd</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; character(0)</span></code></pre></div>
+<span class="fu"><a href="https://generics.r-lib.org/reference/setops.html" class="external-link">setdiff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_dp</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_msd</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>It also has more indicators and disaggregates that aren’t in the Data Pack. To simplify matters, we can subset, or limit, the dataset to what we have to work with. Luckily we have a table stored in this packaged called <code>mer_disagg_mapping</code> that contains all the indicators and their disaggregates that we can use to filter the MSD by.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mer_disagg_mapping</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 60 x 4</span></span>
-<span class="co">#&gt;    indicator        numeratordenom standardizeddisaggregate      kp_disagg</span>
-<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                         <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>    </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> AGYW_PREV        D              Age/Sex/DREAMSBegun           FALSE    </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> AGYW_PREV        N              Age/Sex/DREAMSPrimaryComplete FALSE    </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> CXCA_SCRN        N              Age/Sex/HIVStatus             FALSE    </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> DIAGNOSED_SUBNAT N              Age/Sex/HIVStatus             FALSE    </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> GEND_GBV         N              ViolenceServiceType           FALSE    </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> HIV_PREV         N              Age/Sex                       FALSE    </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> HTS_INDEX_COM    N              Age/Sex/Result                FALSE    </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> HTS_INDEX_FAC    N              Age/Sex/Result                FALSE    </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> HTS_RECENT       N              KeyPop/HIVStatus              TRUE     </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> HTS_RECENT       N              Modality/Age/Sex/HIVStatus    FALSE    </span>
-<span class="co">#&gt; <span style="color: #949494;"># ... with 50 more rows</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">mer_disagg_mapping</span></code></pre></div>
 <p>Combining the names from our Data Pack data frame (<code>names(df_dp)</code>) to limit the columns and using an inner join to keep only the target disaggregates, we can then append or bind this with onto the MSD data frame.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#subset data from MSD</span>
@@ -206,24 +161,7 @@
 <span class="va">df_msd_dp</span> <span class="op">&lt;-</span> <span class="va">df_msd_lim</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="va">df_dp</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">psnuuid</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 176,953</span>
-<span class="co">#&gt; Columns: 15</span>
-<span class="co">#&gt; $ operatingunit            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Jupiter", "Jupiter", "Jupiter", "Jupiter", "~</span>
-<span class="co">#&gt; $ countryname              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Jupiter", "Jupiter", "Jupiter", "Jupiter", "~</span>
-<span class="co">#&gt; $ snu1                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "East", "North", "East", "_Military Jupiter",~</span>
-<span class="co">#&gt; $ psnu                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Gemini", "Orion", "Scorpius", "_Military Jup~</span>
-<span class="co">#&gt; $ fiscal_year              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2048, 2048, 2047, 2049, 2047, 2047, 2047, 204~</span>
-<span class="co">#&gt; $ indicator                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "TX_PVLS", "HTS_TST", "HTS_TST_POS", "HTS_TST~</span>
-<span class="co">#&gt; $ standardizeddisaggregate <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Age/Sex/Indication/HIVStatus", "Modality/Age~</span>
-<span class="co">#&gt; $ numeratordenom           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "N", "N", "N", "N", "N", "N", "N", "N", "N", ~</span>
-<span class="co">#&gt; $ ageasentered             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "10-14", "50+", "45-49", "35-39", "40-49", "3~</span>
-<span class="co">#&gt; $ sex                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Female", "Male", "Female", "Male", "Female",~</span>
-<span class="co">#&gt; $ modality                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "STI Clinic", "PMTCT ANC", "STI Clinic", ~</span>
-<span class="co">#&gt; $ statushiv                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Positive", "Negative", "Positive", "Negative~</span>
-<span class="co">#&gt; $ otherdisaggregate        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Targeted", NA, "Newly Identified", NA, NA, N~</span>
-<span class="co">#&gt; $ targets                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, 17, NA, 90, 4, 742, 1, 5, NA, 3, 140, 14,~</span>
-<span class="co">#&gt; $ kp_disagg                <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FAL~</span></code></pre></div>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>We now have a joined data frame that we can use to compare indicator trends over time. For instance, we can compare how this year’s TX_NEW targets compare with previous few years’ targets across ages.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df_tx_trend</span> <span class="op">&lt;-</span> <span class="va">df_msd_dp</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
@@ -235,23 +173,7 @@
 <code class="sourceCode R"><span class="va">df_tx_trend</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">fiscal_year</span> <span class="op">&gt;=</span> <span class="fl">2048</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="external-link">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">fiscal_year</span>,
-              values_from <span class="op">=</span> <span class="va">targets</span><span class="op">)</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 x 5</span></span>
-<span class="co">#&gt;    indicator ageasentered `2048` `2049` `2050`</span>
-<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> TX_NEW    &lt;01             254     75    515</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> TX_NEW    01-04          <span style="text-decoration: underline;">1</span>152    137    128</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> TX_NEW    05-09          <span style="text-decoration: underline;">1</span>202     63   <span style="text-decoration: underline;">1</span>065</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> TX_NEW    10-14          <span style="text-decoration: underline;">1</span>975    968   <span style="text-decoration: underline;">2</span>291</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> TX_NEW    15-19          <span style="text-decoration: underline;">3</span>861   <span style="text-decoration: underline;">3</span>346   <span style="text-decoration: underline;">5</span>047</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> TX_NEW    20-24          <span style="text-decoration: underline;">6</span>181   <span style="text-decoration: underline;">5</span>294   <span style="text-decoration: underline;">8</span>937</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> TX_NEW    25-29          <span style="text-decoration: underline;">6</span>774   <span style="text-decoration: underline;">6</span>077  <span style="text-decoration: underline;">11</span>740</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> TX_NEW    30-34          <span style="text-decoration: underline;">9</span>973   <span style="text-decoration: underline;">5</span>751  <span style="text-decoration: underline;">12</span>770</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> TX_NEW    35-39          <span style="text-decoration: underline;">5</span>754   <span style="text-decoration: underline;">2</span>781  <span style="text-decoration: underline;">11</span>401</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> TX_NEW    40-44          <span style="text-decoration: underline;">5</span>280   <span style="text-decoration: underline;">3</span>848   <span style="text-decoration: underline;">6</span>987</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">11</span> TX_NEW    45-49          <span style="text-decoration: underline;">4</span>614   <span style="text-decoration: underline;">3</span>231   <span style="text-decoration: underline;">3</span>352</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">12</span> TX_NEW    50+            <span style="text-decoration: underline;">7</span>344   <span style="text-decoration: underline;">8</span>045   <span style="text-decoration: underline;">3</span>680</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">13</span> TX_NEW    Unknown Age       0      0     <span style="color: #BB0000;">NA</span></span></code></pre></div>
+              values_from <span class="op">=</span> <span class="va">targets</span><span class="op">)</span></code></pre></div>
 </div>
   </div>
 

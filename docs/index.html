@@ -42,7 +42,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">tameDP</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.4</span>
       </span>
     </div>
 
@@ -150,7 +150,10 @@
                     .f <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="reference/tame_dp.html">tame_dp</a></span><span class="op">(</span><span class="va">.x</span>, map_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span>
                     
 <span class="co">#apply mech_name and primepartner names from DATIM</span>
-  <span class="va">df_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_names.html">get_names</a></span><span class="op">(</span><span class="va">df_all</span><span class="op">)</span></code></pre></div>
+<span class="co">#you will need to provide your DATIM credentials </span>
+  <span class="va">datim_user_nm</span> <span class="op">&lt;-</span> <span class="st">"spower"</span> <span class="co">#replace with your username</span>
+  <span class="va">datim_pwd</span> <span class="op">&lt;-</span> <span class="fu">getPass</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/getPass/man/getPass.html" class="external-link">getPass</a></span> <span class="co">#pop up prompting for your password</span>
+  <span class="va">df_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_names.html">get_names</a></span><span class="op">(</span><span class="va">df_all</span>, datim_user <span class="op">=</span> <span class="va">datim_user_nm</span>, datim_password <span class="op">=</span> <span class="va">datim_pwd</span><span class="op">)</span></code></pre></div>
 <hr>
 <p><em>Disclaimer: The findings, interpretation, and conclusions expressed herein are those of the authors and do not necessarily reflect the views of United States Agency for International Development. All errors remain our own.</em></p>
 </div>
