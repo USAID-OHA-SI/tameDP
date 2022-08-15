@@ -26,7 +26,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -65,7 +65,8 @@
 
     <div class="section level2">
 <h2 class="page-header" data-toc-text="4.0.4" id="tamedp-404">tameDP 4.0.4<a class="anchor" aria-label="anchor" href="#tamedp-404"></a></h2>
-<ul><li>Align column names with the new names in the MSD as of FY22Q2 (2022-05-16)</li>
+<ul><li>Add package check from <code>gagglr</code> (2022-08-15)</li>
+<li>Align column names with the new names in the MSD as of FY22Q2 (2022-05-16)</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="4.0.3" id="tamedp-403">tameDP 4.0.3<a class="anchor" aria-label="anchor" href="#tamedp-403"></a></h2>
@@ -74,8 +75,8 @@
 <li>Resolves bug with reference to mech_code in <code><a href="../reference/get_names.html">get_names()</a></code> when mech_code may not exist (2022-04-12)</li>
 <li>Calculate deduplication (00000) mechanism rather than importing values from PSNUxIM tab (2022-03-23)</li>
 <li>Add regional operatingunit as country names (<code>ou_ctry_mapping</code>) to resolve issue with Jamaica (2022-03-21; 2022-03-30)</li>
-<li>Replaces old code for <code>get_names</code> to utilize <code><a href="https://rdrr.io/pkg/gophr/man/rename_official.html" class="external-link">gophr::rename_official</a></code> given size complexities introduced in the past few quarters. (2022-03-15)</li>
-<li>Adds <a href="https://usaid-oha-si.github.io/gophr/" class="external-link"><code>gophr</code></a> and <a href="https://usaid-oha-si.github.io/glamr/" class="external-link"><code>glamr</code></a> to the package dependencies (2022-03-15) for use of <code><a href="https://rdrr.io/pkg/gophr/man/rename_official.html" class="external-link">gophr::rename_official</a></code>. (2022-03-15)</li>
+<li>Replaces old code for <code>get_names</code> to utilize <code><a href="https://usaid-oha-si.github.io/gophr/reference/rename_official.html" class="external-link">gophr::rename_official</a></code> given size complexities introduced in the past few quarters. (2022-03-15)</li>
+<li>Adds <a href="https://usaid-oha-si.github.io/gophr/" class="external-link"><code>gophr</code></a> and <a href="https://usaid-oha-si.github.io/glamr/" class="external-link"><code>glamr</code></a> to the package dependencies (2022-03-15) for use of <code><a href="https://usaid-oha-si.github.io/gophr/reference/rename_official.html" class="external-link">gophr::rename_official</a></code>. (2022-03-15)</li>
 <li>Pulls SNU1 column from Prioritization tab to apply to data frame if using PSNUxIM, which does not have a SNU1 column included in the tab. (2022-03-15)</li>
 </ul></div>
     <div class="section level2">
@@ -115,7 +116,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer></div>

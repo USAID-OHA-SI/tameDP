@@ -1,5 +1,9 @@
 .onLoad <- function (libname, pkgname)
 {
+
+  if(requireNamespace("gagglr", quietly = TRUE))
+    gagglr::oha_check("tameDP", suppress_success = TRUE)
+
   # make data set names global to avoid CHECK notes
 
   utils::globalVariables(

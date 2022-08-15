@@ -1,4 +1,5 @@
 # tameDP 4.0.4
+* Add package check from `gagglr` (2022-08-15)
 * Align column names with the new names in the MSD as of FY22Q2 (2022-05-16)
 
 # tameDP 4.0.3

@@ -25,7 +25,8 @@ Imports:
     getPass
 Remotes:
     USAID-OHA-SI/glamr,
-    USAID-OHA-SI/gophr
+    USAID-OHA-SI/gophr,
+    USAID-OHA-SI/gagglr
 Suggests: 
     testthat (>= 3.0.0),
     purrr,
