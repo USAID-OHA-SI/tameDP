@@ -1,21 +1,25 @@
+# tameDP 5.0.0
+* Remove references to SNU1, which is no longer included as a column in the Prioritization tab of the Target Setting Tool [2023-03-01]
+* Align tameDP to work for new, COP23 Target Setting Tools [2023-03-01]
+
 # tameDP 4.0.4
-* Add package check from `gagglr` (2022-08-15)
-* Align column names with the new names in the MSD as of FY22Q2 (2022-05-16)
+* Add package check from `gagglr` [2022-08-15]
+* Align column names with the new names in the MSD as of FY22Q2 [2022-05-16]
 
 # tameDP 4.0.3
-* Addressed bug with OVC that duplicated rows due to m:m join with `mer_disagg_mapping` (2022-04-20)
-* Add handling if prioritization tab is missing so `tame_dp` will work with OPU Data Packs which do not include this tab (2022-04-20)
-* Resolves bug with reference to mech_code in `get_names()` when mech_code may not exist (2022-04-12)
-* Calculate deduplication (00000) mechanism rather than importing values from PSNUxIM tab (2022-03-23)
-* Add regional operatingunit as country names (`ou_ctry_mapping`) to resolve issue with Jamaica (2022-03-21; 2022-03-30)
-* Replaces old code for `get_names` to utilize `gophr::rename_official` given size complexities introduced in the past few quarters. (2022-03-15)
-* Adds [`gophr`](https://usaid-oha-si.github.io/gophr/) and [`glamr`](https://usaid-oha-si.github.io/glamr/) to the package dependencies (2022-03-15) for use of `gophr::rename_official`. (2022-03-15)
-* Pulls SNU1 column from Prioritization tab to apply to data frame if using PSNUxIM, which does not have a SNU1 column included in the tab. (2022-03-15)
+* Addressed bug with OVC that duplicated rows due to m:m join with `mer_disagg_mapping` [2022-04-20]
+* Add handling if prioritization tab is missing so `tame_dp` will work with OPU Data Packs which do not include this tab [2022-04-20]
+* Resolves bug with reference to mech_code in `get_names` when mech_code may not exist [2022-04-12]
+* Calculate deduplication (00000) mechanism rather than importing values from PSNUxIM tab [2022-03-23]
+* Add regional operatingunit as country names, `ou_ctry_mapping`, to resolve issue with Jamaica [2022-03-21; 2022-03-30]
+* Replaces old code for `get_names` to utilize `gophr::rename_official` given size complexities introduced in the past few quarters. [2022-03-15]
+* Adds [`gophr`][https://usaid-oha-si.github.io/gophr/] and [`glamr`][https://usaid-oha-si.github.io/glamr/] to the package dependencies [2022-03-15] for use of `gophr::rename_official`. [2022-03-15]
+* Pulls SNU1 column from Prioritization tab to apply to data frame if using PSNUxIM, which does not have a SNU1 column included in the tab. [2022-03-15]
 
 # tameDP 4.0.2
-* Resolve incorrect disaggregation for TX_PREV, HTS_TST, and HTS_TST_POS (2022-03-10)
-* Include historic MER results and targets in the output dataset (2022-02-23)
-* Merge prioritizations onto target dataframe (2022-02-23)
+* Resolve incorrect disaggregation for TX_PREV, HTS_TST, and HTS_TST_POS [2022-03-10]
+* Include historic MER results and targets in the output dataset [2022-02-23]
+* Merge prioritizations onto target dataframe [2022-02-23]
 
 # tameDP 4.0.1
 * Ensure data types are correct prior to disaggregate binding in `map_disaggs`.
