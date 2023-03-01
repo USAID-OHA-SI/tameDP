@@ -120,11 +120,8 @@ subset_psnuxim <- function(df){
 #'
 subset_prioritization <- function(df){
   df <- df %>%
-    dplyr::select(psnu = PSNU, IMPATT.PRIORITY_SNU.T, PRIORITY_SNU.translation) %>%
-    tidyr::unite(snuprioritization,
-                 IMPATT.PRIORITY_SNU.T, PRIORITY_SNU.translation,
-                 sep = " - ") %>%
-    dplyr::mutate(snuprioritization = ifelse(snuprioritization == "M - Military", "97 - Above PSNU level", snuprioritization))
+    dplyr::select(psnu = PSNU, snuprioritization = PRIORITY_SNU.translation) %>%
+    dplyr::mutate(snuprioritization = ifelse(snuprioritization == "Military", "97 - Above PSNU level", snuprioritization))
 
   return(df)
 }
