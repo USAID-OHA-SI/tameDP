@@ -11,8 +11,8 @@ order_vars <- function(df){
   if(!"cumulative" %in% names(df))
     df <- dplyr::mutate(df, cumulative = NA_real_)
 
-  if(!"snu1" %in% names(df))
-    df <- dplyr::mutate(df, snu1 = NA_character_)
+  # if(!"snu1" %in% names(df))
+  #   df <- dplyr::mutate(df, snu1 = NA_character_)
 
   if(!"snuprioritization" %in% names(df))
     df <- dplyr::mutate(df, snuprioritization = NA_character_)
@@ -21,7 +21,7 @@ order_vars <- function(df){
   #order variables
   if("mech_code" %in% names(df)){
     df <- dplyr::select(df,
-                        operatingunit, country, snu1, psnu, psnuuid, snuprioritization,
+                        operatingunit, country, psnu, psnuuid, snuprioritization,
                         funding_agency, mech_code, prime_partner_name, mech_name,
                         fiscal_year,
                         dplyr::starts_with("indicator"), standardizeddisaggregate,
@@ -29,7 +29,7 @@ order_vars <- function(df){
                         cumulative, targets)
   } else {
     df <- dplyr::select(df,
-                        operatingunit, country, snu1, psnu, psnuuid, snuprioritization,
+                        operatingunit, country, psnu, psnuuid, snuprioritization,
                         fiscal_year,
                         dplyr::starts_with("indicator"), standardizeddisaggregate,
                         numeratordenom, ageasentered, sex, modality, statushiv, otherdisaggregate,
