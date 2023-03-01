@@ -87,8 +87,8 @@ tame_dp <- function(filepath, type = "ALL",
     df_dp <- apply_prioritization(df_dp, df_prioritizations)
 
     #identify and apply snu1 (if using PSNUxIM tab)
-    df_snu1 <- grab_snu1(filepath)
-    df_dp <- apply_snu1(df_dp, df_snu1)
+    # df_snu1 <- grab_snu1(filepath) #SNU1 no longer in DP
+    # df_dp <- apply_snu1(df_dp, df_snu1) #SNU1 no longer in DP
   }
 
   #order variables for output
