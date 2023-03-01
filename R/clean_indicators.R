@@ -17,7 +17,7 @@ clean_indicators <- function(df){
   #extract disagg info from indicator_code
   df <- df %>%
     dplyr::mutate(
-      indicator_code = stringr::str_remove(indicator_code, "\\.(T_1|T|R)$"),
+      indicator_code = stringr::str_remove(indicator_code, "\\.(T_1|T|T2|R)$"),
       indicator = stringr::str_extract(indicator_code, "[^\\.]+") %>% toupper,
       indicator = dplyr::recode(indicator, "VL_SUPPRESSED" = "VL_SUPPRESSION_SUBNAT"),
       numeratordenom = ifelse(stringr::str_detect(indicator_code, "\\.D\\.|\\.D$"), "D", "N"),
