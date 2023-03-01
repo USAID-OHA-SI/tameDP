@@ -120,7 +120,7 @@ subset_psnuxim <- function(df){
 #'
 subset_prioritization <- function(df){
   df <- df %>%
-    dplyr::select(snu1 = SNU1, psnu = PSNU, IMPATT.PRIORITY_SNU.T, PRIORITY_SNU.translation) %>%
+    dplyr::select(psnu = PSNU, IMPATT.PRIORITY_SNU.T, PRIORITY_SNU.translation) %>%
     tidyr::unite(snuprioritization,
                  IMPATT.PRIORITY_SNU.T, PRIORITY_SNU.translation,
                  sep = " - ") %>%
