@@ -91,6 +91,9 @@ tame_dp <- function(filepath, type = "ALL",
     # df_dp <- apply_snu1(df_dp, df_snu1) #SNU1 no longer in DP
   }
 
+  #add file name and date stamp to dataset
+  df_dp <- apply_stamps(df_dp, filepath)
+
   #order variables for output
   df_dp <- order_vars(df_dp)
 
