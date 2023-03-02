@@ -5,7 +5,7 @@
 \alias{mer_disagg_mapping}
 \title{Table of indicators and their disaggs}
 \format{
-A data frame with 60 rows and 4 variables:
+A data frame with 57 rows and 4 variables:
 \describe{
   \item{indicator}{MER indicator name}
   \item{numeratordenom}{designates whether the indicator type}
@@ -21,6 +21,7 @@ mer_disagg_mapping
 }
 \description{
 A dataset containing the mapping between MER/SUBNAT/IMPATT indicators from
-the data pack and their official disaggregates in DATIM for FY22 Targets.
+the Target Setting Tool and their official disaggregates in DATIM from FY23/
+COP22 targets.
 }
 \keyword{datasets}

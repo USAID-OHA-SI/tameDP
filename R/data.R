@@ -20,7 +20,7 @@
 #' A dataset containing the mapping countries and operating units. Most
 #' countries are also Operating Units, expect for those in regional programs.
 #'
-#' @format A data frame with 51 rows and 2 variables:
+#' @format A data frame with 60 rows and 2 variables:
 #' \describe{
 #'   \item{operatingunit}{PEPFAR Operating Unit (countries + 3 regional programs)}
 #'   \item{country}{PEPFAR Country Name}

@@ -5,7 +5,7 @@
 \alias{ou_ctry_mapping}
 \title{Current Table of PEPFAR Operating Units and Counties}
 \format{
-A data frame with 51 rows and 2 variables:
+A data frame with 60 rows and 2 variables:
 \describe{
   \item{operatingunit}{PEPFAR Operating Unit (countries + 3 regional programs)}
   \item{country}{PEPFAR Country Name}
