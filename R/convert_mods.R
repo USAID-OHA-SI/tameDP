@@ -12,10 +12,10 @@ convert_mods <- function(df){
 
   #create modalities
   df_mods <- df %>%
-    dplyr::mutate(modality = dplyr::case_when(stringr::str_detect(indicator_code, "HTS_(TST|RECENT)") ~ indicator_code),
-                  modality = stringr::str_extract(modality, "(?<=\\.)([:alpha:]|\\_|[:digit:])*(?=\\.)"),
-                  modality = stringr::str_replace(modality, "Com", "Mod"),
-                  modality = dplyr::na_if(modality, "KP"))
+    dplyr::mutate(modality =  dplyr::case_when(stringr::str_detect(indicator_code, "HTS_(TST|RECENT)") ~ indicator_code) %>%
+                    stringr::str_extract("(?<=\\.)([:alpha:]|\\_|[:digit:])*(?=\\.)") %>%
+                    stringr::str_replace("Com", "Mod") %>%
+                    dplyr::na_if("KP"))
 
   #align modality naming
   df_mods <- df_mods %>%
