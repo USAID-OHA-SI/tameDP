@@ -27,19 +27,19 @@ get_names(
 \item{datim_password}{DATIM password (if not provided, you will be prompted with a pop up)}
 }
 \description{
-The Data Pack does not contain information on the mechanism (names or
+The Target Setting Tool does not contain information on the mechanism (names or
 partners). By running this function, you are connecting to DATIM's
 SQLView file that contains the list of all current mechanisms. This requires
 providing your DATIM credentials. If left blank in the function, you will
 have two dialogue boxes popping up asking for your DATIM username and
-password. If running `tame_dp()` across multiple Data Packs, it's
+password. If running `tame_dp()` across multiple Target Setting Tools, it's
 advisable to run `get_names()` on the file dataset produced by `tame_dp`.
 }
 \examples{
 \dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 #load package
   library(purrr)
-#identify all the Data Pack files
+#identify all the Target Setting Tool files
   files <- list.files("../Downloads/DataPacks", full.names = TRUE)
 #read in all DPs and combine into one data frame
   df_all <- map_dfr(.x = files,

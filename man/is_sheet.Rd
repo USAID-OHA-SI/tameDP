@@ -2,17 +2,17 @@
 % Please edit documentation in R/utilities.R
 \name{is_sheet}
 \alias{is_sheet}
-\title{Check if a sheet exits in Data Pack}
+\title{Check if a sheet exits in Target Setting Tool}
 \usage{
 is_sheet(filepath, tab = "PSNUxIM")
 }
 \arguments{
-\item{filepath}{filepath of Data Pack}
+\item{filepath}{filepath of Target Setting Tool}
 
-\item{tab}{sheet to check in Data Pack, "PSNUxIM" (default)}
+\item{tab}{sheet to check in Target Setting Tool, "PSNUxIM" (default)}
 }
 \description{
-Check if a sheet exits in Data Pack
+Check if a sheet exits in Target Setting Tool
 }
 \seealso{
 Other validation: 

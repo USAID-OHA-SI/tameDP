@@ -1,17 +1,17 @@
-#' Export Tidy data from Data Pack
+#' Export Tidy data from Target Setting Tool
 #'
 #' tame_dp is the primary function of the tameDP package, reading in the Data
 #' Pack and munging in into a tidy data frame to make it more usable to
-#' interact with the data than the way it is stored in the Data Pack. **Given
-#' the changes to the Data Pack each year, the function only works for the
+#' interact with the data than the way it is stored in the Target Setting Tool. **Given
+#' the changes to the Target Setting Tool each year, the function only works for the
 #' current COP year, COP22.**
 #'
-#' The main function of `tameDP` is to bring import a COP Data Pack into R
+#' The main function of `tameDP` is to bring import a COP Target Setting Tool into R
 #' and make it tidy. The function aggregates the COP targets up to the
 #' mechanism level, imports the mechanism information from DATIM, and breaks
 #' out the data elements to make the dataset more usable.
 #'
-#'   - Imports Data Pack as tidy data frame
+#'   - Imports Target Setting Tool as tidy data frame
 #'   - Breaks up data elements stored in the indicatorCode column into distinct columns
 #'   - Cleans up the HTS variables, separating modalities out of the indicator name
 #'   - Creates a statushiv column
@@ -20,7 +20,7 @@
 #'   - Removes any rows with no targets
 #'   - Allows for aggregate to the PSNU level
 #'
-#' @param filepath file path to the Data Pack importing, must be .xlsx
+#' @param filepath file path to the Target Setting Tool importing, must be .xlsx
 #' @param type dataset to extract "PSNUxIM", "PLHIV", or "ALL" (default) or a specific tab
 #' @param map_names import names from DATIM (OU, mechanism, partner) associated with mech_code
 #' @param psnu_lvl aggregate to the PSNU level instead of IM
@@ -31,7 +31,7 @@
 #' @examplesIf FALSE
 #' #DP file path
 #'   path <- "../Downloads/DataPack_Jupiter_20500101.xlsx"
-#' #read in data pack (straight from sheets, not PSNUxIM tab)
+#' #read in Target Setting Tool (straight from sheets, not PSNUxIM tab)
 #'   df_dp <- tame_dp(path)
 #' #read in PLHIV/SUBNAT data
 #'   df_dp <- tame_dp(path, type = "PLHIV")
@@ -54,7 +54,7 @@ tame_dp <- function(filepath, type = "ALL",
   import_tabs <- return_tab(type) %>%
     intersect(readxl::excel_sheets(filepath))
 
-  #import Data Pack, refine columns and reshape
+  #import Target Setting Tool, refine columns and reshape
   df_dp <- purrr::map_dfr(import_tabs,
                           ~import_dp(filepath, .x) %>%
                             reshape_dp())

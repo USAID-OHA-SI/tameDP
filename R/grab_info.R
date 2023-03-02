@@ -1,9 +1,9 @@
-#' Pull Information from Data Pack "Home" Tab
+#' Pull Information from Target Setting Tool "Home" Tab
 #'
-#' This function extract information stored in the Data Pack Home tab to
+#' This function extract information stored in the Target Setting Tool Home tab to
 #' identify either the country or what the fiscal year is.
 #'
-#' @param filepath file path to the Data Pack importing, must be .xlsx
+#' @param filepath file path to the Target Setting Tool importing, must be .xlsx
 #' @param type either "country" or "year"
 #'
 #' @export

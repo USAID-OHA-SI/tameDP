@@ -1,6 +1,6 @@
-#' Is the filepath correct for the Data Pack
+#' Is the filepath correct for the Target Setting Tool
 #'
-#' @param filepath filepath of Data Pack
+#' @param filepath filepath of Target Setting Tool
 #' @family validation
 #' @export
 
@@ -12,10 +12,10 @@ is_file <- function(filepath){
 
 
 
-#' Check if a sheet exits in Data Pack
+#' Check if a sheet exits in Target Setting Tool
 #'
-#' @param filepath filepath of Data Pack
-#' @param tab sheet to check in Data Pack, "PSNUxIM" (default)
+#' @param filepath filepath of Target Setting Tool
+#' @param tab sheet to check in Target Setting Tool, "PSNUxIM" (default)
 #' @family validation
 #' @export
 
@@ -30,7 +30,7 @@ is_sheet <- function(filepath, tab = "PSNUxIM"){
 
 #' Check if the filepath is .xls or .xlsx
 #'
-#' @param filepath filepath of COP Data Pack
+#' @param filepath filepath of COP Target Setting Tool
 #' @family validation
 #' @export
 
@@ -63,7 +63,7 @@ no_connection <- function(){
 #' Return Tab
 #'
 #' Identify which tab to import based on what you want to use - PSNUxIM, PLHIV,
-#' or ALL. You can also provide a specific tab name that matches the Data Pack
+#' or ALL. You can also provide a specific tab name that matches the Target Setting Tool
 #'
 #' @param type dataset to extract "PSNUxIM", "PLHIV", "ALL", or a specific tab
 #'
@@ -137,7 +137,7 @@ apply_fy <- function(df, year){
 #' Pull from the prioritization tab to have a table of PSNU prioritization for the
 #' current COP.
 #'
-#' @param filepath file path to the Data Pack importing, must be .xlsx
+#' @param filepath file path to the Target Setting Tool importing, must be .xlsx
 #'
 #' @return dataframe from the Prioritization tab
 #' @export
@@ -153,9 +153,9 @@ grab_prioritization <- function(filepath){
 #'
 #' Join the new COP prioritization onto the target data frame.
 #'
-#' @param filepath file path to the Data Pack importing, must be .xlsx
+#' @param filepath file path to the Target Setting Tool importing, must be .xlsx
 #'
-#' @return df data pack data frame
+#' @return df Target Setting Tool data frame
 #' @return df_prioritization dataframe from `grab_prioritization()`
 #' @export
 #' @family prioritization
@@ -173,7 +173,7 @@ apply_prioritization <- function(df, df_prioritization){
 #' Pull SNU1 from the prioritization tab to have a table to align/apply with the
 #' PSNUxIM tab
 #'
-#' @param filepath file path to the Data Pack importing, must be .xlsx
+#' @param filepath file path to the Target Setting Tool importing, must be .xlsx
 #'
 #' @return dataframe from the Prioritization tab
 #' @export
@@ -189,9 +189,9 @@ grab_snu1 <- function(filepath){
 #'
 #' Join the SNU1 onto the PSNUxIM data frame.
 #'
-#' @param filepath file path to the Data Pack importing, must be .xlsx
+#' @param filepath file path to the Target Setting Tool importing, must be .xlsx
 #'
-#' @return df data pack data frame
+#' @return df Target Setting Tool data frame
 #' @return df_snu1 dataframe from `grab_snu1()`
 #' @export
 #' @family snu1
@@ -212,7 +212,7 @@ apply_snu1 <- function(df, df_snu1){
 #' including the file name, last modified date, and
 #'
 #' @param df data frame read in and reshaped by import_dp and reshape_dp
-#' @param filepath file path to the Data Pack importing, must be .xlsx
+#' @param filepath file path to the Target Setting Tool importing, must be .xlsx
 #'
 #' @return new columns in df with source information
 #' @export

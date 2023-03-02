@@ -98,7 +98,7 @@
 <div class="section level1">
 <div class="page-header"><h1 id="tamedp">tameDP<a class="anchor" aria-label="anchor" href="#tamedp"></a>
 </h1></div>
-<p>Import PSNUxIM targets from COP21 Data Pack &amp; make tidy/usable. Updated from the COP19 and COP20 versions.</p>
+<p>Imports and tidies data from the PEPFAR, Excel-based Target Setting Tool (formerly known as the Target Setting Tool) Historic versions available back to COP19.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -114,9 +114,9 @@
 <div class="section level2">
 <h2 id="use">Use<a class="anchor" aria-label="anchor" href="#use"></a>
 </h2>
-<p>The main function of <code>tameDP</code> is to bring import a COP Data Pack into R and make it tidy. The function aggregates the fiscal year targets up to the mechanism level, imports the mechanism information from DATIM, and breaks out the data elements to make the dataset more usable.</p>
+<p>The main function of <code>tameDP</code> is to bring import a COP Target Setting Tool into R and make it tidy. The function aggregates the fiscal year targets up to the mechanism level, imports the mechanism information from DATIM, and breaks out the data elements to make the dataset more usable.</p>
 <ul>
-<li>Imports Data Pack as tidy data frame</li>
+<li>Imports Target Setting Tool as tidy data frame</li>
 <li>Breaks up data elements stored in the indicatorCode column into distinct columns</li>
 <li>Cleans up the HTS variables, separating modalities out of the indicator name</li>
 <li>Creates a statushiv column</li>
@@ -129,23 +129,23 @@
 <code class="sourceCode R"><span><span class="co">#load package</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">tameDP</span><span class="op">)</span></span>
 <span>  </span>
-<span><span class="co">#Data Pack file path</span></span>
-<span>  <span class="va">path</span> <span class="op">&lt;-</span> <span class="st">"../Downloads/DataPack_Jupiter_20500101.xlsx"</span></span>
+<span><span class="co">#Target Setting Tool file path</span></span>
+<span>  <span class="va">path</span> <span class="op">&lt;-</span> <span class="st">"../Downloads/TargetSettingTool_Jupiter_20500101.xlsx"</span></span>
 <span>  </span>
-<span><span class="co">#read in Data Pack &amp; tidy</span></span>
+<span><span class="co">#read in Target Setting Tool &amp; tidy</span></span>
 <span> <span class="va">df_dp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/tame_dp.html">tame_dp</a></span><span class="op">(</span><span class="va">path</span><span class="op">)</span></span>
 <span> </span>
-<span><span class="co">#read in PLHIV and SUB_NAT data from the Data Pack</span></span>
+<span><span class="co">#read in PLHIV and SUB_NAT data from the Target Setting Tool</span></span>
 <span> <span class="va">df_plhiv</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/tame_dp.html">tame_dp</a></span><span class="op">(</span><span class="va">path</span>, type <span class="op">=</span> <span class="st">"PLHIV"</span><span class="op">)</span></span></code></pre></div>
-<p>You can use one of the <code><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map()</a></code> functions from <code>purrr</code> package to read in multiple Data Packs and combine.</p>
+<p>You can use one of the <code><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map()</a></code> functions from <code>purrr</code> package to read in multiple Target Setting Tools and combine.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#load package</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/" class="external-link">purrr</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">#identify all the Data Pack files</span></span>
+<span><span class="co">#identify all the Target Setting Tool files</span></span>
 <span>  <span class="va">files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="st">"../Downloads/DataPacks"</span>, full.names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">#read in all DPs and combine into one data frame</span></span>
+<span><span class="co">#read in all Target Setting Toolss and combine into one data frame</span></span>
 <span>  <span class="va">df_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map_dfr.html" class="external-link">map_dfr</a></span><span class="op">(</span>.x <span class="op">=</span> <span class="va">files</span>,</span>
 <span>                    .f <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="reference/tame_dp.html">tame_dp</a></span><span class="op">(</span><span class="va">.x</span>, map_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span>
 <span>                    </span>

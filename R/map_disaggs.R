@@ -1,7 +1,7 @@
 #' Map Standardized Disaggregate
 #'
 #' To align with DATIM datasets, the standardized disaggregates
-#' for each indicators will be aligned to the Data Pack for FY22 Targets.
+#' for each indicators will be aligned to the Target Setting Tool for FY22 Targets.
 #'
 #' @param df dataframe from clean_indicators
 #'

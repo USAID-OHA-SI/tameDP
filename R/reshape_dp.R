@@ -1,4 +1,4 @@
-#' Reshape Data Pack Long
+#' Reshape Target Setting Tool Long
 #'
 #' This reshapes the relevant columns from a given tab to long, making it tidy
 #' and more usable. It relies on either `reshape_tab()` or `reshape_psnuim()`
@@ -20,7 +20,7 @@ reshape_dp <- function(df){
 
 
 
-#' Reshape Data Pack Tab Long
+#' Reshape Target Setting Tool Tab Long
 #'
 #' This function limits the columns from a target tab (non PSNUxIM) to extract
 #' data and reshapes it long, so that it is tidy and more usable. This function
@@ -61,7 +61,7 @@ reshape_tab <- function(df){
 
 
 
-#' Reshape Data Pack Long
+#' Reshape Target Setting Tool Long
 #'
 #' This function limits the columns from the PSNUxIM tab and reshapes it long,
 #' so that it is more usable. Three values columns are created in the output -

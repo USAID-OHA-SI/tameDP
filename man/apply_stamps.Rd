@@ -9,7 +9,7 @@ apply_stamps(df, filepath)
 \arguments{
 \item{df}{data frame read in and reshaped by import_dp and reshape_dp}
 
-\item{filepath}{file path to the Data Pack importing, must be .xlsx}
+\item{filepath}{file path to the Target Setting Tool importing, must be .xlsx}
 }
 \value{
 new columns in df with source information

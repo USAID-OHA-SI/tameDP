@@ -2,17 +2,17 @@
 % Please edit documentation in R/grab_info.R
 \name{grab_info}
 \alias{grab_info}
-\title{Pull Information from Data Pack "Home" Tab}
+\title{Pull Information from Target Setting Tool "Home" Tab}
 \usage{
 grab_info(filepath, type)
 }
 \arguments{
-\item{filepath}{file path to the Data Pack importing, must be .xlsx}
+\item{filepath}{file path to the Target Setting Tool importing, must be .xlsx}
 
 \item{type}{either "country" or "year"}
 }
 \description{
-This function extract information stored in the Data Pack Home tab to
+This function extract information stored in the Target Setting Tool Home tab to
 identify either the country or what the fiscal year is.
 }
 \examples{

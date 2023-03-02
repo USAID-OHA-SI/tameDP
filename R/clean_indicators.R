@@ -1,6 +1,6 @@
 #' Clean Up Indicators and Disaggregates
 #'
-#' The indicator and disaggregates used in the Data Pack skew towards machine readable
+#' The indicator and disaggregates used in the Target Setting Tool skew towards machine readable
 #' and do not necessary match the MER indicators in the MSD/DATIM. This function
 #' makes adjustments to indicators and disaggregates to make them easier to work
 #' with and more closely align to the MSD. This function also uses

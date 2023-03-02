@@ -7,7 +7,7 @@
 grab_snu1(filepath)
 }
 \arguments{
-\item{filepath}{file path to the Data Pack importing, must be .xlsx}
+\item{filepath}{file path to the Target Setting Tool importing, must be .xlsx}
 }
 \value{
 dataframe from the Prioritization tab

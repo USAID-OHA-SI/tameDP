@@ -2,7 +2,7 @@
 % Please edit documentation in R/reshape_dp.R
 \name{reshape_psnuim}
 \alias{reshape_psnuim}
-\title{Reshape Data Pack Long}
+\title{Reshape Target Setting Tool Long}
 \usage{
 reshape_psnuim(df)
 }

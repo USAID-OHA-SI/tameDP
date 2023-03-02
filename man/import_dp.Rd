@@ -2,17 +2,17 @@
 % Please edit documentation in R/import_dp.R
 \name{import_dp}
 \alias{import_dp}
-\title{Import Tabs from the Data Pack}
+\title{Import Tabs from the Target Setting Tool}
 \usage{
 import_dp(filepath, tab)
 }
 \arguments{
-\item{filepath}{file path to the Data Pack importing, must be .xlsx}
+\item{filepath}{file path to the Target Setting Tool importing, must be .xlsx}
 
 \item{tab}{which sheet to read in}
 }
 \description{
-Initial reading in of tabs of the Data Pack. This function reads in the
+Initial reading in of tabs of the Target Setting Tool. This function reads in the
 necessary tab or tabs, removes unused columns and cleans up the column names
 so there are no duplicates. For the PSNUxIM, it identified columns as as a
 share or value.
