@@ -31,7 +31,9 @@ clean_indicators <- function(df){
         stringr::str_remove_all(glue::glue("{ind_exclude}")) %>%
         dplyr::na_if(""),
       otherdisaggregate = ifelse(!is.na(statushiv) & statushiv == otherdisaggregate, NA, otherdisaggregate),
-      ageasentered = ifelse(is.na(ageasentered), ageasentered, age),
+      ageasentered = dplyr::case_when(ageasentered == "12" ~ "02 - 12 Months",
+                                      ageasentered == "2" ~ "<=02 Months",
+                                      TRUE ~ age),
       statushiv = dplyr::recode(statushiv, "Neg" = "Negative" , "Pos" = "Positive", "Unk" = "Unknown")
     ) %>%
     dplyr::select(-ind_exclude)
