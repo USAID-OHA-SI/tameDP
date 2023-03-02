@@ -7,7 +7,7 @@
 match_col_type(filepath, tab, pattern = "(row_header|target|past)")
 }
 \arguments{
-\item{filepath}{file path to the Data Pack importing, must be .xlsx}
+\item{filepath}{file path to the Target Setting Tool importing, must be .xlsx}
 
 \item{tab}{which sheet to read in}
 

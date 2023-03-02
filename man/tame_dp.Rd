@@ -2,12 +2,12 @@
 % Please edit documentation in R/tame_dp.R
 \name{tame_dp}
 \alias{tame_dp}
-\title{Export Tidy data from Data Pack}
+\title{Export Tidy data from Target Setting Tool}
 \usage{
 tame_dp(filepath, type = "ALL", map_names = FALSE, psnu_lvl = FALSE)
 }
 \arguments{
-\item{filepath}{file path to the Data Pack importing, must be .xlsx}
+\item{filepath}{file path to the Target Setting Tool importing, must be .xlsx}
 
 \item{type}{dataset to extract "PSNUxIM", "PLHIV", or "ALL" (default) or a specific tab}
 
@@ -18,17 +18,17 @@ tame_dp(filepath, type = "ALL", map_names = FALSE, psnu_lvl = FALSE)
 \description{
 tame_dp is the primary function of the tameDP package, reading in the Data
 Pack and munging in into a tidy data frame to make it more usable to
-interact with the data than the way it is stored in the Data Pack. **Given
-the changes to the Data Pack each year, the function only works for the
+interact with the data than the way it is stored in the Target Setting Tool. **Given
+the changes to the Target Setting Tool each year, the function only works for the
 current COP year, COP22.**
 }
 \details{
-The main function of `tameDP` is to bring import a COP Data Pack into R
+The main function of `tameDP` is to bring import a COP Target Setting Tool into R
 and make it tidy. The function aggregates the COP targets up to the
 mechanism level, imports the mechanism information from DATIM, and breaks
 out the data elements to make the dataset more usable.
 
-  - Imports Data Pack as tidy data frame
+  - Imports Target Setting Tool as tidy data frame
   - Breaks up data elements stored in the indicatorCode column into distinct columns
   - Cleans up the HTS variables, separating modalities out of the indicator name
   - Creates a statushiv column
@@ -41,7 +41,7 @@ out the data elements to make the dataset more usable.
 \dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 #DP file path
   path <- "../Downloads/DataPack_Jupiter_20500101.xlsx"
-#read in data pack (straight from sheets, not PSNUxIM tab)
+#read in Target Setting Tool (straight from sheets, not PSNUxIM tab)
   df_dp <- tame_dp(path)
 #read in PLHIV/SUBNAT data
   df_dp <- tame_dp(path, type = "PLHIV")

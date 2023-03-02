@@ -7,10 +7,10 @@
 apply_snu1(df, df_snu1)
 }
 \arguments{
-\item{filepath}{file path to the Data Pack importing, must be .xlsx}
+\item{filepath}{file path to the Target Setting Tool importing, must be .xlsx}
 }
 \value{
-df data pack data frame
+df Target Setting Tool data frame
 
 df_snu1 dataframe from `grab_snu1()`
 }
