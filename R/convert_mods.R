@@ -22,7 +22,8 @@ convert_mods <- function(df){
     dplyr::mutate(modality = dplyr::recode(modality,
                                            "ActiveOther" = "ActiveOtherMod",
                                            "PostANC1" = "Post ANC1",
-                                           "STI" = "STI Clinic"))
+                                           "STI" = "STI Clinic"),
+                  otherdisaggregate = ifelse(standardizeddisaggregate == "Modality/Age/Sex/Result", NA, otherdisaggregate))
   #covert PrEP_CT
   df_mods <- df_mods %>%
     dplyr::mutate(indicator = ifelse(indicator_code == "PrEP_CT.TestResult", "HTS_TST", indicator),
