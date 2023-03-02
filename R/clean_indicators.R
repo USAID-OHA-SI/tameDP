@@ -19,7 +19,7 @@ clean_indicators <- function(df){
     dplyr::mutate(
       indicator_code = indicator_code %>%
         stringr::str_remove("\\.(T_1|T|T2|R)$") %>%
-        stringr::str_replace("HTS.Index", "HTS_Index"),
+        stringr::str_replace("HTS.Index", "HTS_INDEX"),
       indicator = indicator_code %>%
         stringr::str_extract("[^\\.]+") %>%
         dplyr::recode("VL_SUPPRESSED" = "VL_SUPPRESSION_SUBNAT"),
