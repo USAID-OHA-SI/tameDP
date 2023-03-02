@@ -32,7 +32,7 @@ map_disaggs <- function(df){
                                      indicator == "OVC_SERV" ~ "Age/Sex/ProgramStatus",
                                      TRUE ~ standardizeddisaggregate),
                   otherdisaggregate =
-                    dplyr::case_when(indicator == "OVC_SERV" & otherdisaggregate == "Act" ~ "Active",
+                    dplyr::case_when(indicator == "OVC_SERV" & otherdisaggregate == "Active" ~ "Active",
                                      indicator == "OVC_SERV" & otherdisaggregate == "Grad" ~ "Graduated",
                                      indicator == "OVC_SERV" ~ NA_character_,
                                      TRUE ~ otherdisaggregate))
