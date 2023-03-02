@@ -12,27 +12,30 @@ convert_mods <- function(df){
 
   #create modalities
   df_mods <- df %>%
-    dplyr::mutate(modality = dplyr::case_when(stringr::str_detect(indicator_code, "HTS_(TST|RECENT)") ~ indicator_code),
-                  modality = stringr::str_extract(modality, "(?<=\\.)([:alpha:]|\\_|[:digit:])*(?=\\.)"),
-                  modality = stringr::str_replace(modality, "Com", "Mod"),
-                  modality = dplyr::na_if(modality, "KP"))
+    dplyr::mutate(modality =  dplyr::case_when(stringr::str_detect(indicator_code, "HTS_(TST|RECENT)") ~ indicator_code) %>%
+                    stringr::str_extract("(?<=\\.)([:alpha:]|\\_|[:digit:])*(?=\\.)") %>%
+                    stringr::str_replace("Com", "Mod") %>%
+                    dplyr::na_if("KP"))
 
   #align modality naming
   df_mods <- df_mods %>%
     dplyr::mutate(modality = dplyr::recode(modality,
-                                           "EW" = "Emergency Ward",
-                                           "Maln" = "Malnutrition",
-                                           "Other" = "OtherPITC",
-                                           "Peds" = "Pediatric",
-                                           "PMTCT_STAT" = "PMTCT ANC",
+                                           "ActiveOther" = "ActiveOtherMod",
                                            "PostANC1" = "Post ANC1",
                                            "STI" = "STI Clinic"))
+  #covert PrEP_CT
+  df_mods <- df_mods %>%
+    dplyr::mutate(indicator = ifelse(indicator_code == "PrEP_CT.TestResult", "HTST_TST", indicator),
+                  standardizeddisaggregate = ifelse(indicator_code == "PrEP_CT.TestResult", "Modality/Age/Sex/Result",standardizeddisaggregate),
+                  otherdisaggregate = ifelse(indicator_code == "PrEP_CT.TestResult", NA_character_, otherdisaggregate),
+                  modality = ifelse(indicator_code == "PrEP_CT.TestResult", "PrEP", modality),
+                  statushiv = ifelse(indicator_code == "PrEP_CT.TestResult", "Negative", statushiv)
+    )
+
   #create index modalities & rename HTS
   df_index <- df_mods %>%
-    dplyr::filter(indicator %in% c("HTS_INDEX_COM", "HTS_INDEX_FAC")) %>%
-    dplyr::mutate(modality = dplyr::case_when(
-                              indicator == "HTS_INDEX_COM" ~ "IndexMod",
-                              indicator == "HTS_INDEX_FAC" ~ "Index"),
+    dplyr::filter(indicator == "HTS_INDEX") %>%
+    dplyr::mutate(modality = "Index",
                   standardizeddisaggregate = "Modality/Age/Sex/Result",
                   otherdisaggregate = NA_character_,
                   indicator = "HTS_TST")
@@ -42,7 +45,7 @@ convert_mods <- function(df){
     dplyr::filter(indicator %in% c("PMTCT_STAT", "TB_STAT", "VMMC_CIRC"),
                   numeratordenom == "N",
                   statushiv %in% c("Negative", "Positive"),
-                  otherdisaggregate %in% c("NewNeg", "NewPos", NA))
+                  otherdisaggregate %in% c("New", NA))
 
   #convert -> map modality & change rest to match HTS_TST
   df_exmod <- df_exmod %>%
@@ -55,6 +58,7 @@ convert_mods <- function(df){
 
   #binding onto main data frame
   df_adj <- dplyr::bind_rows(df_mods, df_index, df_exmod)
+
 
   return(df_adj)
 }

@@ -6,7 +6,7 @@
 \alias{tameDP-package}
 \title{tameDP: Import targets and PLHIV data from COP Data Pack}
 \description{
-\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
 Import PSNUxIM targets and PLHIV data from COP Data Pack. The purpose is to make the data tidy and more usable than their current structure in the Excel data packs.
 }

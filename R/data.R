@@ -1,9 +1,10 @@
 #' Table of indicators and their disaggs
 #'
 #' A dataset containing the mapping between MER/SUBNAT/IMPATT indicators from
-#' the data pack and their official disaggregates in DATIM for FY22 Targets.
+#' the Target Setting Tool and their official disaggregates in DATIM from FY23/
+#' COP22 targets.
 #'
-#' @format A data frame with 60 rows and 4 variables:
+#' @format A data frame with 57 rows and 4 variables:
 #' \describe{
 #'   \item{indicator}{MER indicator name}
 #'   \item{numeratordenom}{designates whether the indicator type}
@@ -19,7 +20,7 @@
 #' A dataset containing the mapping countries and operating units. Most
 #' countries are also Operating Units, expect for those in regional programs.
 #'
-#' @format A data frame with 51 rows and 2 variables:
+#' @format A data frame with 60 rows and 2 variables:
 #' \describe{
 #'   \item{operatingunit}{PEPFAR Operating Unit (countries + 3 regional programs)}
 #'   \item{country}{PEPFAR Country Name}

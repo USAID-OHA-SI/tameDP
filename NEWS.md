@@ -1,4 +1,11 @@
 # tameDP 5.0.0
+* Transform `PrEP_CT.TestResult` into an HTS testing modality in `convert_mods` [2023-03-02]
+* Limit modalities to match new targeted modalities [2023-03-02]
+* Update stored country list [`ou_ctry_mapping`] with FY23 countries [2023-03-02]
+* Updated standardizeddisaggregate mapping table (`mer_disagg_mapping`) to match FY23 targets [2023-03-02]
+* Make the otherdisaggregate parsing dynamic, rather that explicit [2023-03-02]
+* Adjust HTS.Index to HTS_Index to match other indicators [2023-03-02]
+* Correctly adjust year for Year 2 targets [2023-03-01]
 * Remove references to SNU1, which is no longer included as a column in the Prioritization tab of the Target Setting Tool [2023-03-01]
 * Align tameDP to work for new, COP23 Target Setting Tools [2023-03-01]
 

@@ -123,6 +123,7 @@ apply_fy <- function(df, year){
   df <- df %>%
     dplyr::mutate(fiscal_year =
                     dplyr::case_when(stringr::str_detect(indicator_code, "\\.(T_1)$") ~ year-1,
+                                     stringr::str_detect(indicator_code, "\\.(T2)$") ~ year+1,
                                      stringr::str_detect(indicator_code, "\\.R$") ~ year-2,
                                      TRUE ~ year)
     )
