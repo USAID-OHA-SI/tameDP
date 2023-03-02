@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tameDP</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">5.0.0</span>
       </span>
     </div>
 
@@ -51,7 +51,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -113,7 +113,7 @@
 <p>If you haven’t installed R or <code>tameDP</code>, you should first refer to the <a href="setup.html">Setup vignette</a>.</p>
 <p>Once you have everything installed, you will want to launch R or RStudio (an IDE for R). To use <code>tameDP</code> you will need to load it into your working environment. Enter the line below into your console to initiate the package.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">tameDP</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">tameDP</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="storing-the-file-path">Storing the File Path<a class="anchor" aria-label="anchor" href="#storing-the-file-path"></a>
@@ -121,14 +121,14 @@
 <p>The first thing you will want to do after your load <code>tameDP</code> is to tell R where your Data Pack is located on your computer. In your Windows Explorer (outside of R), navigate to your Data Pack file, and hold the SHIFT key while you right click on the file name. Doing this gives you an additional option to “Copy as path”, which you want to click.</p>
 <p>Now you have the path saved to your clipboard. Open your R up and paste the copied filepath into the Console or a script. Before you hit enter, you will need to store this path as an object in R using the assignment operator <code>&lt;-</code>. This let’s us store information to use at a later point to pass into different functions. We will call the object, <code>dp_filepath</code>. <strong>It is important to note that Windows filepaths have their slash in the wrong direction. You will need to replace all backslashes (“/") in your filepath with forward slashes (”/“).</strong> The command to store the file path object will look like the code below, where you have replaced the file path with the path to your own file.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dp_filepath</span> <span class="op">&lt;-</span> <span class="st">"C:/Users/[username]/Downloads/DataPack_Jupiter_20500101.xlsx"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">dp_filepath</span> <span class="op">&lt;-</span> <span class="st">"C:/Users/[username]/Downloads/DataPack_Jupiter_20500101.xlsx"</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="extracting-targets">Extracting Targets<a class="anchor" aria-label="anchor" href="#extracting-targets"></a>
 </h3>
 <p>There are a few different forms of data we can get out of the Data Pack. The first is extracting all the targets from their relevant tabs. The data here will be at the PSNU level, broken out by the relevant disagregates (e.g. Age/Sex/HIVStatus). In the function below, we have used the filepath we stored above to pass that into the function. <em>This function will take a few seconds or minutes to run depending on the size of your data pack.</em></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df_dp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tame_dp.html">tame_dp</a></span><span class="op">(</span><span class="va">dp_filepath</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">df_dp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tame_dp.html">tame_dp</a></span><span class="op">(</span><span class="va">dp_filepath</span><span class="op">)</span></span></code></pre></div>
 <p>The data that has been extracted from the Data Pack will stored in an objected called <code>df_dp</code>. If you browse the data frame (df) using a function like <code>View(df_dp)</code> or <code>dplyr::glimpse(df_dp)</code>, you’ll see the structure is very similar to a MER Structured Dataset (MSD). You have the following columns: <code>operatingunit, countryname, snu1, psnu, psnuuid, fiscal_year, indicator, standardizeddisaggregate, numeratordenom, ageasentered, sex, modality, statushiv, otherdisaggregate, targets</code>. The output is a bit more manageable to work with than using it in the Data Pack.</p>
 </div>
 <div class="section level3">
@@ -136,58 +136,58 @@
 </h3>
 <p>In the function above, we provided the filepath and the function returned the the data frame of targets from the Data Pack. Function in R often have multiple parameters. Take a minute to look at the help file for <code><a href="../reference/tame_dp.html">tame_dp()</a></code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="op">?</span><span class="va">tame_dp</span></code></pre></div>
+<code class="sourceCode R"><span><span class="op">?</span><span class="va">tame_dp</span></span></code></pre></div>
 <p>We can see that there are different parameter that will allow us to return different things.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/tame_dp.html">tame_dp</a></span><span class="op">(</span><span class="va">filepath</span>, type <span class="op">=</span> <span class="st">"ALL"</span>, map_names <span class="op">=</span> <span class="cn">FALSE</span>, psnu_lvl <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/tame_dp.html">tame_dp</a></span><span class="op">(</span><span class="va">filepath</span>, type <span class="op">=</span> <span class="st">"ALL"</span>, map_names <span class="op">=</span> <span class="cn">FALSE</span>, psnu_lvl <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p>By default, the function is returning a specific <code>type</code> and is <code>FALSE</code> for the other two parameters. If you look in the help file, you will see there are three options for <code>type</code> - “PSNUxIM”, “PLHIV”, “ALL” (the default) or a specific tab. The option for using “ALL” is giving us all the targets from the tabs. But you will see that you could change this option to “PLHIV”. If you do, it will return the PLHIV and NAT_SUBNAT data from the Cascade tab of the Data Pack. The function will be the same structure as above, but we are adding the <code>type</code> parameter in order to return the PLHIV and NAT_SUBNAT data instead of targets.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#return PLHIV data</span>
-<span class="va">df_plhiv</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tame_dp.html">tame_dp</a></span><span class="op">(</span><span class="va">dp_filepath</span>, type <span class="op">=</span> <span class="st">"PLHIV"</span><span class="op">)</span>
-
-<span class="co">#return data from a specific tab - TB</span>
-<span class="va">df_tb</span> <span class="op">&lt;-</span> <span class="fu">tamep_dp</span><span class="op">(</span><span class="va">dp_filepath</span>, type <span class="op">=</span> <span class="st">"TB"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#return PLHIV data</span></span>
+<span><span class="va">df_plhiv</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tame_dp.html">tame_dp</a></span><span class="op">(</span><span class="va">dp_filepath</span>, type <span class="op">=</span> <span class="st">"PLHIV"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#return data from a specific tab - TB</span></span>
+<span><span class="va">df_tb</span> <span class="op">&lt;-</span> <span class="fu">tamep_dp</span><span class="op">(</span><span class="va">dp_filepath</span>, type <span class="op">=</span> <span class="st">"TB"</span><span class="op">)</span></span></code></pre></div>
 <p>The structure of the data frame is the same as when we ran it for targets, but the difference is in the indicators returned (<code>indicator</code>).</p>
 <p>Last but not least we have the option to return <code>type = "PSNUxIM"</code>, which will pull data from the PSNUxIM tab of the Data Pack (or OPU). As the tab name and <code>type</code> indicate, the data will be at the PSNU and mechanism level.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df_dp_mech</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tame_dp.html">tame_dp</a></span><span class="op">(</span><span class="va">dp_filepath</span>, type <span class="op">=</span> <span class="st">"PSNUxIM"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">df_dp_mech</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tame_dp.html">tame_dp</a></span><span class="op">(</span><span class="va">dp_filepath</span>, type <span class="op">=</span> <span class="st">"PSNUxIM"</span><span class="op">)</span></span></code></pre></div>
 <p>This last <code>type</code> option returns the <code>mech_code</code> in the Data Pack with the targets assigned to it. The Data Pack doesn’t include the mechanism name or prime partner so these columns are left blank. To include this info, you can set <code>map_names = TRUE</code> in your function. When you run the function, there will be a pop-up window asking you to type your DATIM user name and password to pull this information down from DATIM. Previously, this had been public information, but after a DHIS2 update, the data became password protected.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df_dp_mech_info</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tame_dp.html">tame_dp</a></span><span class="op">(</span><span class="va">dp_filepath</span>, type <span class="op">=</span> <span class="st">"PSNUxIM"</span>, map_names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">df_dp_mech_info</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tame_dp.html">tame_dp</a></span><span class="op">(</span><span class="va">dp_filepath</span>, type <span class="op">=</span> <span class="st">"PSNUxIM"</span>, map_names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>The final parameter in the function is <code>psnu_lvl</code> which gives the user the option to aggregate the data up to the PSNU level (if working with PSNUxIM). Since <code>tame_dp</code> can pull from the target tabs which are at the PSNU level, this isn’t as useful now, but it can be useful if you are only working with the PSNUxIM tab, such as with an OPU.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df_dp_psnu</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tame_dp.html">tame_dp</a></span><span class="op">(</span><span class="va">dp_filepath</span>, type <span class="op">=</span> <span class="st">"PSNUxIM"</span>, psnu_lvl <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">df_dp_psnu</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tame_dp.html">tame_dp</a></span><span class="op">(</span><span class="va">dp_filepath</span>, type <span class="op">=</span> <span class="st">"PSNUxIM"</span>, psnu_lvl <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="combining-multiple-files">Combining Multiple Files<a class="anchor" aria-label="anchor" href="#combining-multiple-files"></a>
 </h3>
 <p>You can use one of the <code><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map()</a></code> functions from <code>purrr</code> package to read in multiple Data Packs and combine rather than working with one off. This may be more relevant if you’re reviewing a regional operating unit or in Washington. You will get a pop up each time to provide your DATIM credentials if you don’t have stored in the session. We recommend using <code><a href="https://rdrr.io/pkg/askpass/man/askpass.html" class="external-link">askpass::askpass()</a></code> when storing your credentials so you don’t type into your script or into your console (and visual under history).</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#load package</span>
-  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org" class="external-link">purrr</a></span><span class="op">)</span>
-
-<span class="co">#identify all the Data Pack files</span>
-  <span class="va">files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="st">"../Downloads/DataPacks"</span>, full.names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="co">#read in all DPs and combine into one data frame</span>
-  <span class="va">df_combo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_dfr</a></span><span class="op">(</span>.x <span class="op">=</span> <span class="va">files</span>,
-                      .f <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="../reference/tame_dp.html">tame_dp</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">)</span>
-                    
-<span class="co">#store DATIM credentials</span>
-  <span class="va">dtm_usr</span> <span class="op">&lt;-</span> <span class="st">"spower"</span> <span class="co">#replace with your credentials</span>
-  <span class="va">dtm_pwd</span> <span class="op">&lt;-</span> <span class="fu">getPass</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/getPass/man/getPass.html" class="external-link">getPass</a></span><span class="op">(</span><span class="op">)</span> <span class="co">#pop up prompting for your password</span>
-  
-<span class="co">#apply mech_name and primepartner names from DATIM</span>
-  <span class="va">df_combo</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_names.html">get_names</a></span><span class="op">(</span><span class="va">df_combo</span>, datim_user <span class="op">=</span> <span class="va">dtm_usr</span>, datim_password <span class="op">=</span> <span class="va">dtm_pwd</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#load package</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/" class="external-link">purrr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#identify all the Data Pack files</span></span>
+<span>  <span class="va">files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="st">"../Downloads/DataPacks"</span>, full.names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#read in all DPs and combine into one data frame</span></span>
+<span>  <span class="va">df_combo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map_dfr.html" class="external-link">map_dfr</a></span><span class="op">(</span>.x <span class="op">=</span> <span class="va">files</span>,</span>
+<span>                      .f <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="../reference/tame_dp.html">tame_dp</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">)</span></span>
+<span>                    </span>
+<span><span class="co">#store DATIM credentials</span></span>
+<span>  <span class="va">dtm_usr</span> <span class="op">&lt;-</span> <span class="st">"spower"</span> <span class="co">#replace with your credentials</span></span>
+<span>  <span class="va">dtm_pwd</span> <span class="op">&lt;-</span> <span class="fu">getPass</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/getPass/man/getPass.html" class="external-link">getPass</a></span><span class="op">(</span><span class="op">)</span> <span class="co">#pop up prompting for your password</span></span>
+<span>  </span>
+<span><span class="co">#apply mech_name and primepartner names from DATIM</span></span>
+<span>  <span class="va">df_combo</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_names.html">get_names</a></span><span class="op">(</span><span class="va">df_combo</span>, datim_user <span class="op">=</span> <span class="va">dtm_usr</span>, datim_password <span class="op">=</span> <span class="va">dtm_pwd</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="exporting-data">Exporting Data<a class="anchor" aria-label="anchor" href="#exporting-data"></a>
 </h3>
 <p>If you are comfortable working in R, you can use the <code>df_dp</code> object to munge, analyze, or visualize your data. If you would prefer to get the data out to work with in Excel, Tableau, or another program, we can export the data from the data frame it’s stored in to a .csv file using the <code>readr</code> package. We will need to tell R which object we want to export; for this we can use <code>df_dp</code> which we got by running <code>tame_dp(dp_filepath)</code> in the <a href="extracting-targets">Extracting Targets section</a>. You will want to change the file name/location in the chunk below.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html" class="external-link">write_csv</a></span><span class="op">(</span><span class="va">df_dp</span>,
-                 file <span class="op">=</span> <span class="st">"../Downloads/DataPack_Jupiter_tidy.csv"</span>,
-                 na <span class="op">=</span> <span class="st">""</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html" class="external-link">write_csv</a></span><span class="op">(</span><span class="va">df_dp</span>,</span>
+<span>                 file <span class="op">=</span> <span class="st">"../Downloads/DataPack_Jupiter_tidy.csv"</span>,</span>
+<span>                 na <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code></pre></div>
 </div>
   </div>
 
@@ -206,7 +206,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

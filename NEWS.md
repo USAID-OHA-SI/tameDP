@@ -1,4 +1,5 @@
 # tameDP 5.0.0
+* Include a the file name (`source_name`) and process date/time (`source_processed`) in the dataset output [2023-03-02] 
 * Transform `PrEP_CT.TestResult` into an HTS testing modality in `convert_mods` [2023-03-02]
 * Limit modalities to match new targeted modalities [2023-03-02]
 * Update stored country list [`ou_ctry_mapping`] with FY23 countries [2023-03-02]

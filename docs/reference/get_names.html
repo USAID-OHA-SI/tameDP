@@ -23,7 +23,7 @@ advisable to run `get_names()` on the file dataset produced by `tame_dp`."><meta
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tameDP</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">5.0.0</span>
       </span>
     </div>
 
@@ -32,7 +32,7 @@ advisable to run `get_names()` on the file dataset produced by `tame_dp`."><meta
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -81,48 +81,59 @@ advisable to run `get_names()` on the file dataset produced by `tame_dp`.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">get_names</span><span class="op">(</span>
-  <span class="va">df</span>,
-  map_names <span class="op">=</span> <span class="cn">TRUE</span>,
-  psnu_lvl <span class="op">=</span> <span class="cn">FALSE</span>,
-  <span class="va">cntry</span>,
-  <span class="va">datim_user</span>,
-  <span class="va">datim_password</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_names</span><span class="op">(</span></span>
+<span>  <span class="va">df</span>,</span>
+<span>  map_names <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  psnu_lvl <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  <span class="va">cntry</span>,</span>
+<span>  <span class="va">datim_user</span>,</span>
+<span>  <span class="va">datim_password</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>df</dt>
 <dd><p>data frame to add mechanism info to</p></dd>
+
+
 <dt>map_names</dt>
 <dd><p>import names from DATIM (OU, mechanism, partner) associated with mech_code</p></dd>
+
+
 <dt>psnu_lvl</dt>
 <dd><p>aggregate to the PSNU level instead of IM</p></dd>
+
+
 <dt>cntry</dt>
 <dd><p>country, from grab_info() if not connecting to DATIM</p></dd>
+
+
 <dt>datim_user</dt>
 <dd><p>DATIM user name (if not provided, you will be prompted with a pop up)</p></dd>
+
+
 <dt>datim_password</dt>
 <dd><p>DATIM password (if not provided, you will be prompted with a pop up)</p></dd>
+
 </dl></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="co">#load package</span></span>
-<span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org" class="external-link">purrr</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="co">#identify all the Data Pack files</span></span>
-<span class="r-in">  <span class="va">files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="st">"../Downloads/DataPacks"</span>, full.names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"><span class="co">#read in all DPs and combine into one data frame</span></span>
-<span class="r-in">  <span class="va">df_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_dfr</a></span><span class="op">(</span>.x <span class="op">=</span> <span class="va">files</span>,</span>
-<span class="r-in">                    .f <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="tame_dp.html">tame_dp</a></span><span class="op">(</span><span class="va">.x</span>, map_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="co">#apply mech_name and primepartner names from DATIM</span></span>
-<span class="r-in"><span class="co">#you will need to provide your DATIM credentials</span></span>
-<span class="r-in">  <span class="va">datim_user_nm</span> <span class="op">&lt;-</span> <span class="st">"spower"</span> <span class="co">#replace with your username</span></span>
-<span class="r-in">  <span class="va">datim_pwd</span> <span class="op">&lt;-</span> <span class="fu">getPass</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/getPass/man/getPass.html" class="external-link">getPass</a></span><span class="op">(</span><span class="op">)</span> <span class="co">#pop up prompting for your password</span></span>
-<span class="r-in">  <span class="va">df_all</span> <span class="op">&lt;-</span> <span class="fu">get_names</span><span class="op">(</span><span class="va">df_all</span>, datim_user <span class="op">=</span> <span class="va">datim_user_nm</span>, datim_password <span class="op">=</span> <span class="va">datim_pwd</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co">#load package</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/" class="external-link">purrr</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co">#identify all the Data Pack files</span></span></span>
+<span class="r-in"><span>  <span class="va">files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="st">"../Downloads/DataPacks"</span>, full.names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co">#read in all DPs and combine into one data frame</span></span></span>
+<span class="r-in"><span>  <span class="va">df_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map_dfr.html" class="external-link">map_dfr</a></span><span class="op">(</span>.x <span class="op">=</span> <span class="va">files</span>,</span></span>
+<span class="r-in"><span>                    .f <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="tame_dp.html">tame_dp</a></span><span class="op">(</span><span class="va">.x</span>, map_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co">#apply mech_name and primepartner names from DATIM</span></span></span>
+<span class="r-in"><span><span class="co">#you will need to provide your DATIM credentials</span></span></span>
+<span class="r-in"><span>  <span class="va">datim_user_nm</span> <span class="op">&lt;-</span> <span class="st">"spower"</span> <span class="co">#replace with your username</span></span></span>
+<span class="r-in"><span>  <span class="va">datim_pwd</span> <span class="op">&lt;-</span> <span class="fu">getPass</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/getPass/man/getPass.html" class="external-link">getPass</a></span><span class="op">(</span><span class="op">)</span> <span class="co">#pop up prompting for your password</span></span></span>
+<span class="r-in"><span>  <span class="va">df_all</span> <span class="op">&lt;-</span> <span class="fu">get_names</span><span class="op">(</span><span class="va">df_all</span>, datim_user <span class="op">=</span> <span class="va">datim_user_nm</span>, datim_password <span class="op">=</span> <span class="va">datim_pwd</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -137,7 +148,7 @@ advisable to run `get_names()` on the file dataset produced by `tame_dp`.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>
