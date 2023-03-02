@@ -1,4 +1,5 @@
 # tameDP 5.0.0
+* Updated standardizeddisaggregate mapping table (`mer_disagg_mapping`) to match FY23 targets [2023-03-02]
 * Make the otherdisaggregate parsing dynamic, rather that explicit [2023-03-02]
 * Adjust HTS.Index to HTS_Index to match other indicators [2023-03-02]
 * Correctly adjust year for Year 2 targets [2023-03-01]
