@@ -20,26 +20,20 @@ convert_mods <- function(df){
   #align modality naming
   df_mods <- df_mods %>%
     dplyr::mutate(modality = dplyr::recode(modality,
-                                           "EW" = "Emergency Ward",
-                                           "Maln" = "Malnutrition",
-                                           "Other" = "OtherPITC",
-                                           "Peds" = "Pediatric",
-                                           "PMTCT_STAT" = "PMTCT ANC",
+                                           "ActiveOther" = "ActiveOtherMod",
                                            "PostANC1" = "Post ANC1",
                                            "STI" = "STI Clinic"))
   #create index modalities & rename HTS
   df_index <- df_mods %>%
-    dplyr::filter(indicator %in% c("HTS_INDEX_COM", "HTS_INDEX_FAC")) %>%
-    dplyr::mutate(modality = dplyr::case_when(
-                              indicator == "HTS_INDEX_COM" ~ "IndexMod",
-                              indicator == "HTS_INDEX_FAC" ~ "Index"),
+    dplyr::filter(indicator == "HTS_INDEX") %>%
+    dplyr::mutate(modality = "Index",
                   standardizeddisaggregate = "Modality/Age/Sex/Result",
                   otherdisaggregate = NA_character_,
                   indicator = "HTS_TST")
 
   #filter to indicators which feed into HTS_TST
   df_exmod <- df_mods %>%
-    dplyr::filter(indicator %in% c("PMTCT_STAT", "TB_STAT", "VMMC_CIRC"),
+    dplyr::filter(indicator %in% c("PMTCT_STAT", "TB_STAT", "VMMC_CIRC", "PrEP_CT"),
                   numeratordenom == "N",
                   statushiv %in% c("Negative", "Positive"),
                   otherdisaggregate %in% c("NewNeg", "NewPos", NA))
