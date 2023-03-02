@@ -17,21 +17,24 @@ clean_indicators <- function(df){
   #extract disagg info from indicator_code
   df <- df %>%
     dplyr::mutate(
-      indicator_code = stringr::str_remove(indicator_code, "\\.(T_1|T|T2|R)$"),
-      indicator_code = stringr::str_replace(indicator_code, "HTS.Index", "HTS_Index"),
-      indicator = stringr::str_extract(indicator_code, "[^\\.]+") %>% toupper,
-      indicator = dplyr::recode(indicator, "VL_SUPPRESSED" = "VL_SUPPRESSION_SUBNAT"),
+      indicator_code = indicator_code %>%
+        stringr::str_remove("\\.(T_1|T|T2|R)$") %>%
+        stringr::str_replace("HTS.Index", "HTS_Index"),
+      indicator = indicator_code %>%
+        stringr::str_extract("[^\\.]+") %>%
+        dplyr::recode("VL_SUPPRESSED" = "VL_SUPPRESSION_SUBNAT"),
       numeratordenom = ifelse(stringr::str_detect(indicator_code, "\\.D\\.|\\.D$"), "D", "N"),
       statushiv = stringr::str_extract(indicator_code, "(Neg|Pos|Unk)$"),
-      statushiv = dplyr::recode(statushiv, "Neg" = "Negative" , "Pos" = "Positive", "Unk" = "Unknown"),
-      ageasentered = dplyr::case_when(stringr::str_detect(indicator_code, "12") ~ "02 - 12 Months",
-                                      stringr::str_detect(indicator_code, "\\.2") ~ "<=02 Months",
-                                      TRUE ~ age),
-      otherdisaggregate =
-        stringr::str_extract(indicator_code,
-                             "(Act|Grad|Prev|DREAMS|Already|New\\.Neg|New\\.Pos|New|KnownNeg|KnownPos|Known.Pos|Routine|\\.S(?=\\.)|\\.S$|PE)") %>%
-        stringr::str_remove("\\.")
-      )
+      ageasentered = stringr::str_extract(indicator_code, "(?<=\\.)[:digit:]+"),
+      ind_exclude = paste(indicator, "\\.(N|D)\\.|\\.(N|D)$", paste0(statushiv, "$"), ageasentered, "\\.", sep = "|") %>% stringr::str_remove_all("\\|NA"),
+      otherdisaggregate = indicator_code %>%
+        stringr::str_remove_all(glue::glue("{ind_exclude}")) %>%
+        dplyr::na_if(""),
+      otherdisaggregate = ifelse(!is.na(statushiv) & statushiv == otherdisaggregate, NA, otherdisaggregate),
+      ageasentered = ifelse(is.na(ageasentered), ageasentered, age),
+      statushiv = dplyr::recode(statushiv, "Neg" = "Negative" , "Pos" = "Positive", "Unk" = "Unknown")
+    ) %>%
+    dplyr::select(-ind_exclude)
 
   #map on standardizeddisaggregate
   df <- map_disaggs(df)
