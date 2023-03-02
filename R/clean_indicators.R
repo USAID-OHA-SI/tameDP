@@ -18,6 +18,7 @@ clean_indicators <- function(df){
   df <- df %>%
     dplyr::mutate(
       indicator_code = stringr::str_remove(indicator_code, "\\.(T_1|T|T2|R)$"),
+      indicator_code = stringr::str_replace(indicator_code, "HTS.Index", "HTS_Index"),
       indicator = stringr::str_extract(indicator_code, "[^\\.]+") %>% toupper,
       indicator = dplyr::recode(indicator, "VL_SUPPRESSED" = "VL_SUPPRESSION_SUBNAT"),
       numeratordenom = ifelse(stringr::str_detect(indicator_code, "\\.D\\.|\\.D$"), "D", "N"),
