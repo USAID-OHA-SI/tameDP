@@ -45,7 +45,6 @@ reference:
   - '`reshape_psnuim`'
   - '`split_psnu`'
   - '`limit_datatype`'
-  - '`convert_dedups`'
   - '`agg_dp`'
   - '`pivot_results`'
   - '`clean_indicators`'
@@ -71,6 +70,7 @@ reference:
   - '`apply_prioritization`'
   - '`grab_snu1`'
   - '`apply_snu1`'
+  - '`apply_stamps`'
 
 - title: Internal data
   contents:

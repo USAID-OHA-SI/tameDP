@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tameDP</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">5.0.0</span>
       </span>
     </div>
 
@@ -64,26 +64,39 @@
     </div>
 
     <div class="section level2">
+<h2 class="page-header" data-toc-text="5.0.0" id="tamedp-500">tameDP 5.0.0<a class="anchor" aria-label="anchor" href="#tamedp-500"></a></h2>
+<ul><li>Include a the file name (<code>source_name</code>) and process date/time (<code>source_processed</code>) in the dataset output [2023-03-02]</li>
+<li>Transform <code>PrEP_CT.TestResult</code> into an HTS testing modality in <code>convert_mods</code> [2023-03-02]</li>
+<li>Limit modalities to match new targeted modalities [2023-03-02]</li>
+<li>Update stored country list [<code>ou_ctry_mapping</code>] with FY23 countries [2023-03-02]</li>
+<li>Updated standardizeddisaggregate mapping table (<code>mer_disagg_mapping</code>) to match FY23 targets [2023-03-02]</li>
+<li>Make the otherdisaggregate parsing dynamic, rather that explicit [2023-03-02]</li>
+<li>Adjust HTS.Index to HTS_Index to match other indicators [2023-03-02]</li>
+<li>Correctly adjust year for Year 2 targets [2023-03-01]</li>
+<li>Remove references to SNU1, which is no longer included as a column in the Prioritization tab of the Target Setting Tool [2023-03-01]</li>
+<li>Align tameDP to work for new, COP23 Target Setting Tools [2023-03-01]</li>
+</ul></div>
+    <div class="section level2">
 <h2 class="page-header" data-toc-text="4.0.4" id="tamedp-404">tameDP 4.0.4<a class="anchor" aria-label="anchor" href="#tamedp-404"></a></h2>
-<ul><li>Add package check from <code>gagglr</code> (2022-08-15)</li>
-<li>Align column names with the new names in the MSD as of FY22Q2 (2022-05-16)</li>
+<ul><li>Add package check from <code>gagglr</code> [2022-08-15]</li>
+<li>Align column names with the new names in the MSD as of FY22Q2 [2022-05-16]</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="4.0.3" id="tamedp-403">tameDP 4.0.3<a class="anchor" aria-label="anchor" href="#tamedp-403"></a></h2>
-<ul><li>Addressed bug with OVC that duplicated rows due to m:m join with <code>mer_disagg_mapping</code> (2022-04-20)</li>
-<li>Add handling if prioritization tab is missing so <code>tame_dp</code> will work with OPU Data Packs which do not include this tab (2022-04-20)</li>
-<li>Resolves bug with reference to mech_code in <code><a href="../reference/get_names.html">get_names()</a></code> when mech_code may not exist (2022-04-12)</li>
-<li>Calculate deduplication (00000) mechanism rather than importing values from PSNUxIM tab (2022-03-23)</li>
-<li>Add regional operatingunit as country names (<code>ou_ctry_mapping</code>) to resolve issue with Jamaica (2022-03-21; 2022-03-30)</li>
-<li>Replaces old code for <code>get_names</code> to utilize <code><a href="https://usaid-oha-si.github.io/gophr/reference/rename_official.html" class="external-link">gophr::rename_official</a></code> given size complexities introduced in the past few quarters. (2022-03-15)</li>
-<li>Adds <a href="https://usaid-oha-si.github.io/gophr/" class="external-link"><code>gophr</code></a> and <a href="https://usaid-oha-si.github.io/glamr/" class="external-link"><code>glamr</code></a> to the package dependencies (2022-03-15) for use of <code><a href="https://usaid-oha-si.github.io/gophr/reference/rename_official.html" class="external-link">gophr::rename_official</a></code>. (2022-03-15)</li>
-<li>Pulls SNU1 column from Prioritization tab to apply to data frame if using PSNUxIM, which does not have a SNU1 column included in the tab. (2022-03-15)</li>
+<ul><li>Addressed bug with OVC that duplicated rows due to m:m join with <code>mer_disagg_mapping</code> [2022-04-20]</li>
+<li>Add handling if prioritization tab is missing so <code>tame_dp</code> will work with OPU Data Packs which do not include this tab [2022-04-20]</li>
+<li>Resolves bug with reference to mech_code in <code>get_names</code> when mech_code may not exist [2022-04-12]</li>
+<li>Calculate deduplication (00000) mechanism rather than importing values from PSNUxIM tab [2022-03-23]</li>
+<li>Add regional operatingunit as country names, <code>ou_ctry_mapping</code>, to resolve issue with Jamaica [2022-03-21; 2022-03-30]</li>
+<li>Replaces old code for <code>get_names</code> to utilize <code><a href="https://usaid-oha-si.github.io/gophr/reference/rename_official.html" class="external-link">gophr::rename_official</a></code> given size complexities introduced in the past few quarters. [2022-03-15]</li>
+<li>Adds [<code>gophr</code>][<a href="https://usaid-oha-si.github.io/gophr/" class="external-link uri">https://usaid-oha-si.github.io/gophr/</a>] and [<code>glamr</code>][<a href="https://usaid-oha-si.github.io/glamr/" class="external-link uri">https://usaid-oha-si.github.io/glamr/</a>] to the package dependencies [2022-03-15] for use of <code><a href="https://usaid-oha-si.github.io/gophr/reference/rename_official.html" class="external-link">gophr::rename_official</a></code>. [2022-03-15]</li>
+<li>Pulls SNU1 column from Prioritization tab to apply to data frame if using PSNUxIM, which does not have a SNU1 column included in the tab. [2022-03-15]</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="4.0.2" id="tamedp-402">tameDP 4.0.2<a class="anchor" aria-label="anchor" href="#tamedp-402"></a></h2>
-<ul><li>Resolve incorrect disaggregation for TX_PREV, HTS_TST, and HTS_TST_POS (2022-03-10)</li>
-<li>Include historic MER results and targets in the output dataset (2022-02-23)</li>
-<li>Merge prioritizations onto target dataframe (2022-02-23)</li>
+<ul><li>Resolve incorrect disaggregation for TX_PREV, HTS_TST, and HTS_TST_POS [2022-03-10]</li>
+<li>Include historic MER results and targets in the output dataset [2022-02-23]</li>
+<li>Merge prioritizations onto target dataframe [2022-02-23]</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="4.0.1" id="tamedp-401">tameDP 4.0.1<a class="anchor" aria-label="anchor" href="#tamedp-401"></a></h2>
@@ -116,7 +129,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

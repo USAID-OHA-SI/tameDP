@@ -26,14 +26,16 @@ order_vars <- function(df){
                         fiscal_year,
                         dplyr::starts_with("indicator"), standardizeddisaggregate,
                         numeratordenom, ageasentered, sex, modality, statushiv, otherdisaggregate,
-                        cumulative, targets)
+                        cumulative, targets,
+                        dplyr::starts_with("source"))
   } else {
     df <- dplyr::select(df,
                         operatingunit, country, psnu, psnuuid, snuprioritization,
                         fiscal_year,
                         dplyr::starts_with("indicator"), standardizeddisaggregate,
                         numeratordenom, ageasentered, sex, modality, statushiv, otherdisaggregate,
-                        cumulative, targets)
+                        cumulative, targets,
+                        dplyr::starts_with("source"))
   }
 
   return(df)

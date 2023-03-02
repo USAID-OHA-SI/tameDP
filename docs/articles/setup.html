@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tameDP</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">5.0.0</span>
       </span>
     </div>
 
@@ -51,7 +51,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -122,16 +122,16 @@
 </h3>
 <p>With proprietary programs like Excel, Tableau, or Stata, all of your functions are built into the software. With open-source packages on the other hand, we need to load different libraries or packages that are written by other organization or individuals users. We wrote the package <code>tameDP</code> and it relies on the work others have done as well, so we install those packages first to make things easy. To install a package from CRAN, we use the command <code><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages()</a></code>. Copy and paste the code chunk below to install all the required packages.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"getPass"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"getPass"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="installing-tamedp">Installing tameDP<a class="anchor" aria-label="anchor" href="#installing-tamedp"></a>
 </h3>
 <p>Our package is hosted on a site called GitHub rather than CRAN, R’s central software repository. As a result, we will need to utilize a function from the <code>remotes</code> package to install <code>tameDP</code> rather than repeating the <code><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages()</a></code>. Copy and paste the line below to install <code>tameDP</code> from GitHub. <em>If your console asks you to install updates, you can skip this by simply hitting return/enter.</em></p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"USAID-OHA-SI/tameDP"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"USAID-OHA-SI/tameDP"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>With all the software and packages installed, you’re ready to start using <code>tameDP</code>.</p>
 </div>
   </div>
@@ -151,7 +151,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

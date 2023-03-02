@@ -205,3 +205,30 @@ apply_snu1 <- function(df, df_snu1){
   return(df)
 }
 
+
+#' Apply Source File Name and Date Stamp
+#'
+#' This function applies metadata from the source file to the tidied dataset
+#' including the file name, last modified date, and
+#'
+#' @param df data frame read in and reshaped by import_dp and reshape_dp
+#' @param filepath file path to the Data Pack importing, must be .xlsx
+#'
+#' @return new columns in df with source information
+#' @export
+
+apply_stamps <- function(df, filepath){
+
+  src_name <- basename(filepath)
+  src_processed <- Sys.time()
+  # src_modified <- file.info(filepath)$mtime #this resets with download
+
+  df %>%
+    dplyr::mutate(source_name = src_name,
+                  # source_lastmodified = src_modified,
+                  source_processed = src_processed)
+
+}
+
+
+
