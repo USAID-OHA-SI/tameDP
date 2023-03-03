@@ -3,7 +3,8 @@ Title: Import targets and PLHIV data from COP Data Pack
 Version: 5.0.0
 Authors@R: c(
     person("Aaron", "Chafetz", ,"achafetz@usaid.gov", c("aut", "cre")),
-    person("Josh", "Davis", ,"jodavis@usaid.gov", c("aut"))
+    person("Josh", "Davis", ,"jodavis@usaid.gov", c("aut")),
+    person("Baboyma", "Kagniniwa", ,"bkagniniwa@usaid.gov", c("aut"))
     )
 Description: Import PSNUxIM targets and PLHIV data from COP Data Pack. The 
    purpose is to make the data tidy and more usable than their current structure

@@ -231,4 +231,97 @@ apply_stamps <- function(df, filepath){
 }
 
 
+#' @title Generate Testing data set for indicator codes
+#'
+#' @param filepath Excel based Target Setting Tool
+#' @param dtype    Data set type, default is set fo indicator codes
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#'
+#' file_tast <- "<cntry-file-path>.xlsx"
+#'
+#' file_tast %>%
+#'  create_datasets(type = "indicators") %>%
+#'  clean_indicators()
+#'
+#' file_tast %>%
+#'  create_datasets(type = "orgunits") %>%
+#'  split_psnu()
+#' }
+#'
+create_datasets <- function(filepath, dtype = c("indicators", "orgunits")) {
+
+  t <- match.arg(type)
+
+  src_shts <- c("Cascade",
+                "PMTCT",
+                "EID",
+                "TB",
+                "VMMC",
+                "KP",
+                "HTS",
+                "CXCA",
+                "HTS_RECENT",
+                "TX_TB_PREV",
+                "PP",
+                "OVC",
+                "GEND",
+                "AGYW",
+                "PrEP",
+                "KP_MAT")
+
+  # TaST Data
+  df_ref <- readxl::excel_sheets(filepath) %>%
+    intersect(src_shts) %>%
+    purrr::map_dfr(function(.sht) {
+
+      ctypes <- match_col_type(filepath = filepath,
+                               tab = .sht,
+                               pattern = "(row_header|target|past)")
+
+      cnames <- readxl::read_excel(
+        path = filepath,
+        sheet = .sht,
+        skip = 13,
+        col_types = "text",
+        .name_repair = "minimal")
+
+      cnames <- cnames[, which(ctypes == TRUE)]
+
+      cnames <- cnames %>%
+        tidyr::pivot_longer(dplyr::matches("(T|T_1|T2|R)$"),
+                            names_to = "indicator_code",
+                            values_drop_na = TRUE) %>%
+        dplyr::rename_all(tolower) %>%
+        dplyr::mutate(source = .sht) %>%
+        dplyr::relocate(source, .before = 1)
+    })
+
+  # Refrence datasets
+  if (t == "indicators") {
+
+    df_ref %>%
+      select(source, indicator_code, age, sex, keypop) %>%
+      mutate(indicator_code_ref = indicator_code,
+             keypop_ref = keypop) %>%
+      relocate(indicator_code_ref, .after = source) %>%
+      relocate(keypop_ref, .after = indicator_code_ref) %>%
+      distinct_all()
+
+  } else if (t == "orgunits") {
+
+    df_ref %>%
+      dplyr::select(psnu_ref = psnu) %>%
+      dplyr::mutate(psnu = psnu_ref) %>%
+      dplyr::distinct_all()
+
+  } else {
+    usethis::ui_stop("ERROR - Invalid value for parameter type")
+  }
+}
+
 
