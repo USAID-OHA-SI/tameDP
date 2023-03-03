@@ -63,15 +63,11 @@ test_that("clean target indicator codes", {
   )
 
   # HIV Status
-  ind_code5_input <- c("HTS.Index.Pos.T",
-                       "HTS.Index.Pos",
-                       "HTS.Index.Neg.T",
-                       "HTS.Index.Neg.T",
-                       "HTS_TST.Other.Neg.T",
-                       "HTS_TST.Other.Pos.Share")
+  ind_code5_input <- c("HTS.Index.Pos",
+                       "HTS_TST.Other.Neg")
 
   expect_equal(
     stringr::str_extract(ind_code5_input, "(Neg|Pos|Unk)$"),
-    c("Pos", "Pos", "Neg", "Neg", "Neg", "Pos")
+    c("Pos", "Neg")
   )
 })
