@@ -11,14 +11,11 @@ test_that("correct tabs are returned for import", {
   expect_error(return_tab("wrong") %>%
                   intersect(dp_tabs))
 
-  expect_equal(return_tab("PSNUxIM") %>%
-                 intersect(dp_tabs),
+  expect_equal(intersect(return_tab("PSNUxIM"), dp_tabs),
                "PSNUxIM")
-  expect_equal(return_tab("PLHIV") %>%
-                 intersect(dp_tabs),
+  expect_equal(intersect(return_tab("PLHIV"), dp_tabs),
                "Cascade")
-  expect_equal(return_tab("ALL") %>%
-                 intersect(dp_tabs),
+  expect_equal(intersect(return_tab("ALL"), dp_tabs),
                c(#"Home",
                  #"Summary",
                  #"Spectrum",
