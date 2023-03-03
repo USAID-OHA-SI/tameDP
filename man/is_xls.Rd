@@ -7,7 +7,7 @@
 is_xls(filepath)
 }
 \arguments{
-\item{filepath}{filepath of COP Data Pack}
+\item{filepath}{filepath of COP Target Setting Tool}
 }
 \description{
 Check if the filepath is .xls or .xlsx

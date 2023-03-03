@@ -2,15 +2,15 @@
 % Please edit documentation in R/utilities.R
 \name{is_file}
 \alias{is_file}
-\title{Is the filepath correct for the Data Pack}
+\title{Is the filepath correct for the Target Setting Tool}
 \usage{
 is_file(filepath)
 }
 \arguments{
-\item{filepath}{filepath of Data Pack}
+\item{filepath}{filepath of Target Setting Tool}
 }
 \description{
-Is the filepath correct for the Data Pack
+Is the filepath correct for the Target Setting Tool
 }
 \seealso{
 Other validation: 

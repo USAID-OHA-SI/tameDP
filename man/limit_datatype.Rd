@@ -15,7 +15,7 @@ limit_datatype(df, type)
 data frame limited to either MER or SUBNAT data
 }
 \description{
-This function limits the output of the Data Pack data to either MER or
+This function limits the output of the Target Setting Tool data to either MER or
 SUBNAT (e.g. PLHIV, TX_CURR_SUBNAT) data. It will not be run if processing
 the PSNUxIM tab since that does not include any SUBNAT data.
 }

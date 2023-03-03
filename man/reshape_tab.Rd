@@ -2,7 +2,7 @@
 % Please edit documentation in R/reshape_dp.R
 \name{reshape_tab}
 \alias{reshape_tab}
-\title{Reshape Data Pack Tab Long}
+\title{Reshape Target Setting Tool Tab Long}
 \usage{
 reshape_tab(df)
 }

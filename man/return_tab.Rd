@@ -14,5 +14,5 @@ tabs to import
 }
 \description{
 Identify which tab to import based on what you want to use - PSNUxIM, PLHIV,
-or ALL. You can also provide a specific tab name that matches the Data Pack
+or ALL. You can also provide a specific tab name that matches the Target Setting Tool
 }

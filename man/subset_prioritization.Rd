@@ -13,7 +13,7 @@ subset_prioritization(df)
 limits to correct columns in data frame from DP tab
 }
 \description{
-Subsets the columns of the massive Data Pack tab down to only those that are
+Subsets the columns of the massive Target Setting Tool tab down to only those that are
 needed. This depends on the type of tab that is being imported. The
 Prioritization tab keeps the PSNU and prioritization column.
 }

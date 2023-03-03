@@ -11,5 +11,5 @@ map_disaggs(df)
 }
 \description{
 To align with DATIM datasets, the standardized disaggregates
-for each indicators will be aligned to the Data Pack for FY22 Targets.
+for each indicators will be aligned to the Target Setting Tool for FY22 Targets.
 }

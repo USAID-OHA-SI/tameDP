@@ -1,11 +1,11 @@
-#' Import Tabs from the Data Pack
+#' Import Tabs from the Target Setting Tool
 #'
-#' Initial reading in of tabs of the Data Pack. This function reads in the
+#' Initial reading in of tabs of the Target Setting Tool. This function reads in the
 #' necessary tab or tabs, removes unused columns and cleans up the column names
 #' so there are no duplicates. For the PSNUxIM, it identified columns as as a
 #' share or value.
 #'
-#' @param filepath file path to the Data Pack importing, must be .xlsx
+#' @param filepath file path to the Target Setting Tool importing, must be .xlsx
 #' @param tab which sheet to read in
 #'
 #' @export
@@ -27,7 +27,7 @@ import_dp <- function(filepath, tab){
   if(!is_sheet(filepath, tab))
     stop(paste("No sheet called", tab, "found."))
 
-  #import Data Pack tab
+  #import Target Setting Tool tab
   suppressMessages(
   df <-
     readxl::read_excel(filepath,
@@ -57,7 +57,7 @@ import_dp <- function(filepath, tab){
 #'  are meta data (row_header), targets, and past (prior year result/targets for
 #'  reference).
 #'
-#' @param filepath file path to the Data Pack importing, must be .xlsx
+#' @param filepath file path to the Target Setting Tool importing, must be .xlsx
 #' @param tab which sheet to read in
 #' @param pattern type of column, "assumption", "calculation", "past",
 #'  "result", "reference", "row_header", "target"; default = "(row_header|target|past)"
@@ -86,7 +86,7 @@ match_col_type <- function(filepath, tab, pattern = "(row_header|target|past)"){
 
 #' Subset PSNUxIM Tab
 #'
-#' Subsets the columns of the massive Data Pack tab down to only those that are
+#' Subsets the columns of the massive Target Setting Tool tab down to only those that are
 #' needed. This depends on the type of tab that is being imported. PSNUxIM keep
 #' all meta data and taget share/value columns.
 #'
@@ -108,7 +108,7 @@ subset_psnuxim <- function(df){
 
 #' Subset Prioritization Tab
 #'
-#' Subsets the columns of the massive Data Pack tab down to only those that are
+#' Subsets the columns of the massive Target Setting Tool tab down to only those that are
 #' needed. This depends on the type of tab that is being imported. The
 #' Prioritization tab keeps the PSNU and prioritization column.
 #'
@@ -128,9 +128,9 @@ subset_prioritization <- function(df){
 
 #' Subset Standard Tabs
 #'
-#' Subsets the columns of the massive Data Pack tab down to only those that are
+#' Subsets the columns of the massive Target Setting Tool tab down to only those that are
 #' needed. This depends on the type of tab that is being imported. Standard,
-#' non-PSNUxIM/Prioritization) keep column types specified in the Data Pack as
+#' non-PSNUxIM/Prioritization) keep column types specified in the Target Setting Tool as
 #' row_header, target, or past.
 #'
 #' @param df data frame after import
