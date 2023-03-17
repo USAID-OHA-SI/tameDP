@@ -16,7 +16,7 @@
 tame_plhiv <- function(filepath){
 
   #depricate
-  lifecycle::deprecate_warn("3.2.0", "tame_plhiv()", "tame_subnat()")
+  lifecycle::deprecate_warn("5.1.0", "tame_plhiv()", "tame_subnat()")
 
   df_subnat <- tame_dp(filepath, type = "SUBNAT")
 
