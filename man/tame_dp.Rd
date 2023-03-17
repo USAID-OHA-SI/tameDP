@@ -9,7 +9,7 @@ tame_dp(filepath, type = "ALL", map_names = FALSE, psnu_lvl = FALSE)
 \arguments{
 \item{filepath}{file path to the Target Setting Tool importing, must be .xlsx}
 
-\item{type}{dataset to extract "PSNUxIM", "PLHIV", or "ALL" (default) or a specific tab}
+\item{type}{dataset to extract "PSNUxIM", "SUBNAT", or "ALL" [default] or a specific tab}
 
 \item{map_names}{import names from DATIM (OU, mechanism, partner) associated with mech_code}
 
@@ -44,7 +44,7 @@ out the data elements to make the dataset more usable.
 #read in Target Setting Tool (straight from sheets, not PSNUxIM tab)
   df_dp <- tame_dp(path)
 #read in PLHIV/SUBNAT data
-  df_dp <- tame_dp(path, type = "PLHIV")
+  df_dp <- tame_dp(path, type = "SUBNAT")
 #read in PSNUxIM data
   df_dp <- tame_dp(path, type = "PSNUxIM")
 #apply mechanism names
@@ -59,6 +59,7 @@ out the data elements to make the dataset more usable.
 }
 \seealso{
 Other primary: 
-\code{\link{tame_plhiv}()}
+\code{\link{tame_plhiv}()},
+\code{\link{tame_subnat}()}
 }
 \concept{primary}

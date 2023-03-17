@@ -26,7 +26,7 @@ mer_disagg_mapping <-
                  "HIV_PREV",             "N",                                   "Age/Sex",
                 "HTS_INDEX",             "N",                            "Age/Sex/Result",
                "HTS_RECENT",             "N",                          "KeyPop/HIVStatus",
-               "HTS_RECENT",             "N",           "Modality/Age/Sex/RTRI/HIVStatus",
+               "HTS_RECENT",             "N",                         "Age/Sex/HIVStatus",
                  "HTS_SELF",             "N",                                   "Age/Sex",
                  "HTS_SELF",             "N",                                    "KeyPop",
                   "HTS_TST",             "N",                             "KeyPop/Result",
@@ -36,10 +36,11 @@ mer_disagg_mapping <-
                    "KP_MAT",             "N",                                       "Sex",
             "KP_MAT_SUBNAT",             "N",                                       "Sex",
                   "KP_PREV",             "N",                                    "KeyPop",
-              "OVC_HIVSTAT",             "N",                           "Total Numerator",
+    "NEW_INFECTIONS_SUBNAT",             "N",                         "Age/Sex/HIVStatus",
+              "OVC_HIVSTAT",             "N",                                 "No Disagg",
                  "OVC_SERV",             "N",                               "Placeholder",
                     "PLHIV",             "N",                         "Age/Sex/HIVStatus",
-                "PMTCT_ART",             "N",          "Age/NewExistingArt/Sex/HIVStatus",
+                "PMTCT_ART",             "N",          "Age/Sex/NewExistingArt/HIVStatus",
          "PMTCT_ART_SUBNAT",             "D",                         "Age/Sex/HIVStatus",
          "PMTCT_ART_SUBNAT",             "N",          "Age/Sex/HIVStatus/NewExistingArt",
                 "PMTCT_EID",             "N",                                       "Age",
@@ -50,16 +51,17 @@ mer_disagg_mapping <-
                   "POP_EST",             "N",                                   "Age/Sex",
                   "PP_PREV",             "N",                                   "Age/Sex",
                   "PrEP_CT",             "N",                                   "Age/Sex",
+       "PrEP_CT.TestResult",             "N",                         "Age/Sex/HIVStatus",
                   "PrEP_CT",             "N",                                    "KeyPop",
                 "PrEP_CURR",             "N",                                   "Age/Sex",
                 "PrEP_CURR",             "N",                                    "KeyPop",
                  "PrEP_NEW",             "N",                                   "Age/Sex",
                  "PrEP_NEW",             "N",                                    "KeyPop",
                    "TB_ART",             "N",          "Age/Sex/NewExistingArt/HIVStatus",
-                  "TB_PREV",             "D",              "Age/NewExistingArt/HIVStatus",
-                  "TB_PREV",             "N",              "Age/NewExistingArt/HIVStatus",
-                  "TB_STAT",             "D",                        "Age Aggregated/Sex",
-                  "TB_STAT",             "N",                    "Age/Sex/KnownNewPosNeg",
+                  "TB_PREV",             "D",          "Age/Sex/NewExistingArt/HIVStatus",
+                  "TB_PREV",             "N",          "Age/Sex/NewExistingArt/HIVStatus",
+                  "TB_STAT",             "D",                                   "Age/Sex",
+                  "TB_STAT",             "N",                    "Age/Sex/KnownNewResult",
                   "TX_CURR",             "N",                         "Age/Sex/HIVStatus",
                   "TX_CURR",             "N",                          "KeyPop/HIVStatus",
            "TX_CURR_SUBNAT",             "N",                         "Age/Sex/HIVStatus",
@@ -76,9 +78,6 @@ mer_disagg_mapping <-
          "VMMC_CIRC_SUBNAT",             "N",                                   "Age/Sex",
     "VMMC_TOTALCIRC_SUBNAT",             "N",                                   "Age/Sex"
     )
-
-
-
 
 mer_disagg_mapping <- mer_disagg_mapping %>%
   dplyr::mutate(kp_disagg = stringr::str_detect(standardizeddisaggregate, "KeyPop"))

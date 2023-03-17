@@ -70,9 +70,9 @@ tame_dp(filepath, type = "ALL", map_names = FALSE, psnu_lvl = FALSE)
 
 By default, the function is returning a specific `type` and is `FALSE` for the other two parameters. If you look in the help file, you will see there are three options for `type` - "PSNUxIM", "PLHIV", "ALL" (the default) or a specific tab. The option for using "ALL" is giving us all the targets from the tabs. But you will see that you could change this option to "PLHIV". If you do, it will return the PLHIV and NAT_SUBNAT data from the Cascade tab of the Target Setting Tool. The function will be the same structure as above, but we are adding the `type` parameter in order to return the PLHIV and NAT_SUBNAT data instead of targets.
 
-```{r return PLHIV}
-#return PLHIV data
-df_plhiv <- tame_dp(dp_filepath, type = "PLHIV")
+```{r return SUBNAT}
+#return IMPATT/SUBNAT data
+df_subnat <- tame_subnat(dp_filepath)
 
 #return data from a specific tab - TB
 df_tb <- tamep_dp(dp_filepath, type = "TB")

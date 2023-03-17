@@ -24,14 +24,6 @@ convert_mods <- function(df){
                                            "PostANC1" = "Post ANC1",
                                            "STI" = "STI Clinic"),
                   otherdisaggregate = ifelse(standardizeddisaggregate == "Modality/Age/Sex/Result", NA, otherdisaggregate))
-  #covert PrEP_CT
-  df_mods <- df_mods %>%
-    dplyr::mutate(indicator = ifelse(indicator_code == "PrEP_CT.TestResult", "HTS_TST", indicator),
-                  standardizeddisaggregate = ifelse(indicator_code == "PrEP_CT.TestResult", "Modality/Age/Sex/Result",standardizeddisaggregate),
-                  otherdisaggregate = ifelse(indicator_code == "PrEP_CT.TestResult", NA_character_, otherdisaggregate),
-                  modality = ifelse(indicator_code == "PrEP_CT.TestResult", "PrEP", modality),
-                  statushiv = ifelse(indicator_code == "PrEP_CT.TestResult", "Negative", statushiv)
-    )
 
   #create index modalities & rename HTS
   df_index <- df_mods %>%
@@ -43,7 +35,7 @@ convert_mods <- function(df){
 
   #filter to indicators which feed into HTS_TST
   df_exmod <- df_mods %>%
-    dplyr::filter(indicator %in% c("PMTCT_STAT", "TB_STAT", "VMMC_CIRC"),
+    dplyr::filter(indicator %in% c("PMTCT_STAT", "TB_STAT", "VMMC_CIRC", "PrEP_CT"),
                   numeratordenom == "N",
                   statushiv %in% c("Negative", "Positive"),
                   otherdisaggregate %in% c("New", NA))
@@ -52,7 +44,8 @@ convert_mods <- function(df){
   df_exmod <- df_exmod %>%
     dplyr::mutate(modality = dplyr::case_when(indicator == "VMMC_CIRC"  ~ "VMMC",
                                               indicator == "TB_STAT"    ~ "TBClinic",
-                                              indicator == "PMTCT_STAT" ~ "PMTCT ANC"),
+                                              indicator == "PMTCT_STAT" ~ "PMTCT ANC",
+                                              indicator == "PrEP_CT" ~ "PrEP_CT"),
                   indicator = "HTS_TST",
                   standardizeddisaggregate = "Modality/Age/Sex/Result",
                   otherdisaggregate = as.character(NA))

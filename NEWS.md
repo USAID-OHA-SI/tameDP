@@ -1,3 +1,9 @@
+# tameDP 5.1.0
+* Break out the OVC Program Status Care Giver (18+) [2023-03-17]
+* Add additional disagg for PrEP_CT's Test Results [2023-03-17] 
+* Update mapping tab, `mer_disagg_mapping` to adopt some of the new disagg naming conventions changing in FY24 based on `pepfar-datim/datapackr` output [2023-03-17] 
+* Create `tame_subnat` to replace `tame_plhiv` (soft deprecated) [2023-03-17] 
+
 # tameDP 5.0.0
 * Include a the file name (`source_name`) and process date/time (`source_processed`) in the dataset output [2023-03-02] 
 * Transform `PrEP_CT.TestResult` into an HTS testing modality in `convert_mods` [2023-03-02]

@@ -134,6 +134,8 @@ subset_prioritization <- function(df){
 #' row_header, target, or past.
 #'
 #' @param df data frame after import
+#' @param filepath file path to the Target Setting Tool importing, must be .xlsx
+#' @param tab sheet being imported
 #'
 #' @family subset
 #' @return limits to correct columns in data frame from DP tab

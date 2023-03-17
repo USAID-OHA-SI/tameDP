@@ -12,12 +12,12 @@
 
 limit_datatype <- function(df, type){
 
-  if("data_type" %in% names(df) && type == "PLHIV"){
+  if("data_type" %in% names(df) && type %in% c("PLHIV", "SUBNAT")){
     #limit data to SUBNAT or IMPATT
     df <- dplyr::filter(df, data_type %in% c("SUBNAT", "IMPATT"))
   }
 
-  if("data_type" %in% names(df) && type != "PLHIV"){
+  if("data_type" %in% names(df) && !type %in% c("PLHIV", "SUBNAT")){
     #limit data to MER
     df <- dplyr::filter(df, data_type == "MER")
   }

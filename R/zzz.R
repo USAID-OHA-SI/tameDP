@@ -26,6 +26,7 @@
       "fy2020_targets",
       "IMPATT.PRIORITY_SNU.T",
       "implementingmechanismname",
+      "ind_exclude",
       "indicator",
       "indicator_code",
       "indicatorcode",

@@ -23,8 +23,10 @@ clean_indicators <- function(df){
       indicator = indicator_code %>%
         stringr::str_extract("[^\\.]+") %>%
         dplyr::recode("VL_SUPPRESSED" = "VL_SUPPRESSION_SUBNAT"),
+      indicator = ifelse(indicator_code == "PrEP_CT.TestResult", "PrEP_CT.TestResult", indicator),
       numeratordenom = ifelse(stringr::str_detect(indicator_code, "\\.D\\.|\\.D$"), "D", "N"),
       statushiv = stringr::str_extract(indicator_code, "(Neg|Pos|Unk)$"),
+      statushiv = ifelse(indicator == "PrEP_CT.TestResult", "Neg", statushiv),
       ageasentered = stringr::str_extract(indicator_code, "(?<=\\.)[:digit:]+"),
       ind_exclude = paste(indicator, "\\.(N|D)\\.|\\.(N|D)$", paste0(statushiv, "$"), ageasentered, "\\.", sep = "|") %>% stringr::str_remove_all("\\|NA"),
       otherdisaggregate = indicator_code %>%

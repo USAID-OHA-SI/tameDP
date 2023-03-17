@@ -8,6 +8,10 @@ subset_standard(df, filepath, tab)
 }
 \arguments{
 \item{df}{data frame after import}
+
+\item{filepath}{file path to the Target Setting Tool importing, must be .xlsx}
+
+\item{tab}{sheet being imported}
 }
 \value{
 limits to correct columns in data frame from DP tab

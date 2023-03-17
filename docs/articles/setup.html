@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tameDP</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">5.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">5.1.0</span>
       </span>
     </div>
 
@@ -105,22 +105,49 @@
 <div class="section level3">
 <h3 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h3>
-<p>This vignette provides an overview for getting started working with <code>tameDP</code>. The first time you setup R or new packages, you can run into some hurdles, but one you have things setup, everything should be smooth sailing.</p>
+<p>This vignette provides an overview for getting started working with
+<code>tameDP</code>. The first time you setup R or new packages, you can
+run into some hurdles, but one you have things setup, everything should
+be smooth sailing.</p>
 </div>
 <div class="section level3">
 <h3 id="installing-r">Installing R<a class="anchor" aria-label="anchor" href="#installing-r"></a>
 </h3>
-<p>In order to use <code>tameDP</code>, you will need to install R, an open-source statistics package. You can do this on your USAID GFE, by going to Start &gt; Microsoft Endpoint manager &gt; Software Center. Once there, you can select the Application called “R for Windows” and click “Install”. If working on a personal machine, you can install R from <a href="https://cran.r-project.org/" class="external-link">CRAN</a>. Select “Download R for Windows” and then “base” and follow the instructions for installing that pop up when you launch the .exe file from your downloads.</p>
+<p>In order to use <code>tameDP</code>, you will need to install R, an
+open-source statistics package. You can do this on your USAID GFE, by
+going to Start &gt; Microsoft Endpoint manager &gt; Software Center.
+Once there, you can select the Application called “R for Windows” and
+click “Install”. If working on a personal machine, you can install R
+from <a href="https://cran.r-project.org/" class="external-link">CRAN</a>. Select “Download R
+for Windows” and then “base” and follow the instructions for installing
+that pop up when you launch the .exe file from your downloads.</p>
 </div>
 <div class="section level3">
 <h3 id="installing-rstudio-optional">Installing RStudio (OPTIONAL)<a class="anchor" aria-label="anchor" href="#installing-rstudio-optional"></a>
 </h3>
-<p>R is the underlying software we’re using, but the user interface leaves much to be desired. RStudio used to be available in Software Center as well, but M/CIO removed around October 2021. <strong>You do not need RStudio to run <code>tameDP</code></strong>, but if desired, you can submit a Help Desk ticket with M/CIO and they will install it for you. If working on a personal machine, you can install RStudio from <a href="https://www.rstudio.com/products/rstudio/download/" class="external-link">this site</a>. Select “Download” for the free version and follow the instructions for installing that pop up when you launch the .exe file from your downloads.</p>
+<p>R is the underlying software we’re using, but the user interface
+leaves much to be desired. RStudio used to be available in Software
+Center as well, but M/CIO removed around October 2021. <strong>You do
+not need RStudio to run <code>tameDP</code></strong>, but if desired,
+you can submit a Help Desk ticket with M/CIO and they will install it
+for you. If working on a personal machine, you can install RStudio from
+<a href="https://www.rstudio.com/products/rstudio/download/" class="external-link">this
+site</a>. Select “Download” for the free version and follow the
+instructions for installing that pop up when you launch the .exe file
+from your downloads.</p>
 </div>
 <div class="section level3">
 <h3 id="installing-package-dependencies">Installing Package Dependencies<a class="anchor" aria-label="anchor" href="#installing-package-dependencies"></a>
 </h3>
-<p>With proprietary programs like Excel, Tableau, or Stata, all of your functions are built into the software. With open-source packages on the other hand, we need to load different libraries or packages that are written by other organization or individuals users. We wrote the package <code>tameDP</code> and it relies on the work others have done as well, so we install those packages first to make things easy. To install a package from CRAN, we use the command <code><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages()</a></code>. Copy and paste the code chunk below to install all the required packages.</p>
+<p>With proprietary programs like Excel, Tableau, or Stata, all of your
+functions are built into the software. With open-source packages on the
+other hand, we need to load different libraries or packages that are
+written by other organization or individuals users. We wrote the package
+<code>tameDP</code> and it relies on the work others have done as well,
+so we install those packages first to make things easy. To install a
+package from CRAN, we use the command <code><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages()</a></code>.
+Copy and paste the code chunk below to install all the required
+packages.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
@@ -129,10 +156,18 @@
 <div class="section level3">
 <h3 id="installing-tamedp">Installing tameDP<a class="anchor" aria-label="anchor" href="#installing-tamedp"></a>
 </h3>
-<p>Our package is hosted on a site called GitHub rather than CRAN, R’s central software repository. As a result, we will need to utilize a function from the <code>remotes</code> package to install <code>tameDP</code> rather than repeating the <code><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages()</a></code>. Copy and paste the line below to install <code>tameDP</code> from GitHub. <em>If your console asks you to install updates, you can skip this by simply hitting return/enter.</em></p>
+<p>Our package is hosted on a site called GitHub rather than CRAN, R’s
+central software repository. As a result, we will need to utilize a
+function from the <code>remotes</code> package to install
+<code>tameDP</code> rather than repeating the
+<code><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages()</a></code>. Copy and paste the line below to
+install <code>tameDP</code> from GitHub. <em>If your console asks you to
+install updates, you can skip this by simply hitting
+return/enter.</em></p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"USAID-OHA-SI/tameDP"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p>With all the software and packages installed, you’re ready to start using <code>tameDP</code>.</p>
+<p>With all the software and packages installed, you’re ready to start
+using <code>tameDP</code>.</p>
 </div>
   </div>
 

@@ -48,7 +48,7 @@ The main function of `tameDP` is to bring import a COP Target Setting Tool into 
  df_dp <- tame_dp(path)
  
 #read in PLHIV and SUB_NAT data from the Target Setting Tool
- df_plhiv <- tame_dp(path, type = "PLHIV")
+ df_subnat <- tame_dp(path, type = "SUBNAT")
 ```
 
 You can use one of the `map()` functions from `purrr` package to read in multiple Target Setting Tools and combine.
