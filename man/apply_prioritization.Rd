@@ -7,12 +7,9 @@
 apply_prioritization(df, df_prioritization)
 }
 \arguments{
-\item{filepath}{file path to the Target Setting Tool importing, must be .xlsx}
-}
-\value{
-df Target Setting Tool data frame
+\item{df}{Target Setting Tool data frame}
 
-df_prioritization dataframe from `grab_prioritization()`
+\item{df_prioritization}{dataframe from `grab_prioritization()`}
 }
 \description{
 Join the new COP prioritization onto the target data frame.

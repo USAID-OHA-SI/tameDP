@@ -153,10 +153,8 @@ grab_prioritization <- function(filepath){
 #'
 #' Join the new COP prioritization onto the target data frame.
 #'
-#' @param filepath file path to the Target Setting Tool importing, must be .xlsx
-#'
-#' @return df Target Setting Tool data frame
-#' @return df_prioritization dataframe from `grab_prioritization()`
+#' @param df Target Setting Tool data frame
+#' @param df_prioritization dataframe from `grab_prioritization()`
 #' @export
 #' @family prioritization
 
@@ -189,10 +187,8 @@ grab_snu1 <- function(filepath){
 #'
 #' Join the SNU1 onto the PSNUxIM data frame.
 #'
-#' @param filepath file path to the Target Setting Tool importing, must be .xlsx
-#'
-#' @return df Target Setting Tool data frame
-#' @return df_snu1 dataframe from `grab_snu1()`
+#' @param df Target Setting Tool data frame
+#' @param df_snu1 dataframe from `grab_snu1()`
 #' @export
 #' @family snu1
 
