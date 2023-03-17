@@ -1,4 +1,5 @@
 # tameDP 5.1.0
+* Update mapping tab, `mer_disagg_mapping` to adopt some of the new disagg naming conventions changing in FY24 based on `pepfar-datim/datapackr` output
 * Create `tame_subnat` to replace `tame_plhiv` (soft deprecated) [2023-03-17] 
 
 # tameDP 5.0.0
