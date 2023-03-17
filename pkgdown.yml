@@ -1,0 +1,12 @@
+pandoc: 2.19.2
+pkgdown: 2.0.7
+pkgdown_sha: ~
+articles:
+  combining-with-msd: combining-with-msd.html
+  extracting-targets: extracting-targets.html
+  setup: setup.html
+last_built: 2023-03-17T17:57Z
+urls:
+  reference: https://usaid-oha-si.github.io/tameDP/reference
+  article: https://usaid-oha-si.github.io/tameDP/articles
+
