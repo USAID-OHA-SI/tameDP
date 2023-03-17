@@ -1,3 +1,6 @@
+# tameDP 5.1.0
+* Create `tame_subnat` to replace `tame_plhiv` (soft deprecated) [2023-03-17] 
+
 # tameDP 5.0.0
 * Include a the file name (`source_name`) and process date/time (`source_processed`) in the dataset output [2023-03-02] 
 * Transform `PrEP_CT.TestResult` into an HTS testing modality in `convert_mods` [2023-03-02]

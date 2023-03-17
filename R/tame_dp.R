@@ -21,7 +21,7 @@
 #'   - Allows for aggregate to the PSNU level
 #'
 #' @param filepath file path to the Target Setting Tool importing, must be .xlsx
-#' @param type dataset to extract "PSNUxIM", "PLHIV", or "ALL" (default) or a specific tab
+#' @param type dataset to extract "PSNUxIM", "SUBNAT", or "ALL" [default] or a specific tab
 #' @param map_names import names from DATIM (OU, mechanism, partner) associated with mech_code
 #' @param psnu_lvl aggregate to the PSNU level instead of IM
 #'
@@ -34,7 +34,7 @@
 #' #read in Target Setting Tool (straight from sheets, not PSNUxIM tab)
 #'   df_dp <- tame_dp(path)
 #' #read in PLHIV/SUBNAT data
-#'   df_dp <- tame_dp(path, type = "PLHIV")
+#'   df_dp <- tame_dp(path, type = "SUBNAT")
 #' #read in PSNUxIM data
 #'   df_dp <- tame_dp(path, type = "PSNUxIM")
 #' #apply mechanism names

@@ -62,10 +62,12 @@ no_connection <- function(){
 
 #' Return Tab
 #'
-#' Identify which tab to import based on what you want to use - PSNUxIM, PLHIV,
-#' or ALL. You can also provide a specific tab name that matches the Target Setting Tool
+#' Identify which tab to import based on what you want to use - PSNUxIM,
+#' SUBNAT, or ALL (non mechanism tabs). You can also provide a specific tab
+#' name that matches the Target Setting Tool
 #'
-#' @param type dataset to extract "PSNUxIM", "PLHIV", "ALL", or a specific tab
+#' @param type dataset to extract "PSNUxIM", "NAT_SUBNAT" (formerly "PLHIV"),
+#' "ALL", or a specific tab
 #'
 #' @return tabs to import
 #' @export
@@ -91,9 +93,7 @@ return_tab <- function(type){
 
   if(type == "PSNUxIM"){
     t <- "PSNUxIM"
-  } else if(type == "PLHIV"){
-    t <- "Cascade"
-  } else if(type == "ALL"){
+  } else if(type %in% c("ALL", "PLHIV", "SUBNAT")){
     t <- dp_tabs
   } else if(type %in% dp_tabs){
     t <- type
