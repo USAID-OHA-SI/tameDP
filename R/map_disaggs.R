@@ -33,7 +33,7 @@ map_disaggs <- function(df){
     dplyr::mutate(standardizeddisaggregate =
                     dplyr::case_when(indicator == "OVC_SERV" & otherdisaggregate == "DREAMS" ~ "Age/Sex/DREAMS",
                                      indicator == "OVC_SERV" & otherdisaggregate == "Prev" ~ "Age/Sex/Preventive",
-                                     indicator == "OVC_SERV" & ageasentered == "+18" ~ "Age/Sex/ProgramStatusCaregiver",
+                                     indicator == "OVC_SERV" & ageasentered == "18+" ~ "Age/Sex/ProgramStatusCaregiver",
                                      indicator == "OVC_SERV" ~ "Age/Sex/ProgramStatus",
                                      TRUE ~ standardizeddisaggregate),
                   otherdisaggregate =
