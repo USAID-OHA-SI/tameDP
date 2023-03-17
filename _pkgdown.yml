@@ -1,3 +1,7 @@
+url: https://usaid-oha-si.github.io/tameDP/
+template:
+  bootstrap: 5
+
 navbar:
   structure:
     left:
