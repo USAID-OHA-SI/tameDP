@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tameDP</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">5.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">5.1.0</span>
       </span>
     </div>
 
@@ -105,24 +105,38 @@
 <div class="section level3">
 <h3 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h3>
-<p>This vignette provides an overview for utilizing your <code><a href="../reference/tame_dp.html">tame_dp()</a></code> output by combining them with previous targets from the MER Structured Dataset (MSD).</p>
+<p>This vignette provides an overview for utilizing your
+<code><a href="../reference/tame_dp.html">tame_dp()</a></code> output by combining them with previous targets
+from the MER Structured Dataset (MSD).</p>
 </div>
 <div class="section level3">
 <h3 id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a>
 </h3>
-<p>If you haven’t installed R or <code>tameDP</code>, you should first refer to the <a href="setup.html">Setup vignette</a> or if you want to know more about the options for <code><a href="../reference/tame_dp.html">tame_dp()</a></code>, see <a href="extracting-targets.html">Extracting Targets</a>.</p>
-<p>In addition to loading <code>tameDP</code>, we’re also going to need to install/load a couple others. We’ll be working with some of the other packages we installed as dependencies for <code>tameDP</code>, but we will need to use two other packages: <code>here</code> and another custom OHA package called <code>gophr</code>. Let’s install bothS now.</p>
+<p>If you haven’t installed R or <code>tameDP</code>, you should first
+refer to the <a href="setup.html">Setup vignette</a> or if you want to
+know more about the options for <code><a href="../reference/tame_dp.html">tame_dp()</a></code>, see <a href="extracting-targets.html">Extracting Targets</a>.</p>
+<p>In addition to loading <code>tameDP</code>, we’re also going to need
+to install/load a couple others. We’ll be working with some of the other
+packages we installed as dependencies for <code>tameDP</code>, but we
+will need to use two other packages: <code>here</code> and another
+custom OHA package called <code>gophr</code>. Let’s install bothS
+now.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"here"</span><span class="op">)</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"USAID-OHA-SI/gophr"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p>Alright, with <code>gophr</code> installed to work with the MSD, let’s get going.</p>
+<p>Alright, with <code>gophr</code> installed to work with the MSD,
+let’s get going.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">tameDP</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://usaid-oha-si.github.io/gophr/" class="external-link">gophr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/" class="external-link">here</a></span><span class="op">)</span></span></code></pre></div>
-<p>The first step is reading in the from the Data Pack target. We are going to work with the targets out the target tabs, assuming the PSNUxIM is not yet populated. <strong>Remember, Windows filepaths have their slash in the wrong direction. You will need to replace all backslashes (“/") in your filepath with forward slashes (”/“).</strong></p>
+<p>The first step is reading in the from the Data Pack target. We are
+going to work with the targets out the target tabs, assuming the PSNUxIM
+is not yet populated. <strong>Remember, Windows filepaths have their
+slash in the wrong direction. You will need to replace all backslashes
+(“/") in your filepath with forward slashes (”/“).</strong></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#data pack file path</span></span>
 <span><span class="va">dp_filepath</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"tools/DataPack_Jupiter_20500101.xlsx"</span><span class="op">)</span></span>
@@ -133,7 +147,12 @@
 <span><span class="va">df_dp</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">psnuuid</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>We now have all the targets extracted from the Data Pack and stored in a tidy dataframe called <code>df_dp</code>. We want to combine this with the MSD. You will need to download your country’s MSD from <a href="https://www.pepfar-panorama.org/" class="external-link">PEPFAR Panorama</a>. For our analysis, let’s look across PSNUs so we will want to download the PSNUxIM dataset. Once you have it downloaded, you will want to use <code><a href="https://usaid-oha-si.github.io/gophr/reference/read_msd.html" class="external-link">gophr::read_msd()</a></code> to open the MSD.</p>
+<p>We now have all the targets extracted from the Data Pack and stored
+in a tidy dataframe called <code>df_dp</code>. We want to combine this
+with the MSD. You will need to download your country’s MSD from <a href="https://www.pepfar-panorama.org/" class="external-link">PEPFAR Panorama</a>. For our
+analysis, let’s look across PSNUs so we will want to download the
+PSNUxIM dataset. Once you have it downloaded, you will want to use
+<code><a href="https://usaid-oha-si.github.io/gophr/reference/read_msd.html" class="external-link">gophr::read_msd()</a></code> to open the MSD.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#msd file path</span></span>
 <span><span class="va">dp_filepath</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"../../../Downloads/MER_Structured_Datasets_PSNU_IM_FY45-49_Jupiter.txt"</span><span class="op">)</span></span>
@@ -147,10 +166,17 @@
 <span></span>
 <span><span class="co">#no exta columns in the Data Pack</span></span>
 <span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html" class="external-link">setdiff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_dp</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_msd</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>It also has more indicators and disaggregates that aren’t in the Data Pack. To simplify matters, we can subset, or limit, the dataset to what we have to work with. Luckily we have a table stored in this packaged called <code>mer_disagg_mapping</code> that contains all the indicators and their disaggregates that we can use to filter the MSD by.</p>
+<p>It also has more indicators and disaggregates that aren’t in the Data
+Pack. To simplify matters, we can subset, or limit, the dataset to what
+we have to work with. Luckily we have a table stored in this packaged
+called <code>mer_disagg_mapping</code> that contains all the indicators
+and their disaggregates that we can use to filter the MSD by.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mer_disagg_mapping</span></span></code></pre></div>
-<p>Combining the names from our Data Pack data frame (<code>names(df_dp)</code>) to limit the columns and using an inner join to keep only the target disaggregates, we can then append or bind this with onto the MSD data frame.</p>
+<p>Combining the names from our Data Pack data frame
+(<code>names(df_dp)</code>) to limit the columns and using an inner join
+to keep only the target disaggregates, we can then append or bind this
+with onto the MSD data frame.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#subset data from MSD</span></span>
 <span><span class="va">df_msd_lim</span> <span class="op">&lt;-</span> <span class="va">df_msd</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
@@ -162,13 +188,16 @@
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="va">df_dp</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">psnuuid</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>We now have a joined data frame that we can use to compare indicator trends over time. For instance, we can compare how this year’s TX_NEW targets compare with previous few years’ targets across ages.</p>
+<p>We now have a joined data frame that we can use to compare indicator
+trends over time. For instance, we can compare how this year’s TX_NEW
+targets compare with previous few years’ targets across ages.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df_tx_trend</span> <span class="op">&lt;-</span> <span class="va">df_msd_dp</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">indicator</span> <span class="op">==</span> <span class="st">"TX_NEW"</span>,</span>
 <span>         <span class="va">standardizeddisaggregate</span> <span class="op">==</span> <span class="st">"Age/Sex/HIVStatus"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">fiscal_year</span>, <span class="va">indicator</span>, <span class="va">ageasentered</span>, wt <span class="op">=</span> <span class="va">targets</span>, name <span class="op">=</span> <span class="st">"targets"</span><span class="op">)</span> </span></code></pre></div>
-<p>Finally, we can reshape the data to get it into an easy table to view the trends.</p>
+<p>Finally, we can reshape the data to get it into an easy table to view
+the trends.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df_tx_trend</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">fiscal_year</span> <span class="op">&gt;=</span> <span class="fl">2048</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
