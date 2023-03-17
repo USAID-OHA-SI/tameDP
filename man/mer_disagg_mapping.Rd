@@ -5,7 +5,7 @@
 \alias{mer_disagg_mapping}
 \title{Table of indicators and their disaggs}
 \format{
-A data frame with 58 rows and 4 variables:
+A data frame with 59 rows and 4 variables:
 \describe{
   \item{indicator}{MER indicator name}
   \item{numeratordenom}{designates whether the indicator type}

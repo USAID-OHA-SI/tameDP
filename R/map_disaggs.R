@@ -24,6 +24,10 @@ map_disaggs <- function(df){
     dplyr::left_join(mer_disagg_mapping,
                      by = c("indicator", "numeratordenom", "kp_disagg"))
 
+  #adjust PrEP_CT
+  df <- df %>%
+    dplyr::mutate(indicator = ifelse(indicator == "PrEP_CT.TestResult", "PrEP_CT", indicator))
+
   #adjust OVC disagg (since multiple) and clean up otherdisagg
   df <- df %>%
     dplyr::mutate(standardizeddisaggregate =

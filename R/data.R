@@ -4,7 +4,7 @@
 #' the Target Setting Tool and their official disaggregates in DATIM from FY23/
 #' COP22 targets.
 #'
-#' @format A data frame with 58 rows and 4 variables:
+#' @format A data frame with 59 rows and 4 variables:
 #' \describe{
 #'   \item{indicator}{MER indicator name}
 #'   \item{numeratordenom}{designates whether the indicator type}
