@@ -1,4 +1,5 @@
 # tameDP 5.1.0
+* Remove prior year's HTS targets, which are only coming from the TB modality [2023-03-29]
 * Break out the OVC Program Status Care Giver (18+) [2023-03-17]
 * Add additional disagg for PrEP_CT's Test Results [2023-03-17] 
 * Update mapping tab, `mer_disagg_mapping` to adopt some of the new disagg naming conventions changing in FY24 based on `pepfar-datim/datapackr` output [2023-03-17] 
