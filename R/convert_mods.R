@@ -53,6 +53,10 @@ convert_mods <- function(df){
   #binding onto main data frame
   df_adj <- dplyr::bind_rows(df_mods, df_index, df_exmod)
 
+  #remove partial historic HTS data appearing for TB
+  df_adj <- df_adj %>%
+    dplyr::filter(!c(fiscal_year != max(fiscal_year) &
+                      standardizeddisaggregate == "Modality/Age/Sex/Result"))
 
   return(df_adj)
 }
