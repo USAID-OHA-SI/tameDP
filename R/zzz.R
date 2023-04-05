@@ -55,12 +55,15 @@
       "share",
       "snu1",
       "SNU1",
+      "snu1uid",
       "snuprioritization",
       "standardizeddisaggregate",
       "statushiv",
       "targets",
       "value",
-      "value_type")
+      "value_type",
+      "msd_historic_disagg_mapping",
+      "age_dp")
   )
 
   invisible ()
