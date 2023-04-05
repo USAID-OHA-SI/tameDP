@@ -14,20 +14,6 @@
 #' @source \url{https://datim.zendesk.com/hc/en-us/articles/360001143166-DATIM-Data-Entry-Form-Screen-Shot-Repository}
 "mer_disagg_mapping"
 
-
-#' Current Table of PEPFAR Operating Units and Counties
-#'
-#' A dataset containing the mapping countries and operating units. Most
-#' countries are also Operating Units, expect for those in regional programs.
-#'
-#' @format A data frame with 60 rows and 2 variables:
-#' \describe{
-#'   \item{operatingunit}{PEPFAR Operating Unit (countries + 3 regional programs)}
-#'   \item{country}{PEPFAR Country Name}
-#' }
-#' @source \url{https://final.datim.org/api/organisationUnits}
-"ou_ctry_mapping"
-
 #' Table of MER indicators and disaggs including historic results disaggs
 #'
 #' A dataset containing the mapping between MER/SUBNAT/IMPATT indicators from
@@ -45,3 +31,19 @@
 #' }
 #' @source \url{https://datim.zendesk.com/hc/en-us/articles/360001143166-DATIM-Data-Entry-Form-Screen-Shot-Repository}
 "msd_historic_disagg_mapping"
+
+
+
+#' Current Table of PEPFAR Operating Units and Counties
+#'
+#' A dataset containing the mapping countries and operating units. Most
+#' countries are also Operating Units, expect for those in regional programs.
+#'
+#' @format A data frame with 60 rows and 2 variables:
+#' \describe{
+#'   \item{operatingunit}{PEPFAR Operating Unit (countries + 3 regional programs)}
+#'   \item{country}{PEPFAR Country Name}
+#' }
+#' @source \url{https://final.datim.org/api/organisationUnits}
+"ou_ctry_mapping"
+
