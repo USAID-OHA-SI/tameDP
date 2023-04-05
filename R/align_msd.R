@@ -80,7 +80,7 @@ align_ageband <- function(df, collapse = FALSE) {
     dplyr::mutate(age_dp = ifelse(indicator %in% c("OVC_SERV", "AGYW_PREV", "PMTCT_EID", "TB_PREV", "TB_PREV_D", "TX_TB_D"), ageasentered, age_dp)) %>%
     dplyr::select(-ageasentered) %>%
     dplyr::select(-c(funding_agency, mech_code)) %>%
-    dplyr::relocate(age_dp, .after = 8) %>%
+    dplyr::relocate(age_dp, .after = 9) %>%
     dplyr::relocate(dplyr::any_of(c("cumulative", "targets")), .after = 13) %>%
     #relocate(funding_agency, .after = 15) %>%
     dplyr::rename(ageasentered = age_dp)
