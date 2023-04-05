@@ -2,6 +2,7 @@
 
 export("%>%")
 export(agg_dp)
+export(align_msd_disagg)
 export(apply_class)
 export(apply_fy)
 export(apply_prioritization)
