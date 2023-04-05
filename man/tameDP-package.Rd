@@ -10,6 +10,13 @@
 
 Import PSNUxIM targets and PLHIV data from COP Data Pack. The purpose is to make the data tidy and more usable than their current structure in the Excel data packs.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://usaid-oha-si.github.io/tameDP/}
+}
+
+}
 \author{
 \strong{Maintainer}: Aaron Chafetz \email{achafetz@usaid.gov}
 
