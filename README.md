@@ -1,25 +1,34 @@
-<!-- badges: start -->
-[![R-CMD-check](https://github.com/USAID-OHA-SI/tameDP/workflows/R-CMD-check/badge.svg)](https://github.com/USAID-OHA-SI/tameDP/actions)
-<!-- badges: end -->
-  
-<img src='man/figures/logo.png' align="right" height="120" />
-
-# tameDP 
+# tameDP <img src='man/figures/logo.png' align="right" height="120" />
 
 Imports and tidies data from the PEPFAR, Excel-based Target Setting Tool (formerly known as the Target Setting Tool) Historic versions available back to COP19.
 
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/USAID-OHA-SI/tameDP/workflows/R-CMD-check/badge.svg)](https://github.com/USAID-OHA-SI/tameDP/actions)
+[![tameDP status badge](https://usaid-oha-si.r-universe.dev/badges/tameDP)](https://usaid-oha-si.r-universe.dev/tameDP)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![:name status badge](https://usaid-oha-si.r-universe.dev/badges/:name)](https://usaid-oha-si.r-universe.dev/)
+<!-- badges: end -->
+  
+
 ## Installation
 
-`tameDP` is not on CRAN, so you will have to install it directly from GitHub using `remotes`.
-
-If you do not have `remotes` installed, you will have to run the `install.packages("remotes")` line in the code below as well.
+`tameDP` is not on CRAN, so you will have to install it directly from [rOpenSci](https://usaid-oha-si.r-universe.dev/packages) or [GitHub](https://github.com/USAID-OHA-SI/) using the code found below.
 
 ``` r
 ## SETUP
 
-  #install package with vignettes
-    install.packages("remotes")
-    remotes::install_github("USAID-OHA-SI/tameDP")
+  #install from rOpenSci
+    install.packages('tameDP', repos = c('https://usaid-oha-si.r-universe.dev', 'https://cloud.r-project.org'))
+    
+  #alt: install from GitHub using pak
+    #install.packages("pak")
+    #pak::pak("USAID-OHA-SI/tameDP")
+    
+  #load the package
+    library(tameDP)
+
+## LIST TYPES OF STYLES INCLUDED WITH PACKAGE
+  ls("package:tameDP")
 ```
 
 ## Use

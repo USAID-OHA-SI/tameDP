@@ -1,4 +1,5 @@
-# tameDP 5.1.0
+# tameDP 5.1
+* Change instructions to install from rOpenSci [2024-01-04]
 * Remove prior year's HTS targets, which are only coming from the TB modality [2023-03-29]
 * Break out the OVC Program Status Care Giver (18+) [2023-03-17]
 * Add additional disagg for PrEP_CT's Test Results [2023-03-17] 
