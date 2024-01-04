@@ -76,8 +76,12 @@ reference:
   - '`grab_snu1`'
   - '`apply_snu1`'
   - '`apply_stamps`'
+  - '`align_ageband`'
+  - '`align_msd_disagg`'
 
 - title: Internal data
   contents:
   - '`mer_disagg_mapping`'
+  - '`msd_historic_disagg_mapping`'
   - '`ou_ctry_mapping`'
+  - '`age_band_crosswalk`'

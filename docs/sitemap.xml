@@ -31,7 +31,16 @@
     <loc>https://usaid-oha-si.github.io/tameDP/news/index.html</loc>
   </url>
   <url>
+    <loc>https://usaid-oha-si.github.io/tameDP/reference/age_band_crosswalk.html</loc>
+  </url>
+  <url>
     <loc>https://usaid-oha-si.github.io/tameDP/reference/agg_dp.html</loc>
+  </url>
+  <url>
+    <loc>https://usaid-oha-si.github.io/tameDP/reference/align_ageband.html</loc>
+  </url>
+  <url>
+    <loc>https://usaid-oha-si.github.io/tameDP/reference/align_msd_disagg.html</loc>
   </url>
   <url>
     <loc>https://usaid-oha-si.github.io/tameDP/reference/apply_class.html</loc>
@@ -98,6 +107,9 @@
   </url>
   <url>
     <loc>https://usaid-oha-si.github.io/tameDP/reference/mer_disagg_mapping.html</loc>
+  </url>
+  <url>
+    <loc>https://usaid-oha-si.github.io/tameDP/reference/msd_historic_disagg_mapping.html</loc>
   </url>
   <url>
     <loc>https://usaid-oha-si.github.io/tameDP/reference/no_connection.html</loc>
