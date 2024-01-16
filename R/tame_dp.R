@@ -2,12 +2,12 @@
 #'
 #' tame_dp is the primary function of the tameDP package, reading in the Data
 #' Pack and munging in into a tidy data frame to make it more usable to
-#' interact with the data than the way it is stored in the Target Setting Tool. **Given
-#' the changes to the Target Setting Tool each year, the function only works for the
-#' current COP year, COP22.**
+#' interact with the data than the way it is stored in the Target Setting Tool.
+#' **Given the changes to the Target Setting Tool each year, the function only
+#' works for the current COP year: COP24.**
 #'
-#' The main function of `tameDP` is to bring import a COP Target Setting Tool into R
-#' and make it tidy. The function aggregates the COP targets up to the
+#' The main function of `tameDP` is to bring import a COP Target Setting Tool
+#' into R and make it tidy. The function aggregates the COP targets up to the
 #' mechanism level, imports the mechanism information from DATIM, and breaks
 #' out the data elements to make the dataset more usable.
 #'

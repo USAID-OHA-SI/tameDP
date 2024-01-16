@@ -1,6 +1,6 @@
 # tameDP <img src='man/figures/logo.png' align="right" height="120" />
 
-Imports and tidies data from the PEPFAR, Excel-based Target Setting Tool (formerly known as the Target Setting Tool) Historic versions available back to COP19.
+Imports and tidies data from the PEPFAR, Excel-based Target Setting Tool (formerly known as the Data Pack) Historic versions available back to COP19.
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/USAID-OHA-SI/tameDP/workflows/R-CMD-check/badge.svg)](https://github.com/USAID-OHA-SI/tameDP/actions)
@@ -76,7 +76,7 @@ You can use one of the `map()` functions from `purrr` package to read in multipl
 #apply mech_name and primepartner names from DATIM
 #you will need to provide your DATIM credentials 
   datim_user_nm <- "spower" #replace with your username
-  datim_pwd <- getPass::getPass #pop up prompting for your password
+  datim_pwd <- getPass::getPass() #pop up prompting for your password
   df_all <- get_names(df_all, datim_user = datim_user_nm, datim_password = datim_pwd)
 ```
 
