@@ -1,3 +1,8 @@
+# tameDP 6.0
+* Cover page now uses FY instead of COP, so updated `grab_info` to handle either [2024-01-16]
+* Update documentation to reflect COP24 [2024-01-16]
+* Archive COP23 version under branch `archive_cop23` [2024-01-05]
+
 # tameDP 5.1
 * Change instructions to install from rOpenSci [2024-01-04]
 * Remove prior year's HTS targets, which are only coming from the TB modality [2023-03-29]
