@@ -23,7 +23,7 @@ clean_indicators <- function(df){
       indicator = indicator_code %>%
         stringr::str_extract("[^\\.]+") %>%
         dplyr::recode("VL_SUPPRESSED" = "VL_SUPPRESSION_SUBNAT"),
-      indicator = ifelse(indicator_code == "PrEP_CT.TestResult", "PrEP_CT.TestResult", indicator),
+      indicator = ifelse(indicator_code == "PrEP_CT.TestResult", indicator_code, indicator),
       numeratordenom = ifelse(stringr::str_detect(indicator_code, "\\.D\\.|\\.D$"), "D", "N"),
       statushiv = stringr::str_extract(indicator_code, "(Neg|Pos|Unk)$"),
       statushiv = ifelse(indicator == "PrEP_CT.TestResult", "Neg", statushiv),
