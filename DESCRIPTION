@@ -19,7 +19,6 @@ Imports:
     curl,
     dplyr (>= 1.0.0),
     glue,
-    httr,
     lifecycle,
     getPass,
     magrittr,
