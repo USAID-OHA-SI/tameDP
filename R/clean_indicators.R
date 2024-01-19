@@ -49,6 +49,9 @@ clean_indicators <- function(df){
   #add calculated indicators (HTS_TST_POS, OVC_HIVSTAT_D, PMTCT_STAT_POS, PMTCT_ART)
   df <- calculate_inds(df)
 
+  #add trendscoarse
+  df <- align_agecoarse(df)
+
   #move keypop to otherdisagg
   df <- df %>%
     dplyr::mutate(otherdisaggregate = ifelse(kp_disagg == TRUE, keypop, otherdisaggregate)) %>%
