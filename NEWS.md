@@ -1,4 +1,6 @@
 # tameDP 6.0
+* Calculated OVC_HIVSTAT_D, PMTCT_STAT_POS, and PMTCT_ART_D targets [2024-01-19]
+* Adjust standardizeddisaggregate mapping (`mer_disagg_mapping`) for HTS_INDEX, OVC_HIVSTAT, PrEP_NEW (KP), and TB_STAT [2024-01-19]
 * Cover page now uses FY instead of COP, so updated `grab_info` to handle either [2024-01-16]
 * Update documentation to reflect COP24 [2024-01-16]
 * Archive COP23 version under branch `archive_cop23` [2024-01-05]
