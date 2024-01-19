@@ -46,11 +46,8 @@ clean_indicators <- function(df){
   #convert external modalities
   df <- convert_mods(df)
 
-  #add HTS_TST_POS as an indicator
-  df <- df %>%
-    dplyr::bind_rows(df %>%
-                       dplyr::filter(indicator == "HTS_TST" & statushiv == "Positive") %>%
-                       dplyr::mutate(indicator = "HTS_TST_POS"))
+  #add calculated indicators (HTS_TST_POS, OVC_HIVSTAT_D, PMTCT_STAT_POS, PMTCT_ART)
+  df <- calculate_inds(df)
 
   #move keypop to otherdisagg
   df <- df %>%
