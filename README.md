@@ -69,7 +69,7 @@ You can use one of the `map()` functions from `purrr` package to read in multipl
 #identify all the Target Setting Tool files
   files <- list.files("../Downloads/DataPacks", full.names = TRUE)
 
-#read in all Target Setting Toolss and combine into one data frame
+#read in all Target Setting Tools and combine into one data frame
   df_all <- map_dfr(.x = files,
                     .f = ~ tame_dp(.x, map_names = FALSE))
                     

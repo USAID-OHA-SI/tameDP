@@ -4,7 +4,7 @@
 \name{tameDP-package}
 \alias{tameDP}
 \alias{tameDP-package}
-\title{tameDP: Import targets and PLHIV data from COP Data Pack}
+\title{tameDP: Import targets and PLHIV data from COP Target Setting Tool (formerly Data Pack)}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
@@ -22,7 +22,13 @@ Useful links:
 
 Authors:
 \itemize{
-  \item Josh Davis \email{jodavis@usaid.gov}
+  \item Karishma Srikanth \email{ksrikanth@usaid.gov}
+}
+
+Other contributors:
+\itemize{
+  \item Baboyma Kagniniwa \email{bkagniniwa@usaid.gov} [contributor]
+  \item Josh Davis \email{jodavis@usaid.gov} [contributor]
 }
 
 }
