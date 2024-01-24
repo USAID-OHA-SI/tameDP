@@ -35,7 +35,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">tameDP</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">5.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">6.0.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -115,9 +115,9 @@ that pop up when you launch the .exe file from your downloads.</p>
 <h3 id="installing-rstudio-optional">Installing RStudio (OPTIONAL)<a class="anchor" aria-label="anchor" href="#installing-rstudio-optional"></a>
 </h3>
 <p>R is the underlying software we’re using, but the user interface
-leaves much to be desired. RStudio used to be available in Software
-Center as well, but M/CIO removed around October 2021. <strong>You do
-not need RStudio to run <code>tameDP</code></strong>, but if desired,
+leaves much to be desired. RStudio is also available in Software Center
+as well. <strong>You do not need RStudio to run
+<code>tameDP</code></strong>. If you cannot find it in Software Center,
 you can submit a Help Desk ticket with M/CIO and they will install it
 for you. If working on a personal machine, you can install RStudio from
 <a href="https://www.rstudio.com/products/rstudio/download/" class="external-link">this
@@ -131,30 +131,35 @@ from your downloads.</p>
 <p>With proprietary programs like Excel, Tableau, or Stata, all of your
 functions are built into the software. With open-source packages on the
 other hand, we need to load different libraries or packages that are
-written by other organization or individuals users. We wrote the package
-<code>tameDP</code> and it relies on the work others have done as well,
-so we install those packages first to make things easy. To install a
-package from CRAN, we use the command <code><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages()</a></code>.
-Copy and paste the code chunk below to install all the required
-packages.</p>
+written by other organization or individuals users. Most of the
+dependent packages we need will be installed when we install
+<code>tameDP</code>, but we do need to install a few of our custom
+USAID/OHA packages. Our USAID/OHA packages are hosted on GitHub and
+rOpenSci rather than CRAN, R’s central software repository. As a result,
+we will need to tell R to first look at the USAID-OHA-SI ‘R Universe’
+and then install any other dependencies from CRAN. Copy and paste the
+code chunk below to install all the required packages in a clean
+instance of R. <em>If your console asks you to install updates, you can
+skip this by simply hitting return/enter.</em></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"getPass"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'gagglr'</span>, <span class="st">'glamr'</span>, <span class="st">'gophr'</span><span class="op">)</span>, </span>
+<span>                  repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'https://usaid-oha-si.r-universe.dev'</span>,</span>
+<span>                            <span class="st">'https://cloud.r-project.org'</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="installing-tamedp">Installing tameDP<a class="anchor" aria-label="anchor" href="#installing-tamedp"></a>
 </h3>
-<p>Our package is hosted on a site called GitHub rather than CRAN, R’s
-central software repository. As a result, we will need to utilize a
-function from the <code>remotes</code> package to install
-<code>tameDP</code> rather than repeating the
-<code><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages()</a></code>. Copy and paste the line below to
-install <code>tameDP</code> from GitHub. <em>If your console asks you to
-install updates, you can skip this by simply hitting
+<p>Our USAID/OHA packages are hosted on GitHub and rOpenSci rather than
+CRAN, R’s central software repository. As a result, we will need to tell
+R to first look at the USAID-OHA-SI ‘R Universe’ and then install any
+other dependencies from CRAN. Copy and paste the code chunk below to
+install all the required packages in a clean instance of R. <em>If your
+console asks you to install updates, you can skip this by simply hitting
 return/enter.</em></p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"USAID-OHA-SI/tameDP"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'tameDP'</span>, </span>
+<span>                  repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'https://usaid-oha-si.r-universe.dev'</span>,</span>
+<span>                            <span class="st">'https://cloud.r-project.org'</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>With all the software and packages installed, you’re ready to start
 using <code>tameDP</code>.</p>
 </div>
