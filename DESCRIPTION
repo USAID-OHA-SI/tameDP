@@ -1,6 +1,7 @@
 Package: tameDP
-Title: Import targets and PLHIV data from COP Data Pack
-Version: 5.1.1
+Title: Import targets and PLHIV data from COP Target Setting Tool (formerly Data 
+   Pack)
+Version: 6.0.0
 Authors@R: c(
     person("Aaron", "Chafetz", ,"achafetz@usaid.gov", c("aut", "cre")),
     person("Karishma", "Srikanth", ,"ksrikanth@usaid.gov", c("aut")),
@@ -18,7 +19,6 @@ Imports:
     curl,
     dplyr (>= 1.0.0),
     glue,
-    httr,
     lifecycle,
     getPass,
     magrittr,

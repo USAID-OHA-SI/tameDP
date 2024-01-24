@@ -24,13 +24,20 @@ grab_info <- function(filepath, type){
                            col_types = "text") %>%
     names()
 
+  #year is expressed as COP
+  is_cop <- grepl("^COP", info)
+
   #convert to FY from COP year in cell
   if(type == "year"){
     info <- info %>%
-      stringr::str_extract("(?<=COP)[:alnum:]{2}") %>%
+      stringr::str_extract("(?<=(COP|FY))[:alnum:]{2}") %>%
       paste0("20", .) %>%
-      as.numeric() + 1
+      as.numeric()
   }
+
+  #add 1 to COP year to convert to FY
+  if(is_cop)
+    info <- info + 1
 
 return(info)
 

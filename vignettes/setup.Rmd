@@ -27,24 +27,26 @@ In order to use `tameDP`, you will need to install R, an open-source statistics 
 
 ### Installing RStudio (OPTIONAL)
 
-R is the underlying software we're using, but the user interface leaves much to be desired. RStudio used to be available in Software Center as well, but M/CIO removed around October 2021. **You do not need RStudio to run `tameDP`**, but if desired, you can submit a Help Desk ticket with M/CIO and they will install it for you. If working on a personal machine, you can install RStudio from [this site](https://www.rstudio.com/products/rstudio/download/). Select "Download" for the free version and follow the instructions for installing that pop up when you launch the .exe file from your downloads.
+R is the underlying software we're using, but the user interface leaves much to be desired. RStudio is also available in Software Center as well. **You do not need RStudio to run `tameDP`**. If you cannot find it in Software Center, you can submit a Help Desk ticket with M/CIO and they will install it for you. If working on a personal machine, you can install RStudio from [this site](https://www.rstudio.com/products/rstudio/download/). Select "Download" for the free version and follow the instructions for installing that pop up when you launch the .exe file from your downloads.
 
 ### Installing Package Dependencies
 
-With proprietary programs like Excel, Tableau, or Stata, all of your functions are built into the software. With open-source packages on the other hand, we need to load different libraries or packages that are written by other organization or individuals users. We wrote the package `tameDP` and it relies on the work others have done as well, so we install those packages first to make things easy. To install a package from CRAN, we use the command `install.packages()`. Copy and paste the code chunk below to install all the required packages.
+With proprietary programs like Excel, Tableau, or Stata, all of your functions are built into the software. With open-source packages on the other hand, we need to load different libraries or packages that are written by other organization or individuals users. Most of the dependent packages we need will be installed when we install `tameDP`, but we do need to install a few of our custom USAID/OHA packages. Our USAID/OHA packages are hosted on GitHub and rOpenSci rather than CRAN, R's central software repository. As a result, we will need to tell R to first look at the USAID-OHA-SI 'R Universe' and then install any other dependencies from CRAN. Copy and paste the code chunk below to install all the required packages in a clean instance of R. *If your console asks you to install updates, you can skip this by simply hitting return/enter.*
 
-```{r install packages, eval=F, echo=T}
-install.packages("tidyverse")
-install.packages("remotes")
-install.packages("getPass")
+```{r install oha packages, eval=F, echo=T}
+ install.packages(c('gagglr', 'glamr', 'gophr'), 
+                  repos = c('https://usaid-oha-si.r-universe.dev',
+                            'https://cloud.r-project.org'))
 ```
 
 ### Installing tameDP
 
-Our package is hosted on a site called GitHub rather than CRAN, R's central software repository. As a result, we will need to utilize a function from the `remotes` package to install `tameDP` rather than repeating the `install.packages()`. Copy and paste the line below to install `tameDP` from GitHub. *If your console asks you to install updates, you can skip this by simply hitting return/enter.*
+Our USAID/OHA packages are hosted on GitHub and rOpenSci rather than CRAN, R's central software repository. As a result, we will need to tell R to first look at the USAID-OHA-SI 'R Universe' and then install any other dependencies from CRAN. Copy and paste the code chunk below to install all the required packages in a clean instance of R. *If your console asks you to install updates, you can skip this by simply hitting return/enter.*
 
 ```{r install tameDP, eval=F, echo=T}
-remotes::install_github("USAID-OHA-SI/tameDP", build_vignettes = TRUE)
+ install.packages('tameDP', 
+                  repos = c('https://usaid-oha-si.r-universe.dev',
+                            'https://cloud.r-project.org'))
 ```
 
 With all the software and packages installed, you're ready to start using `tameDP`.
