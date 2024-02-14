@@ -27,7 +27,7 @@ Imports and tidies data from the PEPFAR, Excel-based Target Setting Tool (former
   #load the package
     library(tameDP)
 
-## LIST TYPES OF STYLES INCLUDED WITH PACKAGE
+## List the functions available tameDP
   ls("package:tameDP")
 ```
 
@@ -65,6 +65,7 @@ You can use one of the `map()` functions from `purrr` package to read in multipl
 ``` r
 #load package
   library(purrr)
+  library(getPass)
 
 #identify all the Target Setting Tool files
   files <- list.files("../Downloads/DataPacks", full.names = TRUE)
@@ -76,7 +77,7 @@ You can use one of the `map()` functions from `purrr` package to read in multipl
 #apply mech_name and primepartner names from DATIM
 #you will need to provide your DATIM credentials 
   datim_user_nm <- "spower" #replace with your username
-  datim_pwd <- getPass::getPass() #pop up prompting for your password
+  datim_pwd <- getPass() #pop up prompting for your password
   df_all <- get_names(df_all, datim_user = datim_user_nm, datim_password = datim_pwd)
 ```
 
