@@ -19,8 +19,7 @@
 align_msd_disagg <- function(msd_path, dp_path, raised_prioritization = FALSE) {
 
   #import MSD
-  df_msd <- gophr::read_psd(msd_path) %>%
-  gophr::resolve_knownissues()
+  df_msd <- gophr::read_psd(msd_path)
 
   #run tameDP
   dp_cols <- tameDP::tame_dp(dp_path) %>%
