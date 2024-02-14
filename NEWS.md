@@ -1,4 +1,5 @@
 # tameDP 6.0
+* Clean up README and Vignettes [2024-02-14]
 * Add in `trendscoarse` to exported dataset [2024-01-19]
 * Calculated OVC_HIVSTAT_D, PMTCT_STAT_POS, and PMTCT_ART_D targets [2024-01-19]
 * Adjust standardizeddisaggregate mapping (`mer_disagg_mapping`) for HTS_INDEX, OVC_HIVSTAT, PrEP_NEW (KP), and TB_STAT [2024-01-19]
