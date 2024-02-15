@@ -53,6 +53,11 @@ convert_mods <- function(df){
   #binding onto main data frame
   df_adj <- dplyr::bind_rows(df_mods, df_index, df_exmod)
 
+  #create a target modality dataset for binding onto MER data
+  df_adj <- df_adj %>%
+    dplyr::mutate(target_modality_2024 = modality,
+                  .after = modality)
+
   #remove partial historic HTS data appearing for TB
   df_adj <- df_adj %>%
     dplyr::filter(!c(fiscal_year != max(fiscal_year) &
