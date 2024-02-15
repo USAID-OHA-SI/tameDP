@@ -42,15 +42,15 @@ out the data elements to make the dataset more usable.
 #DP file path
   path <- "../Downloads/DataPack_Jupiter_20500101.xlsx"
 #read in Target Setting Tool (straight from sheets, not PSNUxIM tab)
-  df_dp <- tame_dp(path)
+  df_tst <- tame_dp(path)
 #read in PLHIV/SUBNAT data
-  df_dp <- tame_dp(path, type = "SUBNAT")
+  df_tst <- tame_dp(path, type = "SUBNAT")
 #read in PSNUxIM data
-  df_dp <- tame_dp(path, type = "PSNUxIM")
+  df_tst <- tame_dp(path, type = "PSNUxIM")
 #apply mechanism names
-  df_dp_named <- tame_dp(path, type = "PSNUxIM", map_names = TRUE)
+  df_tst_named <- tame_dp(path, type = "PSNUxIM", map_names = TRUE)
 #aggregate to the PSNU level
-  df_dp_psnu <- tame_dp(path, type = "PSNUxIM", psnu_lvl = TRUE)
+  df_tst_psnu <- tame_dp(path, type = "PSNUxIM", psnu_lvl = TRUE)
 #reading in multiple files and then applying mechanism names (for PSNUxIM)
   df_all <- map_dfr(.x = list.files("../Downloads/DataPacks", full.names = TRUE),
                     .f = ~ tame_dp(.x, map_names = FALSE))

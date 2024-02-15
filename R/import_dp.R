@@ -11,7 +11,7 @@
 #' @export
 #' @examplesIf FALSE
 #' path <- "../Downloads/DataPack_Jupiter_20200218.xlsx"
-#' df_dp <- import_dp(path, tab = "PSNUxIM")
+#' df_tst <- import_dp(path, tab = "PSNUxIM")
 
 import_dp <- function(filepath, tab){
 

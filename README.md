@@ -54,7 +54,7 @@ The main function of `tameDP` is to bring import a COP Target Setting Tool into 
   path <- "../Downloads/TargetSettingTool_Jupiter_20500101.xlsx"
   
 #read in Target Setting Tool & tidy
- df_dp <- tame_dp(path)
+ df_tst <- tame_dp(path)
  
 #read in PLHIV and SUB_NAT data from the Target Setting Tool
  df_subnat <- tame_dp(path, type = "SUBNAT")

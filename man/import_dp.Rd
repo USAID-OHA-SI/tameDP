@@ -20,6 +20,6 @@ share or value.
 \examples{
 \dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 path <- "../Downloads/DataPack_Jupiter_20200218.xlsx"
-df_dp <- import_dp(path, tab = "PSNUxIM")
+df_tst <- import_dp(path, tab = "PSNUxIM")
 \dontshow{\}) # examplesIf}
 }
