@@ -36,7 +36,8 @@ clean_indicators <- function(df){
       ageasentered = dplyr::case_when(ageasentered == "12" ~ "02 - 12 Months",
                                       ageasentered == "2" ~ "<=02 Months",
                                       TRUE ~ age),
-      target_age_2024 = ageasentered,
+      target_age_2024 = ifelse(ageasentered %in% c("<=02 Months", "02 - 12 Months"),
+                               "<01", ageasentered),
       statushiv = dplyr::recode(statushiv, "Neg" = "Negative" , "Pos" = "Positive", "Unk" = "Unknown")
     ) %>%
     dplyr::select(-ind_exclude)
