@@ -11,32 +11,25 @@ order_vars <- function(df){
   if(!"cumulative" %in% names(df))
     df <- dplyr::mutate(df, cumulative = NA_real_)
 
-  # if(!"snu1" %in% names(df))
-  #   df <- dplyr::mutate(df, snu1 = NA_character_)
-
   if(!"snuprioritization" %in% names(df))
     df <- dplyr::mutate(df, snuprioritization = NA_character_)
 
+  #variable order
+  v_order <- c("operatingunit", "country", "psnu", "psnuuid", "snuprioritization",
+               "fiscal_year",
+               "indicator", "standardizeddisaggregate", "numeratordenom",
+               "ageasentered", "target_age_2024", "trendscoarse",
+               "sex", "modality", "target_modality_2024", "statushiv",
+               "otherdisaggregate",
+               "cumulative", "targets",
+               "source_name", "source_processed")
+
+  #if not IM dataset, exclude mech cols
+  if(!"mech_code" %in% names(df))
+    v_order <- v_order[!v_order %in% c("funding_agency","mech_code", "prime_partner_name", "mech_name")]
 
   #order variables
-  if("mech_code" %in% names(df)){
-    df <- dplyr::select(df,
-                        operatingunit, country, psnu, psnuuid, snuprioritization,
-                        funding_agency, mech_code, prime_partner_name, mech_name,
-                        fiscal_year,
-                        dplyr::starts_with("indicator"), standardizeddisaggregate,
-                        numeratordenom, ageasentered, target_age_2024, trendscoarse, sex, modality, statushiv, otherdisaggregate,
-                        cumulative, targets,
-                        dplyr::starts_with("source"))
-  } else {
-    df <- dplyr::select(df,
-                        operatingunit, country, psnu, psnuuid, snuprioritization,
-                        fiscal_year,
-                        dplyr::starts_with("indicator"), standardizeddisaggregate,
-                        numeratordenom, ageasentered, target_age_2024, trendscoarse, sex, modality, statushiv, otherdisaggregate,
-                        cumulative, targets,
-                        dplyr::starts_with("source"))
-  }
+    df <- dplyr::select(df, dplyr::all_of(v_order))
 
   return(df)
 }
