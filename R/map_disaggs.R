@@ -21,7 +21,7 @@ map_disaggs <- function(df){
 
   #map the MER disaggregates onto the dataset
   df <- df %>%
-    dplyr::left_join(mer_disagg_mapping,
+    dplyr::left_join(tameDP::mer_disagg_mapping,
                      by = c("indicator", "numeratordenom", "kp_disagg"))
 
   #adjust PrEP_CT

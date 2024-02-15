@@ -32,15 +32,15 @@
 #' #DP file path
 #'   path <- "../Downloads/DataPack_Jupiter_20500101.xlsx"
 #' #read in Target Setting Tool (straight from sheets, not PSNUxIM tab)
-#'   df_dp <- tame_dp(path)
+#'   df_tst <- tame_dp(path)
 #' #read in PLHIV/SUBNAT data
-#'   df_dp <- tame_dp(path, type = "SUBNAT")
+#'   df_tst <- tame_dp(path, type = "SUBNAT")
 #' #read in PSNUxIM data
-#'   df_dp <- tame_dp(path, type = "PSNUxIM")
+#'   df_tst <- tame_dp(path, type = "PSNUxIM")
 #' #apply mechanism names
-#'   df_dp_named <- tame_dp(path, type = "PSNUxIM", map_names = TRUE)
+#'   df_tst_named <- tame_dp(path, type = "PSNUxIM", map_names = TRUE)
 #' #aggregate to the PSNU level
-#'   df_dp_psnu <- tame_dp(path, type = "PSNUxIM", psnu_lvl = TRUE)
+#'   df_tst_psnu <- tame_dp(path, type = "PSNUxIM", psnu_lvl = TRUE)
 #' #reading in multiple files and then applying mechanism names (for PSNUxIM)
 #'   df_all <- map_dfr(.x = list.files("../Downloads/DataPacks", full.names = TRUE),
 #'                     .f = ~ tame_dp(.x, map_names = FALSE))
@@ -55,50 +55,50 @@ tame_dp <- function(filepath, type = "ALL",
     intersect(readxl::excel_sheets(filepath))
 
   #import Target Setting Tool, refine columns and reshape
-  df_dp <- purrr::map_dfr(import_tabs,
+  df_tst <- purrr::map_dfr(import_tabs,
                           ~import_dp(filepath, .x) %>%
                             reshape_dp())
 
   #grab and apply FY
   fy <- grab_info(filepath, "year")
-  df_dp <- apply_fy(df_dp, fy)
+  df_tst <- apply_fy(df_tst, fy)
 
   #include/exclude PLHIV/SUBNAT as desired
-  df_dp <- limit_datatype(df_dp, type)
+  df_tst <- limit_datatype(df_tst, type)
 
   #aggregate output to IM or PSNU level
-  df_dp <- agg_dp(df_dp, psnu_lvl)
+  df_tst <- agg_dp(df_tst, psnu_lvl)
 
   #split out cumulative from targets
-  df_dp <- pivot_results(df_dp)
+  df_tst <- pivot_results(df_tst)
 
   #break out indicatorcode variable
-  df_dp <- clean_indicators(df_dp)
+  df_tst <- clean_indicators(df_tst)
 
   #identify country (if not pulling from DATIM)
   cntry <- grab_info(filepath, "country")
 
   #add names from DATIM
-  df_dp <- get_names(df_dp, map_names, psnu_lvl, cntry)
+  df_tst <- get_names(df_tst, map_names, psnu_lvl, cntry)
 
   if(is_sheet(filepath, "Prioritization")){
     #identify and apply prioritization
     df_prioritizations <- grab_prioritization(filepath)
-    df_dp <- apply_prioritization(df_dp, df_prioritizations)
+    df_tst <- apply_prioritization(df_tst, df_prioritizations)
 
     #identify and apply snu1 (if using PSNUxIM tab)
     # df_snu1 <- grab_snu1(filepath) #SNU1 no longer in DP
-    # df_dp <- apply_snu1(df_dp, df_snu1) #SNU1 no longer in DP
+    # df_tst <- apply_snu1(df_tst, df_snu1) #SNU1 no longer in DP
   }
 
   #add file name and date stamp to dataset
-  df_dp <- apply_stamps(df_dp, filepath)
+  df_tst <- apply_stamps(df_tst, filepath)
 
   #order variables for output
-  df_dp <- order_vars(df_dp)
+  df_tst <- order_vars(df_tst)
 
   #apply variable class
-  df_dp <- apply_class(df_dp)
+  df_tst <- apply_class(df_tst)
 
-  return(df_dp)
+  return(df_tst)
 }

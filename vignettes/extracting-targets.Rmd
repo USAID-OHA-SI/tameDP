@@ -32,16 +32,17 @@ Once you have everything installed, you will want to launch R or RStudio (an IDE
 
 ```{r setup}
 library(tameDP)
+library(reader)
 ```
 
 ### Storing the File Path
 
-The first thing you will want to do after your load `tameDP` is to tell R where your Target Setting Tool is located on your computer. In your Windows Explorer (outside of R), navigate to your Target Setting Tool file, and hold the SHIFT key while you right click on the file name. Doing this gives you an additional option to "Copy as path", which you want to click. 
+The first thing you will want to do after your load `tameDP` is to tell R where your Target Setting Tool (TST) is located on your computer. In your Windows Explorer (outside of R), navigate to your Target Setting Tool file, and hold the SHIFT key while you right click on the file name. Doing this gives you an additional option to "Copy as path", which you want to click. 
 
-Now you have the path saved to your clipboard. Open your R up and paste the copied filepath into the Console or a script. Before you hit enter, you will need to store this path as an object in R using the assignment operator `<-`. This let's us store information to use at a later point to pass into different functions. We will call the object, `dp_filepath`.  **It is important to note that Windows filepaths have their slash in the wrong direction. You will need to replace all backslashes ("/\") in your filepath with forward slashes ("/").** The command to store the file path object will look like the code below, where you have replaced the file path with the path to your own file.
+Now you have the path saved to your clipboard. Open your R up and paste the copied filepath into the Console or a script. Before you hit enter, you will need to store this path as an object in R using the assignment operator `<-`. This let's us store information to use at a later point to pass into different functions. We will call the object, `tst_filepath`.  **It is important to note that Windows filepaths have their slash in the wrong direction. You will need to replace all backslashes ("/\") in your filepath with forward slashes ("/").** The command to store the file path object will look like the code below, where you have replaced the file path with the path to your own file.
 
 ```{r filepath}
-dp_filepath <- "C:/Users/[username]/Downloads/DataPack_Jupiter_20500101.xlsx"
+tst_filepath <- "../TST/DataPack_Jupiter_20600101.xlsx"
 ```
 
 ### Extracting Targets
@@ -49,10 +50,21 @@ dp_filepath <- "C:/Users/[username]/Downloads/DataPack_Jupiter_20500101.xlsx"
 There are a few different forms of data we can get out of the Target Setting Tool. The first is extracting all the targets from their relevant tabs. The data here will be at the PSNU level, broken out by the relevant disagregates (e.g. Age/Sex/HIVStatus). In the function below, we have used the filepath we stored above to pass that into the function. *This function will take a few seconds or minutes to run depending on the size of your Target Setting Tool.* 
 
 ```{r base function}
-df_dp <- tame_dp(dp_filepath)
+df_tst <- tame_dp(tst_filepath)
 ```
 
-The data that has been extracted from the Target Setting Tool will stored in an objected called `df_dp`. If you browse the data frame (df) using a function like `View(df_dp)` or `dplyr::glimpse(df_dp)`, you'll see the structure is very similar to a MER Structured Dataset (MSD). You have the following columns: `operatingunit, countryname, snu1, psnu, psnuuid, fiscal_year, indicator, standardizeddisaggregate, numeratordenom, ageasentered, sex, modality, statushiv, otherdisaggregate, targets`. The output is a bit more manageable to work with than using it in the Target Setting Tool.
+The data that has been extracted from the Target Setting Tool will stored in an objected called `df_tst`. If you browse the data frame (df) using a function like `View(df_tst)` or `dplyr::glimpse(df_tst)`, you'll see the structure is very similar to a MER Structured Dataset (MSD). You have the following columns: `operatingunit, countryname, snu1, psnu, psnuuid, fiscal_year, indicator, standardizeddisaggregate, numeratordenom, ageasentered, sex, modality, statushiv, otherdisaggregate, targets`. The output is a bit more manageable to work with than using it in the Target Setting Tool.
+
+### Exporting Data
+
+If you are comfortable working in R, you can use the `df_tst` object to munge, analyze, or visualize your data. If you would prefer to get the data out to work with in Excel, Tableau, or another program, we can export the data from the data frame it's stored in to a csv file using the `readr` package. We will need to tell R which object we want to export; for this we can use `df_tst` which we got by running `tame_dp(tst_filepath)` in the [Extracting Targets section](extracting-targets). You will want to change the file path and name in the chunk below.
+
+```{r export}
+write_csv(df_tst,
+          file = "../Output/TST_Jupiter_tidy.csv",
+          na = "")
+
+```
 
 ### Other Data Options
 
@@ -65,17 +77,17 @@ In the function above, we provided the filepath and the function returned the th
 We can see that there are different parameter that will allow us to return different things.
 
 ```{r function params}
-tame_dp(filepath, type = "ALL", map_names = FALSE, psnu_lvl = FALSE)
+tame_dp(tst_filepath, type = "ALL", map_names = FALSE, psnu_lvl = FALSE)
 ```
 
 By default, the function is returning a specific `type` and is `FALSE` for the other two parameters. If you look in the help file, you will see there are three options for `type` - "PSNUxIM", "PLHIV", "ALL" (the default) or a specific tab. The option for using "ALL" is giving us all the targets from the tabs. But you will see that you could change this option to "PLHIV". If you do, it will return the PLHIV and NAT_SUBNAT data from the Cascade tab of the Target Setting Tool. The function will be the same structure as above, but we are adding the `type` parameter in order to return the PLHIV and NAT_SUBNAT data instead of targets.
 
 ```{r return SUBNAT}
 #return IMPATT/SUBNAT data
-df_subnat <- tame_subnat(dp_filepath)
+df_subnat <- tame_subnat(tst_filepath)
 
 #return data from a specific tab - TB
-df_tb <- tamep_dp(dp_filepath, type = "TB")
+df_tb <- tamep_dp(tst_filepath, type = "TB")
 ```
 
 
@@ -84,31 +96,32 @@ The structure of the data frame is the same as when we ran it for targets, but t
 Last but not least we have the option to return `type = "PSNUxIM"`, which will pull data from the PSNUxIM tab of the Target Setting Tool (or OPU). As the tab name and `type` indicate, the data will be at the PSNU and mechanism level.
 
 ```{r return mech}
-df_dp_mech <- tame_dp(dp_filepath, type = "PSNUxIM")
+df_tst_mech <- tame_dp(tst_filepath, type = "PSNUxIM")
 ```
 
 This last `type` option returns the `mech_code` in the Target Setting Tool with the targets assigned to it. The Target Setting Tool doesn't include the mechanism name or prime partner so these columns are left blank. To include this info, you can set `map_names = TRUE` in your function. When you run the function, there will be a pop-up window asking you to type your DATIM user name and password to pull this information down from DATIM. Previously, this had been public information, but after a DHIS2 update, the data became password protected.
 
 ```{r return mech info}
-df_dp_mech_info <- tame_dp(dp_filepath, type = "PSNUxIM", map_names = TRUE)
+df_tst_mech_info <- tame_dp(tst_filepath, type = "PSNUxIM", map_names = TRUE)
 ```
 
 The final parameter in the function is `psnu_lvl` which gives the user the option to aggregate the data up to the PSNU level (if working with PSNUxIM). Since `tame_dp` can pull from the target tabs which are at the PSNU level, this isn't as useful now, but it can be useful if you are only working with the PSNUxIM tab, such as with an OPU.
 
 ```{r return psnu agg}
-df_dp_psnu <- tame_dp(dp_filepath, type = "PSNUxIM", psnu_lvl = TRUE)
+df_tst_psnu <- tame_dp(tst_filepath, type = "PSNUxIM", psnu_lvl = TRUE)
 ```
 
 ### Combining Multiple Files
 
-You can use one of the `map()` functions from `purrr` package to read in multiple Target Setting Tools and combine rather than working with one off. This may be more relevant if you're reviewing a regional operating unit or in Washington. You will get a pop up each time to provide your DATIM credentials if you don't have stored in the session. We recommend using `askpass::askpass()` when storing your credentials so you don't type into your script or into your console (and visual under history).
+You can use one of the `map()` functions from `purrr` package to read in multiple Target Setting Tools and combine rather than working with one off. This may be more relevant if you're reviewing a regional operating unit or in Washington. You will get a pop up each time to provide your DATIM credentials if you don't have stored in the session. We recommend using `getPass::getPass()` when storing your credentials so you don't type into your script or into your console (and visual under history).
 
 ``` {r multi file}
 #load package
   library(purrr)
+  library(getPass)
 
 #identify all the Target Setting Tool files
-  files <- list.files("../Downloads/DataPacks", full.names = TRUE)
+  files <- list.files("../Downloads/TSTs", full.names = TRUE)
 
 #read in all DPs and combine into one data frame
   df_combo <- map_dfr(.x = files,
@@ -116,19 +129,9 @@ You can use one of the `map()` functions from `purrr` package to read in multipl
                     
 #store DATIM credentials
   dtm_usr <- "spower" #replace with your credentials
-  dtm_pwd <- getPass::getPass() #pop up prompting for your password
+  dtm_pwd <- getPass() #pop up prompting for your password
   
 #apply mech_name and primepartner names from DATIM
   df_combo <- get_names(df_combo, datim_user = dtm_usr, datim_password = dtm_pwd)
 ```
 
-### Exporting Data
-
-If you are comfortable working in R, you can use the `df_dp` object to munge, analyze, or visualize your data. If you would prefer to get the data out to work with in Excel, Tableau, or another program, we can export the data from the data frame it's stored in to a .csv file using the `readr` package. We will need to tell R which object we want to export; for this we can use `df_dp` which we got by running `tame_dp(dp_filepath)` in the [Extracting Targets section](extracting-targets). You will want to change the file name/location in the chunk below.
-
-```{r export}
-readr::write_csv(df_dp,
-                 file = "../Downloads/DataPack_Jupiter_tidy.csv",
-                 na = "")
-
-```

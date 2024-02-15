@@ -1,8 +1,8 @@
 ---
-title: "Combining DP Targets with the MSD"
+title: "Combining TST Targets with the MSD"
 output: rmarkdown::html_vignette
 description: |
-  Running tameDP to extract DP targets
+  Running tameDP to extract TST targets & bind onto MSD
 vignette: >
   %\VignetteIndexEntry{combining-with-msd}
   %\VignetteEngine{knitr::rmarkdown}
@@ -32,7 +32,7 @@ In addition to loading `tameDP`, we're also going to need to install/load a coup
 
 ```{r installation, eval=F}
 install.packages("here")
-remotes::install_github("USAID-OHA-SI/gophr", build_vignettes = TRUE)
+install.packages('gophr', repos = c('https://usaid-oha-si.r-universe.dev', 'https://cloud.r-project.org'))
 ```
 Alright, with `gophr` installed to work with the MSD, let's get going.
 
@@ -44,58 +44,64 @@ library(tidyr)
 library(here)
 ```
 
-The first step is reading in the from the Data Pack target. We are going to work with the targets out the target tabs, assuming the PSNUxIM is not yet populated. **Remember, Windows filepaths have their slash in the wrong direction. You will need to replace all backslashes ("/\") in your filepath with forward slashes ("/").**
+The first step is reading in the from the Target Setting Tool (TST) file. We are going to work with the targets out the target tabs, assuming the PSNUxIM is not yet populated. **Remember, Windows filepaths have their slash in the wrong direction. You will need to replace all backslashes ("/\") in your filepath with forward slashes ("/").**
 
 ```{r process}
 #data pack file path
-dp_filepath <- here("tools/DataPack_Jupiter_20500101.xlsx")
+tst_filepath <- here("tools/DataPack_Jupiter_20600101.xlsx")
 #process the data pack to extract the targets
-df_dp <- tame_dp(dp_filepath)
+df_tst <- tame_dp(tst_filepath)
 
 #glimpse the output
-df_dp %>% 
-  select(-psnuuid) %>% 
-  glimpse()
+glimpse(df_tst)
 ```
 
-We now have all the targets extracted from the Data Pack and stored in a tidy dataframe called `df_dp`. We want to combine this with the MSD. You will need to download your country's MSD from [PEPFAR Panorama](https://www.pepfar-panorama.org/). For our analysis, let's look across PSNUs so we will want to download the PSNUxIM dataset. Once you have it downloaded, you will want to use `gophr::read_msd()` to open the MSD.
+We now have all the targets extracted from the TST and stored in a tidy dataframe called `df_tst`. We want to combine this with the MSD. You will need to download your country's full MSD from [PEPFAR Panorama](https://www.pepfar-panorama.org/) or Genie Extract from [DATIM](datim.org/). For our analysis, let's look across PSNUs so we will want to download the PSNUxIM dataset. Once you have it downloaded, you will want to use `gophr::read_psd()` to open the MSD.
 
 ```{r import_msd}
 #msd file path
-dp_filepath <- here("../../../Downloads/MER_Structured_Datasets_PSNU_IM_FY45-49_Jupiter.txt")
+msd_filepath <- here("../../../Downloads/MER_Structured_Datasets_PSNU_IM_FY45-49_Jupiter.txt")
 
 #read in MSD
-df_msd <- read_msd(dp_filepath)
+df_msd <- read_psd(msd_filepath)
 ```
 
-The PSNUxIM file has a few more columns that we need. 
+The PSNUxIM file has a few more columns that we need and the TST output had a processed time column that we won't need.
 
 ```{r comp}
-#extra column names in the MSD
-setdiff(names(df_msd), names(df_dp))
+#extra column names in the MSD that don't exist in the TST
+setdiff(names(df_msd), names(df_tst))
 
-#no exta columns in the Data Pack
-setdiff(names(df_dp), names(df_msd))
+#exta columns in the TST that don't exist in the MSD
+setdiff(names(df_tst), names(df_msd))
 ```
 
 It also has more indicators and disaggregates that aren't in the Data Pack. To simplify matters, we can subset, or limit, the dataset to what we have to work with. Luckily we have a table stored in this packaged called `mer_disagg_mapping` that contains all the indicators and their disaggregates that we can use to filter the MSD by.
 
-```{r}
+```{r disaggs}
 mer_disagg_mapping
 ```
 
-Combining the names from our Data Pack data frame (`names(df_dp)`) to limit the columns and using an inner join to keep only the target disaggregates, we can then append or bind this with onto the MSD data frame.
+Combining the names from our Data Pack data frame (`names(df_tst)`) to limit the columns and using an inner join to keep only the target disaggregates, we can then append or bind this with onto the MSD data frame. The TST will also have historic fiscal year data in addition to to the planning year that will be duplicated in the MSD so we'll need to remove that as well. 
 
 ```{r subset}
-#subset data from MSD
-df_msd_lim <- df_msd %>% 
-  select(all_of(names(df_dp))) %>% 
+#remove extra column from the tidy TST
+df_tst <- select(df_tst, -source_processed)
+
+#remove extra columns from MSD
+df_msd_lim <- select(df_msd, all_of(names(df_tst))) 
+
+#subset MSD data to only indicators/disaggs that exist in the TST (inner_join is acting like filter)
+df_msd_lim <- df_msd_lim %>% 
   inner_join(mer_disagg_mapping, by = c("indicator", "standardizeddisaggregate", "numeratordenom"))
 
-#bind Data Pack data onto MSD
-df_msd_dp <- df_msd_lim %>% 
-  bind_rows(df_dp) %>% 
-  select(-psnuuid) %>% 
+#remove duplicative data
+df_tst <- df_tst %>% 
+  filter(fiscal_year > max(df_tst$fiscal_year))
+
+#bind TST data frame onto MSD
+df_msd_tst <- df_msd_lim %>% 
+  bind_rows(df_tst) %>% 
   glimpse()
 
 ```
@@ -103,7 +109,7 @@ df_msd_dp <- df_msd_lim %>%
 We now have a joined data frame that we can use to compare indicator trends over time. For instance, we can compare how this year's TX_NEW targets compare with previous few years' targets across ages.
 
 ```{r count}
-df_tx_trend <- df_msd_dp %>% 
+df_tx_trend <- df_msd_tst %>% 
   filter(indicator == "TX_NEW",
          standardizeddisaggregate == "Age/Sex/HIVStatus") %>% 
   count(fiscal_year, indicator, ageasentered, wt = targets, name = "targets") 
