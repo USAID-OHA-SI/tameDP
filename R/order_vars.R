@@ -25,7 +25,7 @@ order_vars <- function(df){
                         funding_agency, mech_code, prime_partner_name, mech_name,
                         fiscal_year,
                         dplyr::starts_with("indicator"), standardizeddisaggregate,
-                        numeratordenom, ageasentered, trendscoarse, sex, modality, statushiv, otherdisaggregate,
+                        numeratordenom, ageasentered, target_age_2024, trendscoarse, sex, modality, statushiv, otherdisaggregate,
                         cumulative, targets,
                         dplyr::starts_with("source"))
   } else {
@@ -33,7 +33,7 @@ order_vars <- function(df){
                         operatingunit, country, psnu, psnuuid, snuprioritization,
                         fiscal_year,
                         dplyr::starts_with("indicator"), standardizeddisaggregate,
-                        numeratordenom, ageasentered, trendscoarse, sex, modality, statushiv, otherdisaggregate,
+                        numeratordenom, ageasentered, target_age_2024, trendscoarse, sex, modality, statushiv, otherdisaggregate,
                         cumulative, targets,
                         dplyr::starts_with("source"))
   }
