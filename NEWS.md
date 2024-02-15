@@ -1,5 +1,10 @@
-# tameDP 6.0
+# tameDP 6.1
+* Improve code for ordering variables [2024-02-15]
+* Include "<02 Months" and "02 - 12 Months" from PMTCT_EID to `trendscoarse` [2024-02-15]
+* Add `target_age_2024` and `target_modality_2024` for alignment with MSD [2024-02-15] 
 * Clean up README and Vignettes [2024-02-14]
+
+# tameDP 6.0
 * Add in `trendscoarse` to exported dataset [2024-01-19]
 * Calculated OVC_HIVSTAT_D, PMTCT_STAT_POS, and PMTCT_ART_D targets [2024-01-19]
 * Adjust standardizeddisaggregate mapping (`mer_disagg_mapping`) for HTS_INDEX, OVC_HIVSTAT, PrEP_NEW (KP), and TB_STAT [2024-01-19]
