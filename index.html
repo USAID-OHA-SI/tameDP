@@ -39,7 +39,7 @@
     
     <a class="navbar-brand me-2" href="index.html">tameDP</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">6.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">6.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -106,7 +106,7 @@
 <span>  <span class="co">#load the package</span></span>
 <span>    <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://usaid-oha-si.github.io/tameDP/">tameDP</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">## LIST TYPES OF STYLES INCLUDED WITH PACKAGE</span></span>
+<span><span class="co">## List the functions available tameDP</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/ls.html" class="external-link">ls</a></span><span class="op">(</span><span class="st">"package:tameDP"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -131,7 +131,7 @@
 <span>  <span class="va">path</span> <span class="op">&lt;-</span> <span class="st">"../Downloads/TargetSettingTool_Jupiter_20500101.xlsx"</span></span>
 <span>  </span>
 <span><span class="co">#read in Target Setting Tool &amp; tidy</span></span>
-<span> <span class="va">df_dp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/tame_dp.html">tame_dp</a></span><span class="op">(</span><span class="va">path</span><span class="op">)</span></span>
+<span> <span class="va">df_tst</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/tame_dp.html">tame_dp</a></span><span class="op">(</span><span class="va">path</span><span class="op">)</span></span>
 <span> </span>
 <span><span class="co">#read in PLHIV and SUB_NAT data from the Target Setting Tool</span></span>
 <span> <span class="va">df_subnat</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/tame_dp.html">tame_dp</a></span><span class="op">(</span><span class="va">path</span>, type <span class="op">=</span> <span class="st">"SUBNAT"</span><span class="op">)</span></span></code></pre></div>
@@ -139,6 +139,7 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#load package</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/" class="external-link">purrr</a></span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/wrathematics/getPass" class="external-link">getPass</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#identify all the Target Setting Tool files</span></span>
 <span>  <span class="va">files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="st">"../Downloads/DataPacks"</span>, full.names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -150,7 +151,7 @@
 <span><span class="co">#apply mech_name and primepartner names from DATIM</span></span>
 <span><span class="co">#you will need to provide your DATIM credentials </span></span>
 <span>  <span class="va">datim_user_nm</span> <span class="op">&lt;-</span> <span class="st">"spower"</span> <span class="co">#replace with your username</span></span>
-<span>  <span class="va">datim_pwd</span> <span class="op">&lt;-</span> <span class="fu">getPass</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/getPass/man/getPass.html" class="external-link">getPass</a></span><span class="op">(</span><span class="op">)</span> <span class="co">#pop up prompting for your password</span></span>
+<span>  <span class="va">datim_pwd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/getPass/man/getPass.html" class="external-link">getPass</a></span><span class="op">(</span><span class="op">)</span> <span class="co">#pop up prompting for your password</span></span>
 <span>  <span class="va">df_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_names.html">get_names</a></span><span class="op">(</span><span class="va">df_all</span>, datim_user <span class="op">=</span> <span class="va">datim_user_nm</span>, datim_password <span class="op">=</span> <span class="va">datim_pwd</span><span class="op">)</span></span></code></pre></div>
 <hr>
 <p><em>Disclaimer: The findings, interpretation, and conclusions expressed herein are those of the authors and do not necessarily reflect the views of United States Agency for International Development. All errors remain our own.</em></p>

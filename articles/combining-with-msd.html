@@ -5,9 +5,9 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Running tameDP to extract DP targets
+<meta name="description" content="Running tameDP to extract TST targets &amp; bind onto MSD
 ">
-<title>Combining DP Targets with the MSD • tameDP</title>
+<title>Combining TST Targets with the MSD • tameDP</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -18,8 +18,8 @@
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Combining DP Targets with the MSD">
-<meta property="og:description" content="Running tameDP to extract DP targets
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Combining TST Targets with the MSD">
+<meta property="og:description" content="Running tameDP to extract TST targets &amp; bind onto MSD
 ">
 <meta property="og:image" content="https://usaid-oha-si.github.io/tameDP/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -35,7 +35,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">tameDP</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">6.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">6.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,7 +82,7 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="../logo.png" class="logo" alt=""><h1>Combining DP Targets with the MSD</h1>
+      <img src="../logo.png" class="logo" alt=""><h1>Combining TST Targets with the MSD</h1>
             
       
       
@@ -112,7 +112,7 @@ custom OHA package called <code>gophr</code>. Let’s install bothS
 now.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"here"</span><span class="op">)</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"USAID-OHA-SI/gophr"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'gophr'</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'https://usaid-oha-si.r-universe.dev'</span>, <span class="st">'https://cloud.r-project.org'</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Alright, with <code>gophr</code> installed to work with the MSD,
 let’s get going.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -121,40 +121,41 @@ let’s get going.</p>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/" class="external-link">here</a></span><span class="op">)</span></span></code></pre></div>
-<p>The first step is reading in the from the Data Pack target. We are
-going to work with the targets out the target tabs, assuming the PSNUxIM
-is not yet populated. <strong>Remember, Windows filepaths have their
-slash in the wrong direction. You will need to replace all backslashes
-(“/") in your filepath with forward slashes (”/“).</strong></p>
+<p>The first step is reading in the from the Target Setting Tool (TST)
+file. We are going to work with the targets out the target tabs,
+assuming the PSNUxIM is not yet populated. <strong>Remember, Windows
+filepaths have their slash in the wrong direction. You will need to
+replace all backslashes (“/") in your filepath with forward slashes
+(”/“).</strong></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#data pack file path</span></span>
-<span><span class="va">dp_filepath</span> <span class="op">&lt;-</span> <span class="fu">here</span><span class="op">(</span><span class="st">"tools/DataPack_Jupiter_20500101.xlsx"</span><span class="op">)</span></span>
+<span><span class="va">tst_filepath</span> <span class="op">&lt;-</span> <span class="fu">here</span><span class="op">(</span><span class="st">"tools/DataPack_Jupiter_20600101.xlsx"</span><span class="op">)</span></span>
 <span><span class="co">#process the data pack to extract the targets</span></span>
-<span><span class="va">df_dp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tame_dp.html">tame_dp</a></span><span class="op">(</span><span class="va">dp_filepath</span><span class="op">)</span></span>
+<span><span class="va">df_tst</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tame_dp.html">tame_dp</a></span><span class="op">(</span><span class="va">tst_filepath</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#glimpse the output</span></span>
-<span><span class="va">df_dp</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">psnuuid</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>We now have all the targets extracted from the Data Pack and stored
-in a tidy dataframe called <code>df_dp</code>. We want to combine this
-with the MSD. You will need to download your country’s MSD from <a href="https://www.pepfar-panorama.org/" class="external-link">PEPFAR Panorama</a>. For our
-analysis, let’s look across PSNUs so we will want to download the
-PSNUxIM dataset. Once you have it downloaded, you will want to use
-<code>gophr::read_msd()</code> to open the MSD.</p>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">df_tst</span><span class="op">)</span></span></code></pre></div>
+<p>We now have all the targets extracted from the TST and stored in a
+tidy dataframe called <code>df_tst</code>. We want to combine this with
+the MSD. You will need to download your country’s full MSD from <a href="https://www.pepfar-panorama.org/" class="external-link">PEPFAR Panorama</a> or Genie
+Extract from <a href="datim.org/">DATIM</a>. For our analysis, let’s
+look across PSNUs so we will want to download the PSNUxIM dataset. Once
+you have it downloaded, you will want to use
+<code>gophr::read_psd()</code> to open the MSD.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#msd file path</span></span>
-<span><span class="va">dp_filepath</span> <span class="op">&lt;-</span> <span class="fu">here</span><span class="op">(</span><span class="st">"../../../Downloads/MER_Structured_Datasets_PSNU_IM_FY45-49_Jupiter.txt"</span><span class="op">)</span></span>
+<span><span class="va">msd_filepath</span> <span class="op">&lt;-</span> <span class="fu">here</span><span class="op">(</span><span class="st">"../../../Downloads/MER_Structured_Datasets_PSNU_IM_FY45-49_Jupiter.txt"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#read in MSD</span></span>
-<span><span class="va">df_msd</span> <span class="op">&lt;-</span> <span class="fu">read_msd</span><span class="op">(</span><span class="va">dp_filepath</span><span class="op">)</span></span></code></pre></div>
-<p>The PSNUxIM file has a few more columns that we need.</p>
+<span><span class="va">df_msd</span> <span class="op">&lt;-</span> <span class="fu">read_psd</span><span class="op">(</span><span class="va">msd_filepath</span><span class="op">)</span></span></code></pre></div>
+<p>The PSNUxIM file has a few more columns that we need and the TST
+output had a processed time column that we won’t need.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#extra column names in the MSD</span></span>
-<span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html" class="external-link">setdiff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_msd</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_dp</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="co">#extra column names in the MSD that don't exist in the TST</span></span>
+<span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html" class="external-link">setdiff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_msd</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_tst</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">#no exta columns in the Data Pack</span></span>
-<span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html" class="external-link">setdiff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_dp</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_msd</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="co">#exta columns in the TST that don't exist in the MSD</span></span>
+<span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html" class="external-link">setdiff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_tst</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_msd</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>It also has more indicators and disaggregates that aren’t in the Data
 Pack. To simplify matters, we can subset, or limit, the dataset to what
 we have to work with. Luckily we have a table stored in this packaged
@@ -163,25 +164,35 @@ and their disaggregates that we can use to filter the MSD by.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mer_disagg_mapping</span></span></code></pre></div>
 <p>Combining the names from our Data Pack data frame
-(<code>names(df_dp)</code>) to limit the columns and using an inner join
-to keep only the target disaggregates, we can then append or bind this
-with onto the MSD data frame.</p>
+(<code>names(df_tst)</code>) to limit the columns and using an inner
+join to keep only the target disaggregates, we can then append or bind
+this with onto the MSD data frame. The TST will also have historic
+fiscal year data in addition to to the planning year that will be
+duplicated in the MSD so we’ll need to remove that as well.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#subset data from MSD</span></span>
-<span><span class="va">df_msd_lim</span> <span class="op">&lt;-</span> <span class="va">df_msd</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_dp</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<code class="sourceCode R"><span><span class="co">#remove extra column from the tidy TST</span></span>
+<span><span class="va">df_tst</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">df_tst</span>, <span class="op">-</span><span class="va">source_processed</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#remove extra columns from MSD</span></span>
+<span><span class="va">df_msd_lim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">df_msd</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_tst</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="co">#subset MSD data to only indicators/disaggs that exist in the TST (inner_join is acting like filter)</span></span>
+<span><span class="va">df_msd_lim</span> <span class="op">&lt;-</span> <span class="va">df_msd_lim</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">inner_join</a></span><span class="op">(</span><span class="va">mer_disagg_mapping</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"indicator"</span>, <span class="st">"standardizeddisaggregate"</span>, <span class="st">"numeratordenom"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">#bind Data Pack data onto MSD</span></span>
-<span><span class="va">df_msd_dp</span> <span class="op">&lt;-</span> <span class="va">df_msd_lim</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="va">df_dp</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">psnuuid</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span><span class="co">#remove duplicative data</span></span>
+<span><span class="va">df_tst</span> <span class="op">&lt;-</span> <span class="va">df_tst</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">fiscal_year</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">df_tst</span><span class="op">$</span><span class="va">fiscal_year</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#bind TST data frame onto MSD</span></span>
+<span><span class="va">df_msd_tst</span> <span class="op">&lt;-</span> <span class="va">df_msd_lim</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="va">df_tst</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>We now have a joined data frame that we can use to compare indicator
 trends over time. For instance, we can compare how this year’s TX_NEW
 targets compare with previous few years’ targets across ages.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">df_tx_trend</span> <span class="op">&lt;-</span> <span class="va">df_msd_dp</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<code class="sourceCode R"><span><span class="va">df_tx_trend</span> <span class="op">&lt;-</span> <span class="va">df_msd_tst</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">indicator</span> <span class="op">==</span> <span class="st">"TX_NEW"</span>,</span>
 <span>         <span class="va">standardizeddisaggregate</span> <span class="op">==</span> <span class="st">"Age/Sex/HIVStatus"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">fiscal_year</span>, <span class="va">indicator</span>, <span class="va">ageasentered</span>, wt <span class="op">=</span> <span class="va">targets</span>, name <span class="op">=</span> <span class="st">"targets"</span><span class="op">)</span> </span></code></pre></div>
