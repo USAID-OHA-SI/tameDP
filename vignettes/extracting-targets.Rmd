@@ -32,7 +32,7 @@ Once you have everything installed, you will want to launch R or RStudio (an IDE
 
 ```{r setup}
 library(tameDP)
-library(reader)
+library(readr)
 ```
 
 ### Storing the File Path
@@ -80,14 +80,16 @@ We can see that there are different parameter that will allow us to return diffe
 tame_dp(tst_filepath, type = "ALL", map_names = FALSE, psnu_lvl = FALSE)
 ```
 
-By default, the function is returning a specific `type` and is `FALSE` for the other two parameters. If you look in the help file, you will see there are three options for `type` - "PSNUxIM", "PLHIV", "ALL" (the default) or a specific tab. The option for using "ALL" is giving us all the targets from the tabs. But you will see that you could change this option to "PLHIV". If you do, it will return the PLHIV and NAT_SUBNAT data from the Cascade tab of the Target Setting Tool. The function will be the same structure as above, but we are adding the `type` parameter in order to return the PLHIV and NAT_SUBNAT data instead of targets.
+By default, the function is returning a specific `type` and is `FALSE` for the other two parameters. If you look in the help file, you will see there are three options for `type` - "PSNUxIM", "SUBNAT", "ALL" (the default) or a specific tab. The option for using "ALL" is giving us all the targets from the tabs. But you will see that you could change this option to "SUBNAT". If you do, it will return NAT_SUBNAT data including PLHIV from the Cascade tab of the Target Setting Tool. The function will be the same structure as above, but we are adding the `type` parameter and specifying "SUBNAT" in order to return the PLHIV and NAT_SUBNAT data instead of targets. You can also utilize `tame_subnat()`, which is just a wrapper function around `tame_dp()`
 
 ```{r return SUBNAT}
 #return IMPATT/SUBNAT data
-df_subnat <- tame_subnat(tst_filepath)
+df_subnat <- tame_dp(tst_filepath, type = "SUBNAT")
+#which is equivalent to tame_subnat 
+df_subnat2 <- tame_subnat(tst_filepath)
 
 #return data from a specific tab - TB
-df_tb <- tamep_dp(tst_filepath, type = "TB")
+df_tb <- tame_dp(tst_filepath, type = "TB")
 ```
 
 
