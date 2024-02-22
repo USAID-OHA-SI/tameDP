@@ -1,4 +1,8 @@
 # tameDP 6.1
+* Add error handing if valid tab is chosen in `type` param for `tame_dp` but not found in TST file [2024-02-22]
+* Convert stop errors from `stop` to use `cli::cli_abort` [2024-02-22]
+* Resolve `across` bug of "Using `across()` without supplying `.cols` was deprecated in dplyr 1.1.0", which affected handing with PSNUxIM TST [2024-02]
+* Improve handling if the `type` param in `tame_dp` is kept to the default ("ALL") but the file is a "PSNUxIM" TST [2024-02-22] 
 * Update language in the [Extracting Targets vignette](extracting-targets.html) retiring the use of PLHIV in favor of using SUBNAT introduced in v5.1 [2024-02-22]
 * Resolve bug created when no OVC targets exist in the TST [2024-02-22]
 * Resolve issue causing OVC_HIVSTAT_D not to be included in the dataset [2024-02-22]
