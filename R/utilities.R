@@ -118,7 +118,7 @@ return_tab <- function(type){
 #' @param import_tabs tabs imported as a result of the intersection of
 #'   return_tab() and the tabs in the TST
 #'
-#' @family internal
+#' @keywords internal
 #' @return vector of tabs to read in
 #'
 lazy_psnuxim_handling <- function(filepath, type, import_tabs){
