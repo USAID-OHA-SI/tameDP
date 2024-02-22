@@ -56,7 +56,7 @@ is_xls <- function(filepath){
 no_connection <- function(){
 
   if(!curl::has_internet())
-    stop("No internet connection. Cannot access offical names & rename.")
+    cli::cli_abort("No internet connection. Cannot access offical names & rename.")
 }
 
 
@@ -98,7 +98,7 @@ return_tab <- function(type){
   } else if(type %in% dp_tabs){
     t <- type
   } else {
-    stop("Not a valid type/tab provided")
+    cli::cli_abort("Not a valid type/tab provided")
   }
 
   return(t)

@@ -82,7 +82,7 @@ reshape_psnuim <- function(df){
 
   #check if all columns exist
   if(length(setdiff(key_cols, names(df))) > 0)
-    stop(paste("PSNUxIM tab is missing one or more columns:", paste(length(setdiff(key_cols, names(df))), collapse = ", ")))
+    cli::cli_abort(paste("PSNUxIM tab is missing one or more columns:", paste(length(setdiff(key_cols, names(df))), collapse = ", ")))
 
     #calculate dedup (simply where mech total value is greater than rollup value)
     df_dedup_values <- df %>%
