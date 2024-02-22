@@ -1,4 +1,7 @@
 # tameDP 6.1
+* Update language in the [Extracting Targets vignette](extracting-targets.html) retiring the use of PLHIV in favor of using SUBNAT introduced in v5.1 [2024-02-22]
+* Resolve bug created when no OVC targets exist in the TST [2024-02-22]
+* Resolve issue causing OVC_HIVSTAT_D not to be included in the dataset [2024-02-22]
 * Improve code for ordering variables [2024-02-15]
 * Include "<02 Months" and "02 - 12 Months" from PMTCT_EID to `trendscoarse` [2024-02-15]
 * Add `target_age_2024` and `target_modality_2024` for alignment with MSD [2024-02-15] 
