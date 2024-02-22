@@ -54,6 +54,16 @@ tame_dp <- function(filepath, type = "ALL",
   import_tabs <- return_tab(type) %>%
     intersect(readxl::excel_sheets(filepath))
 
+  #error handling if default is mainined for a PSNUxIM file
+  import_tabs <- lazy_psnuxim_handling(filepath, type, import_tabs)
+
+  #error handlingling if cannot find valid tab in TST
+  if(length(import_tabs) == 0){
+    cli::cli_abort(c("No valid tab found in TST",
+                     "i" = 'Check the {.arg type} param and open the TST and review the existing tabs'))
+  }
+
+
   #import Target Setting Tool, refine columns and reshape
   df_tst <- purrr::map_dfr(import_tabs,
                           ~import_dp(filepath, .x) %>%

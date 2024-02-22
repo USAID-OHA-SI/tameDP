@@ -82,17 +82,17 @@ reshape_psnuim <- function(df){
 
   #check if all columns exist
   if(length(setdiff(key_cols, names(df))) > 0)
-    stop(paste("PSNUxIM tab is missing one or more columns:", paste(length(setdiff(key_cols, names(df))), collapse = ", ")))
+    cli::cli_abort(paste("PSNUxIM tab is missing one or more columns:", paste(length(setdiff(key_cols, names(df))), collapse = ", ")))
 
     #calculate dedup (simply where mech total value is greater than rollup value)
     df_dedup_values <- df %>%
       dplyr::select(rollup, dplyr::matches("^(1|2|3|4|5|6|7|8|9).*value")) %>%
-      dplyr::mutate(dplyr::across(.fns = as.double)) %>%
+      dplyr::mutate(dplyr::across(dplyr::everything(), as.double)) %>%
       dplyr::mutate(mech_sum = rowSums(., na.rm = TRUE) - rollup,
                     dedup_unk_value = dplyr::case_when(mech_sum > rollup ~ rollup - mech_sum),
                     dedup_unk_share = dedup_unk_value / rollup) %>%
       dplyr::select(dedup_unk_value, dedup_unk_share) %>%
-      dplyr::mutate(dplyr::across(.fns = as.character)) %>%
+      dplyr::mutate(dplyr::across(dplyr::everything(), as.character)) %>%
       dplyr::rename_with(~stringr::str_replace(., "dedup", "00000"))
 
     #bind dedup values onto main dataframe

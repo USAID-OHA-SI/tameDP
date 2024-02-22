@@ -17,14 +17,14 @@ calculate_inds <- function(df){
                        dplyr::mutate(indicator = "HTS_TST_POS"))
 
   #add OVC_HIVSTAT_D as an indicator
-  df_hivstatd <- df %>%
+  df <- df %>%
     dplyr::bind_rows(df %>%
                        dplyr::filter(otherdisaggregate %in% c("Active", "Graduated"),
                                      !ageasentered %in% c("18-20","18+")) %>%
                        dplyr::mutate(indicator == "OVC_HIVSTAT",
                                      numeratordenom = "D",
                                      standardizeddisaggregate = "Total Denominator",
-                                     otherdisaggregate = NA))
+                                     otherdisaggregate = NA_character_))
 
   #add PMTCT_POS as an indicator
   df <- df %>%

@@ -1,7 +1,7 @@
 Package: tameDP
 Title: Import targets and PLHIV data from COP Target Setting Tool (formerly Data 
    Pack)
-Version: 6.1.0
+Version: 6.1.1
 Authors@R: c(
     person("Aaron", "Chafetz", ,"achafetz@usaid.gov", c("aut", "cre")),
     person("Karishma", "Srikanth", ,"ksrikanth@usaid.gov", c("aut")),
@@ -25,7 +25,8 @@ Imports:
     readxl,
     stringr,
     tidyr,
-    tools
+    tools,
+    cli
 Remotes:
     USAID-OHA-SI/glamr,
     USAID-OHA-SI/gophr,

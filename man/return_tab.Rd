@@ -7,7 +7,7 @@
 return_tab(type)
 }
 \arguments{
-\item{type}{dataset to extract "PSNUxIM", "NAT_SUBNAT" (formerly "PLHIV"),
+\item{type}{dataset to extract "PSNUxIM", "SUBNAT" (formerly "PLHIV"),
 "ALL", or a specific tab}
 }
 \value{

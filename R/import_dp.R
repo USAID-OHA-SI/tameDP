@@ -17,15 +17,15 @@ import_dp <- function(filepath, tab){
 
   #check if file is found
   if(!is_file(filepath))
-    stop("Cannot find file! Check file path.")
+    cli::cli_abort("Cannot find file! Check file path.")
 
   #check if extension is okay
   if(!is_xls(filepath))
-    stop("Cannot read a xlsb file format. Resave as xlsx.")
+    cli::cli_abort("Cannot read a xlsb file format. Resave as xlsx.")
 
   #check that sheet exists
   if(!is_sheet(filepath, tab))
-    stop(paste("No sheet called", tab, "found."))
+    cli::cli_abort("No sheet called {tab} found.")
 
   #import Target Setting Tool tab
   suppressMessages(

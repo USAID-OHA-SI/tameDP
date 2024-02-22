@@ -78,6 +78,7 @@ reference:
   - '`apply_stamps`'
   - '`align_ageband`'
   - '`align_msd_disagg`'
+  - '`lazy_psnuxim_handling`'
 
 - title: Internal data
   contents:
