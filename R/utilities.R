@@ -66,7 +66,7 @@ no_connection <- function(){
 #' SUBNAT, or ALL (non mechanism tabs). You can also provide a specific tab
 #' name that matches the Target Setting Tool
 #'
-#' @param type dataset to extract "PSNUxIM", "NAT_SUBNAT" (formerly "PLHIV"),
+#' @param type dataset to extract "PSNUxIM", "SUBNAT" (formerly "PLHIV"),
 #' "ALL", or a specific tab
 #'
 #' @return tabs to import
@@ -103,6 +103,32 @@ return_tab <- function(type){
 
   return(t)
 
+}
+
+#' Lazy PSNUxIM Tool handling
+#'
+#' The default import option is "ALL" for `tame_dp` which does not include
+#' PSNUxIM due to the inclusion of this tab with the full TST in previous years.
+#' The user will receive an error if they do not switch from the default. This
+#' function switches the type argument in tame_dp from "ALL" to "PSNUxIM" to
+#' avoid this problem and provides the user with both a warning and information
+#' on how to fix the problem running it in the future.
+#'
+#' @inheritParams tame_dp
+#' @param import_tabs tabs imported as a result of the intersection of
+#'   return_tab() and the tabs in the TST
+#'
+#' @family internal
+#' @return vector of tabs to read in
+#'
+lazy_psnuxim_handling <- function(filepath, type, import_tabs){
+  if(length(import_tabs) == 0 && "PSNUxIM" %in% readxl::excel_sheets(filepath)){
+    import_tabs <- "PSNUxIM"
+    cli::cli_warn(c(
+      'This TST appears to be a PSNUxIM file and proceeding with the assumption that {.arg type = "PSNUxIM"} should have been specified instead of the default',      "i" = 'You can set {.arg type = "PSNUxIM"} to avoid this warning'
+    ))
+  }
+  return(import_tabs)
 }
 
 

@@ -54,6 +54,9 @@ tame_dp <- function(filepath, type = "ALL",
   import_tabs <- return_tab(type) %>%
     intersect(readxl::excel_sheets(filepath))
 
+  #error handling if default is mainined for a PSNUxIM file
+  import_tabs <- lazy_psnuxim_handling(filepath, type, import_tabs)
+
   #import Target Setting Tool, refine columns and reshape
   df_tst <- purrr::map_dfr(import_tabs,
                           ~import_dp(filepath, .x) %>%
