@@ -21,7 +21,7 @@ calculate_inds <- function(df){
     dplyr::bind_rows(df %>%
                        dplyr::filter(otherdisaggregate %in% c("Active", "Graduated"),
                                      !ageasentered %in% c("18-20","18+")) %>%
-                       dplyr::mutate(indicator == "OVC_HIVSTAT",
+                       dplyr::mutate(indicator = "OVC_HIVSTAT",
                                      numeratordenom = "D",
                                      standardizeddisaggregate = "Total Denominator",
                                      otherdisaggregate = NA_character_))
