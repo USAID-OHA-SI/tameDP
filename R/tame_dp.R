@@ -57,12 +57,11 @@ tame_dp <- function(filepath, type = "ALL",
   #error handling if default is mainined for a PSNUxIM file
   import_tabs <- lazy_psnuxim_handling(filepath, type, import_tabs)
 
-  #error handlingling if cannot find valid tab in TST
+  #error handling if cannot find valid tab in TST
   if(length(import_tabs) == 0){
     cli::cli_abort(c("No valid tab found in TST",
                      "i" = 'Check the {.arg type} param and open the TST and review the existing tabs'))
   }
-
 
   #import Target Setting Tool, refine columns and reshape
   df_tst <- purrr::map_dfr(import_tabs,
@@ -83,7 +82,7 @@ tame_dp <- function(filepath, type = "ALL",
   df_tst <- pivot_results(df_tst)
 
   #break out indicatorcode variable
-  df_tst <- clean_indicators(df_tst)
+  df_tst <- clean_indicators(df_tst, fy)
 
   #identify country (if not pulling from DATIM)
   cntry <- grab_info(filepath, "country")
@@ -91,14 +90,10 @@ tame_dp <- function(filepath, type = "ALL",
   #add names from DATIM
   df_tst <- get_names(df_tst, map_names, psnu_lvl, cntry)
 
+  #identify and apply prioritization
   if(is_sheet(filepath, "Prioritization")){
-    #identify and apply prioritization
     df_prioritizations <- grab_prioritization(filepath)
     df_tst <- apply_prioritization(df_tst, df_prioritizations)
-
-    #identify and apply snu1 (if using PSNUxIM tab)
-    # df_snu1 <- grab_snu1(filepath) #SNU1 no longer in DP
-    # df_tst <- apply_snu1(df_tst, df_snu1) #SNU1 no longer in DP
   }
 
   #add file name and date stamp to dataset

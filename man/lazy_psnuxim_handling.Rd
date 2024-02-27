@@ -25,4 +25,4 @@ function switches the type argument in tame_dp from "ALL" to "PSNUxIM" to
 avoid this problem and provides the user with both a warning and information
 on how to fix the problem running it in the future.
 }
-\concept{internal}
+\keyword{internal}
