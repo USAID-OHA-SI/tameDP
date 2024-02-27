@@ -1,4 +1,5 @@
 # tameDP 6.1
+* Resolve bug creating OVC_HIVSTAT_D (was coming out OVC_SERV_D)) and remove assocated age since it is a Total Denominator [2024-02-27]
 * Remove prior year OVC_STAT & TB_STAT (N) due to disagg aggregation and incomplete disaggs [2024-02-26]
 * Add error handing if valid tab is chosen in `type` param for `tame_dp` but not found in TST file [2024-02-22]
 * Convert stop errors from `stop` to use `cli::cli_abort` [2024-02-22]
