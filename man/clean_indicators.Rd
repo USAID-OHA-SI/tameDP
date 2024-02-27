@@ -4,10 +4,12 @@
 \alias{clean_indicators}
 \title{Clean Up Indicators and Disaggregates}
 \usage{
-clean_indicators(df)
+clean_indicators(df, fy)
 }
 \arguments{
 \item{df}{data frame to adjust}
+
+\item{fy}{fiscal year for targeting}
 }
 \description{
 The indicator and disaggregates used in the Target Setting Tool skew towards machine readable

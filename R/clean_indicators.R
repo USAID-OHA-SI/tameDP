@@ -9,10 +9,11 @@
 #' them (eg HTS_INDEX, TB_STAT, PMTCT_STAT, VMMC_CIRC).
 #'
 #' @param df data frame to adjust
+#' @param fy fiscal year for targeting
 #'
 #' @export
 
-clean_indicators <- function(df){
+clean_indicators <- function(df, fy){
 
   #extract disagg info from indicator_code
   df <- df %>%
