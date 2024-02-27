@@ -57,14 +57,22 @@ clean_indicators <- function(df, fy){
 
   #move keypop to otherdisagg
   df <- df %>%
-    dplyr::mutate(otherdisaggregate = ifelse(kp_disagg == TRUE, keypop, otherdisaggregate)) %>%
+    dplyr::mutate(otherdisaggregate = ifelse(kp_disagg == TRUE, keypop,
+                                             otherdisaggregate)) %>%
     dplyr::select(-dplyr::matches("keypop|kp_disagg"))
 
   #drop indicator code
   df <- dplyr::select(df, -indicator_code)
 
+  #drop prior year OVC_SERV (aggregates disaggs) & TB_STAT (N only included POS)
+  df <- df %>%
+    dplyr::filter(!(indicator %in% c("OVC_SERV", "TB_STAT") &
+                      numeratordenom == "N" &
+                      fiscal_year != fy))
+
   #move targets (and cumulative) to end
-  df <- dplyr::relocate(df, dplyr::matches("cumulative|targets"), .after = dplyr::last_col())
+  df <- dplyr::relocate(df, dplyr::matches("cumulative|targets"),
+                        .after = dplyr::last_col())
 
   return(df)
 }
