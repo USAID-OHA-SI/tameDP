@@ -1,4 +1,5 @@
 # tameDP 6.1
+* Remove prior year OVC_STAT & TB_STAT (N) due to disagg aggregation and incomplete disaggs [2024-02-26]
 * Add error handing if valid tab is chosen in `type` param for `tame_dp` but not found in TST file [2024-02-22]
 * Convert stop errors from `stop` to use `cli::cli_abort` [2024-02-22]
 * Resolve `across` bug of "Using `across()` without supplying `.cols` was deprecated in dplyr 1.1.0", which affected handing with PSNUxIM TST [2024-02]
