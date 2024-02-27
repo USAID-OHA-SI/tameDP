@@ -64,6 +64,12 @@ clean_indicators <- function(df, fy){
   #drop indicator code
   df <- dplyr::select(df, -indicator_code)
 
+  #remove age from OVC_HIVSTAT
+  df <- df %>%
+    dplyr::mutate(dplyr::across(c(ageasentered, target_age_2024, trendscoarse),
+                                ~ ifelse(indicator == "OVC_HIVSTAT",
+                                       NA_character_, .)))
+
   #drop prior year OVC_SERV (aggregates disaggs) & TB_STAT (N only included POS)
   df <- df %>%
     dplyr::filter(!(indicator %in% c("OVC_SERV", "TB_STAT") &

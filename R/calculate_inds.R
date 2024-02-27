@@ -21,10 +21,13 @@ calculate_inds <- function(df){
     dplyr::bind_rows(df %>%
                        dplyr::filter(otherdisaggregate %in% c("Active", "Graduated"),
                                      !ageasentered %in% c("18-20","18+")) %>%
-                       dplyr::mutate(indicator == "OVC_HIVSTAT",
+                       dplyr::mutate(indicator = "OVC_HIVSTAT",
                                      numeratordenom = "D",
                                      standardizeddisaggregate = "Total Denominator",
-                                     otherdisaggregate = NA_character_))
+                                     otherdisaggregate = NA_character_,
+                                     ageasentered = NA_character_,
+                                     target_age_2024 = NA_character_
+                       ))
 
   #add PMTCT_POS as an indicator
   df <- df %>%
