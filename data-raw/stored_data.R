@@ -146,3 +146,21 @@ mer_disagg_mapping <- mer_disagg_mapping %>%
 
 
 usethis::use_data(mer_disagg_mapping, overwrite = TRUE)
+
+# create new historic mapping for FY24 onward
+
+
+#add mer 2.7 disagg changes
+mer_2_7_disagg <- tibble::tribble(
+  ~indicator, ~numeratordenom, ~standardizeddisaggregate, ~fiscal_year, ~kp_disagg,
+  "TX_NEW",     "N",           "Age/Sex/CD4/HIVStatus",   2024,        FALSE)
+
+#bind old historic, new mapping, and mer 27 changes
+mer_historic_disagg_mapping_2024 <- mer_disagg_mapping %>%
+  mutate(fiscal_year = 2024) %>%
+  relocate(kp_disagg, .after = fiscal_year) %>%
+  rbind(msd_historic_disagg_mapping) %>%
+  rbind(mer_2_7_disagg)
+
+usethis::use_data(mer_historic_disagg_mapping_2024, overwrite = TRUE)
+
