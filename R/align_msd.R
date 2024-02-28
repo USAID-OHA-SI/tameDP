@@ -33,7 +33,7 @@ align_msd_disagg <- function(msd_path, dp_path, raised_prioritization = FALSE) {
   #semi join with MSD mapping to limit to MSD disaggs
   df_align <- df_msd %>%
     dplyr::select(tidyr::any_of(dp_cols),funding_agency, mech_code) %>%
-    dplyr::semi_join(msd_historic_disagg_mapping, by = c("indicator", "numeratordenom", "standardizeddisaggregate")) %>%
+    dplyr::semi_join(mer_historic_disagg_mapping_2024, by = c("indicator", "numeratordenom", "standardizeddisaggregate")) %>%
     gophr::clean_indicator()
 
   #if targets set at SNU1 level, rename SNU columsn back to psnu for join with dp
