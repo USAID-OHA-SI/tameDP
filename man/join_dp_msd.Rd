@@ -7,7 +7,9 @@
 join_dp_msd(dp_filepath, msd_filepath)
 }
 \arguments{
-\item{msd_filepath}{}
+\item{dp_filepath}{file path to the Target Setting Tool importing, must be .xlsx}
+
+\item{msd_filepath}{filepath to the latest PSNUxIM MSD for corresponding OU}
 }
 \description{
 Join TST output with MSD output
