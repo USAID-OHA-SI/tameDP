@@ -35,7 +35,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">tameDP</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">6.1.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">6.2.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -136,13 +136,13 @@ dependent packages we need will be installed when we install
 <code>tameDP</code>, but we do need to install a few of our custom
 USAID/OHA packages. Our USAID/OHA packages are hosted on GitHub and
 rOpenSci rather than CRAN, R’s central software repository. As a result,
-we will need to tell R to first look at the USAID-OHA-SI ‘R Universe’
-and then install any other dependencies from CRAN. Copy and paste the
-code chunk below to install all the required packages in a clean
-instance of R. <em>If your console asks you to install updates, you can
-skip this by simply hitting return/enter.</em></p>
+we will need to tell R to first look at the <a href="https://usaid-oha-si.r-universe.dev/builds" class="external-link">USAID-OHA-SI ‘R
+Universe’</a> and then install any other dependencies from CRAN. Copy
+and paste the code chunk below to install all the required packages in a
+clean instance of R. <em>If your console asks you to install updates,
+you can skip this by simply hitting return/enter.</em></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'gagglr'</span>, <span class="st">'glamr'</span>, <span class="st">'gophr'</span><span class="op">)</span>, </span>
+<code class="sourceCode R"><span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'gagglr'</span>, <span class="st">'glamr'</span>, <span class="st">'gophr'</span>, <span class="st">'grabr'</span><span class="op">)</span>, </span>
 <span>                  repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'https://usaid-oha-si.r-universe.dev'</span>,</span>
 <span>                            <span class="st">'https://cloud.r-project.org'</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>

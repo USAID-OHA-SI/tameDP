@@ -35,7 +35,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">tameDP</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">6.1.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">6.2.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -213,9 +213,13 @@ targets, but the difference is in the indicators returned
 (<code>indicator</code>).</p>
 <p>Last but not least we have the option to return
 <code>type = "PSNUxIM"</code>, which will pull data from the PSNUxIM tab
-of the Target Setting Tool (or OPU). As the tab name and
-<code>type</code> indicate, the data will be at the PSNU and mechanism
-level.</p>
+of the Target Setting Tool (or OPU). This tab no longer exists within
+the main TST, but is generated within <a href="https://datapack.datim.org/" class="external-link">Target Setting Tool Validation
+App</a> and is its own separte tool. You will need to change the
+<code>type</code> parameter to <code>type = "PSNUxIM"</code> to pull the
+PSNU by mechanism information from this tab. If you keep the defaul
+setting (<code>type = ALL</code>), the code will still run, but will
+kick back a warning message.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df_tst_mech</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tame_dp.html">tame_dp</a></span><span class="op">(</span><span class="va">tst_filepath</span>, type <span class="op">=</span> <span class="st">"PSNUxIM"</span><span class="op">)</span></span></code></pre></div>
 <p>This last <code>type</code> option returns the <code>mech_code</code>
