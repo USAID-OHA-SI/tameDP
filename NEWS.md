@@ -1,3 +1,7 @@
+# tameDP 6.2
+* Add `grabr` as a dependency to improve credential handling when getting mechanism information from DATIM [2024-02-29]
+* Resolve bug with PSNUxIM file where output was missing mechanism related information [2024-02-29]
+
 # tameDP 6.1
 * Resolve bug creating OVC_HIVSTAT_D (was coming out OVC_SERV_D)) and remove associated age from OVC_HIVSTAT [2024-02-27]
 * Remove prior year OVC_STAT & TB_STAT (N) due to disagg aggregation and incomplete disaggs [2024-02-26]

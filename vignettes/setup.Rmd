@@ -31,10 +31,10 @@ R is the underlying software we're using, but the user interface leaves much to 
 
 ### Installing Package Dependencies
 
-With proprietary programs like Excel, Tableau, or Stata, all of your functions are built into the software. With open-source packages on the other hand, we need to load different libraries or packages that are written by other organization or individuals users. Most of the dependent packages we need will be installed when we install `tameDP`, but we do need to install a few of our custom USAID/OHA packages. Our USAID/OHA packages are hosted on GitHub and rOpenSci rather than CRAN, R's central software repository. As a result, we will need to tell R to first look at the USAID-OHA-SI 'R Universe' and then install any other dependencies from CRAN. Copy and paste the code chunk below to install all the required packages in a clean instance of R. *If your console asks you to install updates, you can skip this by simply hitting return/enter.*
+With proprietary programs like Excel, Tableau, or Stata, all of your functions are built into the software. With open-source packages on the other hand, we need to load different libraries or packages that are written by other organization or individuals users. Most of the dependent packages we need will be installed when we install `tameDP`, but we do need to install a few of our custom USAID/OHA packages. Our USAID/OHA packages are hosted on GitHub and rOpenSci rather than CRAN, R's central software repository. As a result, we will need to tell R to first look at the [USAID-OHA-SI 'R Universe'](https://usaid-oha-si.r-universe.dev/builds) and then install any other dependencies from CRAN. Copy and paste the code chunk below to install all the required packages in a clean instance of R. *If your console asks you to install updates, you can skip this by simply hitting return/enter.*
 
 ```{r install oha packages, eval=F, echo=T}
- install.packages(c('gagglr', 'glamr', 'gophr'), 
+ install.packages(c('gagglr', 'glamr', 'gophr', 'grabr'), 
                   repos = c('https://usaid-oha-si.r-universe.dev',
                             'https://cloud.r-project.org'))
 ```
