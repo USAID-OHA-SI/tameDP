@@ -17,6 +17,7 @@ order_vars <- function(df){
   #variable order
   v_order <- c("operatingunit", "country", "psnu", "psnuuid", "snuprioritization",
                "fiscal_year",
+               "funding_agency","mech_code", "prime_partner_name", "mech_name",
                "indicator", "standardizeddisaggregate", "numeratordenom",
                "ageasentered", "target_age_2024", "trendscoarse",
                "sex", "modality", "target_modality_2024", "statushiv",
