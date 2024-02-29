@@ -84,5 +84,16 @@ get_names <- function(df, map_names = TRUE, psnu_lvl = FALSE, cntry,
       dplyr::relocate(funding_agency, prime_partner_name, mech_name, .before = fiscal_year)
   }
 
+  #warning & instructions if grabr or gophr are missing for accessing DATIM
+  if (!requireNamespace("grabr", quietly = TRUE) || !requireNamespace("gophr", quietly = TRUE)) {
+    missing_pkgs <- c("grabr", "gophr")[c(!requireNamespace("grabr", quietly = TRUE),
+                                          !requireNamespace("gophr", quietly = TRUE))]
+    cli::cli_alert_danger("Unable to access DATIM for mechanism information without {.pkg {missing_pkgs}} installed")
+    cli::cli_alert_info("To install {.pkg {missing_pkgs}}, start a clean R session then run:")
+
+    v_missing_pkgs <- cli::cli_vec(missing_pkgs, style = list("vec-sep" = '", "', "vec-last" = '", "'))
+    cli::cli_text('{.code install.packages(c("{v_missing_pkgs}"), repos = c("https://usaid-oha-si.r-universe.dev", "https://cloud.r-project.org"))}')
+  }
+
   return(df)
 }
