@@ -2,7 +2,6 @@
 
 export("%>%")
 export(agg_dp)
-export(align_ageband)
 export(align_msd_disagg)
 export(apply_class)
 export(apply_fy)
