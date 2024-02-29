@@ -30,7 +30,8 @@ Imports:
 Remotes:
     USAID-OHA-SI/glamr,
     USAID-OHA-SI/gophr,
-    USAID-OHA-SI/gagglr
+    USAID-OHA-SI/gagglr,
+    USAID-OHA-SI/grabr,
 Suggests: 
     testthat (>= 3.0.0),
     purrr,

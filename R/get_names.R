@@ -34,16 +34,17 @@
 get_names <- function(df, map_names = TRUE, psnu_lvl = FALSE, cntry,
                       datim_user, datim_password){
 
-  if(map_names == TRUE && psnu_lvl == FALSE){
+  if(map_names == TRUE && psnu_lvl == FALSE &&
+     requireNamespace("grabr", quietly = TRUE) &&
+     requireNamespace("gophr", quietly = TRUE)){
 
     #check internet connection
       no_connection()
 
-    #ask for credentials if missing
-    if(missing(datim_user))
-      datim_user <- getPass::getPass("DATIM username")
-    if(missing(datim_password))
-      datim_password <- getPass::getPass("DATIM password", forcemask = TRUE)
+    #grab credentials
+    accnt <- grabr::lazy_secrets("datim",
+                                 username = datim_user,
+                                 password = datim_password)
 
     #change country to NA if not provided
     if(missing(cntry))
@@ -64,7 +65,7 @@ get_names <- function(df, map_names = TRUE, psnu_lvl = FALSE, cntry,
     }
 
     #rename
-    df <- gophr::rename_official(df, datim_user, datim_password)
+    df <- gophr::rename_official(df, accnt$username, accnt$password)
 
     #fill operatingunitname where missing
     df <- df %>%
