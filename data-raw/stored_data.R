@@ -153,7 +153,9 @@ usethis::use_data(mer_disagg_mapping, overwrite = TRUE)
 #add mer 2.7 disagg changes
 mer_2_7_disagg <- tibble::tribble(
   ~indicator, ~numeratordenom, ~standardizeddisaggregate, ~fiscal_year, ~kp_disagg,
-  "TX_NEW",     "N",           "Age/Sex/CD4/HIVStatus",   2024,        FALSE)
+  "TX_NEW",     "N",           "Age/Sex/CD4/HIVStatus",   2024,        FALSE,
+  "TX_PVLS", "N", "Age/Sex/HIVStatus", 2024, FALSE,
+  "TX_PVLS", "D", "Age/Sex/HIVStatus", 2024, FALSE)
 
 #bind old historic, new mapping, and mer 27 changes
 mer_historic_disagg_mapping_2024 <- mer_disagg_mapping %>%
