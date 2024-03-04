@@ -95,7 +95,7 @@ df_tb <- tame_dp(tst_filepath, type = "TB")
 
 The structure of the data frame is the same as when we ran it for targets, but the difference is in the indicators returned (`indicator`).
 
-Last but not least we have the option to return `type = "PSNUxIM"`, which will pull data from the PSNUxIM tab of the Target Setting Tool (or OPU). As the tab name and `type` indicate, the data will be at the PSNU and mechanism level.
+Last but not least we have the option to return `type = "PSNUxIM"`, which will pull data from the PSNUxIM tab of the Target Setting Tool (or OPU). This tab no longer exists within the main TST, but is generated within [Target Setting Tool Validation App](https://datapack.datim.org/) and is its own separte tool. You will need to change the `type` parameter to `type = "PSNUxIM"` to pull the PSNU by mechanism information from this tab. If you keep the defaul setting (`type = ALL`), the code will still run, but will kick back a warning message.
 
 ```{r return mech}
 df_tst_mech <- tame_dp(tst_filepath, type = "PSNUxIM")
