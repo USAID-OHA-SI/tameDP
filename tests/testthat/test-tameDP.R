@@ -13,7 +13,7 @@ test_that("correct tabs are returned for import", {
                                          "PSNUxIM")]
 
   expect_error(return_tab("wrong") %>%
-                  intersect(dp_tabs))
+                 intersect(dp_tabs))
 
   expect_equal(intersect(return_tab("PSNUxIM"), dp_tabs),
                "PSNUxIM")
@@ -23,5 +23,4 @@ test_that("correct tabs are returned for import", {
                target_tabs)
 
 })
-
 
