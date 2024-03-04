@@ -63,7 +63,9 @@
       "value",
       "value_type",
       "msd_historic_disagg_mapping",
-      "age_dp")
+      "age_dp",
+      "target_age_2024",
+      "trendscoarse")
   )
 
   invisible ()
