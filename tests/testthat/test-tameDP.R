@@ -17,8 +17,8 @@ test_that("correct tabs are returned for import", {
 
   expect_equal(intersect(return_tab("PSNUxIM"), dp_tabs),
                "PSNUxIM")
-  expect_equal(intersect(return_tab("SUBNAT"), dp_tabs),
-               target_tabs)
+  expect_equal(return_tab("PLHIV"), "Cascade")
+  expect_equal(return_tab("SUBNAT"), "Cascade")
   expect_equal(intersect(return_tab("ALL"), dp_tabs),
                target_tabs)
 
