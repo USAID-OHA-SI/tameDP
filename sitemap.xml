@@ -37,9 +37,6 @@
     <loc>https://usaid-oha-si.github.io/tameDP/reference/agg_dp.html</loc>
   </url>
   <url>
-    <loc>https://usaid-oha-si.github.io/tameDP/reference/align_ageband.html</loc>
-  </url>
-  <url>
     <loc>https://usaid-oha-si.github.io/tameDP/reference/align_agecoarse.html</loc>
   </url>
   <url>
@@ -100,6 +97,9 @@
     <loc>https://usaid-oha-si.github.io/tameDP/reference/is_xls.html</loc>
   </url>
   <url>
+    <loc>https://usaid-oha-si.github.io/tameDP/reference/join_dp_msd.html</loc>
+  </url>
+  <url>
     <loc>https://usaid-oha-si.github.io/tameDP/reference/lazy_psnuxim_handling.html</loc>
   </url>
   <url>
@@ -113,6 +113,9 @@
   </url>
   <url>
     <loc>https://usaid-oha-si.github.io/tameDP/reference/mer_disagg_mapping.html</loc>
+  </url>
+  <url>
+    <loc>https://usaid-oha-si.github.io/tameDP/reference/mer_historic_disagg_mapping_2024.html</loc>
   </url>
   <url>
     <loc>https://usaid-oha-si.github.io/tameDP/reference/msd_historic_disagg_mapping.html</loc>
