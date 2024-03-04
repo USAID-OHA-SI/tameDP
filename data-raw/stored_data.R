@@ -101,6 +101,7 @@ mer_disagg_mapping <-
                "OVC_HIVSTAT",             "N",                           "Total Numerator",      FALSE,
                   "OVC_SERV",             "N",                               "Placeholder",      FALSE,
                      "PLHIV",             "N",                         "Age/Sex/HIVStatus",      FALSE,
+           "PLHIV_Residents",             "N",                         "Age/Sex/HIVStatus",      FALSE,
                  "PMTCT_ART",             "N",          "Age/Sex/NewExistingArt/HIVStatus",      FALSE,
           "PMTCT_ART_SUBNAT",             "D",                         "Age/Sex/HIVStatus",      FALSE,
           "PMTCT_ART_SUBNAT",             "N",          "Age/Sex/HIVStatus/NewExistingArt",      FALSE,
