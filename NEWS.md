@@ -1,6 +1,10 @@
 # tameDP 6.2
+* Add `join_dp_msd()` which returns a dataframe of the TST output joined with historical data from the MSD [2024-03-04]
+* Include the inclusion of PLHIV_Resident variablbe, a target type column that was not previously being exported [2024-03-04]
+* When extracting SUBNAT data, limit to just the Cascade tab to avoid any dupilicate counting [2023-03-04]
 * Add `grabr` as a dependency to improve credential handling when getting mechanism information from DATIM [2024-02-29]
 * Resolve bug with PSNUxIM file where output was missing mechanism related information [2024-02-29]
+
 
 # tameDP 6.1
 * Resolve bug creating OVC_HIVSTAT_D (was coming out OVC_SERV_D)) and remove associated age from OVC_HIVSTAT [2024-02-27]
