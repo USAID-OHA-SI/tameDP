@@ -4,10 +4,18 @@
 #' @param dp_filepath file path to the Target Setting Tool importing, must be .xlsx
 #' @param msd_filepath filepath to the latest PSNUxIM MSD for corresponding OU
 #'
-#' @return
+#' @return dataframe that combines targets from the TST with corresponding historic results/targets from MSD
 #' @export
 #'
-#' @examples
+#' @examplesIf FALSE
+#' #DP file path
+#'   tst_path <- "../Downloads/DataPack_Jupiter_20500101.xlsx"
+#' # MSD filepath
+#'  msd_path <- "../Data/MER_Structured_TRAINING_Datasets_PSNU_IM_FY59-61_20240215_v1_1.zip"
+#'
+#' #run join function
+#'   df_join <- join_dp_msd(tst_path, msd_path)
+
 join_dp_msd <- function(dp_filepath, msd_filepath) {
 
   #grab year of TST

@@ -11,6 +11,20 @@ join_dp_msd(dp_filepath, msd_filepath)
 
 \item{msd_filepath}{filepath to the latest PSNUxIM MSD for corresponding OU}
 }
+\value{
+dataframe that combines targets from the TST with corresponding historic results/targets from MSD
+}
 \description{
 Join TST output with MSD output
+}
+\examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+#DP file path
+  tst_path <- "../Downloads/DataPack_Jupiter_20500101.xlsx"
+# MSD filepath
+ msd_path <- "../Data/MER_Structured_TRAINING_Datasets_PSNU_IM_FY59-61_20240215_v1_1.zip"
+
+#run join function
+  df_join <- join_dp_msd(tst_path, msd_path)
+\dontshow{\}) # examplesIf}
 }
