@@ -64,11 +64,8 @@
       "value_type",
       "msd_historic_disagg_mapping",
       "age_dp",
-<<<<<<< HEAD
       "mer_historic_disagg_mapping_2024",
       "source_processed",
-=======
->>>>>>> origin/main
       "target_age_2024",
       "trendscoarse")
   )
