@@ -17,10 +17,8 @@ test_that("correct tabs are returned based on output type", {
   expect_error(return_tab("Year 2"))
 
   expect_equal(return_tab("PSNUxIM"), "PSNUxIM")
-  expect_equal(intersect(return_tab("PLHIV"), dp_tabs),
-               target_tabs)
-  expect_equal(intersect(return_tab("SUBNAT"), dp_tabs),
-               target_tabs)
+  expect_equal(return_tab("PLHIV"), "Cascade")
+  expect_equal(return_tab("SUBNAT"), "Cascade")
   expect_equal(intersect(return_tab("ALL"), dp_tabs),
                target_tabs)
 

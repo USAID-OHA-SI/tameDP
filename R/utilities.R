@@ -93,7 +93,9 @@ return_tab <- function(type){
 
   if(type == "PSNUxIM"){
     t <- "PSNUxIM"
-  } else if(type %in% c("ALL", "PLHIV", "SUBNAT")){
+  } else if(type %in% c("PLHIV", "SUBNAT")){
+    t <- "Cascade"
+  } else if(type == "ALL"){
     t <- dp_tabs
   } else if(type %in% dp_tabs){
     t <- type
