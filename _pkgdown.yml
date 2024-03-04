@@ -76,7 +76,6 @@ reference:
   - '`grab_snu1`'
   - '`apply_snu1`'
   - '`apply_stamps`'
-  - '`align_ageband`'
   - '`align_msd_disagg`'
   - '`lazy_psnuxim_handling`'
 
@@ -84,5 +83,6 @@ reference:
   contents:
   - '`mer_disagg_mapping`'
   - '`msd_historic_disagg_mapping`'
+  - '`mer_historic_disagg_mapping_2024`'
   - '`ou_ctry_mapping`'
   - '`age_band_crosswalk`'
