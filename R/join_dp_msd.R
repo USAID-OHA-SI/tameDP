@@ -24,7 +24,8 @@ join_dp_msd <- function(dp_filepath, msd_filepath) {
     dplyr::mutate(indicator = ifelse(indicator == "PLHIV_Residents", "PLHIV", indicator)) %>%
     dplyr::mutate(snuprioritization = dplyr::recode(snuprioritization,
                                                     "2 - Scale-up: Aggressive" = "2 - Scale-Up: Aggressive",
-                                                    "1 - Scale-up: Saturation" = "1 - Scale-Up: Saturation"))
+                                                    "1 - Scale-up: Saturation" = "1 - Scale-Up: Saturation")) %>%
+    gophr::clean_indicator()
 
   #munge MSD and align to TST names and disaggs
   msd_final <- align_msd_disagg(msd_filepath, dp_filepath, FALSE)
