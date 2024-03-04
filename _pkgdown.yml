@@ -83,6 +83,5 @@ reference:
   contents:
   - '`mer_disagg_mapping`'
   - '`msd_historic_disagg_mapping`'
-  - '`mer_historic_disagg_mapping_2024`'
   - '`ou_ctry_mapping`'
   - '`age_band_crosswalk`'
