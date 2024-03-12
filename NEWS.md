@@ -1,4 +1,5 @@
 # tameDP 6.2
+* Remove PrEP_CT as a modality to HTS [2024-03-12]
 * Add `join_dp_msd()` which returns a dataframe of the TST output joined with historical data from the MSD [2024-03-04]
 * Include the inclusion of PLHIV_Resident variablbe, a target type column that was not previously being exported [2024-03-04]
 * When extracting SUBNAT data, limit to just the Cascade tab to avoid any dupilicate counting [2023-03-04]
