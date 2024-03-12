@@ -44,8 +44,7 @@ convert_mods <- function(df){
   df_exmod <- df_exmod %>%
     dplyr::mutate(modality = dplyr::case_when(indicator == "VMMC_CIRC"  ~ "VMMC",
                                               indicator == "TB_STAT"    ~ "TBClinic",
-                                              indicator == "PMTCT_STAT" ~ "PMTCT ANC",
-                                              indicator == "PrEP_CT" ~ "PrEP_CT"),
+                                              indicator == "PMTCT_STAT" ~ "PMTCT ANC"),
                   indicator = "HTS_TST",
                   standardizeddisaggregate = "Modality/Age/Sex/Result",
                   otherdisaggregate = as.character(NA))
