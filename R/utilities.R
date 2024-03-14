@@ -124,6 +124,11 @@ return_tab <- function(type){
 #' @return vector of tabs to read in
 #'
 lazy_psnuxim_handling <- function(filepath, type, import_tabs){
+  if(length(import_tabs) == 0 && type != "ALL" && "PSNUxIM" %in% readxl::excel_sheets(filepath)){
+    cli::cli_abort(c(
+      'This TST appears to be a PSNUxIM file and does not include a "{type}" tab [{.arg type = {type}}]',      "i" = 'Change the {.arg filepath} to a normal TST file or set {.arg type = "PSNUxIM"}'
+    ))
+  }
   if(length(import_tabs) == 0 && "PSNUxIM" %in% readxl::excel_sheets(filepath)){
     import_tabs <- "PSNUxIM"
     cli::cli_warn(c(
