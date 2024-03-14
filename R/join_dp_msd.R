@@ -65,17 +65,17 @@ tame_join <- function(tst_filepath, msd_filepath,
                         fy_as_str = TRUE, map_names = FALSE) {
 
   #grab year of TST
-  fy <- grab_info(dp_filepath, "year")
+  fy <- grab_info(tst_filepath, "year")
 
   #import TST
   dp <- suppressWarnings(
-    tame_dp(dp_filepath, map_names = map_names) %>%
+    tame_dp(tst_filepath, map_names = map_names) %>%
       dplyr::filter(fiscal_year == fy)
   )
 
   #join SUNBAT data if not a PSNUxIM dataset
-  if(!"PSNUxIM" %in% readxl::excel_sheets(dp_filepath)){
-    dp_plhiv <- tame_dp(dp_filepath, type = 'PLHIV') %>%
+  if(!"PSNUxIM" %in% readxl::excel_sheets(tst_filepath)){
+    dp_plhiv <- tame_dp(tst_filepath, type = 'PLHIV') %>%
       dplyr::mutate(standardizeddisaggregate = ifelse(indicator == "PLHIV_Residents", "Age/Sex/HIVStatus", standardizeddisaggregate)) %>%
       dplyr::mutate(indicator = ifelse(indicator == "PLHIV_Residents", "PLHIV", indicator))
 
