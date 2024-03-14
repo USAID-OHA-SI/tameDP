@@ -5,29 +5,22 @@
 #' This function also addresses when OUs set targets at a higher level than PSNU for alignment.
 #'
 #' @param msd_path path to PSNUxIM extract
-#' @param dp_path path to TST
-#' @param raised_prioritization logical that is TRUE if OU is setting targets at a raised prioritization level (i.e. SNU1 instead of PSNU)
 #'
 #' @export
 #'
 #' @examples
 #'  \dontrun{
-#'    df_msd <- align_msd_disagg(msd_path = msd_path, dp_path = dp_path, raised_prioritization = FALSE)
+#'    df_msd <- align_msd_disagg(msd_path = msd_path)
 #' }
 #'
 
-align_msd_disagg <- function(msd_path, dp_path, raised_prioritization = FALSE) {
+align_msd_disagg <- function(msd_path) {
 
   #import MSD
   df_msd <- gophr::read_psd(msd_path)
 
-  #run tameDP
-  dp_cols <- tameDP::tame_dp(dp_path) %>%
-    names()
-
   #semi join with MSD mapping to limit to MSD disaggs
   df_align <- df_msd %>%
-    dplyr::select(tidyr::any_of(dp_cols)) %>%
     dplyr::semi_join(mer_historic_disagg_mapping_2024, by = c("indicator", "numeratordenom", "standardizeddisaggregate")) %>%
     gophr::clean_indicator()
 

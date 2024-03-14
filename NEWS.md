@@ -1,4 +1,7 @@
 # tameDP 6.2
+* Rename `join_dp_msd` to `tame_join` to align with package naming convention [2024-03-14]
+* Improve `join_dp_msd` to work more seamlessly with a PSNUxIM file in addition to a normal TST [2024-03-14]
+* Adjust lazy handling with PSNU to stop if a specific tab is called that is not PSNUxIM [2024-03-14]
 * Remove PrEP_CT as a modality to HTS [2024-03-12]
 * Add `join_dp_msd()` which returns a dataframe of the TST output joined with historical data from the MSD [2024-03-04]
 * Include the inclusion of PLHIV_Resident variablbe, a target type column that was not previously being exported [2024-03-04]

@@ -54,7 +54,7 @@ tame_dp <- function(filepath, type = "ALL",
   import_tabs <- return_tab(type) %>%
     intersect(readxl::excel_sheets(filepath))
 
-  #error handling if default is mainined for a PSNUxIM file
+  #error handling if default (ALL) is maintained for a PSNUxIM file
   import_tabs <- lazy_psnuxim_handling(filepath, type, import_tabs)
 
   #error handling if cannot find valid tab in TST

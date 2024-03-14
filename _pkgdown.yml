@@ -39,8 +39,7 @@ reference:
   contents:
   - '`tame_dp`'
   - '`tame_subnat`'
-  - '`tame_plhiv`'
-  - '`join_dp_msd`'
+  - '`tame_join`'
 
 - title: Supporting functions
   contents:
@@ -87,3 +86,8 @@ reference:
   - '`mer_historic_disagg_mapping_2024`'
   - '`ou_ctry_mapping`'
   - '`age_band_crosswalk`'
+
+- title: Soft Deprecated functions
+  contents:
+    - '`tame_plhiv`'
+    - '`join_dp_msd`'
