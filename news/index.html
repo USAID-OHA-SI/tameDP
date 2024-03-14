@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">tameDP</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">6.2.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">6.2.4</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,7 +54,10 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="6.2" id="tamedp-62">tameDP 6.2<a class="anchor" aria-label="anchor" href="#tamedp-62"></a></h2>
-<ul><li>Remove PrEP_CT as a modality to HTS [2024-03-12]</li>
+<ul><li>Rename <code>join_dp_msd</code> to <code>tame_join</code> to align with package naming convention [2024-03-14]</li>
+<li>Improve <code>join_dp_msd</code> to work more seamlessly with a PSNUxIM file in addition to a normal TST [2024-03-14]</li>
+<li>Adjust lazy handling with PSNU to stop if a specific tab is called that is not PSNUxIM [2024-03-14]</li>
+<li>Remove PrEP_CT as a modality to HTS [2024-03-12]</li>
 <li>Add <code><a href="../reference/join_dp_msd.html">join_dp_msd()</a></code> which returns a dataframe of the TST output joined with historical data from the MSD [2024-03-04]</li>
 <li>Include the inclusion of PLHIV_Resident variablbe, a target type column that was not previously being exported [2024-03-04]</li>
 <li>When extracting SUBNAT data, limit to just the Cascade tab to avoid any dupilicate counting [2023-03-04]</li>
