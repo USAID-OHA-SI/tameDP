@@ -20,7 +20,6 @@ Imports:
     dplyr (>= 1.0.0),
     glue,
     lifecycle,
-    getPass,
     magrittr,
     readxl,
     stringr,
@@ -33,6 +32,7 @@ Remotes:
     USAID-OHA-SI/gagglr,
     USAID-OHA-SI/grabr,
 Suggests: 
+    getPass,
     testthat (>= 3.0.0),
     purrr,
     knitr,
