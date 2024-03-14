@@ -4,14 +4,10 @@
 \alias{align_msd_disagg}
 \title{Align MSD extract to disaggregates in Target Setting Tool}
 \usage{
-align_msd_disagg(msd_path, dp_path, raised_prioritization = FALSE)
+align_msd_disagg(msd_path)
 }
 \arguments{
 \item{msd_path}{path to PSNUxIM extract}
-
-\item{dp_path}{path to TST}
-
-\item{raised_prioritization}{logical that is TRUE if OU is setting targets at a raised prioritization level (i.e. SNU1 instead of PSNU)}
 }
 \description{
 This function pulls in a PSNUxIM MSD and datapack filepath to align the MSD extract
@@ -20,7 +16,7 @@ This function also addresses when OUs set targets at a higher level than PSNU fo
 }
 \examples{
  \dontrun{
-   df_msd <- align_msd_disagg(msd_path = msd_path, dp_path = dp_path, raised_prioritization = FALSE)
+   df_msd <- align_msd_disagg(msd_path = msd_path)
 }
 
 }
